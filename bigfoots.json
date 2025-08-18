@@ -1,0 +1,2930 @@
+{
+    "Bigfoots": {
+        "Agogwe": {
+            "Type": "Dwarf",
+            "Location": "Tanzania",
+            "Habitat": [
+                "Dense tropical rainforests of Tanzania, rich with towering canopies.",
+                "Thick, swampy marshlands near the Zambezi River.",
+                "Remote mountainous woodlands with heavy mist and limited visibility."
+            ],
+            "Description": "A small, elusive humanoid covered in coarse hair. The Agogwe is known to move swiftly through the dense forests, rarely seen by human eyes. Locals speak of its ability to blend into the surroundings and disappear in the blink of an eye.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Forest Camouflage",
+                    "Effect": "The Agogwe blends into the surroundings, healing 5 HP and avoiding damage for one turn."
+                },
+                "Spades": {
+                    "Name": "Venomous Swipe",
+                    "Effect": "A swift strike poisons the enemy, dealing 3 damage each turn for 3 turns."
+                },
+                "Diamonds": {
+                    "Name": "Jungle Ambush",
+                    "Effect": "Lurking from the shadows, the Agogwe attacks, dealing double damage on its next strike."
+                },
+                "Clubs": {
+                    "Name": "Branch Snare",
+                    "Effect": "Entangles the opponent with vines, stunning them for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Power of the attacks scales with card number.",
+                    "Jack": {
+                        "Name": "Rapid Assault",
+                        "Effect": "Agogwe strikes three times rapidly, dealing moderate damage."
+                    },
+                    "Queen": {
+                        "Name": "Nature's Vengeance",
+                        "Effect": "Summons the forces of the forest to deal AoE damage to all enemies."
+                    },
+                    "King": {
+                        "Name": "Lord of the Wilds",
+                        "Effect": "Gains a permanent attack buff for the rest of the battle."
+                    },
+                    "Ace": {
+                        "Name": "Wrath of the Jungle",
+                        "Effect": "Agogwe strikes all enemies, healing itself and inflicting poison on all foes."
+                    },
+                    "Joker": {
+                        "Name": "Wild Escape",
+                        "Effect": "Agogwe gains 50% chance to evade all damage for two turns while dealing randomized effects to enemies."
+                    }
+                }
+            }
+        },
+        "Argopelter": {
+            "Type": "Dwarf",
+            "Location": "Oregon",
+            "Habitat": [
+                "Hollow trunks of ancient coniferous trees deep within the Oregon wilderness.",
+                "Rocky hillsides lined with Douglas fir and spruce, where they can ambush from above.",
+                "Fog-covered forest floors, hidden among thick underbrush."
+            ],
+            "Description": "A wiry, mischievous creature that inhabits hollow trees. The Argopelter is notorious for ambushing trespassers, hurling wood splinters and branches with precision. It uses its whip-like arms to snap off tree branches, targeting intruders in its territory.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Branch Armor",
+                    "Effect": "Creates a shield of wood, absorbing damage equal to half of Argopelter's current health."
+                },
+                "Spades": {
+                    "Name": "Splinter Storm",
+                    "Effect": "Throws sharp splinters at the enemy, causing bleeding (damage over time)."
+                },
+                "Diamonds": {
+                    "Name": "Branch Barrage",
+                    "Effect": "Throws a barrage of branches, dealing critical damage to a single target."
+                },
+                "Clubs": {
+                    "Name": "Knockback Smash",
+                    "Effect": "Hurls a large branch that knocks the enemy back, stunning them for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Damage and number of splinters increase with card number.",
+                    "Jack": {
+                        "Name": "Precision Strike",
+                        "Effect": "Argopelter targets the enemy's weak point, dealing 2x damage and reducing their defense."
+                    },
+                    "Queen": {
+                        "Name": "Branch Rain",
+                        "Effect": "Deals AoE damage to all enemies with a barrage of branches."
+                    },
+                    "King": {
+                        "Name": "Forest Fury",
+                        "Effect": "Argopelter's attacks deal 50% more damage for the remainder of the battle."
+                    },
+                    "Ace": {
+                        "Name": "Thorned Catastrophe",
+                        "Effect": "Summons a storm of thorns, hitting all enemies for massive damage and bleeding."
+                    },
+                    "Joker": {
+                        "Name": "Wild Throw",
+                        "Effect": "Argopelter randomly throws debris at all enemies, dealing unpredictable damage with a high chance of critical hits."
+                    }
+                }
+            }
+        },
+        "Barbegazi": {
+            "Type": "Dwarf",
+            "Location": "Swiss-French Alps",
+            "Habitat": [
+                "Snow-capped peaks of the Swiss-French Alps, in the narrow crevices of glacial ice.",
+                "Remote high-altitude caves, hidden beneath layers of ice and rock.",
+                "Wind-swept cliffsides, covered in deep, untrodden snowbanks."
+            ],
+            "Description": "These small, gnome-like creatures are adapted to the cold, using their large feet as snowshoes or skis. Barbegazi are known for helping travelers caught in avalanches, guiding them to safety, although they remain secretive and shy.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Icy Wind",
+                    "Effect": "Heals Barbegazi by 10 HP and creates a shield of ice that absorbs 15 damage."
+                },
+                "Spades": {
+                    "Name": "Frozen Touch",
+                    "Effect": "Freezes the enemy for 2 turns, dealing minor damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Avalanche",
+                    "Effect": "Summons an avalanche, dealing heavy damage and burying the enemy under snow, causing them to miss their next turn."
+                },
+                "Clubs": {
+                    "Name": "Icicle Spear",
+                    "Effect": "Throws sharp icicles that impale the enemy, causing bleeding and reducing their speed."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack potency increases with card number.",
+                    "Jack": {
+                        "Name": "Winter's Wrath",
+                        "Effect": "Deals moderate ice damage and lowers enemy defense."
+                    },
+                    "Queen": {
+                        "Name": "Blizzard Howl",
+                        "Effect": "AoE attack that freezes all enemies for 1 turn and deals moderate ice damage."
+                    },
+                    "King": {
+                        "Name": "Ice Lord's Command",
+                        "Effect": "Barbegazi becomes immune to ice damage and increases all ice-based attack damage by 50%."
+                    },
+                    "Ace": {
+                        "Name": "Absolute Zero",
+                        "Effect": "Deals massive ice damage, freezing all enemies for 2 turns and causing them to take additional frost damage each turn."
+                    },
+                    "Joker": {
+                        "Name": "Frostbite Frenzy",
+                        "Effect": "Barbegazi enters a berserk mode, dealing rapid ice damage but becoming more vulnerable to attacks."
+                    }
+                }
+            }
+        },
+        "Didi": {
+            "Type": "Dwarf",
+            "Location": "Guyana",
+            "Habitat": [
+                "Volcanic plateaus with sparse vegetation and rocky outcrops in Guyana.",
+                "Foothills near volcanic mountains where steaming geysers erupt.",
+                "Dense, high-altitude jungle fringes, where tree canopies break into volcanic rock."
+            ],
+            "Description": "Often called the \"Monkey King,\" the Didi is a 5-foot-tall, ape-like creature. It is known for wielding primitive clubs and for its intelligence, ruling over its territory with a combination of strength and cunning.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Monkey King's Guard",
+                    "Effect": "Heals Didi by 8 HP and boosts defense for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Venom Strike",
+                    "Effect": "A poisonous club strike that poisons the enemy, dealing damage over 3 turns."
+                },
+                "Diamonds": {
+                    "Name": "Club Smash",
+                    "Effect": "A powerful, single-target strike that deals massive critical damage."
+                },
+                "Clubs": {
+                    "Name": "Whirlwind Bash",
+                    "Effect": "Swings the club in a wide arc, stunning all nearby enemies for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Damage and poison potency scale with the card number.",
+                    "Jack": {
+                        "Name": "Simian Strike",
+                        "Effect": "Didi strikes the enemy's weak spot, dealing double damage and reducing their defense."
+                    },
+                    "Queen": {
+                        "Name": "King's Fury",
+                        "Effect": "Didi unleashes a powerful attack, dealing AoE damage and causing enemies to lose attack power."
+                    },
+                    "King": {
+                        "Name": "Ruler of the Jungle",
+                        "Effect": "Didi gains a permanent defense buff for the remainder of the battle."
+                    },
+                    "Ace": {
+                        "Name": "Jungle Destruction",
+                        "Effect": "A massive, club-wielding attack that strikes all enemies, stunning them and dealing heavy damage."
+                    },
+                    "Joker": {
+                        "Name": "Wild Chaos",
+                        "Effect": "Didi enters an unpredictable state, where each turn has a random effect, such as healing or damage increase."
+                    }
+                }
+            }
+        },
+        "Hibagon": {
+            "Type": "Dwarf",
+            "Location": "Japan",
+            "Habitat": [
+                "Dense bamboo forests at the base of Mount Hiba in Hiroshima Prefecture.",
+                "Steep mountain slopes dotted with hot springs and scattered foliage.",
+                "Misty, evergreen forests where light barely penetrates the thick canopy."
+            ],
+            "Description": "Smaller than North America's Bigfoot, the Hibagon is an aggressive creature with a strong, foul odor. Its distinct ape-like features and its habit of walking on all fours make it a fearsome figure in the forests near Hiroshima Prefecture.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Forest Guardian",
+                    "Effect": "Gains 10 HP and creates a protective shield made of forest debris that lasts for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Plague Stomp",
+                    "Effect": "A ground-pound attack that releases a foul stench, poisoning enemies in close range."
+                },
+                "Diamonds": {
+                    "Name": "Rampage",
+                    "Effect": "Hibagon charges with incredible speed, dealing critical damage to a single target."
+                },
+                "Clubs": {
+                    "Name": "Pound and Smash",
+                    "Effect": "Slams the ground with both fists, stunning nearby enemies for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Each stomp's range and damage increase with card number.",
+                    "Jack": {
+                        "Name": "Blazing Fury",
+                        "Effect": "A fiery charge that deals double damage and burns the enemy for additional fire damage over 3 turns."
+                    },
+                    "Queen": {
+                        "Name": "Roar of the Wild",
+                        "Effect": "A terrifying roar that stuns all enemies and lowers their attack for 3 turns."
+                    },
+                    "King": {
+                        "Name": "Savage Strike",
+                        "Effect": "A massive, unstoppable hit that breaks through shields and ignores defense."
+                    },
+                    "Ace": {
+                        "Name": "Fury Unleashed",
+                        "Effect": "Hibagon goes berserk, hitting all enemies with devastating force, dealing both physical and fire damage."
+                    },
+                    "Joker": {
+                        "Name": "Unpredictable Force",
+                        "Effect": "Hibagon randomly switches between defensive and offensive stances, making it hard for enemies to counter."
+                    }
+                }
+            }
+        },
+        "Ine Weu": {
+            "Type": "Dwarf",
+            "Location": "Indonesia",
+            "Habitat": [
+                "Steamy, shadowy jungle caverns deep within the island of Flores.",
+                "Riverbanks covered in thick jungle, hidden from human trails.",
+                "Limestone caves on the volcanic slopes of Indonesian jungles."
+            ],
+            "Description": "These small humanoids are known to locals as shape-shifters capable of supernatural transformations. Ine Weu are known to have long earlobes and hairy bodies, blending in with their jungle surroundings while avoiding human interaction.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Healing Shift",
+                    "Effect": "Ine Weu shapeshifts to heal 5 HP and cleanse all status effects."
+                },
+                "Spades": {
+                    "Name": "Shadowstrike",
+                    "Effect": "Strikes from the shadows, inflicting a poisonous wound that deals damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Chameleon Assault",
+                    "Effect": "Deals critical damage by blending into the environment, surprising the enemy."
+                },
+                "Clubs": {
+                    "Name": "Shapeshift Stun",
+                    "Effect": "Ine Weu changes form to strike with great force, stunning the enemy for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Damage and shapeshift duration scale with card number.",
+                    "Jack": {
+                        "Name": "Sneak Attack",
+                        "Effect": "Attacks from an unseen position, dealing double damage and lowering enemy speed."
+                    },
+                    "Queen": {
+                        "Name": "Shapeshift Overload",
+                        "Effect": "Ine Weu gains the ability to switch forms mid-combat, dealing massive AoE damage."
+                    },
+                    "King": {
+                        "Name": "Master of Forms",
+                        "Effect": "Ine Weu's attacks now ignore enemy defenses, and all shapeshifting abilities deal increased damage."
+                    },
+                    "Ace": {
+                        "Name": "Ultimate Shift",
+                        "Effect": "Takes on a fearsome, monstrous form, dealing devastating damage to all enemies and applying random status effects."
+                    },
+                    "Joker": {
+                        "Name": "Shifting Chaos",
+                        "Effect": "Ine Weu rapidly shifts between forms, gaining random bonuses or dealing random damage each turn."
+                    }
+                }
+            }
+        },
+        "JungliAdmi": {
+            "Type": "Dwarf",
+            "Location": "India",
+            "Habitat": [
+                "Rocky cliff faces that overlook sprawling valleys in Northern India.",
+                "Remote, lush valleys bordered by sheer mountain cliffs.",
+                "High-altitude grasslands speckled with wild flora and winding rivers."
+            ],
+            "Description": "Rarely seen, the Jungli Admi are believed to be the result of exposure to radioactive elements. These humanoid creatures roam isolated regions of India, avoiding contact with humans and leaving behind only rumors.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Radiant Recovery",
+                    "Effect": "Heals 7 HP and reduces incoming damage for 2 turns by creating a glowing aura."
+                },
+                "Spades": {
+                    "Name": "Toxic Strike",
+                    "Effect": "Inflicts the enemy with radioactive poison, dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Energy Burst",
+                    "Effect": "Jungli Admi releases stored radioactive energy, dealing a massive critical hit."
+                },
+                "Clubs": {
+                    "Name": "Crushing Blow",
+                    "Effect": "A powerful hit with radioactive-enhanced strength, stunning the enemy for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack damage and radioactive poisoning increase with card number.",
+                    "Jack": {
+                        "Name": "Blinding Light",
+                        "Effect": "Emits a bright flash of light, stunning all enemies and lowering their accuracy."
+                    },
+                    "Queen": {
+                        "Name": "Nuclear Surge",
+                        "Effect": "Unleashes a wave of radioactive energy, dealing AoE damage and inflicting poison on all enemies."
+                    },
+                    "King": {
+                        "Name": "Radiation Mastery",
+                        "Effect": "Jungli Admi gains increased attack power, and all radioactive attacks now deal bonus damage."
+                    },
+                    "Ace": {
+                        "Name": "Atomic Catastrophe",
+                        "Effect": "Deals massive AoE damage with a powerful radiation blast, inflicting poison, reducing enemy attack, and causing them to miss their next turn."
+                    },
+                    "Joker": {
+                        "Name": "Chaos Reaction",
+                        "Effect": "Each attack triggers a random effect, from healing allies to exploding in a powerful radiation blast."
+                    }
+                }
+            }
+        },
+        "Junjudee": {
+            "Type": "Dwarf",
+            "Location": "Australia",
+            "Habitat": [
+                "Coastal caves hidden within massive boulder formations in the Australian outback.",
+                "Underground burrows in dry, shrub-filled regions, away from human settlements.",
+                "Isolated, ancient rock formations that serve as natural hollows."
+            ],
+            "Description": "Known for their black fur, sharp fangs, and glowing red eyes, the Junjudee are mysterious and hostile creatures. They live in small communities and are skilled at hiding in plain sight within Australia's rugged landscapes.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Chirping Song",
+                    "Effect": "Heals Junjudee by 6 HP and boosts all allies' attack for the next 2 turns."
+                },
+                "Spades": {
+                    "Name": "Venom Fang",
+                    "Effect": "Junjudee bites the enemy, inflicting venom that deals damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Sharp Claw Strike",
+                    "Effect": "Slashes with razor-sharp claws, dealing critical damage."
+                },
+                "Clubs": {
+                    "Name": "Tail Lash",
+                    "Effect": "Swings its tail to knock enemies off balance, stunning them for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack damage and venom potency increase with card number.",
+                    "Jack": {
+                        "Name": "Razor Assault",
+                        "Effect": "A rapid flurry of claw attacks that deal bonus damage to a single target."
+                    },
+                    "Queen": {
+                        "Name": "Swarm's Fury",
+                        "Effect": "Junjudee calls upon a swarm of insects to attack all enemies, dealing AoE damage."
+                    },
+                    "King": {
+                        "Name": "King of the Swarm",
+                        "Effect": "Gains a permanent bonus to attack power, and venomous bites deal extra damage."
+                    },
+                    "Ace": {
+                        "Name": "Fury of the Hive",
+                        "Effect": "Unleashes a devastating attack, dealing massive damage to all enemies and applying a venom effect that spreads to other targets."
+                    },
+                    "Joker": {
+                        "Name": "Wild Swarm",
+                        "Effect": "A chaotic frenzy of attacks, causing random effects such as increased attack speed or poisoning multiple enemies."
+                    }
+                }
+            }
+        },
+        "Orang Pendek": {
+            "Type": "Dwarf",
+            "Location": "Sumatra",
+            "Habitat": [
+                "Dense, vine-covered jungles on the slopes of Sumatra's volcanic highlands.",
+                "Thick undergrowth along rivers and waterfalls, far from human reach.",
+                "Patchwork forests, bordering cultivated fields that Orang Pendek often raids."
+            ],
+            "Description": "This small, bipedal ape is known for its surprising strength and elusive nature. Orang Pendek walks upright and is often seen uprooting trees and vines. Its diet includes forest plants and crops raided from nearby villages.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Rooted Regeneration",
+                    "Effect": "Heals by 8 HP and increases defense for 2 turns by drawing strength from the jungle."
+                },
+                "Spades": {
+                    "Name": "Poison Fang",
+                    "Effect": "A venomous bite that poisons the enemy, dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Jungle Strike",
+                    "Effect": "Charges forward and strikes with incredible force, dealing a critical hit."
+                },
+                "Clubs": {
+                    "Name": "Entangling Vines",
+                    "Effect": "Summons vines to entangle the enemy, stunning them for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison damage increase with card number.",
+                    "Jack": {
+                        "Name": "Silent Stalker",
+                        "Effect": "Strikes from stealth, dealing double damage and avoiding retaliation."
+                    },
+                    "Queen": {
+                        "Name": "Jungle Fury",
+                        "Effect": "Calls upon the power of the jungle to strike all enemies, dealing AoE damage and reducing their attack."
+                    },
+                    "King": {
+                        "Name": "King of the Wild",
+                        "Effect": "Gains a permanent buff to all attack stats, making Orang Pendek a formidable combatant."
+                    },
+                    "Ace": {
+                        "Name": "Nature's Wrath",
+                        "Effect": "A devastating AoE attack that strikes all enemies with the power of the jungle, poisoning them and reducing their defenses."
+                    },
+                    "Joker": {
+                        "Name": "Wild Nature",
+                        "Effect": "Unleashes a random mix of nature-based attacks, healing allies or dealing unpredictable damage to enemies."
+                    }
+                }
+            }
+        },
+        "Siwil": {
+            "Type": "Dwarf",
+            "Location": "Java",
+            "Habitat": [
+                "Lush, jungle riversides in the rainforests of East Java.",
+                "Remote water sources surrounded by dense, towering trees and wild game.",
+                "Hidden caves within jungle-covered mountains, used for retreating when threatened."
+            ],
+            "Description": "Siwil are known for their tool-making abilities and their quickness to disappear when encountered. With long hair reaching their shoulders, they are experts at fishing and surviving in remote areas of Java's jungles.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Fisherman's Luck",
+                    "Effect": "Heals Siwil by 6 HP and increases its attack for the next 2 turns."
+                },
+                "Spades": {
+                    "Name": "Venomous Harpoon",
+                    "Effect": "Siwil throws a poisoned spear, inflicting poison on the enemy that deals damage over time."
+                },
+                "Diamonds": {
+                    "Name": "River Strike",
+                    "Effect": "Siwil strikes swiftly, dealing critical damage to a single target, boosted by its aquatic agility."
+                },
+                "Clubs": {
+                    "Name": "Snare Trap",
+                    "Effect": "Sets a trap made of vines, stunning an enemy for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack damage and poison potency increase with card number.",
+                    "Jack": {
+                        "Name": "Rapid Spear Barrage",
+                        "Effect": "Siwil throws multiple spears rapidly, hitting a single enemy multiple times with critical chances."
+                    },
+                    "Queen": {
+                        "Name": "Call of the River",
+                        "Effect": "Summons the power of water to attack all enemies, reducing their speed and inflicting damage."
+                    },
+                    "King": {
+                        "Name": "Master Fisher",
+                        "Effect": "Gains a permanent boost to attack and critical hit chance."
+                    },
+                    "Ace": {
+                        "Name": "Tidal Onslaught",
+                        "Effect": "Deals massive AoE damage with a powerful surge of water, stunning all enemies and reducing their defenses."
+                    },
+                    "Joker": {
+                        "Name": "Wild Waters",
+                        "Effect": "Random water-based attacks hit enemies, healing Siwil or causing damage in unpredictable ways."
+                    }
+                }
+            }
+        },
+        "Teh-Ima": {
+            "Type": "Dwarf",
+            "Location": "Central Asia",
+            "Habitat": [
+                "Rocky, snow-covered steppes in the remote valleys of Central Asia.",
+                "Deep, narrow mountain gorges with treacherous, icy paths.",
+                "Sub-alpine grasslands where thick shrubs and small trees dot the landscape."
+            ],
+            "Description": "A pygmy yeti, Teh-Ima are small, red-furred creatures that inhabit the remote regions of Central Asia's steppes. They are seldom seen, traveling in silence through the snow-covered landscapes.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Ice Veil",
+                    "Effect": "Heals Teh-Ima by 5 HP and grants an ice shield that absorbs damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Frostbite",
+                    "Effect": "Freezes the enemy's limbs, reducing their attack power and dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Glacial Strike",
+                    "Effect": "A powerful attack that deals critical ice damage, freezing the target in place."
+                },
+                "Clubs": {
+                    "Name": "Snowstorm Smash",
+                    "Effect": "Teh-Ima creates a localized snowstorm, stunning nearby enemies for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Ice damage and frost effects increase with card number.",
+                    "Jack": {
+                        "Name": "Frost Spear",
+                        "Effect": "Teh-Ima throws a spear of ice, dealing double damage and freezing the enemy for 2 turns."
+                    },
+                    "Queen": {
+                        "Name": "Glacial Roar",
+                        "Effect": "A chilling roar that deals AoE ice damage and slows all enemies."
+                    },
+                    "King": {
+                        "Name": "Frozen Majesty",
+                        "Effect": "Teh-Ima becomes immune to ice attacks and gains an ice damage boost for the rest of the battle."
+                    },
+                    "Ace": {
+                        "Name": "Avalanche Smash",
+                        "Effect": "Unleashes an avalanche, dealing massive AoE damage and freezing all enemies for 1 turn."
+                    },
+                    "Joker": {
+                        "Name": "Blizzard Frenzy",
+                        "Effect": "Teh-Ima enters a chaotic frenzy, causing random ice damage and effects, including freezing or healing allies."
+                    }
+                }
+            }
+        },
+        "Xipe": {
+            "Type": "Dwarf",
+            "Location": "Nicaragua",
+            "Habitat": [
+                "Steep mountainsides dotted with jagged rocks and dense, tropical vegetation.",
+                "Hidden lake shores where Xipe can emerge from the water undetected.",
+                "Isolated caves along mountain trails, far from human habitations."
+            ],
+            "Description": "A small, monkey-like creature, the Xipe is a mysterious figure in Nicaraguan folklore. Known for its human-like face and bipedal walking style, the Xipe is thought to be a guardian of crops and a protector of single women.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Lake Guardian",
+                    "Effect": "Heals Xipe by 8 HP and grants a water shield that reduces incoming damage."
+                },
+                "Spades": {
+                    "Name": "Toxic Splash",
+                    "Effect": "Hurls a poisonous splash of water, poisoning the enemy and dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Aquatic Strike",
+                    "Effect": "Swiftly strikes from the water, dealing critical damage to a single target."
+                },
+                "Clubs": {
+                    "Name": "Tidal Sweep",
+                    "Effect": "Unleashes a wave that knocks enemies back, stunning them for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Damage and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Venomous Surge",
+                        "Effect": "Unleashes a wave of poisonous water, dealing AoE damage and poisoning all enemies."
+                    },
+                    "Queen": {
+                        "Name": "Ocean's Might",
+                        "Effect": "Calls upon the power of the ocean, dealing massive damage to all enemies and increasing Xipe's defense."
+                    },
+                    "King": {
+                        "Name": "Tidebreaker",
+                        "Effect": "A powerful strike that reduces enemy defense and deals additional damage for each poisoned target."
+                    },
+                    "Ace": {
+                        "Name": "Storm of the Deep",
+                        "Effect": "A devastating AoE attack that deals massive water damage, stuns all enemies, and heals Xipe."
+                    },
+                    "Joker": {
+                        "Name": "Chaotic Tides",
+                        "Effect": "Random water-based effects hit enemies, healing Xipe or dealing massive damage with unpredictable results."
+                    }
+                }
+            }
+        },
+        "Arulataq": {
+            "Type": "Giant",
+            "Location": "Alaska",
+            "Habitat": [
+                "Frozen lakes surrounded by vast snowfields and icy tundra in Alaska.",
+                "Ice-bound caves at the base of glacier-carved valleys.",
+                "Desolate, snow-covered plains near remote Alaskan rivers."
+            ],
+            "Description": "Towering at 10 feet, the Arulataq is a gentle giant, despite its fearsome appearance. It builds huts from whale bones and skins, living peacefully in icy lakes while fishing and exploring the vast Alaskan wilderness.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Icy Healing",
+                    "Effect": "Restores 10 HP and creates an icy barrier that reduces damage taken for 3 turns."
+                },
+                "Spades": {
+                    "Name": "Chill of the Deep",
+                    "Effect": "Freezes the enemy, slowing their attacks and dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Glacier Smash",
+                    "Effect": "Strikes with massive force, dealing critical damage and freezing the target."
+                },
+                "Clubs": {
+                    "Name": "Frostquake",
+                    "Effect": "Slams the ground, creating a shockwave that stuns all nearby enemies for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack damage and freeze duration scale with card number.",
+                    "Jack": {
+                        "Name": "Ice Shatter",
+                        "Effect": "A devastating hit that breaks through enemy defenses, dealing double damage."
+                    },
+                    "Queen": {
+                        "Name": "Frozen Avalanche",
+                        "Effect": "An AoE attack that deals heavy ice damage and freezes all enemies for 1 turn."
+                    },
+                    "King": {
+                        "Name": "Winter's King",
+                        "Effect": "Grants a permanent increase to attack power, and all ice attacks now deal bonus damage."
+                    },
+                    "Ace": {
+                        "Name": "Glacial Cataclysm",
+                        "Effect": "A massive AoE attack that freezes all enemies and deals devastating ice damage, stunning them for 2 turns."
+                    },
+                    "Joker": {
+                        "Name": "Frozen Chaos",
+                        "Effect": "Random ice effects hit enemies, freezing, healing, or dealing unpredictable damage."
+                    }
+                }
+            }
+        },
+        "Curinquean": {
+            "Type": "Giant",
+            "Location": "South America",
+            "Habitat": [
+                "Jungle riverbanks, thick with foliage and steep embankments.",
+                "Remote jungle clearings, covered in towering hardwoods.",
+                "Deep, tangled swamps where rivers meet and create hidden pools."
+            ],
+            "Description": "Fierce and aggressive, the Curinquean, also known as Maricoxi, are hairy giants that attack any intruders into their territory. These creatures live in primitive villages, wielding spears and clubs to defend their homes.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Jungle Regrowth",
+                    "Effect": "Heals by 12 HP and creates a shield of vines that reduces incoming damage."
+                },
+                "Spades": {
+                    "Name": "Poisonous Vines",
+                    "Effect": "Whips the enemy with venomous vines, poisoning them and dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Rage Strike",
+                    "Effect": "A ferocious attack that deals critical damage and increases Curinquean's attack for 2 turns."
+                },
+                "Clubs": {
+                    "Name": "Thorn Smash",
+                    "Effect": "Strikes with a massive thorn-covered club, stunning the enemy for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison duration increase with card number.",
+                    "Jack": {
+                        "Name": "Vine Assault",
+                        "Effect": "Whips multiple enemies with vines, dealing AoE damage and applying poison."
+                    },
+                    "Queen": {
+                        "Name": "Jungle Wrath",
+                        "Effect": "Summons the power of the jungle to strike all enemies, dealing heavy damage and reducing their defense."
+                    },
+                    "King": {
+                        "Name": "Lord of the Vines",
+                        "Effect": "Grants a permanent boost to all poison-based attacks, increasing their duration and damage."
+                    },
+                    "Ace": {
+                        "Name": "Thorned Devastation",
+                        "Effect": "Unleashes a massive AoE attack with thorns, dealing critical damage to all enemies and applying a poison that lasts for 3 turns."
+                    },
+                    "Joker": {
+                        "Name": "Chaotic Jungle",
+                        "Effect": "Random jungle-based attacks hit enemies, healing Curinquean or causing massive poison damage."
+                    }
+                }
+            }
+        },
+        "Dzu-Teh": {
+            "Type": "Giant",
+            "Location": "Himalayas",
+            "Habitat": [
+                "Snowy, barren ridgelines of the highest Himalayan peaks.",
+                "Thick, snow-covered forests at the base of mountains, filled with pine and fir.",
+                "Glacier valleys, where narrow pathways lead to hidden dens."
+            ],
+            "Description": "The Dzu-Teh is a yeti-like beast known for its brute strength and fearsome nature. Covered in dark, shaggy fur, it is known to roam the highest peaks of the Himalayas, walking on all fours and defending its territory aggressively.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Mountain Healing",
+                    "Effect": "Restores 15 HP and creates a protective shield made of ice and rock."
+                },
+                "Spades": {
+                    "Name": "Frozen Claw",
+                    "Effect": "Slashes with icy claws, freezing the enemy and dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Glacial Rage",
+                    "Effect": "A powerful charge attack that deals massive critical damage to a single target."
+                },
+                "Clubs": {
+                    "Name": "Avalanche Crush",
+                    "Effect": "Slams the ground, causing an avalanche that stuns nearby enemies for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Damage and freeze duration scale with card number.",
+                    "Jack": {
+                        "Name": "Blizzard Strike",
+                        "Effect": "Summons a blizzard, dealing AoE damage and freezing all enemies for 1 turn."
+                    },
+                    "Queen": {
+                        "Name": "Mountain's Fury",
+                        "Effect": "An unstoppable force, dealing massive damage to all enemies and reducing their attack power."
+                    },
+                    "King": {
+                        "Name": "Glacial Lord",
+                        "Effect": "Grants a permanent buff to all ice-based attacks, making them deal bonus damage and freeze longer."
+                    },
+                    "Ace": {
+                        "Name": "Catastrophic Avalanche",
+                        "Effect": "A devastating AoE attack that deals massive damage to all enemies, freezing them and reducing their defense."
+                    },
+                    "Joker": {
+                        "Name": "Mountain Chaos",
+                        "Effect": "Random mountain-based effects hit enemies, freezing, healing, or dealing unpredictable damage."
+                    }
+                }
+            }
+        },
+        "Genoskwa": {
+            "Type": "Giant",
+            "Location": "North America",
+            "Habitat": [
+                "Dark, secluded valleys filled with thick, towering pines in North America.",
+                "Rocky canyons with jagged boulders and narrow cliff paths.",
+                "Mud-filled caves along riverbanks, reinforced with hardened layers of dirt."
+            ],
+            "Description": "Known as the 'Stone Giant,' the Genoskwa is a brutal and territorial creature. Its skin is tough, often covered in hardened mud, giving it a stone-like appearance. The Genoskwa is infamous for decapitating its prey and hurling rocks at those who invade its domain.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Stone Skin",
+                    "Effect": "Heals Genoskwa by 12 HP and creates a protective, rock-hard armor that reduces incoming damage for 3 turns."
+                },
+                "Spades": {
+                    "Name": "Venomous Rock Toss",
+                    "Effect": "Hurls a venom-laced rock, poisoning the enemy and dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Crushing Blow",
+                    "Effect": "A powerful punch that deals critical damage, breaking the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Boulder Slam",
+                    "Effect": "Slams a massive boulder into the ground, stunning nearby enemies for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison duration increase with card number.",
+                    "Jack": {
+                        "Name": "Rock Barrage",
+                        "Effect": "Throws multiple rocks in rapid succession, dealing damage to all enemies."
+                    },
+                    "Queen": {
+                        "Name": "Earthquake Stomp",
+                        "Effect": "A powerful stomp that shakes the battlefield, dealing AoE damage and stunning all enemies."
+                    },
+                    "King": {
+                        "Name": "Mountain's Wrath",
+                        "Effect": "Genoskwa gains a permanent increase to attack power and all physical attacks deal bonus damage."
+                    },
+                    "Ace": {
+                        "Name": "Catastrophic Quake",
+                        "Effect": "A massive AoE attack that causes the ground to quake, dealing heavy damage and stunning all enemies for 2 turns."
+                    },
+                    "Joker": {
+                        "Name": "Chaotic Boulders",
+                        "Effect": "Genoskwa hurls rocks randomly at enemies, dealing unpredictable amounts of damage with a chance to poison or stun."
+                    }
+                }
+            }
+        },
+        "Gin Sung": {
+            "Type": "Giant",
+            "Location": "China",
+            "Habitat": [
+                "Dense, tropical mountain jungles where rain mists the trees year-round.",
+                "Steep jungle slopes with rocky overhangs that provide shelter.",
+                "Hidden ravines filled with thick vegetation and cascading waterfalls."
+            ],
+            "Description": "Little is known about the Gin Sung, a cryptid from the jungles of China. Thought to be a shy giant, it is rarely seen and is said to blend into its jungle environment, remaining a mystery even to local villagers.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Jungle Resilience",
+                    "Effect": "Heals by 10 HP and creates a temporary shield that reduces incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Toxic Jungle Strike",
+                    "Effect": "A venomous strike from the underbrush, poisoning the enemy and causing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Ambush Charge",
+                    "Effect": "Dashes forward from the jungle, dealing critical damage and reducing the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Thorned Swipe",
+                    "Effect": "Swipes with thorn-covered claws, stunning the enemy for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack damage and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Rapid Ambush",
+                        "Effect": "Strikes the enemy multiple times, dealing quick, successive hits with a chance to poison."
+                    },
+                    "Queen": {
+                        "Name": "Jungle Fury",
+                        "Effect": "Calls upon the jungle to unleash an AoE attack, dealing damage and poisoning all enemies."
+                    },
+                    "King": {
+                        "Name": "Thorned Mastery",
+                        "Effect": "Gains a permanent boost to all thorn-based attacks, increasing their damage and applying additional effects."
+                    },
+                    "Ace": {
+                        "Name": "Jungle's Wrath",
+                        "Effect": "Deals massive AoE damage, stuns all enemies, and applies poison that spreads to other targets."
+                    },
+                    "Joker": {
+                        "Name": "Chaotic Jungle Fury",
+                        "Effect": "Random jungle-based effects hit enemies, dealing massive damage or applying poison with unpredictable results."
+                    }
+                }
+            }
+        },
+        "Matlox": {
+            "Type": "Giant",
+            "Location": "Western Canada",
+            "Habitat": [
+                "Dark, forested mountain ranges with rugged, inaccessible paths in Western Canada.",
+                "Isolated, windswept cliffs where caves provide natural shelter.",
+                "Thick, untamed pine forests with dense undergrowth and hidden hollows."
+            ],
+            "Description": "A cannibalistic giant, the Matlox is feared for its monstrous appearance and aggressive behavior. Covered in black bristles, with long claws and sharp fangs, the Matlox terrorizes the remote regions of Western Canada, attacking any who cross its path.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Cannibal's Feast",
+                    "Effect": "Matlox heals for 15 HP after devouring an enemy's energy, gaining a temporary boost to attack power."
+                },
+                "Spades": {
+                    "Name": "Venomous Claw",
+                    "Effect": "A powerful claw swipe that poisons the enemy, dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Savage Bite",
+                    "Effect": "Bites the enemy, dealing critical damage and lowering their defense."
+                },
+                "Clubs": {
+                    "Name": "Ground Pound",
+                    "Effect": "A massive punch that causes the earth to tremble, stunning nearby enemies for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Damage and poison potency increase with card number.",
+                    "Jack": {
+                        "Name": "Frenzied Strike",
+                        "Effect": "A wild flurry of claw and bite attacks, dealing heavy damage to a single enemy."
+                    },
+                    "Queen": {
+                        "Name": "Rage of the Cannibal",
+                        "Effect": "An AoE attack that deals heavy damage and lowers the attack power of all enemies."
+                    },
+                    "King": {
+                        "Name": "Bloodlust Mastery",
+                        "Effect": "Matlox gains a permanent buff to attack power and life steal for the remainder of the battle."
+                    },
+                    "Ace": {
+                        "Name": "Ravage",
+                        "Effect": "A devastating AoE attack that deals massive damage and applies poison, reducing enemy defense and attack power."
+                    },
+                    "Joker": {
+                        "Name": "Wild Carnage",
+                        "Effect": "Matlox enters a chaotic frenzy, attacking all enemies randomly with a mix of claw and bite strikes, applying unpredictable effects."
+                    }
+                }
+            }
+        },
+        "Moehau": {
+            "Type": "Giant",
+            "Location": "New Zealand",
+            "Habitat": [
+                "Dense, fog-filled forests of New Zealand's Coromandel Ranges.",
+                "Remote, mountain ravines where clearings are few and far between.",
+                "Dark, forested gorges that hide from all but the most determined adventurers."
+            ],
+            "Description": "The Moehau are brutal, half-man, half-animal creatures native to New Zealand. Known for their aggressive temperament, they will massacre anyone who enters their territory. Moehau are adept at using wood and stone tools, and their sharp talons make them dangerous predators.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Ritual of Blood",
+                    "Effect": "Heals Moehau for 12 HP, creating a shield of bones that reduces incoming damage."
+                },
+                "Spades": {
+                    "Name": "Cursed Claw",
+                    "Effect": "A cursed strike that poisons the enemy, dealing damage over time and reducing their attack power."
+                },
+                "Diamonds": {
+                    "Name": "Brutal Slam",
+                    "Effect": "Slams a stone weapon into the ground, dealing critical damage to a single target."
+                },
+                "Clubs": {
+                    "Name": "Bone Breaker",
+                    "Effect": "Moehau delivers a crushing blow that stuns the enemy for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack damage and curse potency scale with card number.",
+                    "Jack": {
+                        "Name": "Ritual Strike",
+                        "Effect": "A powerful attack that drains the enemy's health, healing Moehau while dealing bonus damage."
+                    },
+                    "Queen": {
+                        "Name": "Blood Fury",
+                        "Effect": "A savage AoE attack that reduces the defense of all enemies while Moehau gains an attack boost."
+                    },
+                    "King": {
+                        "Name": "Bone Mastery",
+                        "Effect": "Gains a permanent boost to all bone-based attacks, increasing their damage and adding additional effects."
+                    },
+                    "Ace": {
+                        "Name": "Ritual of Destruction",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and reducing their defense and attack power."
+                    },
+                    "Joker": {
+                        "Name": "Ritual Frenzy",
+                        "Effect": "Moehau enters a chaotic frenzy, dealing random strikes to enemies with unpredictable damage and healing effects."
+                    }
+                }
+            }
+        },
+        "Nyalmo": {
+            "Type": "Giant",
+            "Location": "Nepal",
+            "Habitat": [
+                "High-altitude pine forests, where ancient trees shake in the wind.",
+                "Rocky outcrops covered in thick snow, perched above dense mountain forests.",
+                "Isolated mountain passes, where snowdrifts and steep cliffs cut off access."
+            ],
+            "Description": "Towering at up to 20 feet, the Nyalmo are massive, hairy creatures who shake giant trees to show off their strength. Often found in the dense pine forests of Nepal, they are considered part of the larger Yeti family.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Mountain Resilience",
+                    "Effect": "Heals Nyalmo by 15 HP and creates a protective barrier made of rocks and snow that reduces incoming damage."
+                },
+                "Spades": {
+                    "Name": "Ice Breath",
+                    "Effect": "Breathes freezing air at the enemy, poisoning them with frostbite and dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Frozen Slam",
+                    "Effect": "A powerful slam that deals critical damage, freezing the target in place."
+                },
+                "Clubs": {
+                    "Name": "Glacial Punch",
+                    "Effect": "Punches the ground, causing a frostquake that stuns all nearby enemies for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Damage and frost duration scale with card number.",
+                    "Jack": {
+                        "Name": "Blizzard Strike",
+                        "Effect": "A rapid flurry of icy punches that deal heavy damage and freeze the enemy."
+                    },
+                    "Queen": {
+                        "Name": "Mountain's Fury",
+                        "Effect": "Unleashes an AoE attack that deals massive ice damage and reduces enemy defense."
+                    },
+                    "King": {
+                        "Name": "Frozen Lord",
+                        "Effect": "Gains a permanent buff to all ice-based attacks, dealing bonus frost damage and increasing freeze duration."
+                    },
+                    "Ace": {
+                        "Name": "Glacial Catastrophe",
+                        "Effect": "A devastating AoE attack that freezes all enemies, dealing massive ice damage and reducing their defenses."
+                    },
+                    "Joker": {
+                        "Name": "Chaotic Ice",
+                        "Effect": "Random ice-based effects hit enemies, freezing, healing, or causing massive damage with unpredictable results."
+                    }
+                }
+            }
+        },
+        "Orang Gadang": {
+            "Type": "Giant",
+            "Location": "Sumatra",
+            "Habitat": [
+                "Deep underground lava tubes hidden beneath Sumatra's dense forests.",
+                "Volcanic foothills, surrounded by dense jungle and scattered clearings.",
+                "Mountain caves that overlook dense rainforest canopies, providing solitude."
+            ],
+            "Description": "A massive cryptid, the Orang Gadang stands between 7.5 and 12 feet tall and is covered in dark, bushy hair. Known to be nocturnal and shy, it avoids human contact, though it leaves behind large footprints and emits eerie screams that can be heard echoing through the jungle at night.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Forest Guardian",
+                    "Effect": "Heals Orang Gadang by 10 HP and increases defense for 3 turns by summoning jungle spirits."
+                },
+                "Spades": {
+                    "Name": "Toxic Jungle Strike",
+                    "Effect": "A venomous strike that poisons the enemy, dealing damage over time and reducing their attack."
+                },
+                "Diamonds": {
+                    "Name": "Raging Charge",
+                    "Effect": "Orang Gadang charges with immense strength, dealing critical damage and knocking the enemy back."
+                },
+                "Clubs": {
+                    "Name": "Jungle Crush",
+                    "Effect": "A powerful stomp that stuns nearby enemies for 1 turn, shaking the battlefield."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison duration increase with card number.",
+                    "Jack": {
+                        "Name": "Jungle Fury",
+                        "Effect": "Strikes multiple enemies in a rapid flurry, dealing bonus damage and poisoning them."
+                    },
+                    "Queen": {
+                        "Name": "Spirit's Wrath",
+                        "Effect": "Calls upon jungle spirits to attack all enemies, dealing heavy AoE damage and lowering their defense."
+                    },
+                    "King": {
+                        "Name": "Forest Master",
+                        "Effect": "Gains a permanent buff to all attacks, adding poison and increased damage to each strike."
+                    },
+                    "Ace": {
+                        "Name": "Jungle Devastation",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and applying poison that spreads to others."
+                    },
+                    "Joker": {
+                        "Name": "Chaotic Forest",
+                        "Effect": "Random jungle-based attacks strike all enemies, dealing unpredictable damage and effects, including poison and healing."
+                    }
+                }
+            }
+        },
+        "Tano": {
+            "Type": "Giant",
+            "Location": "Gold Coast, Africa",
+            "Habitat": [
+                "Coastal cliffs and caves overlooking the vast Atlantic Ocean.",
+                "Dense mangrove forests on Africa's Gold Coast, where the tides ebb and flow.",
+                "Isolated inland river systems lined with thick forest and underbrush."
+            ],
+            "Description": "The Tano is a gigantic, white-skinned ape with black hair. Aggressive and territorial, it is known to kidnap and kill humans. Legend says that only fire can repel this monstrous creature, which wraps itself in animal skins to stay warm.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Beast's Regeneration",
+                    "Effect": "Heals Tano by 12 HP and creates a shield of thick animal hide that reduces incoming damage."
+                },
+                "Spades": {
+                    "Name": "Poisoned Claw",
+                    "Effect": "A vicious swipe that inflicts poison, dealing damage over time and reducing the enemy's attack."
+                },
+                "Diamonds": {
+                    "Name": "Savage Charge",
+                    "Effect": "Tano charges with immense force, dealing critical damage and lowering the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Crushing Fist",
+                    "Effect": "Delivers a powerful blow that stuns the enemy for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison duration increase with card number.",
+                    "Jack": {
+                        "Name": "Predator's Frenzy",
+                        "Effect": "Strikes multiple enemies in quick succession, dealing bonus damage."
+                    },
+                    "Queen": {
+                        "Name": "King of the Hunt",
+                        "Effect": "Increases attack power permanently and adds a life-steal effect to all future attacks."
+                    },
+                    "King": {
+                        "Name": "Ruler of the Wilds",
+                        "Effect": "Gains a permanent defense boost, and all attacks now deal additional damage."
+                    },
+                    "Ace": {
+                        "Name": "Beastly Devastation",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and applying poison that spreads."
+                    },
+                    "Joker": {
+                        "Name": "Wild Frenzy",
+                        "Effect": "Tano enters a chaotic rage, dealing random strikes to all enemies with unpredictable effects, including healing or damage."
+                    }
+                }
+            }
+        },
+        "Yeren": {
+            "Type": "Giant",
+            "Location": "China",
+            "Habitat": [
+                "Thick, misty jungles on China's lower mountain slopes.",
+                "Hidden, overgrown paths deep within temperate rainforests.",
+                "Rocky, forested hillsides where bamboo and fir trees grow thick and wild."
+            ],
+            "Description": "A Bigfoot-like creature from China, the Yeren is typically covered in reddish-brown hair and stands between 6 and 8 feet tall. Though generally peaceful, it has been reported to walk away from humans quietly, leaving behind large footprints in the soft ground.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Spirit of the Jungle",
+                    "Effect": "Heals Yeren by 8 HP and creates a defensive aura that absorbs damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Toxic Roar",
+                    "Effect": "A powerful roar that poisons nearby enemies, dealing damage over time and reducing their defense."
+                },
+                "Diamonds": {
+                    "Name": "Razor Slash",
+                    "Effect": "Yeren strikes with its claws, dealing critical damage to a single target."
+                },
+                "Clubs": {
+                    "Name": "Ground Smash",
+                    "Effect": "Slams the ground, causing an earth tremor that stuns all nearby enemies for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Damage and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Ambush Strike",
+                        "Effect": "Strikes quickly from the shadows, dealing double damage and lowering the enemy's speed."
+                    },
+                    "Queen": {
+                        "Name": "Jungle Fury",
+                        "Effect": "An AoE attack that deals heavy damage and poisons all enemies."
+                    },
+                    "King": {
+                        "Name": "Master of the Wild",
+                        "Effect": "Gains a permanent increase to all attacks and poison-based abilities."
+                    },
+                    "Ace": {
+                        "Name": "Forest's Wrath",
+                        "Effect": "Unleashes a devastating AoE attack that poisons and stuns all enemies, reducing their defenses."
+                    },
+                    "Joker": {
+                        "Name": "Chaotic Jungle",
+                        "Effect": "Yeren randomly strikes all enemies, dealing unpredictable damage or healing allies."
+                    }
+                }
+            }
+        },
+        "Abnauayu": {
+            "Type": "Squatch",
+            "Location": "Caucasus Mountains",
+            "Habitat": [
+                "Deep forest valleys surrounded by towering, ancient trees in the Caucasus.",
+                "Remote woodlands with thick underbrush and craggy rock formations.",
+                "High-altitude coniferous forests with sparse human contact."
+            ],
+            "Description": "These squat, muscular cryptids are about the size of an average human. Abnauayu are covered in reddish-black hair and have glowing red eyes. Known for using sticks and stones as tools or weapons, they roam the forests of the Caucasus, remaining largely hidden from sight.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Mountain Resilience",
+                    "Effect": "Heals Abnauayu by 10 HP and boosts its defense with a thick fur shield."
+                },
+                "Spades": {
+                    "Name": "Venomous Strike",
+                    "Effect": "A sharp strike that poisons the enemy, dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Savage Bite",
+                    "Effect": "Abnauayu bites the enemy, dealing critical damage and reducing their attack power."
+                },
+                "Clubs": {
+                    "Name": "Crushing Blow",
+                    "Effect": "A powerful hit that stuns the enemy for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack damage and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Mountain Ambush",
+                        "Effect": "A surprise attack that deals double damage and lowers the enemy's defense."
+                    },
+                    "Queen": {
+                        "Name": "Roar of the Mountain",
+                        "Effect": "A powerful roar that deals AoE damage and poisons all enemies."
+                    },
+                    "King": {
+                        "Name": "Mountain Lord",
+                        "Effect": "Gains a permanent boost to attack power and defense."
+                    },
+                    "Ace": {
+                        "Name": "Mountain's Wrath",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and applying poison that spreads to others."
+                    },
+                    "Joker": {
+                        "Name": "Mountain Chaos",
+                        "Effect": "Abnauayu strikes all enemies with random mountain-based attacks, applying unpredictable effects."
+                    }
+                }
+            }
+        },
+        "Afonya": {
+            "Type": "Squatch",
+            "Location": "Russia",
+            "Habitat": [
+                "Deserted woodland clearings near abandoned cabins deep in Russia's forests.",
+                "Dark, quiet swamplands where thick moss and decaying trees dominate the landscape.",
+                "Remote mountain foothills lined with sparse trees and rocky streams."
+            ],
+            "Description": "Standing at 7 to 8 feet tall, Afonya is a nocturnal creature with gray hair and dark skin. It moves quickly and silently through the forests of Russia, often knuckle-walking. Known to steal dogs and take refuge in abandoned cabins, it leaves behind 15-inch tracks that hint at its presence.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Lone Survivor",
+                    "Effect": "Heals Afonya by 8 HP and increases defense by creating a barrier of rubble and debris."
+                },
+                "Spades": {
+                    "Name": "Radiation Strike",
+                    "Effect": "Strikes with a radioactive touch, poisoning the enemy and reducing their health over time."
+                },
+                "Diamonds": {
+                    "Name": "Mutated Strength",
+                    "Effect": "A ferocious attack that deals critical damage, boosted by Afonya's mutated power."
+                },
+                "Clubs": {
+                    "Name": "Knuckle Smash",
+                    "Effect": "A heavy blow that stuns the enemy for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Damage and radiation potency scale with card number.",
+                    "Jack": {
+                        "Name": "Frenzied Blow",
+                        "Effect": "Strikes rapidly, dealing bonus damage to a single enemy and lowering their defense."
+                    },
+                    "Queen": {
+                        "Name": "Radioactive Blast",
+                        "Effect": "An AoE attack that deals radiation damage and reduces the attack power of all enemies."
+                    },
+                    "King": {
+                        "Name": "Master of Mutation",
+                        "Effect": "Gains a permanent boost to attack power, and all radiation attacks deal extra damage."
+                    },
+                    "Ace": {
+                        "Name": "Cataclysmic Strike",
+                        "Effect": "Deals massive AoE damage, poisoning all enemies with radiation and reducing their health over time."
+                    },
+                    "Joker": {
+                        "Name": "Mutant Chaos",
+                        "Effect": "Afonya strikes all enemies with random radiation-based effects, causing unpredictable damage and debuffs."
+                    }
+                }
+            }
+        },
+        "Almas": {
+            "Type": "Squatch",
+            "Location": "Kazakhstan",
+            "Habitat": [
+                "Windswept, rocky mountain steppes where little vegetation grows.",
+                "Hidden caves in the remote ranges of Kazakhstan and Central Asia.",
+                "Forested lowland valleys, near ancient riverbeds and thick brush."
+            ],
+            "Description": "The Almas are squat, human-like creatures standing between 5 and 6.5 feet tall. Covered in reddish-brown hair, they possess primitive tools and clothing. Known for their speed and strength, they roam the steppes and mountains of Central Asia, living in caves and eating small animals and vegetables.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Cave Dweller's Resilience",
+                    "Effect": "Heals Almas by 7 HP and increases defense with a layer of hardened rock and earth."
+                },
+                "Spades": {
+                    "Name": "Venomous Bite",
+                    "Effect": "A sharp bite that poisons the enemy, dealing damage over time and reducing their attack."
+                },
+                "Diamonds": {
+                    "Name": "Savage Claw",
+                    "Effect": "A ferocious swipe that deals critical damage and lowers the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Rock Smash",
+                    "Effect": "A heavy smash that stuns the enemy for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Damage and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Feral Strike",
+                        "Effect": "Strikes multiple times, dealing heavy damage and reducing the enemy's defenses."
+                    },
+                    "Queen": {
+                        "Name": "Roar of the Cave",
+                        "Effect": "A powerful roar that deals AoE damage and poisons all enemies."
+                    },
+                    "King": {
+                        "Name": "Cave Lord",
+                        "Effect": "Gains a permanent boost to attack and defense, making Almas harder to damage."
+                    },
+                    "Ace": {
+                        "Name": "Cave Collapse",
+                        "Effect": "A massive AoE attack that deals heavy damage to all enemies, poisoning them and reducing their defenses."
+                    },
+                    "Joker": {
+                        "Name": "Cave Chaos",
+                        "Effect": "Random cave-based effects strike all enemies, causing unpredictable damage and debuffs."
+                    }
+                }
+            }
+        },
+        "Barmanu": {
+            "Type": "Squatch",
+            "Location": "Pakistan",
+            "Habitat": [
+                "Underground temple ruins hidden in dense Pakistani jungle.",
+                "Steep, rocky mountain caves filled with natural springs and vegetation.",
+                "Isolated forest groves near sacred, ancient structures."
+            ],
+            "Description": "A stinking, foul-smelling cryptid, the Barmanu is Pakistan's version of Bigfoot. It is covered in animal skins and has been reported making guttural, animal-like sounds. Known for its violent tendencies, it occasionally abducts humans who wander too close to its territory.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Sacred Healing",
+                    "Effect": "Heals Barmanu by 9 HP and increases defense by creating a shield of sacred energy."
+                },
+                "Spades": {
+                    "Name": "Cursed Strike",
+                    "Effect": "A dark strike that curses the enemy, poisoning them and reducing their health over time."
+                },
+                "Diamonds": {
+                    "Name": "Holy Smash",
+                    "Effect": "A powerful attack that deals critical damage, enhanced by sacred energy."
+                },
+                "Clubs": {
+                    "Name": "Bone Crush",
+                    "Effect": "A devastating blow that stuns the enemy for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and curse potency scale with card number.",
+                    "Jack": {
+                        "Name": "Holy Charge",
+                        "Effect": "Charges at the enemy, dealing bonus damage and reducing their defense."
+                    },
+                    "Queen": {
+                        "Name": "Ritual of Power",
+                        "Effect": "An AoE attack that deals heavy damage and lowers the attack power of all enemies."
+                    },
+                    "King": {
+                        "Name": "Sacred Master",
+                        "Effect": "Gains a permanent boost to all sacred-based attacks, increasing damage and adding extra effects."
+                    },
+                    "Ace": {
+                        "Name": "Cursed Catastrophe",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and applying a curse that reduces their health over time."
+                    },
+                    "Joker": {
+                        "Name": "Sacred Chaos",
+                        "Effect": "Barmanu strikes all enemies with random sacred or cursed attacks, causing unpredictable damage and effects."
+                    }
+                }
+            }
+        },
+        "Batutut": {
+            "Type": "Squatch",
+            "Location": [
+                "Borneo",
+                "Laos"
+            ],
+            "Habitat": [
+                "Coastal tropical forests with thick undergrowth and scattered palms.",
+                "Steep jungle hillsides near rivers where the vegetation is thick and impenetrable.",
+                "Remote, untamed stretches of rainforest dotted with towering trees."
+            ],
+            "Description": "The Batutut is a violent, aggressive creature that attacks humans, tearing out their livers. Standing between 4 and 6 feet tall, it is covered in hair except on its hands, face, and feet. It roams the dense jungles of Vietnam and Laos, leaving behind mutilated bodies as a warning to trespassers.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Jungle Regeneration",
+                    "Effect": "Heals Batutut by 6 HP and boosts defense by creating a barrier of thick jungle vines."
+                },
+                "Spades": {
+                    "Name": "Venomous Slash",
+                    "Effect": "A quick slash that poisons the enemy, dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Swift Strike",
+                    "Effect": "Batutut strikes rapidly, dealing critical damage to a single target."
+                },
+                "Clubs": {
+                    "Name": "Vine Smash",
+                    "Effect": "A powerful hit with vine-covered fists, stunning the enemy for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Rapid Assault",
+                        "Effect": "A flurry of quick strikes that deal bonus damage to a single target."
+                    },
+                    "Queen": {
+                        "Name": "Vine Fury",
+                        "Effect": "An AoE attack that strikes all enemies, lowering their defenses and poisoning them."
+                    },
+                    "King": {
+                        "Name": "Jungle Master",
+                        "Effect": "Gains a permanent boost to all jungle-based attacks, adding poison and increasing damage."
+                    },
+                    "Ace": {
+                        "Name": "Jungle Devastation",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and applying poison that spreads to others."
+                    },
+                    "Joker": {
+                        "Name": "Jungle Chaos",
+                        "Effect": "Batutut strikes all enemies with random jungle-based attacks, dealing unpredictable damage and debuffs."
+                    }
+                }
+            }
+        },
+        "Big Grey Man": {
+            "Type": "Squatch",
+            "Location": [
+                "Scotland"
+            ],
+            "Habitat": [
+                "Mist-covered riverbanks lined with ancient trees and slippery rocks.",
+                "Remote, rocky shores where rivers wind through dense, fog-filled woods.",
+                "Steep, mountainous gorges with narrow paths and fast-moving water."
+            ],
+            "Description": "Known only from fleeting glimpses, the Big Grey Man stalks the rivers of Scotland. This cryptid remains elusive, and little is known about its behavior or physical characteristics, though locals claim it exudes an aura of unease and dread.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Fog of Protection",
+                    "Effect": "Heals Big Grey Man by 10 HP and creates a fog that decreases the chance of being hit for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Chilling Howl",
+                    "Effect": "A terrifying howl that poisons the enemy and reduces their attack power over time."
+                },
+                "Diamonds": {
+                    "Name": "Silent Strike",
+                    "Effect": "Big Grey Man sneaks through the mist and deals a critical hit to an enemy, reducing their defense."
+                },
+                "Clubs": {
+                    "Name": "Crushing Grip",
+                    "Effect": "A powerful, stunning attack that immobilizes the enemy for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and fog effects scale with card number.",
+                    "Jack": {
+                        "Name": "Fog Ambush",
+                        "Effect": "Strikes multiple enemies from within the fog, dealing double damage and lowering their defense."
+                    },
+                    "Queen": {
+                        "Name": "Mist of Terror",
+                        "Effect": "Calls upon the fog to deal AoE damage and reduce the attack power of all enemies."
+                    },
+                    "King": {
+                        "Name": "Lord of the Fog",
+                        "Effect": "Gains a permanent increase to attack power and all fog-based abilities."
+                    },
+                    "Ace": {
+                        "Name": "Fog of Doom",
+                        "Effect": "Deals massive AoE damage, reducing visibility for all enemies and decreasing their hit chance."
+                    },
+                    "Joker": {
+                        "Name": "Chaotic Mist",
+                        "Effect": "Big Grey Man releases random fog-based effects, dealing unpredictable damage and debuffs."
+                    }
+                }
+            }
+        },
+        "Bukwus": {
+            "Type": "Squatch",
+            "Location": [
+                "British Columbia, Canada"
+            ],
+            "Habitat": [
+                "High-altitude mountain slopes with thick, rugged pines and little sunlight.",
+                "Rocky outcroppings overlooking deep, forested valleys in British Columbia.",
+                "Dense, coniferous forests where the trees grow thick and close together."
+            ],
+            "Description": "The Bukwus is a dangerous cryptid, feared for its supernatural powers. A close cousin of the Sasquatch, it lives in remote mountain areas, wielding terrifying strength and magic to ward off human intruders.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Spiritual Shield",
+                    "Effect": "Heals Bukwus by 12 HP and creates a spiritual barrier that reduces incoming damage."
+                },
+                "Spades": {
+                    "Name": "Cursed Claw",
+                    "Effect": "A cursed strike that poisons the enemy, reducing their health and attack power over time."
+                },
+                "Diamonds": {
+                    "Name": "Vengeful Smash",
+                    "Effect": "A powerful hit infused with dark energy, dealing critical damage and lowering the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Spirit Slam",
+                    "Effect": "A heavy blow that stuns the enemy for 2 turns and summons spirits to assist Bukwus."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack damage and curse potency increase with card number.",
+                    "Jack": {
+                        "Name": "Spirit Rush",
+                        "Effect": "A quick attack that deals double damage and calls upon spirits to lower enemy defense."
+                    },
+                    "Queen": {
+                        "Name": "Haunted Strike",
+                        "Effect": "An AoE attack that deals heavy damage and curses all enemies, reducing their attack."
+                    },
+                    "King": {
+                        "Name": "Master of Spirits",
+                        "Effect": "Gains a permanent buff to attack and defense, and all spirit-based attacks deal bonus damage."
+                    },
+                    "Ace": {
+                        "Name": "Curse of the Ancients",
+                        "Effect": "A devastating AoE attack that stuns all enemies, applies a powerful curse, and reduces their attack and defense."
+                    },
+                    "Joker": {
+                        "Name": "Spirit Chaos",
+                        "Effect": "Random spirit-based effects strike all enemies, dealing unpredictable damage and debuffs."
+                    }
+                }
+            }
+        },
+        "Cer Ra Ca Wa": {
+            "Type": "Squatch",
+            "Location": "Mexico",
+            "Habitat": [
+                "Ancient pyramid ruins hidden deep in Mexico's dense jungles.",
+                "Forgotten, overgrown temples surrounded by towering trees and thick vines.",
+                "Deserted stone courtyards filled with crumbling statues and sacred glyphs."
+            ],
+            "Description": "This mysterious creature is said to haunt the ancient pyramids of Mexico. Little is known about its behavior, but it is believed to have a strong connection to the lost civilizations that once thrived in the region. Its presence is often felt, rather than seen, as it lurks in the shadows of the stone ruins.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Ancient Protection",
+                    "Effect": "Heals Cer Ra Ca Wa by 10 HP and grants a shield that absorbs damage for 2 turns, empowered by ancient pyramid magic."
+                },
+                "Spades": {
+                    "Name": "Curse of the Pyramid",
+                    "Effect": "Inflicts the enemy with a curse, poisoning them and draining their strength over time."
+                },
+                "Diamonds": {
+                    "Name": "Stone Guardian Strike",
+                    "Effect": "A critical hit delivered with the strength of a pyramid guardian, reducing the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Tomb Slam",
+                    "Effect": "A heavy hit that stuns the enemy for 1 turn and deals bonus damage to cursed foes."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and curse potency scale with card number.",
+                    "Jack": {
+                        "Name": "Guardian's Vengeance",
+                        "Effect": "Strikes the enemy with immense force, dealing double damage and reducing their defense."
+                    },
+                    "Queen": {
+                        "Name": "Curse of the Pharaoh",
+                        "Effect": "An AoE attack that poisons all enemies, reducing their health and attack power."
+                    },
+                    "King": {
+                        "Name": "Lord of the Pyramid",
+                        "Effect": "Gains a permanent boost to all attacks, making each strike reduce the defense of enemies."
+                    },
+                    "Ace": {
+                        "Name": "Pharaoh's Wrath",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and cursing them for 3 turns."
+                    },
+                    "Joker": {
+                        "Name": "Pyramid Chaos",
+                        "Effect": "Random pyramid-based effects strike enemies, dealing unpredictable damage or granting buffs to Cer Ra Ca Wa."
+                    }
+                }
+            }
+        },
+        "Chemosit": {
+            "Type": "Squatch",
+            "Location": "Kenya",
+            "Habitat": [
+                "Rolling, grassy plains in Kenya, dotted with tall acacia trees.",
+                "Rocky outcroppings that overlook vast savannahs teeming with wildlife.",
+                "Hidden watering holes surrounded by dense underbrush and tall grasses."
+            ],
+            "Description": "The Chemosit is a creature of the open plains in Kenya. Known for its swift movements and aggressive behavior, it is said to attack livestock and occasionally humans. Local legends paint it as a vengeful spirit tied to the land, appearing in times of unrest.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Plains Vitality",
+                    "Effect": "Heals Chemosit by 8 HP and creates a shield of grasses and reeds, reducing incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Venomous Bite",
+                    "Effect": "Chemosit bites the enemy, inflicting a poison that deals damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Savage Charge",
+                    "Effect": "A powerful rush that deals critical damage and lowers the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Crushing Stomp",
+                    "Effect": "Stomps the ground, stunning nearby enemies for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Frenzied Assault",
+                        "Effect": "Chemosit strikes multiple enemies in rapid succession, dealing bonus damage."
+                    },
+                    "Queen": {
+                        "Name": "Stampede",
+                        "Effect": "A heavy AoE attack that damages and stuns all enemies, reducing their defense."
+                    },
+                    "King": {
+                        "Name": "Plains King",
+                        "Effect": "Gains a permanent boost to attack power and speed, allowing for faster, more powerful strikes."
+                    },
+                    "Ace": {
+                        "Name": "Catastrophic Trample",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and reducing their defense."
+                    },
+                    "Joker": {
+                        "Name": "Plains Chaos",
+                        "Effect": "Chemosit unleashes random plains-based attacks, dealing unpredictable damage and debuffs."
+                    }
+                }
+            }
+        },
+        "Germakochi": {
+            "Type": "Squatch",
+            "Location": "Turkey",
+            "Habitat": [
+                "Dense, misty forests along Turkey's Black Sea coast, filled with towering firs.",
+                "Steep, rugged hillsides covered in thick vegetation and winding trails.",
+                "Isolated, moss-covered caves where the forest meets the coastline."
+            ],
+            "Description": "Standing over 7 feet tall, the Germakochi is a fearsome cryptid with sharp teeth and immense strength. It is said to roam the forests of the East-Blacksea region of Turkey and western Georgia. Known for its eerie howling, the Germakochi is believed to be highly territorial and carnivorous, even eating humans in some accounts.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Black Sea Protection",
+                    "Effect": "Heals Germakochi by 10 HP and creates a shield of briny air and mist, reducing incoming damage."
+                },
+                "Spades": {
+                    "Name": "Venomous Claw",
+                    "Effect": "A sharp claw strike that poisons the enemy, dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Fisherman's Fury",
+                    "Effect": "A powerful attack that deals critical damage and lowers the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Tidal Crush",
+                    "Effect": "Slams the enemy with the force of the ocean, stunning them for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Ocean's Wrath",
+                        "Effect": "A quick strike that deals double damage and reduces the enemy's speed."
+                    },
+                    "Queen": {
+                        "Name": "Tidal Wave",
+                        "Effect": "An AoE attack that crashes down on all enemies, dealing damage and stunning them."
+                    },
+                    "King": {
+                        "Name": "Master of the Black Sea",
+                        "Effect": "Gains a permanent boost to all attacks, with water-based effects added to each strike."
+                    },
+                    "Ace": {
+                        "Name": "Oceanic Cataclysm",
+                        "Effect": "Deals massive AoE damage, reducing enemy defense and stunning them for 2 turns."
+                    },
+                    "Joker": {
+                        "Name": "Sea Chaos",
+                        "Effect": "Random ocean-based attacks strike enemies, dealing unpredictable damage and effects, including poison or stuns."
+                    }
+                }
+            }
+        },
+        "Grassman": {
+            "Type": "Squatch",
+            "Location": "Ohio, USA",
+            "Habitat": [
+                "Thick, forested regions of Ohio where dense grass and low bushes grow wild.",
+                "Remote forest clearings where tall grass provides natural cover.",
+                "Hidden, grassy meadows within deep, secluded woodlands."
+            ],
+            "Description": "The Grassman, also known as the Ohio Grassman, is a highly aggressive cryptid that builds nests from tall grass. Ranging from 5 to 10 feet tall, this humanoid creature is known for its strong odor and terrifying growls. The Grassman has been reported to stalk humans, attacking without provocation.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Meadow Healing",
+                    "Effect": "Heals Grassman by 10 HP and creates a shield made of tall grass, reducing incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Poisonous Grasp",
+                    "Effect": "A quick strike that poisons the enemy, dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Overgrown Slam",
+                    "Effect": "A massive hit that deals critical damage and lowers the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Entangling Roots",
+                    "Effect": "Summons roots from the ground to bind and stun the enemy for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Frenzied Attack",
+                        "Effect": "Strikes multiple enemies rapidly, dealing bonus damage and reducing their defense."
+                    },
+                    "Queen": {
+                        "Name": "Nature's Fury",
+                        "Effect": "An AoE attack that strikes all enemies, reducing their attack power and poisoning them."
+                    },
+                    "King": {
+                        "Name": "Lord of the Meadow",
+                        "Effect": "Gains a permanent boost to all attacks and defense, adding poison to each strike."
+                    },
+                    "Ace": {
+                        "Name": "Grassy Cataclysm",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and applying a poison that spreads to others."
+                    },
+                    "Joker": {
+                        "Name": "Nature's Chaos",
+                        "Effect": "Grassman strikes with random nature-based attacks, dealing unpredictable damage and debuffs."
+                    }
+                }
+            }
+        },
+        "Gugwe": {
+            "Type": "Squatch",
+            "Location": [
+                "US",
+                "Canada"
+            ],
+            "Habitat": [
+                "Untouched, ancient forests where the trees grow dense and close together.",
+                "National parkland with thick, untraveled trails and deep valleys.",
+                "Remote, forested mountain passes where rivers run through untamed wilderness."
+            ],
+            "Description": "The Gugwe is a canine-like Squatch that shares territory with other Bigfoot creatures. It has a distinctive snout and is more feared than its Sasquatch relatives, known for its aggressive and predatory nature. Reports of Gugwe sightings date back to the early 1900s, with many Native American tribes having their own tales of the creature.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Forest Protector",
+                    "Effect": "Heals Gugwe by 10 HP and creates a shield of thick bark, reducing incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Venomous Maw",
+                    "Effect": "Bites the enemy with venomous fangs, poisoning them and dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Feral Slash",
+                    "Effect": "A powerful claw strike that deals critical damage and reduces the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Howling Stun",
+                    "Effect": "Unleashes a terrifying howl, stunning nearby enemies for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Rapid Bite",
+                        "Effect": "A quick flurry of bites that deals double damage and reduces enemy speed."
+                    },
+                    "Queen": {
+                        "Name": "Fury of the Wild",
+                        "Effect": "An AoE attack that deals damage to all enemies and reduces their attack power."
+                    },
+                    "King": {
+                        "Name": "Beast of the Woods",
+                        "Effect": "Gains a permanent boost to all attacks and poison effects, dealing bonus damage."
+                    },
+                    "Ace": {
+                        "Name": "Wild Cataclysm",
+                        "Effect": "Deals massive AoE damage, poisoning all enemies and stunning them for 1 turn."
+                    },
+                    "Joker": {
+                        "Name": "Beastly Chaos",
+                        "Effect": "Gugwe strikes with random nature-based attacks, causing unpredictable damage and debuffs."
+                    }
+                }
+            }
+        },
+        "Gul-Biavan": {
+            "Type": "Squatch",
+            "Location": [
+                "Russia",
+                "Mongolia"
+            ],
+            "Habitat": [
+                "Wide, open steppes of Mongolia, with sparse trees and rolling hills.",
+                "Isolated, windswept plains where tall grasses bend under the harsh wind.",
+                "Rocky, barren plateaus that offer shelter within their high ridges and cliffs."
+            ],
+            "Description": "The Gul-Biavan is an elusive Squatch said to roam the steppes of Russia and Mongolia. It is rarely seen, and little is known about its behavior, but those who have encountered it describe a hulking figure that moves with surprising speed across the open plains.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Steppe's Resilience",
+                    "Effect": "Heals Gul-Biavan by 9 HP and creates a shield of dust and wind, reducing incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Dust Storm Strike",
+                    "Effect": "A sweeping attack that kicks up dirt, blinding and poisoning the enemy."
+                },
+                "Diamonds": {
+                    "Name": "Raging Wind Slash",
+                    "Effect": "A powerful slash carried by the wind, dealing critical damage and lowering the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Earthquake Stomp",
+                    "Effect": "Stomps the ground with immense power, stunning nearby enemies for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Steppe Ambush",
+                        "Effect": "A rapid attack that strikes multiple enemies, dealing double damage."
+                    },
+                    "Queen": {
+                        "Name": "Wind's Fury",
+                        "Effect": "An AoE attack that deals heavy damage to all enemies and reduces their attack power."
+                    },
+                    "King": {
+                        "Name": "Master of the Steppes",
+                        "Effect": "Gains a permanent boost to all attacks, with wind-based effects added to each strike."
+                    },
+                    "Ace": {
+                        "Name": "Steppe Cataclysm",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and reducing their defense for 2 turns."
+                    },
+                    "Joker": {
+                        "Name": "Steppe Chaos",
+                        "Effect": "Gul-Biavan unleashes random wind-based attacks, causing unpredictable damage and debuffs."
+                    }
+                }
+            }
+        },
+        "Kapre": {
+            "Type": "Squatch",
+            "Location": "Philippines",
+            "Habitat": [
+                "Giant banyan trees deep within the humid jungles of the Philippines.",
+                "Ancient, gnarled trees growing near rivers and streams in remote forests.",
+                "Dense, tropical woodlands where the trees are large enough to hide entire villages."
+            ],
+            "Description": "The Kapre is a massive, tree-dwelling cryptid known for its love of smoking large cigars in the treetops. Often described as between 7 to 10 feet tall, this creature is known to play tricks on travelers, causing them to lose their way. It can appear invisible, with only the smell of its cigar and the rustling of branches as signs of its presence.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Smoke Shield",
+                    "Effect": "Heals Kapre by 12 HP and creates a protective barrier of smoke, reducing incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Cigar Smoke",
+                    "Effect": "Kapre blows a cloud of toxic smoke at the enemy, poisoning them and dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Fire Ember Strike",
+                    "Effect": "Kapre strikes with a burning ember from its cigar, dealing critical fire damage."
+                },
+                "Clubs": {
+                    "Name": "Tree Slam",
+                    "Effect": "Kapre slams the enemy with a massive tree branch, stunning them for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Flaming Rush",
+                        "Effect": "A fiery charge that deals double damage and ignites the enemy, dealing additional fire damage over time."
+                    },
+                    "Queen": {
+                        "Name": "Forest Inferno",
+                        "Effect": "An AoE attack that ignites the battlefield, dealing heavy fire damage to all enemies."
+                    },
+                    "King": {
+                        "Name": "Master of the Flame",
+                        "Effect": "Gains a permanent boost to all fire-based attacks, increasing damage and burn effects."
+                    },
+                    "Ace": {
+                        "Name": "Inferno Cataclysm",
+                        "Effect": "Deals massive AoE fire damage, stunning all enemies and igniting them for additional burn damage."
+                    },
+                    "Joker": {
+                        "Name": "Flame Chaos",
+                        "Effect": "Random fire-based attacks strike enemies, dealing unpredictable damage and igniting them with burn effects."
+                    }
+                }
+            }
+        },
+        "Kikomba": {
+            "Type": "Squatch",
+            "Location": "Zaire",
+            "Habitat": [
+                "Dark, thick jungles in the heart of Zaire, where sunlight barely penetrates the canopy.",
+                "Steep jungle valleys with muddy trails and fast-moving rivers.",
+                "Isolated rainforests where the trees form natural walls and clearings are rare."
+            ],
+            "Description": "The Kikomba is a little-known cryptid from the deep jungles of Zaire. Reports are scarce, but it is believed to be a solitary and secretive creature, blending into the dense undergrowth to avoid detection.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Jungle's Blessing",
+                    "Effect": "Heals Kikomba by 8 HP and boosts defense by creating a shield of vines and leaves."
+                },
+                "Spades": {
+                    "Name": "Venomous Dart",
+                    "Effect": "Kikomba strikes with a poisonous dart, inflicting the enemy with poison that deals damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Savage Strike",
+                    "Effect": "A ferocious attack that deals critical damage to a single target."
+                },
+                "Clubs": {
+                    "Name": "Vine Snare",
+                    "Effect": "Summons jungle vines to entangle and stun the enemy for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Rapid Jungle Strike",
+                        "Effect": "A quick flurry of strikes that deal double damage and reduce enemy speed."
+                    },
+                    "Queen": {
+                        "Name": "Jungle Fury",
+                        "Effect": "An AoE attack that strikes all enemies, reducing their attack power and poisoning them."
+                    },
+                    "King": {
+                        "Name": "Lord of the Jungle",
+                        "Effect": "Gains a permanent boost to all attacks, with poison effects added to each strike."
+                    },
+                    "Ace": {
+                        "Name": "Jungle Cataclysm",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and applying poison that spreads to others."
+                    },
+                    "Joker": {
+                        "Name": "Jungle Chaos",
+                        "Effect": "Kikomba strikes with random jungle-based attacks, causing unpredictable damage and debuffs."
+                    }
+                }
+            }
+        },
+        "Mahalu": {
+            "Type": "Squatch",
+            "Location": "West Africa",
+            "Habitat": [
+                "Open, sun-scorched plains where tall grass sways under the African wind.",
+                "Shaded riverbanks with dense clusters of trees providing shelter.",
+                "Remote, rocky ridges overlooking vast grassy expanses."
+            ],
+            "Description": "The Mahalu is a cryptid known to wander the open plains of West Africa. It is described as a large, bipedal creature, though its sightings are rare and its behavior remains largely a mystery. Locals regard it with fear, believing it to be an omen of danger.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Plains Recovery",
+                    "Effect": "Heals Mahalu by 7 HP and creates a shield of grass and dirt that reduces incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Venomous Kick",
+                    "Effect": "A quick kick that poisons the enemy, dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Savage Kick",
+                    "Effect": "A powerful kick that deals critical damage and lowers the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Crushing Stomp",
+                    "Effect": "Stomps the ground, stunning nearby enemies for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Rapid Stomp",
+                        "Effect": "A flurry of stomps that deal bonus damage to all enemies."
+                    },
+                    "Queen": {
+                        "Name": "Plains Fury",
+                        "Effect": "An AoE attack that strikes all enemies, reducing their attack power and poisoning them."
+                    },
+                    "King": {
+                        "Name": "Master of the Plains",
+                        "Effect": "Gains a permanent boost to all attacks, with poison effects added to each strike."
+                    },
+                    "Ace": {
+                        "Name": "Plains Cataclysm",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and applying poison that spreads to others."
+                    },
+                    "Joker": {
+                        "Name": "Plains Chaos",
+                        "Effect": "Mahalu strikes with random plains-based attacks, causing unpredictable damage and debuffs."
+                    }
+                }
+            }
+        },
+        "Mande Burung": {
+            "Type": "Squatch",
+            "Location": "India",
+            "Habitat": [
+                "Misty jungle waterfalls hidden deep within India's untouched forests.",
+                "Thick bamboo forests bordering remote rivers and creeks.",
+                "Lush, tropical highlands where dense foliage provides natural cover."
+            ],
+            "Description": "The Mande Burung is a gentle giant, standing up to 10 feet tall. Covered in black hair, it is known for its incredible strength and reclusive nature. Unlike many other cryptids, the Mande Burung is considered harmless, shyly retreating into the jungle when encountered.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Waterfall's Blessing",
+                    "Effect": "Heals Mande Burung by 10 HP and creates a shield of water that reduces incoming damage."
+                },
+                "Spades": {
+                    "Name": "Venomous Wave",
+                    "Effect": "Mande Burung sends a wave of toxic water at the enemy, poisoning them and dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Raging Rapids Strike",
+                    "Effect": "A powerful strike that deals critical damage and reduces the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Water Crush",
+                    "Effect": "Slams the enemy with a powerful wave, stunning them for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Tidal Rush",
+                        "Effect": "A quick strike that deals double damage and washes the enemy away, reducing their speed."
+                    },
+                    "Queen": {
+                        "Name": "Waterfall Fury",
+                        "Effect": "An AoE attack that strikes all enemies, dealing heavy water damage and reducing their attack power."
+                    },
+                    "King": {
+                        "Name": "Lord of the Rapids",
+                        "Effect": "Gains a permanent boost to all water-based attacks, adding additional damage and effects."
+                    },
+                    "Ace": {
+                        "Name": "Tidal Cataclysm",
+                        "Effect": "Deals massive AoE damage, drowning all enemies in a wave of water and reducing their defense."
+                    },
+                    "Joker": {
+                        "Name": "Water Chaos",
+                        "Effect": "Random water-based attacks strike enemies, dealing unpredictable damage and debuffs."
+                    }
+                }
+            }
+        },
+        "Mapinguary": {
+            "Type": "Squatch",
+            "Location": "Brazil",
+            "Habitat": [
+                "Rocky, ocean-side caves hidden by dense jungle growth in Brazil.",
+                "Mangrove swamps along the coastal shorelines, where saltwater meets the land.",
+                "Dense tropical forests with labyrinthine paths and thick underbrush."
+            ],
+            "Description": "The Mapinguary is a legendary cryptid said to dwell in ocean-side caves in Brazil. Little is known about its behavior, though local legends describe it as a protector of the forest, with supernatural abilities that keep intruders at bay.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Cave Healer",
+                    "Effect": "Heals Mapinguary by 8 HP and creates a protective shield of cave rock that reduces incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Venomous Howl",
+                    "Effect": "A loud, poisonous howl that infects enemies, dealing damage over time and lowering their attack power."
+                },
+                "Diamonds": {
+                    "Name": "Savage Claw",
+                    "Effect": "A powerful swipe that deals critical damage and lowers the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Stone Slam",
+                    "Effect": "Slams the ground, causing a tremor that stuns nearby enemies for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency increase with card number.",
+                    "Jack": {
+                        "Name": "Rapid Claw Swipe",
+                        "Effect": "A quick series of slashes that deals double damage and reduces the enemy's defense."
+                    },
+                    "Queen": {
+                        "Name": "Cave Fury",
+                        "Effect": "An AoE attack that sends rocks crashing down on all enemies, lowering their defense and poisoning them."
+                    },
+                    "King": {
+                        "Name": "Lord of the Cave",
+                        "Effect": "Gains a permanent boost to attack and defense, increasing the effectiveness of all attacks."
+                    },
+                    "Ace": {
+                        "Name": "Cave Cataclysm",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and applying a poison that reduces their health and attack power."
+                    },
+                    "Joker": {
+                        "Name": "Cave Chaos",
+                        "Effect": "Mapinguary unleashes random cave-based effects, causing unpredictable damage or defense buffs."
+                    }
+                }
+            }
+        },
+        "Maywas": {
+            "Type": "Squatch",
+            "Location": "Malaysia",
+            "Habitat": [
+                "Quiet farmlands surrounded by dense jungle in rural Malaysia.",
+                "Cropland fringes where the jungle encroaches on cultivated fields.",
+                "Remote farming villages near riverbanks, shielded by tropical forests."
+            ],
+            "Description": "The Maywas is a cryptid that roams the farmlands of Malaysia. Known for its elusive nature, it is rarely seen, though reports suggest it may raid crops at night, leaving behind only trampled fields and strange footprints.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Farmland Blessing",
+                    "Effect": "Heals Maywas by 7 HP and creates a shield of crops and earth that reduces incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Venomous Seed",
+                    "Effect": "A poisonous seed is thrown, infecting the enemy and dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Harvest Strike",
+                    "Effect": "A powerful strike that deals critical damage and reduces the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Root Crush",
+                    "Effect": "Summons roots to entangle the enemy, stunning them for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency increase with card number.",
+                    "Jack": {
+                        "Name": "Rapid Harvest",
+                        "Effect": "A quick series of strikes that deals bonus damage to all enemies."
+                    },
+                    "Queen": {
+                        "Name": "Fury of the Fields",
+                        "Effect": "An AoE attack that strikes all enemies, reducing their attack power and poisoning them."
+                    },
+                    "King": {
+                        "Name": "Master of the Farmlands",
+                        "Effect": "Gains a permanent boost to all attacks and defense, adding poison effects to every strike."
+                    },
+                    "Ace": {
+                        "Name": "Farmland Cataclysm",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and applying poison that spreads to others."
+                    },
+                    "Joker": {
+                        "Name": "Farm Chaos",
+                        "Effect": "Maywas uses random nature-based attacks, dealing unpredictable damage or debuffs."
+                    }
+                }
+            }
+        },
+        "Mecheny": {
+            "Type": "Squatch",
+            "Location": "Russia",
+            "Habitat": [
+                "Thick, ancient forests deep in the Siberian wilderness.",
+                "Moss-covered caves hidden within rocky mountain faces.",
+                "Dense swampland filled with mist and decaying foliage, far from human reach."
+            ],
+            "Description": "The Mecheny, or \"Marked One,\" is a cryptid known for its distinctive white forearm. Standing around 6 feet tall, it is covered in red-brown hair and has glowing red eyes. Mecheny is known to knock on windows to announce its presence, and it is said to despise dogs, attacking them on sight.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Frozen Resilience",
+                    "Effect": "Heals Mecheny by 9 HP and creates a shield of frost and snow, reducing incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Venomous Ice Claw",
+                    "Effect": "A strike with frozen claws that poisons the enemy and deals damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Icy Slash",
+                    "Effect": "A powerful ice strike that deals critical damage and reduces the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Frozen Ground Stomp",
+                    "Effect": "Stomps the ground, creating an ice wave that stuns nearby enemies for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Blizzard Strike",
+                        "Effect": "A quick attack that deals double damage and slows the enemy's movement."
+                    },
+                    "Queen": {
+                        "Name": "Ice Fury",
+                        "Effect": "An AoE attack that freezes all enemies, dealing heavy damage and reducing their attack."
+                    },
+                    "King": {
+                        "Name": "Lord of the Ice",
+                        "Effect": "Gains a permanent boost to all ice-based attacks, increasing damage and freeze duration."
+                    },
+                    "Ace": {
+                        "Name": "Ice Cataclysm",
+                        "Effect": "Deals massive AoE damage, freezing all enemies and reducing their defense for 2 turns."
+                    },
+                    "Joker": {
+                        "Name": "Ice Chaos",
+                        "Effect": "Mecheny uses random ice-based attacks, dealing unpredictable damage and freezing effects."
+                    }
+                }
+            }
+        },
+        "Meh-Teh": {
+            "Type": "Squatch",
+            "Location": "Nepal",
+            "Habitat": [
+                "Frozen, windswept mountain slopes high in the Himalayas.",
+                "Rocky ledges and snow-covered cliffs that provide natural protection.",
+                "Remote valleys where ice and snow meet glacial streams."
+            ],
+            "Description": "The Meh-Teh is a giant, yeti-like creature reported in the mountains of Nepal. Little is known about its appearance, but it is believed to be highly elusive, roaming the snowy peaks and avoiding human contact at all costs.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Mountain's Blessing",
+                    "Effect": "Heals Meh-Teh by 10 HP and creates a protective shield of rocks that reduces incoming damage."
+                },
+                "Spades": {
+                    "Name": "Venomous Frostbite",
+                    "Effect": "Meh-Teh's icy breath poisons the enemy, dealing damage over time and reducing their attack."
+                },
+                "Diamonds": {
+                    "Name": "Avalanche Strike",
+                    "Effect": "A powerful strike that deals critical damage and lowers the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Ice Smash",
+                    "Effect": "A heavy slam that causes an avalanche, stunning nearby enemies for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and frost effects increase with card number.",
+                    "Jack": {
+                        "Name": "Blizzard Assault",
+                        "Effect": "A fast flurry of icy attacks, dealing double damage and freezing the enemy."
+                    },
+                    "Queen": {
+                        "Name": "Mountain Fury",
+                        "Effect": "An AoE attack that freezes all enemies, dealing heavy damage and reducing their defense."
+                    },
+                    "King": {
+                        "Name": "Mountain Master",
+                        "Effect": "Gains a permanent boost to all ice attacks, making all strikes deal bonus damage and freeze."
+                    },
+                    "Ace": {
+                        "Name": "Frozen Cataclysm",
+                        "Effect": "A massive AoE attack that freezes all enemies, dealing massive damage and reducing their attack and defense."
+                    },
+                    "Joker": {
+                        "Name": "Frozen Chaos",
+                        "Effect": "Meh-Teh unleashes random ice-based attacks, dealing unpredictable damage and debuffs."
+                    }
+                }
+            }
+        },
+        "Momo": {
+            "Type": "Squatch",
+            "Location": "Eastern United States",
+            "Habitat": [
+                "Abandoned farmland and empty barns in the remote Missouri countryside.",
+                "Overgrown shacks hidden by dense forest and wild brush.",
+                "Quiet, forested ridgelines with scattered clearings and natural springs."
+            ],
+            "Description": "Momo, the Missouri Monster, is a foul-smelling, shaggy cryptid that is often found near abandoned shacks. Standing 6 to 7 feet tall, it has a face obscured by thick fur and is known for its aggressive behavior. Momo is notorious for stealing small animals and attacking livestock.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Swamp's Healing",
+                    "Effect": "Heals Momo by 10 HP and creates a shield of swamp mud that reduces incoming damage."
+                },
+                "Spades": {
+                    "Name": "Venomous Swamp Strike",
+                    "Effect": "A poisonous strike that infects the enemy, dealing damage over time and lowering their attack power."
+                },
+                "Diamonds": {
+                    "Name": "Muddy Slam",
+                    "Effect": "A powerful slam that deals critical damage and lowers the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Crushing Stomp",
+                    "Effect": "A heavy stomp that stuns nearby enemies for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency increase with card number.",
+                    "Jack": {
+                        "Name": "Swamp Rush",
+                        "Effect": "A fast charge that deals double damage and reduces the enemy's speed."
+                    },
+                    "Queen": {
+                        "Name": "Swamp Fury",
+                        "Effect": "An AoE attack that deals heavy damage to all enemies, reducing their defense."
+                    },
+                    "King": {
+                        "Name": "Master of the Swamp",
+                        "Effect": "Gains a permanent boost to all attacks, with swamp-based effects added to each strike."
+                    },
+                    "Ace": {
+                        "Name": "Swamp Cataclysm",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and poisoning them for 2 turns."
+                    },
+                    "Joker": {
+                        "Name": "Swamp Chaos",
+                        "Effect": "Momo uses random swamp-based attacks, dealing unpredictable damage and debuffs."
+                    }
+                }
+            }
+        },
+        "Mogollon Monster": {
+            "Type": "Squatch",
+            "Location": "Arizona",
+            "Habitat": [
+                "Rugged mountain ridges covered in dense pine and juniper in Arizona.",
+                "Steep canyon walls lined with thick shrubs and hidden crevices.",
+                "Isolated high-altitude forests where thick underbrush meets rocky plateaus."
+            ],
+            "Description": "The Mogollon Monster is a large, hairy creature that stalks the remote mountains of Arizona. Reports describe it as standing 7 to 8 feet tall, with long arms and glowing red eyes. It is known for its blood-curdling screams that echo through the night.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Canyon Shield",
+                    "Effect": "Heals Mogollon Monster by 10 HP and creates a protective barrier of rock that reduces incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Venomous Claw",
+                    "Effect": "A venomous swipe that poisons the enemy and deals damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Rocky Strike",
+                    "Effect": "A powerful strike that deals critical damage and reduces the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Boulder Smash",
+                    "Effect": "A heavy blow that stuns the enemy for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Rapid Strike",
+                        "Effect": "A flurry of quick strikes that deal bonus damage to the enemy."
+                    },
+                    "Queen": {
+                        "Name": "Canyon Fury",
+                        "Effect": "An AoE attack that crushes all enemies with rocks, reducing their defense and poisoning them."
+                    },
+                    "King": {
+                        "Name": "Master of the Canyon",
+                        "Effect": "Gains a permanent boost to all attacks, making each strike reduce the enemy's defense."
+                    },
+                    "Ace": {
+                        "Name": "Canyon Cataclysm",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and applying a poison that lowers their attack."
+                    },
+                    "Joker": {
+                        "Name": "Rock Chaos",
+                        "Effect": "Mogollon Monster uses random canyon-based attacks, dealing unpredictable damage and debuffs."
+                    }
+                }
+            }
+        },
+        "Nasnas": {
+            "Type": "Squatch",
+            "Location": "Iran",
+            "Habitat": [
+                "Underground caverns beneath ancient ruins in the deserts of Iran.",
+                "Hidden tunnels that snake through forgotten underground cities.",
+                "Rocky desert landscapes where sandstorms frequently cover ancient paths."
+            ],
+            "Description": "The Nasnas is a cryptid said to live in the ancient underground cities of Iran. Described as a terrifying and elusive figure, the Nasnas is rarely seen, though legends claim it guards the forgotten relics of the past.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Underground Vitality",
+                    "Effect": "Heals Nasnas by 8 HP and creates a shield of ancient stone, reducing incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Venomous Curse",
+                    "Effect": "Nasnas curses the enemy, poisoning them and dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Cursed Strike",
+                    "Effect": "A powerful strike that deals critical damage and reduces the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Ancient Slam",
+                    "Effect": "Slams the ground with ancient power, stunning nearby enemies for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and curse potency increase with card number.",
+                    "Jack": {
+                        "Name": "Cursed Ambush",
+                        "Effect": "A fast strike that deals double damage and reduces the enemy's attack power."
+                    },
+                    "Queen": {
+                        "Name": "Fury of the Ancients",
+                        "Effect": "An AoE attack that curses all enemies, reducing their health and defense."
+                    },
+                    "King": {
+                        "Name": "Lord of the Underground",
+                        "Effect": "Gains a permanent boost to attack power and defense, with curse effects added to all attacks."
+                    },
+                    "Ace": {
+                        "Name": "Cursed Cataclysm",
+                        "Effect": "Deals massive AoE damage, applying a powerful curse that weakens all enemies and lowers their attack."
+                    },
+                    "Joker": {
+                        "Name": "Ancient Chaos",
+                        "Effect": "Nasnas strikes enemies with random ancient-based attacks, dealing unpredictable damage and applying curses."
+                    }
+                }
+            }
+        },
+        "Nuk-Luk": {
+            "Type": "Squatch",
+            "Location": "Northwest Canada",
+            "Habitat": [
+                "Quiet creeksides lined with thick, towering spruce trees in the Northwest Territories.",
+                "Isolated rivers that wind through remote valleys far from human contact.",
+                "Rocky riverbanks with natural caves and dense foliage providing ample cover."
+            ],
+            "Description": "The Nuk-Luk is a strange, humanoid cryptid found in Canada's Northwest Territories. It is described as wearing moose-skin loincloths and ankle-high boots, often carrying a stone club. Known for its primitive appearance, the Nuk-Luk is believed to have lived in the region for centuries.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "River Spirit",
+                    "Effect": "Heals Nuk-Luk by 8 HP and creates a shield of river water that reduces incoming damage."
+                },
+                "Spades": {
+                    "Name": "Venomous River Strike",
+                    "Effect": "A poisonous strike that infects the enemy, dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Rapid Slash",
+                    "Effect": "A swift slash that deals critical damage and lowers the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "River Stomp",
+                    "Effect": "Nuk-Luk stomps the ground, stunning nearby enemies for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Tidal Rush",
+                        "Effect": "A fast strike that deals double damage and reduces the enemy's speed."
+                    },
+                    "Queen": {
+                        "Name": "River's Fury",
+                        "Effect": "An AoE attack that strikes all enemies, reducing their defense and poisoning them."
+                    },
+                    "King": {
+                        "Name": "Master of the River",
+                        "Effect": "Gains a permanent boost to all attacks, with water-based effects added to every strike."
+                    },
+                    "Ace": {
+                        "Name": "River Cataclysm",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and applying poison that spreads to others."
+                    },
+                    "Joker": {
+                        "Name": "Water Chaos",
+                        "Effect": "Nuk-Luk uses random river-based attacks, dealing unpredictable damage and debuffs."
+                    }
+                }
+            }
+        },
+        "Orang Mawas": {
+            "Type": "Squatch",
+            "Location": "Malaysia",
+            "Habitat": [
+                "Deep, thick jungles bordering rivers in the heart of Malaysia.",
+                "Remote jungle clearings surrounded by tall, ancient trees and dense undergrowth.",
+                "Isolated sections of rainforest where rivers are lined with low-hanging vines."
+            ],
+            "Description": "The Orang Mawas is a jungle-dwelling cryptid reported to be up to 10 feet tall. Covered in black fur, it is known to raid orchards and fish in the rivers. Sightings of the Orang Mawas have been frequent since the 1950s, with its large footprints often found near villages.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Jungle Regeneration",
+                    "Effect": "Heals Orang Mawas by 10 HP and creates a shield of vines and jungle foliage, reducing incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Poisoned Claw",
+                    "Effect": "A venomous claw swipe that poisons the enemy and deals damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Savage Strike",
+                    "Effect": "A powerful swipe that deals critical damage and reduces the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Jungle Slam",
+                    "Effect": "A heavy slam with jungle force, stunning the enemy for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Vine Ambush",
+                        "Effect": "Orang Mawas rapidly strikes from the jungle, dealing double damage and reducing enemy speed."
+                    },
+                    "Queen": {
+                        "Name": "Fury of the Jungle",
+                        "Effect": "An AoE attack that strikes all enemies, reducing their attack power and poisoning them."
+                    },
+                    "King": {
+                        "Name": "Jungle King",
+                        "Effect": "Gains a permanent boost to all attacks, with poison effects added to every strike."
+                    },
+                    "Ace": {
+                        "Name": "Jungle Cataclysm",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and applying poison that spreads to others."
+                    },
+                    "Joker": {
+                        "Name": "Jungle Chaos",
+                        "Effect": "Orang Mawas strikes with random jungle-based attacks, dealing unpredictable damage and debuffs."
+                    }
+                }
+            }
+        },
+        "Sasquatch": {
+            "Type": "Squatch",
+            "Location": "Pacific Northwest, USA",
+            "Habitat": [
+                "Dense creek beds lined with moss-covered trees and thick underbrush in the Pacific Northwest.",
+                "Remote river valleys surrounded by towering coniferous forests.",
+                "Isolated forest groves where old-growth trees create a natural canopy of shade."
+            ],
+            "Description": "Sasquatch, or Bigfoot, is a well-known cryptid from North American folklore. Standing between 8 and 11 feet tall, it is covered in thick fur, with large, padded feet that leave behind enormous tracks. Sasquatch is a shy creature that avoids humans, though it is known for throwing rocks and making eerie whistling sounds at a distance.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Forest Recovery",
+                    "Effect": "Heals Sasquatch by 12 HP and creates a protective barrier of trees, reducing incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Venomous Claw",
+                    "Effect": "A quick swipe that poisons the enemy, dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Crushing Blow",
+                    "Effect": "A powerful strike that deals critical damage and lowers the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Ground Smash",
+                    "Effect": "A massive slam that stuns the enemy for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Rapid Claw Strike",
+                        "Effect": "A quick series of strikes that deals double damage and reduces enemy defense."
+                    },
+                    "Queen": {
+                        "Name": "Roar of the Forest",
+                        "Effect": "An AoE attack that damages and poisons all enemies, lowering their attack power."
+                    },
+                    "King": {
+                        "Name": "Lord of the Woods",
+                        "Effect": "Gains a permanent boost to all attacks, adding poison to every strike and boosting defense."
+                    },
+                    "Ace": {
+                        "Name": "Forest Cataclysm",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and applying poison that spreads."
+                    },
+                    "Joker": {
+                        "Name": "Wild Forest Chaos",
+                        "Effect": "Sasquatch strikes enemies with random forest-based attacks, causing unpredictable damage and debuffs."
+                    }
+                }
+            }
+        },
+        "Sisemite": {
+            "Type": "Squatch",
+            "Location": [
+                "Belize",
+                "Guatemala"
+            ],
+            "Habitat": [
+                "Volcanic slopes covered in dense, tropical vegetation in Central America.",
+                "Steamy, mist-filled jungles near active volcanic craters.",
+                "Rocky outcroppings and cliff faces that overlook volcanic valleys."
+            ],
+            "Description": "The Sisemite is a cryptid known to inhabit volcanic regions of Central America. Described as large and bipedal, this creature is rarely seen but is known for its stealthy nature. It is said to have a deep connection to the volcanic landscape, appearing during times of seismic activity.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Volcanic Regeneration",
+                    "Effect": "Heals Sisemite by 10 HP and creates a shield of volcanic ash, reducing incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Toxic Lava Strike",
+                    "Effect": "A venomous lava attack that poisons the enemy, dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Molten Punch",
+                    "Effect": "A fiery punch that deals critical damage and lowers the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Volcanic Smash",
+                    "Effect": "A ground-splitting blow that stuns nearby enemies for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and lava potency scale with card number.",
+                    "Jack": {
+                        "Name": "Rapid Lava Strike",
+                        "Effect": "A fast attack that deals double damage and leaves a burning effect."
+                    },
+                    "Queen": {
+                        "Name": "Fury of the Volcano",
+                        "Effect": "An AoE attack that erupts on all enemies, reducing their attack and defense while poisoning them."
+                    },
+                    "King": {
+                        "Name": "Master of the Volcano",
+                        "Effect": "Gains a permanent boost to all lava-based attacks, increasing damage and burn duration."
+                    },
+                    "Ace": {
+                        "Name": "Volcanic Cataclysm",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and applying burning poison that spreads."
+                    },
+                    "Joker": {
+                        "Name": "Volcanic Chaos",
+                        "Effect": "Sisemite strikes with random volcanic-based attacks, dealing unpredictable damage and effects."
+                    }
+                }
+            }
+        },
+        "Skunk Ape": {
+            "Type": "Squatch",
+            "Location": "Florida, USA",
+            "Habitat": [
+                "Swampy wetlands deep in the Florida Everglades, filled with thick mangroves.",
+                "Remote, waterlogged cypress groves where the ground is covered in thick mud.",
+                "Overgrown, marshy areas where dense grasses and tall trees provide natural cover."
+            ],
+            "Description": "The Skunk Ape is a cryptid found in the Florida Everglades, notorious for its foul odor. It stands between 4.5 to 12 feet tall and has glowing red eyes, which are highly unusual for primates. The Skunk Ape is aggressive and known to attack intruders in its swampy habitat, often emitting an ear-piercing shriek before chasing its victims.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Swamp Healing",
+                    "Effect": "Heals Skunk Ape by 10 HP and creates a shield of thick swamp gas, reducing incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Toxic Cloud",
+                    "Effect": "Skunk Ape releases a foul-smelling cloud, poisoning the enemy and reducing their attack."
+                },
+                "Diamonds": {
+                    "Name": "Savage Claw Strike",
+                    "Effect": "A brutal swipe that deals critical damage and lowers the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Swamp Smash",
+                    "Effect": "A heavy blow that stuns the enemy for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Rapid Strike",
+                        "Effect": "A quick flurry of blows that deals double damage and reduces enemy defense."
+                    },
+                    "Queen": {
+                        "Name": "Swamp Fury",
+                        "Effect": "An AoE attack that deals damage to all enemies, reducing their attack power and poisoning them."
+                    },
+                    "King": {
+                        "Name": "Master of the Swamp",
+                        "Effect": "Gains a permanent boost to all attacks, with poison effects added to every strike."
+                    },
+                    "Ace": {
+                        "Name": "Swamp Cataclysm",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and applying a potent poison that spreads to others."
+                    },
+                    "Joker": {
+                        "Name": "Swamp Chaos",
+                        "Effect": "Skunk Ape unleashes random swamp-based attacks, dealing unpredictable damage and effects."
+                    }
+                }
+            }
+        },
+        "Ucu": {
+            "Type": "Squatch",
+            "Location": "Chile",
+            "Habitat": [
+                "Steep cliffside caves overlooking the jungles of Chile.",
+                "Rocky, coastal cliffs battered by ocean winds and salt spray.",
+                "Dense forested ridges leading down to hidden valleys and secluded lakes."
+            ],
+            "Description": "The Ucu is a cliff-dwelling cryptid reported in Chile. Little is known about its behavior, but it is described as a secretive, solitary figure that moves swiftly along the rocky cliffs, leaving behind few traces of its existence.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Mountain Recovery",
+                    "Effect": "Heals Ucu by 9 HP and creates a shield of rocky outcrop, reducing incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Toxic Mountain Strike",
+                    "Effect": "A strike that poisons the enemy and deals damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Cliffside Slam",
+                    "Effect": "A powerful strike that deals critical damage and lowers the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Crushing Rockfall",
+                    "Effect": "Ucu triggers a rockslide that stuns nearby enemies for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Rapid Cliff Strike",
+                        "Effect": "A fast strike that deals double damage and reduces the enemy's speed."
+                    },
+                    "Queen": {
+                        "Name": "Mountain's Wrath",
+                        "Effect": "An AoE attack that deals damage to all enemies, reducing their attack power and poisoning them."
+                    },
+                    "King": {
+                        "Name": "Lord of the Cliffs",
+                        "Effect": "Gains a permanent boost to all attacks, with poison and rock-based effects added to every strike."
+                    },
+                    "Ace": {
+                        "Name": "Cliffside Cataclysm",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and applying poison that spreads to others."
+                    },
+                    "Joker": {
+                        "Name": "Mountain Chaos",
+                        "Effect": "Ucu unleashes random mountain-based attacks, dealing unpredictable damage and debuffs."
+                    }
+                }
+            }
+        },
+        "Ukumarzapai": {
+            "Type": "Squatch",
+            "Location": [
+                "Argentina",
+                "Chile"
+            ],
+            "Habitat": [
+                "Dense, mist-covered jungle mountains in Argentina and Chile.",
+                "High-altitude cloud forests where fog lingers through the dense vegetation.",
+                "Hidden, steep ravines carved by fast-moving mountain rivers."
+            ],
+            "Description": "Ukumarzapai is a cryptid from the dense jungle mountains of South America. It is believed to be highly elusive, with very few documented encounters. Locals say it emits strange sounds at night, hinting at its presence in the otherwise quiet jungle.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Jungle Recovery",
+                    "Effect": "Heals Ukumarzapai by 10 HP and creates a shield of jungle vines and leaves, reducing incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Venomous Strike",
+                    "Effect": "A poisonous strike that infects the enemy, dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Feral Slash",
+                    "Effect": "A powerful strike that deals critical damage and lowers the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Jungle Slam",
+                    "Effect": "A powerful hit that stuns the enemy for 1 turn."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Jungle Ambush",
+                        "Effect": "A rapid strike from the jungle, dealing double damage and reducing the enemy's speed."
+                    },
+                    "Queen": {
+                        "Name": "Jungle's Fury",
+                        "Effect": "An AoE attack that damages all enemies, reducing their attack power and poisoning them."
+                    },
+                    "King": {
+                        "Name": "Master of the Jungle",
+                        "Effect": "Gains a permanent boost to all attacks, adding poison to every strike and increasing defense."
+                    },
+                    "Ace": {
+                        "Name": "Jungle Cataclysm",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and applying poison that spreads to others."
+                    },
+                    "Joker": {
+                        "Name": "Jungle Chaos",
+                        "Effect": "Ukumarzapai strikes with random jungle-based attacks, dealing unpredictable damage and effects."
+                    }
+                }
+            }
+        },
+        "Vedi": {
+            "Type": "Squatch",
+            "Location": "Croatia",
+            "Habitat": [
+                "Deep forests surrounding the farmlands of Croatia, filled with ancient trees.",
+                "Remote, heavily wooded areas where large clearings give way to thick vegetation.",
+                "Rugged mountain foothills where scattered villages meet dense forested lands."
+            ],
+            "Description": "The Vedi are massive humanoid creatures said to be as tall as peasant houses. Covered in thick hair, they possess enormous strength, able to uproot trees and carry heavy loads with ease. Their deep voices can be heard from great distances, and they are believed to cause storms with a single breath.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Mountain Vitality",
+                    "Effect": "Heals Vedi by 10 HP and creates a shield of stone and snow, reducing incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Venomous Bite",
+                    "Effect": "A venomous bite that poisons the enemy and deals damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Crushing Blow",
+                    "Effect": "A powerful strike that deals critical damage and lowers the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Avalanche Slam",
+                    "Effect": "A crushing blow that triggers an avalanche, stunning nearby enemies for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Rapid Strike",
+                        "Effect": "A quick flurry of strikes that deals bonus damage to the enemy and reduces their speed."
+                    },
+                    "Queen": {
+                        "Name": "Mountain's Wrath",
+                        "Effect": "An AoE attack that crushes all enemies, reducing their defense and poisoning them."
+                    },
+                    "King": {
+                        "Name": "Master of the Mountain",
+                        "Effect": "Gains a permanent boost to all attacks, adding poison effects to every strike and boosting defense."
+                    },
+                    "Ace": {
+                        "Name": "Mountain Cataclysm",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and applying poison that spreads to others."
+                    },
+                    "Joker": {
+                        "Name": "Mountain Chaos",
+                        "Effect": "Vedi unleashes random mountain-based attacks, dealing unpredictable damage and effects."
+                    }
+                }
+            }
+        },
+        "Yeti": {
+            "Type": "Squatch",
+            "Location": "Himalayas",
+            "Habitat": [
+                "Snow-covered peaks of the highest Himalayan mountains.",
+                "Icy, glacier-carved valleys where blizzards make travel nearly impossible.",
+                "Steep, rocky cliffs dotted with patches of ice and snow, far from human reach."
+            ],
+            "Description": "The Yeti, also known as the 'Abominable Snowman,' is a massive cryptid that inhabits the cold, snowy regions of the Himalayas. Known for its white fur and imposing size, the Yeti has been reported by mountaineers for centuries. It is often described as a shy, reclusive creature that avoids human contact.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Frozen Regeneration",
+                    "Effect": "Heals Yeti by 10 HP and creates an ice shield, reducing incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Venomous Frostbite",
+                    "Effect": "A strike that infects the enemy with frostbite, poisoning them and dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Icy Slash",
+                    "Effect": "A powerful strike that deals critical damage and lowers the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Avalanche Slam",
+                    "Effect": "A crushing blow that triggers an avalanche, stunning nearby enemies for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Rapid Frost Strike",
+                        "Effect": "A quick series of icy attacks that deal double damage and slow the enemy's movement."
+                    },
+                    "Queen": {
+                        "Name": "Blizzard's Fury",
+                        "Effect": "An AoE attack that freezes and poisons all enemies, reducing their attack power."
+                    },
+                    "King": {
+                        "Name": "Lord of the Ice",
+                        "Effect": "Gains a permanent boost to all ice-based attacks, increasing damage and freeze duration."
+                    },
+                    "Ace": {
+                        "Name": "Frozen Cataclysm",
+                        "Effect": "Deals massive AoE damage, freezing and stunning all enemies, and applying poison."
+                    },
+                    "Joker": {
+                        "Name": "Ice Chaos",
+                        "Effect": "Yeti unleashes random ice-based attacks, dealing unpredictable damage and effects."
+                    }
+                }
+            }
+        },
+        "Yowie": {
+            "Type": "Squatch",
+            "Location": "Australia",
+            "Habitat": [
+                "Remote underground river systems running beneath Australia's dense forests.",
+                "Tall, dark eucalyptus forests with scattered clearings and bushland.",
+                "Hidden mountain passes where dense foliage and steep rock faces meet."
+            ],
+            "Description": "The Yowie is one of Australia's most dangerous cryptids. Ranging from 6 to 12 feet tall, it has long arms and fangs, with reddish fur. Known for its violent nature, the Yowie has been reported tearing apart kangaroos and dogs with its powerful claws. It is deeply rooted in Aboriginal folklore and is said to be a part of the Dreamtime stories.",
+            "Attacks": {
+                "Hearts": {
+                    "Name": "Outback Recovery",
+                    "Effect": "Heals Yowie by 10 HP and creates a shield of rock and foliage, reducing incoming damage for 2 turns."
+                },
+                "Spades": {
+                    "Name": "Venomous Strike",
+                    "Effect": "A poisonous strike that infects the enemy, dealing damage over time."
+                },
+                "Diamonds": {
+                    "Name": "Savage Claw",
+                    "Effect": "A powerful strike that deals critical damage and lowers the enemy's defense."
+                },
+                "Clubs": {
+                    "Name": "Rock Smash",
+                    "Effect": "A crushing blow that stuns the enemy for 2 turns."
+                },
+                "CardNumbers": {
+                    "2-10": "Attack power and poison potency scale with card number.",
+                    "Jack": {
+                        "Name": "Rapid Strike",
+                        "Effect": "A quick series of blows that deal bonus damage to the enemy and reduce their defense."
+                    },
+                    "Queen": {
+                        "Name": "Outback's Wrath",
+                        "Effect": "An AoE attack that crushes all enemies, reducing their defense and poisoning them."
+                    },
+                    "King": {
+                        "Name": "Master of the Outback",
+                        "Effect": "Gains a permanent boost to all attacks, adding poison effects to every strike and boosting defense."
+                    },
+                    "Ace": {
+                        "Name": "Outback Cataclysm",
+                        "Effect": "Deals massive AoE damage, stunning all enemies and applying poison that spreads to others."
+                    },
+                    "Joker": {
+                        "Name": "Outback Chaos",
+                        "Effect": "Yowie unleashes random outback-based attacks, dealing unpredictable damage and effects."
+                    }
+                }
+            }
+        }
+    }
+}
