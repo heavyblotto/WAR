@@ -283,28 +283,6 @@
 **Lucky Moments**: Random events keep players engaged
 **Achievement System**: Unlock rewards for various accomplishments
 
-## Development Roadmap
-
-### Phase 1: Core Game (Months 1-3)
-- **Week 1-4**: Basic War mechanics, card system
-- **Week 5-8**: AI opponents, progression system
-- **Week 9-12**: Visual polish, audio, animations
-
-### Phase 2: Content & Features (Months 4-6)
-- **Week 13-16**: Additional Warlords, Territories
-- **Week 17-20**: Relic system, special effects
-- **Week 21-24**: Daily bonuses, win streaks
-
-### Phase 3: Polish & Launch (Months 7-9)
-- **Week 25-28**: UI/UX polish, bug fixes
-- **Week 29-32**: Beta testing, balance adjustments
-- **Week 33-36**: Launch preparation, marketing
-
-### Phase 4: Post-Launch (Months 10+)
-- **New Content**: Additional Warlords, Territories, Relics
-- **Events**: Special limited-time events
-- **Community**: Leaderboards, achievements, social features
-
 ## Success Metrics
 
 ### Engagement Metrics
