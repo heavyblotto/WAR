@@ -19,7 +19,9 @@
 ### Key Features
 - **Quick Sessions**: 3-6 minute games perfect for casual play
 - **Traditional Cards**: Standard 52-card deck with familiar ranks and suits
-- **Special Cards**: Warlord-specific and Relic cards with unique effects
+- **Warlord Deck**: Themed Warlord decks containing **Natural (traditional) Cards** plus **Warlord Cards** and **Relic Cards**
+- **Warlord Cards**: Warlord-specific cards, attached to any Natural Card (e.g. Yeti: 7 Spades, Sasquatch 9 of Diamonds)
+- **Relic cards**: Totems with unique effects, attached to Jacks
 - **Visual Appeal**: Animated card flips, damage numbers, Bigfoot reactions
 - **Random Rewards**: Lucky draws, double damage, bonus rounds
 - **Simple Stats**: Only 3 stats (Health, Luck, Power) for easy understanding
