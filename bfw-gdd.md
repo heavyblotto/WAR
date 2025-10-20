@@ -183,6 +183,116 @@
 
 ## Technical Architecture
 
+### Overview
+The technical stack for *Bigfoot War* is designed for a web-based, single-player card game with AI opponents, emphasizing scalability, low latency, and ease of development. Hosting on Vercel leverages its serverless capabilities, edge caching, and seamless CI/CD for fast deployments. The architecture integrates a modern full-stack framework to unify frontend and backend, reducing complexity from the original vanilla setup. Key focuses include secure user data handling, performant animations, and integration points for monetization.
+
+We recommend adopting **Next.js** as the core framework, which bundles React for the frontend and Node.js for backend API routes. This allows static rendering for the frontend (fast loads via Vercel's CDN) and serverless functions for dynamic logic (e.g., game simulations). TypeScript is suggested across the board for type safety, especially in card/deck management and API interactions.
+
+### Backend (Node.js with Next.js API Routes)
+
+**Core Services**:
+- **Game Engine**: Handles War logic (shuffling, comparisons, damage calculations), card management (deck building with Warlord/Relic modifiers), and AI opponent behavior. Use libraries like `lodash` for random weighted selections.
+- **User Management**: Authentication (via JWT or OAuth providers like Auth0), progression tracking (XP, unlocks), and statistics (win rates, streaks).
+- **Matchmaking**: AI opponent selection with difficulty scaling; no real-time multiplayer needed initially.
+- **Rewards**: Processes daily bonuses, random events, and progression unlocks. Integrate cron-like scheduling via Vercel's scheduled functions for daily resets.
+
+**Database**:
+- **Recommended: MongoDB Atlas (Serverless)**: A NoSQL database for flexible schemas, ideal for JSON-like data (e.g., unlocked Warlords as arrays). Free tier supports initial development; scales automatically. Use Mongoose ORM for schema validation and queries.
+- **Alternatives**:
+  - **Vercel Postgres**: SQL option for structured analytics (e.g., querying war history). Use Prisma ORM for type-safe access; free beta tier available.
+  - **Supabase**: Open-source alternative with auth and real-time features; includes PostgreSQL backend and storage for user assets.
+- **Schema Example** (Updated for TypeScript/MongoDB):
+```typescript
+// User Schema (Mongoose)
+interface User {
+  id: string;
+  username: string;
+  level: number;
+  xp: number;
+  health: number;
+  luck: number;
+  power: number;
+  unlockedWarlords: string[];
+  unlockedRelics: string[];
+  dailyStreak: number;
+  lastLogin: Date;
+}
+
+// War Schema
+interface War {
+  id: string;
+  userId: string;
+  warlord: string;
+  enemyWarlord: string;
+  territory: string;
+  result: 'win' | 'loss' | 'draw';
+  damageDealt: number;
+  damageTaken: number;
+  cardsPlayed: string[];
+  specialEffects: string[];
+  timestamp: Date;
+}
+```
+
+**API Endpoints** (Next.js `/api` Routes):
+- `POST /api/war/start`: Initializes a new War session, shuffles decks, and selects AI opponent.
+- `POST /api/war/play`: Processes a card play, resolves effects, and returns updated game state.
+- `GET /api/user/profile`: Retrieves user data (secured with auth middleware).
+- `POST /api/user/daily`: Claims daily bonus, updates streak.
+- `GET /api/warlords`: Lists available Warlords based on user unlocks.
+- `GET /api/territories`: Lists available Territories.
+- **Security**: Use Vercel's edge middleware for rate limiting and CORS. Implement secure RNG with Node's `crypto` module to prevent predictable outcomes.
+
+**In-App Payments Integration**:
+- **Recommended: Stripe**: For cosmetic purchases (skins, boosters). Use Stripe's Node.js SDK for server-side verification. Create endpoints like `POST /api/purchase` to handle webhooks and update user DB (e.g., unlock skin). Supports one-time payments and boosters with timed expirations.
+- **Alternatives**:
+  - **PayPal**: For broader payment options; integrate via SDK for buttons and webhooks.
+  - **Paddle**: Handles global taxes/VAT; merchant-of-record reduces compliance needs.
+- **Implementation**: Use hosted checkout pages for PCI compliance. Store transaction IDs only; apply boosts via DB flags checked in game logic.
+
+### Frontend (React with Next.js)
+
+**Core Components**:
+- **Game Board**: Renders card displays, health bars, streak counters, and UI elements using React components.
+- **Card Animations**: Flip reveals, particle effects, and damage numbers via libraries like Framer Motion or GSAP.
+- **Audio System**: Sound effects (flips, roars) and ambient music using Howler.js for cross-browser support.
+- **UI System**: Menus for Warlord selection, progression screens, and reward pop-ups with responsive design.
+
+**Technology Stack**:
+- **Next.js + React**: For component-based UI and SSR/SSG for performance. Use Tailwind CSS for styling and transitions.
+- **HTML5 Canvas (via Konva.js)**: For custom animations and effects; easier state management than raw Canvas.
+- **Web Audio API (with Howler.js)**: Handles sounds; preload assets for low latency.
+- **State Management**: React Context or Zustand for game state (e.g., current deck, health).
+- **Local Storage**: Via `localforage` for offline progress and settings.
+- **Enhancements**: Add PWA support with Next.js for mobile feel. Use Vercel's image optimization for card assets.
+
+**Performance Optimizations**:
+- Static generation for non-dynamic pages (e.g., menus).
+- Lazy loading for audio/animations to meet <3s load times.
+- Target 60fps with React memoization and Canvas throttling.
+
+### AI System
+
+**Difficulty Scaling**:
+- **Easy**: Pure random card selection, base stats.
+- **Medium**: Weighted draws favoring higher ranks, +10% stats.
+- **Hard**: Predictive selection (e.g., hold specials for ties), +20% stats.
+- **Expert**: Basic minimax algorithm for optimal plays, max stats.
+
+**AI Behavior**:
+- **Card Selection**: Use weighted randomness (via Lodash); adapt based on player history stored in DB.
+- **Special Effects**: Trigger probabilistically, scaled by difficulty.
+- **Adaptive**: Query user win rate from DB to adjust difficulty dynamically (e.g., via API middleware).
+
+### Deployment and Monitoring
+- **Hosting**: Vercel for all-in-one deployment. Git-based CI/CD; preview branches for testing.
+- **Metrics**: Use Vercel Analytics for load times (<3s), API responses (<100ms), and uptime (99.9%).
+- **Scalability**: Serverless auto-scales; monitor costs for high-traffic events.
+- **Future Expansions**: Easy to add WebSockets (via Upstash or similar) for potential multiplayer if needed.
+
+
+## Technical Architecture
+
 ### Backend (Node.js)
 
 **Core Services**:
