@@ -237,6 +237,7 @@ Each Warlord comes with one default deck. Players can earn new decks through:
 - Each Warlord has a Mastery rank (I–V) earned via wars won, territory clears, bounties, and challenges while using that Warlord.
 - Mastery rewards: cosmetics (emotes, banners, frames), variant unlocks (see Mapping Variants), signature Relic Mk II.
 - Example thresholds: 200/500/1000/1600/2400 Mastery XP.
+ - Emotes at milestones: unlock 1 emote at Mastery II (warlord‑themed), 1 at Mastery IV (alt variant). Cosmetic only.
 
 **Warlord Deck Unlock Rules**
 - Each Warlord starts with 1 Warlord Deck (Default).
@@ -975,6 +976,7 @@ interface WarlordChallenge {
   - Leaderboards: global/region/territory/warlord/aspect/speed/no-tie slices; historical ranks; deep filters; alerts on rank changes. Core Top 100 and your rank remain free.
   - Replays Studio: fetch/step through replays with proc tables; shareable stat cards; CSV/JSON export.
   - Weekly Fixed-Seed Challenge: Warfront-only board for a seeded boss run; cosmetic rewards. Free can view boards and top replays.
+  - Seasonal Emotes: one unique seasonal emote per season (Badge Emote layer for Brag Backs).
 - Safeguards: privacy opt-out; no stat/Relic power; server-verified runs only; anti-cheat flags hidden automatically.
 
 ### Retention Features
@@ -1153,6 +1155,44 @@ The Node.js web architecture ensures broad accessibility while the free-to-play 
 - War! Stack (Animation): Three quick face-down stacks then reveal sequence.
 - Epic Pulse (Animation): Totem ring pulse and chroma shift during Epic state.
 - Territory Tint: Color grading applied to overlays/effects per territory theme.
+
+### Emotes (UI/UX)
+- Purpose: quick, expressive cosmetic reactions that don’t slow the game or reveal information.
+- Formats:
+  - Face Emotes: short animated Warlord portrait reactions with light SFX (≤500ms tail).
+  - Stickers: small static/animated decals that appear briefly near the board edge.
+  - Stamps: minimal text/glyph bubbles (localized), low profile.
+- Constraints:
+  - Cosmetic only (no gameplay effect). Cooldown: 5s; queue buffer: 3. Opponent emotes can be minimized/muted.
+  - Reduced Motion: swaps loops for single frames; SFX attenuated.
+- Wheel & Equip:
+  - Radial wheel (hold/tap on portrait or key): 8 slots (4 quick, 4 secondary). Results screen offers “Equip to wheel” for new emotes.
+- Optional triggers (user-toggle):
+  - Tie win/loss → auto Wow/Oops once per war; Jackpot/Epic → Banner Salute if equipped.
+- Integration:
+  - Specimens: completing Specimen collections unlocks themed emotes (cosmetic only).
+  - Brag Backs: choose one Badge Emote to display as a subtle corner badge on card backs.
+- Starter inventory (examples):
+  - Universal (face/sticker)
+    - GG Howl (face; friendly short howl + leaf confetti)
+    - Wow Eyes (face; widened eyes + sparkle)
+    - Calm Breath (face; soft frost/steam exhale)
+    - Thumbs Branch (sticker; twig thumbs‑up)
+    - Oops Pinecone (sticker; pinecone bonk)
+  - Territory‑themed
+    - Forest: Spore Cheer (sparkle spores), Sap Wink (sticky wink)
+    - Mountain: Frost Whistle (frost note), Summit Nod (snowflake shimmer)
+    - Swamp: Bog Bubble (plop), Firefly Swirl (glow ring)
+    - Jungle: Vine Wave (swish), Beetle Parade (tiny beetles)
+  - Specimen tie‑ins
+    - Dumpster Crown Tilt (face; smug crown tilt)
+    - Eternal Whiff Jar (sticker; sealed jar puff)
+    - Banana Peel Tap (sticker; peel spin + ding)
+  - Warlord‑specific
+    - Sasquatch: Rock Toss Cheer / Plaid Pop
+    - Yeti: Frost Wink / Warmth Wave
+    - Mapinguary: Bark Shield Nod / Leaf Peck
+    - Agogwe: Shadow Peek / Vine Snap
 
 - Next.js: Full-stack React framework used for UI and API routes.
 - API Routes (Next.js): Serverless HTTP endpoints implemented within the Next.js app.
