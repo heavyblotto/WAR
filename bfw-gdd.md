@@ -8,61 +8,27 @@
 
 ## Game Overview
 
-**Bigfoot War** is a simplified, web-based card game that combines the classic War card game with Bigfoot mythology. Players control Bigfoot Warlords in quick, engaging battles against AI opponents using a fixed 54-card deck per warlord (52 Natural + 2 Relics), deterministic seeded shuffles, territory-specific rules (tiers, weather, reputation), and impactful special effects.
+Bigfoot War is a single‑player, web‑based card battler inspired by the classic War rules. Each match is a short, 3–6 minute duel that emphasizes readable outcomes, satisfying payoffs, and strategic identity without heavy deckbuilding overhead.
 
-### Core Concept
-- **Traditional War Mechanics**: Draw top card, reveal simultaneously, higher rank wins
-- **Bigfoot Theme**: Warlords, territories, and special cards themed around cryptid lore
-- **Slot Machine Appeal**: Random rewards, visual feedback, win streaks, lucky moments
-- **Simple Progression**: Unlock new Bigfoots and cards through victories
-- **Deck Handling**: Fixed 54-card decks with one-for-one replacements, discard/reshuffle, no capture, clear tie (War!) rules
-- **Deterministic RNG**: Seeded mapping and shuffles ensure fairness, replays, and analytics
-- **Territory Layer**: Tiers, reputation, weather, bounties, and suit pity for strategic choice
+Before a match you:
+- Choose a Warlord (your character and theme).
+- Select a Warlord Deck (base identity): defines which standard cards are replaced by that Warlord’s signature cards; guardrails keep suit/rank balance intact.
+- Apply a Warbook (saved preset): stores your chosen Warlord Deck plus an Aspect (a curated style for that Warlord) and a couple of small preferences. Aspects shift cadence/feel, not total power.
+- Pick a Territory and Tier (I/II/III): Territories add a simple rules twist, daily Weather, rotating Bounties (optional goals), and a Reputation track (local progression).
 
-### Terminology (Game & Gameplay)
-- **Round**: One compare-and-resolution cycle. If a tie occurs, the full War! sequence (3 face-down + 1 reveal) is part of the same round and yields a single winner.
-- **War**: A full match from setup until one Warlord reaches 0 Health.
-- **War! (Tie)**: Both players place 3 cards face-down, then reveal a 4th; resolving reveal applies territory-specific massive damage.
-- **Deck (54)**: Fixed per Warlord each war: 52 Natural + 2 Relics; specials replace Natural cards one-for-one.
-- **Discard/Reshuffle**: Played cards go to each player’s discard; reshuffle when draw pile is empty; no card capture.
-- **Warlord Cards**: Special identity cards replacing specific Natural cards according to guardrails.
-- **Relics**: Powerful effects occupying Joker slots; Free Relics can temporarily replace a Natural card.
-- **Replacement Guardrails**: Suit counts near base, rank-band balance, no duplicate identities, territory suit respected.
-- **Rank Bands**: Face (A–J), High (10–7), Mid (6–4), Low (3–2).
-- **Deterministic Mapping**: Seeded, per-war selection of which Natural cards are replaced by specials.
-- **Replay Seed**: Derived secure seed allowing shuffles/mapping to be replayed for logs/replays.
-- **Spoils**: +1 per round win; converts to XP and bonus rolls at war end (with caps/scaling).
-- **Epic Meter**: Fills via Spoils and streak milestones; triggers an Epic War with boosted procs when full.
-- **Proc**: A triggered random effect (e.g., Lucky Draws, Double Damage, Free Relic insertion).
-- **Bonus Roll**: An end-of-war cosmetic-only loot spin earned (1 per 5 Spoils and certain events); roll quality scales with Territory Tier and during Epic War.
-- **Suit Pity**: If 4 rounds pass without the territory suit, next reshuffle lightly biases toward that suit.
-- **Territory**: Suit-themed battleground with tiers, weather, reputation, rules, and bounties.
-- **Tier**: I/II/III difficulty modifiers affecting AI power and rewards.
-- **Weather**: Daily territory modifier (e.g., Rain, Blizzard) changing rules.
-- **Reputation**: Territory-specific progression track with ranks and rewards.
-- **Bounties**: Rotating territory objectives for extra rewards.
-- **Trials/Gauntlets**: Three-node mini-campaigns culminating in a boss.
-- **Mapping Variant (Loadout)**: Curated set of replacements for a Warlord, selected pre-war.
- - **Aspect**: A Warlord’s curated replacement style (formerly Variant); shifts cadence/identity without changing power.
- - **Trail**: A saved deck preset per Warlord that binds an Aspect, small preferences, and cosmetics.
-- **Mastery**: Per-Warlord progression granting cosmetics and variant unlocks.
-- **Featured Pairing**: Weekly Warlord × Territory spotlight with bonuses.
-- **Challenges**: Rotating Warlord-specific constraints granting Mastery XP and cosmetics.
+During play, both sides reveal one card per round; the higher rank wins and deals damage. Special Warlord cards and Relics (powerful Joker‑slot effects) add clear, readable twists like heal, armor, rank shifts, or peeks. Ties trigger War!: three cards face‑down, then one up for a decisive, high‑damage resolution. Cards always return to their owner’s discard; when decks empty, you reshuffle. No card capture.
+
+Runs are fair and replayable. Deck size is fixed (54), replacements follow guardrails, and shuffles/mappings use a deterministic seed, so replays and practice rematches can reproduce the same order exactly. Progression unlocks Warlords, Relics, Territories, Warlord Decks, and Warbook slots over time. For a longer goal, Rampages are three‑node routes inside a Territory (two modifiers then a boss) that grant cosmetic deck rewards. Competitive players can add Warfront Pass for deep leaderboards, replays, and analytics (no gameplay power).
 
 ### Key Features
-- **Quick Sessions**: 3-6 minute games perfect for casual play
-- **Deck Model**: Fixed 54-card decks (52 Natural + 2 Relics) with familiar ranks and suits
-- **Warlord Deck**: Themed Warlord decks containing **Natural (traditional) Cards** plus **Warlord Cards** and **Relic Cards**
-- **Warlord Cards**: Warlord-specific cards, specialized from any Natural Card (e.g. Yeti: 7 Spades, Sasquatch 9 of Diamonds)
- - **Relic Cards**: Totems with unique effects that replace Jokers
-- **Visual Appeal**: Animated card flips, damage numbers, Bigfoot reactions
-- **Random Rewards**: Lucky Draws, Double Damage, Free Relics, Epic Meter, Jackpots
- - **Simple Stats**: Only 2 stats (Health, Power) for easy understanding
- - **Territories**: Suit-themed zones with tiers, reputation, dynamic weather, and rotating bounties
- - **Game Log & History**: Per-war timelines, per-Warlord stats, and deterministic replays
- - **Trials & Gauntlets**: Territory mini-campaigns culminating in boss encounters and relic variants
- - **Warlord Challenges & Featured Pairings**: Rotating constraints and weekly Warlord × Territory spotlights that shape goals and routes
- - **Warlord Mastery & Variants**: Per-Warlord mastery rewards and selectable mapping variants for fresh runs
+- **Short, satisfying matches**: 3–6 minute wars with simultaneous reveals and decisive War! tie resolutions
+- **Clear identity + light tuning**: Choose a Warlord Deck (base identity), then apply a Warbook (curated Aspect + small preferences) under suit/rank guardrails
+- **Fixed, fair decks**: 54 cards (52 Natural + 2 Relics), one‑for‑one replacements, discard/reshuffle; no card capture; seeded shuffles for replays
+- **Readable effects**: Warlord cards and Relics (Joker‑slot powers) add small, visual twists atop simple War rules
+- **Territories with variety**: Forest/Mountain/Swamp/Jungle each add a rules twist, daily Weather, Bounties (optional goals), and a Reputation track
+- **Rampages**: Three‑node, in‑territory routes (2 modifiers + boss) that award cosmetic deck variants
+- **Progression that respects time**: Unlock Warlords, Relics, Territories, Warlord Decks, and Warbook slots; weekly Featured Pairings set goals
+- **History and replays**: Deterministic replays and per‑war timelines; leaderboards/analytics via Warfront Pass (no gameplay power)
 
 ## Core Gameplay
 
@@ -70,24 +36,25 @@
 
 - Quick Play: Start a standard war with your last-used Warlord, Territory, and Tier. Great for fast sessions.
 - Territory Free Play: Pick any unlocked Territory and Tier (I/II/III), see its current Weather and active Bounty, then start a war.
-- Trials & Gauntlets: Enter a 3-step route inside a Territory (two modifier nodes and a Boss). Clear all three in sequence to earn special cosmetics and upgraded relic variants.
+- Rampages & Gauntlets: Enter a 3-step route inside a Territory (two modifier nodes and a Boss). Clear all three in sequence to earn special cosmetics and upgraded relic variants.
 - Featured Pairings: Weekly highlights that encourage using a specific Warlord in a specific Territory for extra reputation and bonuses.
 - Warlord Challenges: Optional constraints tied to your chosen Warlord (e.g., win with few ties). Completing them grants Mastery progress and cosmetics.
 
 ### War Mechanics
 
 **Pre-War Setup (plain-English overview)**
-- Choose your Warlord, then pick a Trail (your saved deck preset). Each Trail binds an Aspect (the Warlord’s curated style) and small, guardrailed preferences. Aspects change cadence/identity but not total power.
+- Choose your Warlord, then pick a Warlord Deck (base deck variant). A Warlord Deck defines the identity: which Natural cards are replaced by Warlord/Relic cards under guardrails.
+- Next, pick a Warbook (your saved preset). Each Warbook binds an Aspect (curated replacement style) and small, guardrailed preferences. Aspects change cadence/identity without changing total power. Warbooks layer on top of the chosen Warlord Deck to resolve the final mapping deterministically.
 - Choose a Territory and a Tier (I/II/III). Territory rules (like extra healing in Forest) and daily Weather apply for the whole war.
-- If you are on a Trial route, you will see which step you are on and any special modifiers.
+- If you are on a Rampage route, you will see which step you are on and any special modifiers.
 - The game creates a fair, reproducible shuffle using a secure seed and locks in which standard cards are replaced by your Warlord/Relic cards.
- - Your opponent is an AI-controlled Bigfoot Warlord (or a Territory Boss during Trials). The AI uses a full 54-card deck built with the same replacement guardrails and a locked variant/seed so its deck is just as fair and replayable as yours. Territory Tier modifies the AI’s power and proc rates.
+ - Your opponent is an AI-controlled Bigfoot Warlord (or a Territory Boss during Rampages). The AI uses a full 54-card deck built with the same replacement guardrails and a locked variant/seed so its deck is just as fair and replayable as yours. Territory Tier modifies the AI’s power and proc rates.
 
 **Opponent Selection (how you pick or get assigned an opponent)**
 - Quick Play: The game assigns an opponent automatically based on Territory, Tier, and your progression for fast entry.
 - Pick Opponent (Free Play): Toggle “Pick Opponent” to choose from available AI Warlords in that Territory/Tier. Each card shows name, difficulty stars, affinity tag, 1–2 signature specials, and variant archetype (e.g., Defender/Aggressor).
 - History Rematch: From Game Log, choose “Rematch (same seed)” to replay the exact deck order, or “Rematch (new seed)” for a fresh shuffle against the same opponent.
-- Trials/Boss: Trials have fixed bosses; mid-nodes may present a choice between two mini-bosses.
+- Rampages/Boss: Rampages have fixed bosses; mid-nodes may present a choice between two mini-bosses.
 
 Repetition rules (anti-farming):
 - Repetition decay: Fighting the same opponent more than 3 times per day reduces XP/Spoils (e.g., −20% after the 3rd, −40% after the 4th, floor −60%).
@@ -113,7 +80,7 @@ Repetition rules (anti-farming):
 - Spoils: You earn Spoils during the war (typically 1 per round you win). At the end, Spoils convert to XP up to a cap, and every 5 Spoils grant a bonus roll.
 - Reputation: If you played inside a Territory, you gain Territory Reputation; Featured Pairings can boost this.
 - Mastery: If you used a specific Warlord, you gain Warlord Mastery progress and may complete Warlord Challenges.
-- Trials: If you are on a Trial, the game advances you to the next node or awards the Trial clear and its cosmetic/relic variant reward.
+- Rampages: If you are on a Rampage, the game advances you to the next node or awards the Rampage clear and its cosmetic/relic variant reward.
 
 **Draw/Discard/Reshuffle Rules**:
 - After each reveal, each player's played card moves to their own discard pile (no card capture).
@@ -156,25 +123,25 @@ Repetition rules (anti-farming):
  - **Swamp Totem** - "Swamp Mist" - Enemy's next card is -1 rank
  - **Jungle Idol** - "Jungle Rage" - Your next card is +1 rank
 
-### Warlord Deck Card Structure (how specials are added fairly)
+### Warlord Decks & Card Structure (how specials are added fairly)
 
-Each deck is generated to contain exactly:
+Each Warlord Deck and resulting final deck contain exactly:
 
 **Total**: 54 cards per Warlord (fixed)
 **Base Set**: 52 Natural cards (Ace–2 across 4 suits) + 2 Joker slots (occupied by Relics)
-**Warlord Cards**: Replace specific Natural cards one-for-one (2–6 depending on progression)
+**Warlord Cards**: Replace specific Natural cards one-for-one (2–6 depending on progression). Which cards are replaced is determined by the selected Warlord Deck (identity template) and refined by the chosen Aspect (via Warbook), all under guardrails.
 **Relic Cards**: At least 2 (occupying Joker slots); late-game may include up to 2 additional Relics by replacing Natural cards
 
-#### Replacement Guardrails & Deterministic Mapping
+#### Replacement Guardrails & Deterministic Mapping (Warlord Deck × Warbook)
 
 - **One-for-one replacements**: Each Warlord or Relic card replaces a single Natural card. Total deck size remains 54.
 - **Suit guardrail**: Preserve suit counts close to base (≈13 per suit). Prefer replacing the same suit as the special. If unavailable, pick a card from the same suit family or rotate suits evenly to keep counts within ±1.
 - **Rank guardrail**: Maintain a natural rank spread. Prefer replacing within the same rank band: Ace–Jack (face), 10–7 (high), 6–4 (mid), 3–2 (low). Avoid clustering all replacements into the same band.
 - **Territory respect**: Do not reduce the territory suit below base unless the Warlord’s identity explicitly requires it; see Territory Suit Rules below.
 - **No duplicate identities**: Each Natural card can be replaced at most once. Special identities are unique in a deck.
-- **Fixed per-war mapping**: At War start, generate a deterministic map of replacements for the player and AI. This mapping does not change mid-war.
+- **Fixed per-war mapping**: At War start, generate a deterministic map by resolving: selected Warlord Deck (base identity) × selected Aspect and preferences from the Warbook, under guardrails. Player and AI both lock a mapping and seed; mappings do not change mid-war.
 
-**Per-Warlord mapping template**
+**Per-Warlord deck template**
 - Name
   - Identity: theme, flavor
   - Replacements (example): [Rank of Suit] → Warlord Card Name (effect)
@@ -185,7 +152,7 @@ Each deck is generated to contain exactly:
   - Replacements: Ace of Spades → Rock Throw (stun); King of Hearts → Creekbed Rally (heal)
   - Notes: Spades/Hearts preserved; stays in face-card band
 - Yeti (Himalayas, ice/heal)
-  - Replacements: Ace of Spades → Avalanche; Queen of Hearts → Glacier Mend (heal)
+- Replacements (Warlord Deck default): Ace of Spades → Avalanche; Queen of Hearts → Glacier Mend (heal)
   - Notes: Hearts emphasis is fine in Mountain territories; face + high bands
 - Mapinguary (Amazon, forest protection)
   - Replacements: King of Clubs → Forest Guard; Queen of Diamonds → Swamp Mist (-1 enemy rank)
@@ -213,11 +180,11 @@ Each Warlord comes with one default deck. Players can earn new decks through:
 - In app purchases
 
 ### Example War (illustrative walk-through)
-- Pre-War: You choose Yeti with the “Permafrost” variant in Mountain Tier II under Blizzard weather. The game locks in which cards are replaced and shuffles both decks using a secure seed.
+- Pre-War: You choose Yeti, select its “Avalanche” Warlord Deck, then choose the “Permafrost” Aspect via your Warbook in Mountain Tier II under Blizzard weather. The game resolves the final mapping from Warlord Deck × Aspect under guardrails and shuffles both decks using a secure seed.
 - Round 1: You reveal King of Spades (Ice Carapace) and the AI reveals 9 of Hearts. You win and deal 13 + your Power damage; Ice Carapace gives you +1 armor for your next hit.
 - Round 2: Both reveal 8s (tie). War! triggers: 3 face-down cards are placed, then both reveal. You reveal Queen of Hearts (Glacier Mend) vs AI’s 10 of Clubs. You win, deal the big War! damage, then heal from Glacier Mend.
 - Rounds continue with territory rules applying (in Mountain, every third round win grants armor). You accrue Spoils on each round win and fill your Epic Meter.
-- End-of-War: You win. You receive base XP + Tier bonus, Spoils convert to XP (up to the cap) and award bonus rolls, Mountain reputation increases, and your Yeti gains Mastery XP. If this was the Boss node of a Trial, you also earn the Mountain Relic Mk II.
+- End-of-War: You win. You receive base XP + Tier bonus, Spoils convert to XP (up to the cap) and award bonus rolls, Mountain reputation increases, and your Yeti gains Mastery XP. If this was the Boss node of a Rampage, you also earn the Mountain Relic Mk II.
 
 ## Game Systems
 
@@ -264,20 +231,30 @@ Each Warlord comes with one default deck. Players can earn new decks through:
 - Milestones:
   - Level 5/10/15/20: Guarantee feature unlock matching tier focus (Warlord/Relic/Relic Slot/Theme)
   - First-time unlocks grant themed cosmetic shards
+  - Warlord Deck unlocks: Each Warlord gains additional Warlord Decks at key milestones (see Warlord Deck Unlock Rules)
 
 **Warlord Mastery**
 - Each Warlord has a Mastery rank (I–V) earned via wars won, territory clears, bounties, and challenges while using that Warlord.
 - Mastery rewards: cosmetics (emotes, banners, frames), variant unlocks (see Mapping Variants), signature Relic Mk II.
 - Example thresholds: 200/500/1000/1600/2400 Mastery XP.
 
-**Trailcraft (Deck Building)**
-- Trails (your presets): Each Warlord has 3 Trail slots at Mastery I, 4 at Mastery III, and 5 at Mastery V. A Trail saves your chosen Aspect, tiny preferences, Relic skin priority, and cosmetics (card back, frame, emotes).
+**Warlord Deck Unlock Rules**
+- Each Warlord starts with 1 Warlord Deck (Default).
+- Unlock additional Warlord Decks via:
+  - Mastery ranks: unlock at Mastery II and IV
+  - Rampage clears: first clear in the Warlord’s primary territory unlocks a themed Deck
+  - Featured Pairing: limited-time deck variant drops when featured (auto-unlocks if run completed during the week)
+  - Store: cosmetic Warlord Deck variants purchasable (no stat advantage; identity shifts within guardrails)
+- Deck Slots per Warlord: 3 at baseline; +1 slot at Mastery III; +1 slot at Mastery V (max 5 saved Decks per Warlord)
+
+**Warbook Crafting (Deck Building)**
+- Warbooks (your presets): Each Warlord has 3 Warbook slots at Mastery I, 4 at Mastery III, and 5 at Mastery V. A Warbook saves your chosen Warlord Deck reference, Aspect, tiny preferences, Relic skin priority, and cosmetics (card back, frame, emotes).
 - Aspects (Warlord styles): Each Warlord offers 2–3 curated Aspects that change which Natural cards are replaced under guardrails. Aspects shift cadence/identity without increasing power (total always 54; replacements respect suit/rank caps).
 - Preferences (guardrailed):
   - Band preference: Favor Face or Favor Mid (used as a tie-breaker only within guardrails).
   - Suit preference: Favor Territory Suit (keeps suit counts within ±1 of base).
-- Flow: Trail → Aspect → Territory/Tier → optional Opponent. Engine resolves a deterministic mapping from Aspect + preferences, then applies Territory/Weather mutation and performs a seeded shuffle.
-- Progression: Mastery unlocks Aspects and Trail slots; Relic Mk II is cosmetic. No raw stat boosts.
+- Flow: Warlord Deck → Warbook (Aspect + preferences) → Territory/Tier → optional Opponent. Engine resolves a deterministic mapping from Warlord Deck × Aspect + preferences, then applies Territory/Weather mutation and performs a seeded shuffle.
+- Progression: Mastery unlocks Aspects and Warbook slots; Relic Mk II is cosmetic. No raw stat boosts.
 
 **XP & Rewards Sources**:
 - War Win: +50 XP (base). Difficulty bonus: Easy 0%, Medium +25 XP, Hard +50 XP, Expert +75 XP.
@@ -342,6 +319,7 @@ Each Warlord comes with one default deck. Players can earn new decks through:
 **Spoils**:
 - Each round win grants +1 Spoils (no cards are captured).
 - At end of War, Spoils convert to +5 XP per Spoils (cap 50 XP per war). Every 5 Spoils grant 1 bonus roll. Difficulty scaling applies to Spoils XP: Easy 50%, Medium 100%, Hard 125%, Expert 150% (cap enforced after scaling).
+ - Specimens (cosmetic collectibles): Each Spoils also yields 1 Specimen roll—a humorous “junk-treasure” Bigfoots prize (territory- and rarity-weighted; no power). Specimens fill cosmetic collections that unlock emotes, Brag Back badges, and titles. End-of-war XP conversion for Spoils is unchanged.
 
 **Random Rewards & Fortune Meter**:
 - Fortune Meter: Fills on negative outcomes and guarantees a spike when full.
@@ -350,7 +328,7 @@ Each Warlord comes with one default deck. Players can earn new decks through:
   - UI: thin halo around the Draw lever brightens as it fills; tooltip shows current fill (e.g., 4/6).
 - Lucky Draws: base 10% per round (per round resolution). Epic War: +5 percentage points. Tier II: +2pp; Tier III: +4pp. Cap: 22%.
 - Double Damage: base 5% per round. Epic War: +3pp. Tier II: +1pp; Tier III: +2pp. Cap: 12%.
-- Free Relics: base 1% per round; available in Epic War and Trials. Inserts a temporary Relic by replacing a mid-band Natural card under guardrails; duration: current War only; max 1 active Free Relic; cooldown: returns to deck only after 2 reshuffles.
+- Free Relics: base 1% per round; available in Epic War and Rampages. Inserts a temporary Relic by replacing a mid-band Natural card under guardrails; duration: current War only; max 1 active Free Relic; cooldown: returns to deck only after 2 reshuffles.
 - Epic Meter: Fills via Spoils (+1 per Spoils) and win streak milestones (+3 at 3-win, +5 at 5-win). When full (e.g., 20), the next War is an Epic War with increased proc rates (+50%) and improved bonus-roll odds; meter resets after use.
 - Jackpot Wins: Trigger on deterministic combos (e.g., resolving a tie with both players revealing face cards and the winner's card matches territory suit) plus a small random chance (1%). Jackpots grant a large one-time damage bonus and a premium bonus-roll.
 
@@ -420,6 +398,28 @@ All Aspects obey replacement guardrails (suit/rank balance, territory respect, n
   - Ambush: 9 of Clubs → Lurker’s Pounce (+1 rank if enemy’s last was face); 7 of Spades → Night Veil (hide your next card’s suit/preview)
   - Hunter’s Guile: 10 of Clubs → Track Prey (reveal enemy suit next round); Jack of Spades → Smoke Cover (−1 enemy rank if you lose by ≤1)
   - Notes: Clubs/Spades identity; excels in Jungle/Mountain.
+
+#### Example Warlord Decks (Base Identities)
+
+- **Sasquatch**
+  - Stone Heaver (Default): Face-band Spades/Hearts emphasis; reliable stun windows and solid sustain.
+  - Gorge Sentinel: Hearts-leaning sustain/armor; lower tie rate; favors extended rounds.
+  - Landslide: High-band Spades skew; bursts after ties; punishes War! reveals.
+
+- **Yeti**
+  - Avalanche (Default): Spades burst identity; favors decisive reveals and post-tie spikes.
+  - Periglacial Guard: Hearts/Spades balance; armor cadence and controlled tempo.
+  - Whiteout Scout: Visibility/control tools; minor debuffs; thrives under Blizzard.
+
+- **Mapinguary**
+  - Forest Guardian (Default): Clubs/Diamonds control; steady debuffs; protects tempo.
+  - River Watch: Reactive debuffs post-tie; river-themed momentum on Clubs wins.
+  - Canopy Warder: Armor on Diamonds wins; light snares on Clubs chains.
+
+- **Agogwe**
+  - Shadowstalker (Default): Stealth/skip-turn windows; Clubs/Spades face-band identity.
+  - Night Hunt: Ambush and reveal peeks; sets up tie manipulation.
+  - Bush Phantom: Suit concealment and light misdirection; safer mid-band spread.
 
 The game features a roster of Bigfoots based on global cryptid lore. Below is a starting list with name, locale, and brief description (for those with available data; others noted as variants or similar to known cryptids). These serve as playable characters, AI clan lords, or card inspirations, with stats and abilities tailored to their themes.
 
@@ -498,7 +498,7 @@ The game features a roster of Bigfoots based on global cryptid lore. Below is a 
   - Jungle Monsoon: +1 Epic Meter gain per Spoils.
 - **Bounties (Rotating Objectives)**: Daily/weekly tasks per territory (e.g., “Defeat Mountain King with ≤3 ties”) for bonus rolls and cosmetic shards.
 - **Suit Pity Timer**: If 4 rounds pass without the territory suit, seed-weight the next reshuffle to surface ~2 cards of that suit (+25% ordering weight), honoring guardrails.
- - **Trials & Gauntlets**: Three-node mini-campaigns per territory (two modifiers + boss). First clear grants Relic Mk II/III variants and themed cosmetics.
+ - **Rampages & Gauntlets**: Three-node mini-campaigns per territory (two modifiers + boss). First clear grants Relic Mk II/III variants and themed cosmetics.
  - **Affinity & Featured Pairings**: Certain Warlords gain weekly affinity in specific territories (shown in UI), granting extra reputation and rewards.
 
 **Forest Territories** (Hearts):
@@ -508,6 +508,11 @@ The game features a roster of Bigfoots based on global cryptid lore. Below is a 
  - **Rules**: Healing effects are +50% stronger; Hearts wins heal an additional +1. War! resolves at 3.5× damage and grants the winner +3 heal (replaces the global 4× in this territory).
  - **Deck Mutation (start of war)**: Promote up to two low-band Hearts to mid-band for this war (deterministic under guardrails).
  - **AI Tendencies**: Prioritizes sustain, conserves face cards to avoid overkill; lower tie propensity.
+ - **Specimens (examples)**:
+   - Common: Rotten Pinecone, Sap-Stuck Feather
+   - Uncommon: Moss-Wrapped Pebble, Stale Apple Core
+   - Rare: Truffle-Near-Miss, Hollow Log Whistle
+   - Epic: Dumpster Crown (Forest Trim)
 
 **Mountain Territories** (Spades):
 - **Bonus**: +1 Power per Spades win
@@ -516,6 +521,11 @@ The game features a roster of Bigfoots based on global cryptid lore. Below is a 
  - **Rules**: Gain +1 temporary armor every time you secure your 3rd, 6th, 9th… round win (reduces next damage by 1–2). Spades wins grant +1 armor immediately.
  - **Deck Mutation (start of war)**: Promote one mid-band Spade to high-band for this war.
  - **AI Tendencies**: Hoards high Spades for post-tie reveals; punishes War! states.
+ - **Specimens (examples)**:
+   - Common: Pocket Gravel, Tin Mug Dreg
+   - Uncommon: Glacier Jerky, Snow-Wet Mitt
+   - Rare: Frozen Fish Head, Summit Token (Bent)
+   - Epic: Banana Peel Scepter (Icy Grip)
 
 **Swamp Territories** (Diamonds):
 - **Bonus**: Diamonds win grants a Debuff token (enemy’s next card −1 rank)
@@ -524,6 +534,11 @@ The game features a roster of Bigfoots based on global cryptid lore. Below is a 
  - **Rules**: Suit Pity triggers after 3 rounds without Diamonds (instead of 4). Fog weather reveals enemy suit (not rank) next round. Occasional “bog” effect: both players’ next draw −1 rank (low chance).
  - **Deck Mutation (start of war)**: Tag one enemy high-band card with “murk” (−1 rank when revealed) for this war.
  - **AI Tendencies**: Plays for ties to exploit debuffs; higher tie-setup probability.
+ - **Specimens (examples)**:
+   - Common: Bog Coin, Murk-Snail Shell
+   - Uncommon: Sedge Basket, Marshmallow (Pre-Melt)
+   - Rare: Bog-Softened Boot, Reed Flute (Gurgling)
+   - Epic: Feral Scarf (Tang of Mystery)
 
 **Jungle Territories** (Clubs):
 - **Bonus**: +1 random stat per Clubs win
@@ -532,7 +547,12 @@ The game features a roster of Bigfoots based on global cryptid lore. Below is a 
  - **Rules**: First Clubs win each war grants “Frenzy” (+1 rank on your next two rounds). Tie rate +10% (chaotic tempo).
  - **Deck Mutation (start of war)**: One random Clubs card gains +1 rank on its first appearance only.
  - **AI Tendencies**: Aggressively cycles specials; accepts volatility for spike outcomes.
- - **Boss Trial**: Jungle Rage champion uses high tie-rate and Frenzy windows; first clear awards Jungle Relic Mk II and a themed board frame.
+ - **Boss Rampage**: Jungle Rage champion uses high tie-rate and Frenzy windows; first clear awards Jungle Relic Mk II and a themed board frame.
+ - **Specimens (examples)**:
+   - Common: Vine-Tie, Beetle Case
+   - Uncommon: River Reed Straw, Leaf-Pressed Sardine
+   - Rare: Overripe Durian, Bark-Peel Charm
+   - Epic: The Eternal Whiff (Sealed Jar)
 
 ### Visual Design
 
@@ -547,7 +567,7 @@ The game features a roster of Bigfoots based on global cryptid lore. Below is a 
 - **Win Streak**: Prominent streak counter
 - **Fortune Indicators**: Draw lever halo brightens with Fortune fill; small glow on cards when a guaranteed Lucky Draw is queued
 - **Reward Pop-ups**: Big, satisfying reward notifications
- - **Territory Module**: Shows suit, tier (I/II/III), weather badge, reputation bar, bounty objective, trial/boss availability, and any Featured Pairing bonus
+ - **Territory Module**: Shows suit, tier (I/II/III), weather badge, reputation bar, bounty objective, rampage/boss availability, and any Featured Pairing bonus
  - **Mastery/Variants**: Lobby panel with Mastery rank/progress and Variant selector (when unlocked)
  - **Challenges**: Warlord-specific rotating constraints badge with quick access
 
@@ -567,7 +587,7 @@ The game features a roster of Bigfoots based on global cryptid lore. Below is a 
 - Mountain/Spades: Frost edge vignette, wind streaks. Blizzard adds flurries and muffled audio bed.
 - Swamp/Diamonds: Low fog pass, fireflies, ripple decals on impact.
 - Jungle/Clubs: Foreground leaves parallax, heat shimmer, occasional vine sweep.
-- Trials: Map totem nodes with carved inlays; boss node gets gold foil rim and animated totem eyes.
+- Rampages: Map totem nodes with carved inlays; boss node gets gold foil rim and animated totem eyes.
 
 ### Slot-Machine Energy, War Simplicity
 - Single-surface focus: Card Stage is the “reel.” Draw button is the “lever” (pull-down gesture on mobile; tactile press on desktop).
@@ -601,7 +621,7 @@ The game features a roster of Bigfoots based on global cryptid lore. Below is a 
   - Spoils Meter (pips up to 10, then xN)
   - Epic Meter (segmented ring; displays “NEXT WAR EPIC” when full)
 - Side Drawer (peek on mobile, fixed on desktop): Territory module (suit, weather, tier, reputation bar, bounty), Streak badge (with grace shield), Active Relics list
-  - Also shows: Trial/Boss availability, Featured Pairing bonus (if active), and territory Affinity tips
+  - Also shows: Rampage/Boss availability, Featured Pairing bonus (if active), and territory Affinity tips
 
 **Components**
 - HealthBar: segmented with tick marks and damage/heal animations
@@ -621,7 +641,7 @@ The game features a roster of Bigfoots based on global cryptid lore. Below is a 
   - Free Relic: toast and icon in Active Relics; removed after war or 2 reshuffles cooldown
 - Suit Pity Feedback: after 4 suitless rounds, subtle tooltip “Winds shift toward [suit]” (no numeric odds shown)
 - Mission Progress: non-blocking toasts; tap to open Missions panel
- - Trial Entry: if on a Trial node, display a small step indicator (1/3, 2/3, Boss) and unique boss banner on the final node
+ - Rampage Entry: if on a Rampage node, display a small step indicator (1/3, 2/3, Boss) and unique boss banner on the final node
 
 ### UI Spec Mockups (textual)
 
@@ -630,7 +650,7 @@ The game features a roster of Bigfoots based on global cryptid lore. Below is a 
 - Warlord Carousel: large portrait, nameplate, Mastery rank bar, Variant selector chip.
 - Territory Row: chips for Forest/Mountain/Swamp/Jungle, showing suit icon, weather badge, Tier dropdown, reputation bar, bounty icon.
 - Opponent Chooser (toggle panel): grid of opponent cards (portrait, name, difficulty stars, affinity tag, two signature special icons, variant archetype chip). Tooltip on hover/tap: “Repeating the same opponent reduces XP/Spoils; Tier up to restore.”
-- Primary CTA: “Draw & Start” (Quick Play) or “Start vs [Opponent]”. Secondary: “Continue Trial.”
+- Primary CTA: “Draw & Start” (Quick Play) or “Start vs [Opponent]”. Secondary: “Continue Rampage.”
 - Daily/Weekly Banners: Featured Pairing, Bounties, Challenges.
 - Tokens & timings: focus ring on CTA (8px glow, 150ms); card hover scale 1.03, 120ms; panel slide 220ms.
 
@@ -645,7 +665,7 @@ The game features a roster of Bigfoots based on global cryptid lore. Below is a 
 #### Results (Bonus Rolls)
 - Verdict Banner: Win/Loss; confetti/leaf/ice/swamp/jungle VFX aligned to territory.
 - XP Breakdown: base + Tier bonus + Spoils (cap noted) + missions.
-- Spoils Conversion: bar animates from Spoils count to XP; shows 1 Bonus Roll per 5 Spoils.
+- Spoils Conversion: bar animates from Spoils count to XP; shows 1 Bonus Roll per 5 Spoils. Specimens collected are summarized with “new” badges and a CTA to open Knapsack.
 - Bonus Rolls: slot-style reels (3 columns); stop order L→R; rarity color pulses; duplicate converts to shards with a pop.
 - Reputation & Mastery: territory rep bar increase; Warlord mastery progress.
 - CTAs: Rematch (same seed), Rematch (new seed), Back to Lobby. Tooltip: “Repetition decay may apply.”
@@ -659,22 +679,23 @@ The game features a roster of Bigfoots based on global cryptid lore. Below is a 
 - Quick Play: remembers last Warlord/Territory/Tier
  - Mastery Panel: shows current Warlord Mastery rank/progress and next reward; Variant selector appears when Mastery unlocks
  - Opponent Chooser: toggle to pick an opponent; shows difficulty stars, affinity, signature specials, variant archetype; tooltips explain repetition decay and auto-bump
- - Trail Tabs: per-Warlord tabs for Trail slots (3–5). Inside a Trail: Aspect selector and Preferences (band/suit). Live preview meters show specials %, suit balance, band distribution. Save with punny names.
- - Leaderboards: button on Lobby; slices for global/territory/tier/warlord/aspect/speed/no-tie. Pro users unlock deep filters and history; free users see Top 100 and their rank.
+- Warbook Tabs: per-Warlord tabs for Warbook slots (3–5). Inside a Warbook: Base Warlord Deck selector (locked decks show source and unlock hint), Aspect selector, and Preferences (band/suit). Live preview meters show specials %, suit balance, band distribution. Save with punny names.
+ - Leaderboards: button on Lobby; slices for global/territory/tier/warlord/aspect/speed/no-tie. Warfront Pass users unlock deep filters and history; free users see Top 100 and their rank.
+ - Leaderboards: button on Lobby; slices for global/territory/tier/warlord/aspect/speed/no-tie. Warfront Pass users unlock deep filters and history; free users see Top 100 and their rank.
 
 **Results Screen**
 - Top: Win/Loss and XP total with breakdown (base, difficulty, Spoils, missions)
 - Middle: Spoils earned/converted, bonus rolls, shard drops/cosmetics
-- Bottom: Territory reputation gained, bounty status, Trial progress/clear (and relic variant earned if applicable), Featured Pairing participation, Warlord Mastery XP gained
+- Bottom: Territory reputation gained, bounty status, Rampage progress/clear (and relic variant earned if applicable), Featured Pairing participation, Warlord Mastery XP gained
  - Rematch CTAs: “Rematch (same seed)” and “Rematch (new seed)” buttons; tooltip shows any repetition decay that will apply
- - Rank Delta: if the run affects a leaderboard slice, show rank change and CTA to view the board (Pro deep-link includes filters).
+ - Rank Delta: if the run affects a leaderboard slice, show rank change and CTA to view the board (Warfront Pass deep-link includes filters).
 
 **Navigation & Flows**
 - Deep links from Missions to pre-selected Territory/Tier
 - One-tap rematch with same settings
-- Collections: shard progress bars; “Where to earn” badges link to Territories
+- Collections: shard progress bars; “Where to earn” badges link to Territories; Knapsack (Specimen inventory) shows territory/warlord/rarity sets and cosmetic rewards
  - History: “Rematch with same seed” option for practice runs (uses replaySeed)
- - Trials: enter/continue Trial route directly from Territory selector, with node preview and cosmetic reward preview
+ - Rampages: enter/continue Rampage route directly from Territory selector, with node preview and cosmetic reward preview
 
 **Accessibility**
 - Colorblind-safe suit indicators (shape-coded); high-contrast theme option
@@ -700,14 +721,14 @@ We use **Next.js** as the core framework, which bundles React for the frontend a
 ### Backend (Node.js with Next.js API Routes)
 
 **Core Services**:
-- **Game Engine**: Handles War logic (shuffling, comparisons, damage calculations), fixed 54-card deck handling (discard/reshuffle, no capture), tie resolution (3 down + 1 up, 4x damage, all cards to discard), card management (one-for-one Warlord replacements; Relics occupy Joker slots), and AI behavior. Maintain suit/rank guardrails when replacing cards. Deterministic PRNG (see Seed/PRNG Contract). Use `lodash` for utilities.
+- **Game Engine**: Handles War logic (shuffling, comparisons, damage calculations), fixed 54-card deck handling (discard/reshuffle, no capture), tie resolution (3 down + 1 up, 4x damage, all cards to discard), card management (one-for-one Warlord replacements; Relics occupy Joker slots), and AI behavior. Maintain suit/rank guardrails when replacing cards. Supports resolving the final deck from selected Warlord Deck × Warbook Aspect deterministically. Deterministic PRNG (see Seed/PRNG Contract). Use `lodash` for utilities.
 - **User Management**: Authentication (NextAuth or OAuth provider), progression (XP, unlocks), and statistics (win rates, streaks). Store in Postgres via Prisma.
 - **Matchmaking**: AI opponent selection with difficulty scaling; opponent identity/variant rotation; repetition decay/auto-bump stored in Redis.
 - **Rewards**: Daily bonuses, random events, progression unlocks. Vercel Cron for daily/weekly tasks (resets, bounties, featured pairings).
 - **Cache/Session**: Upstash Redis (or Vercel KV) for active war session state (rngCounter, state hashes, meters), repetition counters, rate limits.
 
 **Database**:
-- **Primary: Vercel Postgres + Prisma**: SQL schemas for users, wars, war_events, trails, mastery, challenges. Strong consistency, easy analytics/joins, serverless scale.
+- **Primary: Vercel Postgres + Prisma**: SQL schemas for users, wars, war_events, warlord_decks, warbooks, mastery, challenges. Strong consistency, easy analytics/joins, serverless scale.
 - **Alternatives**:
   - **MongoDB Atlas (Serverless)**: Flexible docs for rapid iteration; good for nested event payloads.
   - **Supabase (Postgres)**: Open-source managed Postgres with auth/storage; viable alternative to Vercel Postgres.
@@ -783,15 +804,27 @@ interface WarlordMastery {
   signatureRelicMk: 1|2|3;
 }
 
-interface Trail {
+interface Warbook {
   userId: string;
   warlord: string;
-  trailId: string;
+  warbookId: string;
   name: string;
   aspectKey: string;
   preferences?: { bandPreference?: 'face'|'mid'; suitPreference?: 'territory'|'none' };
   relicSkin?: string;
   cosmetics?: { cardBack?: string; frame?: string; emotes?: string[] };
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface WarlordDeck {
+  id: string;
+  warlord: string;
+  name: string; // e.g., "Avalanche", "Rock & Rally"
+  description?: string;
+  // Identity template: which Natural cards are replaced by which specials
+  replacements: Array<{ rank: number; suit: 'H'|'S'|'D'|'C'; specialId: string }>;
+  unlockSource: 'default'|'mastery'|'rampage'|'featured'|'purchase';
   createdAt: Date;
   updatedAt: Date;
 }
@@ -829,19 +862,21 @@ interface WarlordChallenge {
  - `GET /api/featured`: Lists active Featured Pairings.
  - `GET /api/challenges/:warlord`: Lists active challenges for a warlord; claim endpoint `POST /api/challenges/claim`.
  - `GET /api/opponents?territory=...&tier=...`: Lists available AI Warlords for selection with metadata and lock reasons.
- - `POST /api/war/start` (extended): Accepts optional `opponent` and `rematchSeedMode` ("same"|"new"); enforces repetition decay and auto-bump rules on rewards.
- - `GET /api/trails/:warlord`: List Trails for a Warlord.
- - `POST /api/trails`: Create or update a Trail (server validates guardrails; no power changes allowed).
- - `DELETE /api/trails/:trailId`: Delete a Trail.
- - `GET /api/leaderboards?slice=...`: Returns Top 100 for a given slice (territory, tier, warlord, aspect, region, season). Free for headline slices; advanced filters require Pro.
+- `POST /api/war/start` (extended): Accepts optional `opponent` and `rematchSeedMode` ("same"|"new"); enforces repetition decay and auto-bump rules on rewards.
+- `GET /api/warlord-decks/:warlord`: List available Warlord Decks for a Warlord.
+- `POST /api/warlord-decks`: Create or update a Warlord Deck (admin/dev tools only).
+ - `GET /api/warbooks/:warlord`: List Warbooks for a Warlord.
+ - `POST /api/warbooks`: Create or update a Warbook (server validates guardrails; no power changes allowed).
+ - `DELETE /api/warbooks/:warbookId`: Delete a Warbook.
+ - `GET /api/leaderboards?slice=...`: Returns Top 100 for a given slice (territory, tier, warlord, aspect, region, season). Free for headline slices; advanced filters require Warfront Pass.
  - `GET /api/leaderboards/me?slice=...`: Returns the user's rank snapshot for the slice.
- - `GET /api/replays/:warId`: Returns replay metadata for stepping through (Pro for full detail; free for highlights).
+ - `GET /api/replays/:warId`: Returns replay metadata for stepping through (Warfront Pass for full detail; free for highlights).
  - `POST /api/season/finalize` (cron): rotates seasons, snapshots ranks, computes rewards.
 
 **Turn API Contract**
 - `POST /api/war/start`
-  - Request: { warlordId, trailId, territory, tier, opponentId?, rematchSeedMode?: 'same'|'new' }
-  - Response: { warId, replaySeed, rngCounter: 0, stateHash, player: { deckSig }, opponent: { id, aspectKey, deckSig }, meters: { fortune: base, epic: base } }
+  - Request: { warlordId, warlordDeckId, warbookId, territory, tier, opponentId?, rematchSeedMode?: 'same'|'new' }
+  - Response: { warId, replaySeed, rngCounter: 0, stateHash, player: { deckSig, warlordDeckId, aspectKey }, opponent: { id, warlordDeckId, aspectKey, deckSig }, meters: { fortune: base, epic: base } }
 - `POST /api/war/play`
   - Request: { warId, stateHash, rngCounter }
   - Server: replays seed to next events, resolves round, increments rngCounter
@@ -913,7 +948,7 @@ interface WarlordChallenge {
 - Privacy/Security: aggregate metrics; do not store raw seeds or personally identifiable info in analytics payloads.
  - Cross-link: analytics events should include `warId`, `replaySeed`, `warlord`, and `territory` to correlate with Game Log/history for debugging and replays.
  - Mastery & Variants: track mastery XP gains, challenge completions, variant usage per war, and Featured Pairing participation.
- - Pro & Leaderboards: track Pro engagement (stats views, filters used, replays opened), fraud signals (server replay mismatch, abnormal proc patterns), season rotations, and leaderboard API latency.
+ - Warfront Pass & Leaderboards: track Warfront Pass engagement (stats views, filters used, replays opened), fraud signals (server replay mismatch, abnormal proc patterns), season rotations, and leaderboard API latency.
 
 ## Monetization
 
@@ -927,17 +962,19 @@ interface WarlordChallenge {
 
 **Bigfoot Skins**: Visual variants of Warlords ($2.99 each)
 **Card Backs**: Custom card back designs ($1.99 each)
+  - **Brag Backs**: dynamic backs that change with XP
 **Territory Themes**: Visual territory variants ($4.99 each)
 **XP Boosters**: Double XP for 24 hours ($0.99)
+**Warlord Deck Variants**: Cosmetic base deck identities that shift replacements within guardrails ($2.99–$4.99, non-power). Also unlockable via Mastery/Rampages/Featured Pairings.
 
-### Pro Plan (Optional, Non-Power)
+### Warfront Pass (Competitive, Non-Power)
 - Purpose: Enhance mastery, competition, and analysis with no gameplay power.
 - Price: $2.99/month or $14.99/year (regional pricing). 7-day trial. Includes seasonal cosmetic bundle (card back, frame, emote).
 - Features:
-  - Advanced Stats: per-Warlord/Aspect/Territory/Tier breakdowns, trendlines, heatmaps (War!, rounds, damage deltas), card legends timeline, Fortune/Epic trigger analysis, custom filters (opponent, seed mode, weather, boss, trials only).
+  - Advanced Stats: per-Warlord/Aspect/Territory/Tier breakdowns, trendlines, heatmaps (War!, rounds, damage deltas), card legends timeline, Fortune/Epic trigger analysis, custom filters (opponent, seed mode, weather, boss, rampages only).
   - Leaderboards: global/region/territory/warlord/aspect/speed/no-tie slices; historical ranks; deep filters; alerts on rank changes. Core Top 100 and your rank remain free.
   - Replays Studio: fetch/step through replays with proc tables; shareable stat cards; CSV/JSON export.
-  - Weekly Fixed-Seed Challenge: Pro-only board for a seeded boss run; cosmetic rewards. Free can view boards and top replays.
+  - Weekly Fixed-Seed Challenge: Warfront-only board for a seeded boss run; cosmetic rewards. Free can view boards and top replays.
 - Safeguards: privacy opt-out; no stat/Relic power; server-verified runs only; anti-cheat flags hidden automatically.
 
 ### Retention Features
@@ -994,24 +1031,24 @@ interface WarlordChallenge {
 
 ### Release Cadence
 - Monthly: 1 Pod release (4–6 Warlords added as AI; 1–2 become playable), 1 new boss variant, 1 relic variant, seasonal cosmetics
-- Weekly: Featured Pairings (4–6 spotlight matchups), rotating Bounties and Weather; one mini-event or trial remix
+- Weekly: Featured Pairings (4–6 spotlight matchups), rotating Bounties and Weather; one mini-event or rampage remix
 
 ### Opponent Pool Rules
 - Per Territory: maintain a pool of 8–12 opponents (mix of playables and AI-only)
-- Boss Rotation: each territory has 1 primary boss and 1–2 variants; rotate weekly; Trials always culminate in the current boss
+- Boss Rotation: each territory has 1 primary boss and 1–2 variants; rotate weekly; Rampages always culminate in the current boss
 - Tier Distribution: ensure at least 2 opponents tuned per Tier; Expert adds one “hard counter” kit to encourage Aspect switches
 - Repetition Controls: standard decay/auto-bump rules apply to chosen opponents
 
 ### v1 Slice (example)
 - Playable (10): Sasquatch, Yeti, Mapinguary, Agogwe, Grassman, Kapre, Skunk Ape, Genoskwa, Didi, Bukwus
 - AI-only pool (16): Big Grey Man, Matlox, Gugwe, Dzu-Teh, Nyalmo, Mecheny, Gin Sung, Orang Gadang, Ukumarzapai, Curinquean, Ucu, Sisemite, Maywas, Nasnas, Teh-Ima, Hibagon
-- Territories: all 4 with Trials and 1 boss each; add 1 boss variant per month
+- Territories: all 4 with Rampages and 1 boss each; add 1 boss variant per month
 - Aspects: 3 per playable (30 total)
-- Systems: Aspects/Trails, Fortune/Epic meters, Opponent chooser (with decay), Game Log, Featured Pairings
+- Systems: Aspects/Warbooks, Fortune/Epic meters, Opponent chooser (with decay), Game Log, Featured Pairings
 
 ### 6-Month Expansion Outline
 - Month 1–2: Jungle Pod release (2 playables), boss variant, cosmetic set
-- Month 3: Mountain Pod focus (2 playables), new Trial route remix, relic Mk II
+- Month 3: Mountain Pod focus (2 playables), new Rampage route remix, relic Mk II
 - Month 4: Swamp Pod focus (2 playables), seasonal event, charm pack (if adopted)
 - Month 5: PNW Pod focus (2 playables), boss variant, board frame set
 - Month 6: Mixed pod (2 playables), new featured pairing ruleset, analytics-driven balance pass
@@ -1031,16 +1068,16 @@ The Node.js web architecture ensures broad accessibility while the free-to-play 
 - Epic Meter: Progress meter that, when full, makes the next war an Epic War with boosted procs and rewards.
 - Featured Pairing: Weekly Warlord × Territory bonus pairing.
 - Free Relic: Temporary Relic inserted for current war via proc; respects deck size and guardrails.
-- Gauntlet/Trial: Three-node mini-campaign within a territory ending with a boss.
+- Gauntlet/Rampage: Three-node mini-campaign within a territory ending with a boss.
 - Guardrails: Suit/rank balance rules for replacements.
 - Jackpot: Rare, deterministic-plus-random trigger for a large bonus.
 - Loadout (Mapping Variant): Curated replacement set for a Warlord selected pre-war.
-- Lucky Draw: Proc that queues a Relic bonus; displayed via toast and panel.
+- Lucky Draw: Warfront Passc that queues a Relic bonus; displayed via toast and panel.
 - Mastery: Per-Warlord progression track granting cosmetics and variant unlocks.
 - Meter (Spoils/Epic): UI components visualizing progress; Spoils convert to XP/rolls; Epic triggers Epic War.
 - Missions: Daily/weekly goals awarding XP.
 - Pity (Suit Pity): Bias to surface territory suit after drought.
-- Proc: Probabilistic trigger (e.g., Double Damage, Lucky Draw, Free Relic).
+- Warfront Passc: Probabilistic trigger (e.g., Double Damage, Lucky Draw, Free Relic).
 - Relic: Powerful effect occupying Joker slot; may have Mk variants.
 - Reputation (Territory): Progression bar for a territory with rank rewards.
 - Seed (Replay Seed): Derived secure seed enabling reproducible mapping and shuffles.
@@ -1049,4 +1086,111 @@ The Node.js web architecture ensures broad accessibility while the free-to-play 
 - Streak (Win Streak): Consecutive war wins granting temporary bonuses and unlocks.
 - Tie (War!): Special tie resolution sequence (3 down + 1 up) with territory-specific massive damage.
 - Tier: Territory difficulty level (I/II/III) affecting AI power and rewards.
-- Variant (Signature Relic Mk II/Mk III): Upgraded territory relic versions unlocked via trials.
+- Variant (Signature Relic Mk II/Mk III): Upgraded territory relic versions unlocked via rampages.
+
+- Specimen (Spoils Junk): Cosmetic-only “junk-treasure” attached to Spoils; themed by territory/warlord with rarity. Fills collections for emotes, Brag Back badges, and titles. No gameplay power.
+- Knapsack: Specimen inventory UI showing territory/warlord/rarity sets, progress, and cosmetic rewards.
+
+- Warfront: Competitive track encompassing leaderboards, analytics, replays, and queues.
+- Warfront Pass: Paid membership unlocking Warfront analytics, deep leaderboards, replays, and weekly challenges (non-power).
+
+- Round: One compare-and-resolution cycle; a War! sequence (3 face-down + 1 reveal) occurs within the same round and yields a single winner.
+- War: A full match from setup until one Warlord reaches 0 Health.
+- Deck (54): Fixed per Warlord each war: 52 Natural + 2 Relics; specials replace Natural cards one-for-one.
+- Discard/Reshuffle: Played cards go to the owner’s discard; when the draw pile is empty, shuffle the discard to form a new draw deck; no card capture.
+- Warlord Cards: Special identity cards that replace specific Natural cards under guardrails.
+- Territory: Suit-themed battleground with tiers, weather, reputation, rules, and bounties.
+- Weather: Daily territory modifier that changes rules (e.g., Rain, Blizzard).
+- Aspect: A Warlord’s curated replacement style (formerly Variant); shifts cadence/identity without changing power.
+- Warbook: A saved deck preset per Warlord that binds an Aspect, small preferences, and cosmetics.
+- Warlord Deck: A base deck variant per Warlord defining which Natural cards are replaced; selected first, then refined by Warbook/Aspect under guardrails. Unlock sources: default, mastery, rampage, featured, purchase.
+- Warbook (refined): A preset that references a Warlord Deck and locks an Aspect and guardrailed preferences to produce the final deterministic mapping.
+- Challenges: Rotating Warlord-specific constraints granting Mastery XP and cosmetics.
+
+- Card Stage: Central play surface for flips/reveals; the primary interaction area.
+- War! Overlay: Marquee-style UI overlay shown during tie resolution sequences.
+- Lever Button (Draw Lever): Primary action control used to draw/reveal cards.
+- Side Drawer: Context panel showing territory module, streak, active relics, and ticker items.
+- Top Marquee: Opponent header with portrait, name, health, armor chips, and badges.
+- Health Bar: Segmented health display with damage/heal animations.
+- Meter: Generic progress component used for Spoils and Epic; supports tooltips and states.
+- Spoils Meter: Pips-based meter that tracks Spoils earned within a war.
+- Epic Meter: Segmented ring that, when full, flags the next war as Epic.
+- Fortune Halo: Visual halo around the Draw lever indicating Fortune fill state.
+- Territory Panel: UI module showing suit, rules tooltip, weather, tier, reputation, and bounty.
+- Streak Badge: UI element indicating win streak and grace availability.
+- Proc Toast: Transient notification for Lucky Draw, Double Damage, Free Relic, and similar procs.
+- Results Modal: Post-war dialog summarizing outcome, XP, Spoils conversion, rolls, and rep/mastery gains.
+- Warlord Carousel: Lobby selector for choosing a Warlord, showing portrait and mastery state.
+- Territory Row: Lobby row of selectable territories with suit icon, weather, tier, and reputation.
+- Opponent Chooser: Toggleable grid to select an AI opponent with difficulty and variant metadata.
+- Primary CTA: The main call-to-action button in a given view (e.g., Draw & Start).
+- Verdict Banner: Prominent win/loss indicator on the results screen.
+- XP Breakdown (UI): Results section detailing base XP, difficulty, Spoils, and missions.
+- Spoils Conversion (UI): Visual animation converting Spoils into XP and bonus rolls.
+- Rank Delta (UI): Results label showing leaderboard rank changes with link to board.
+- Tokens & Timings: Prescribed micro-interaction timings and glow/scale tokens for consistency.
+- Style Pillars: High-level visual identity guidelines (bold, readable, playful-spooky).
+- Art Direction: Visual style references (modern woodcut, pulp-cryptid), contrast, and shading approach.
+- Typography (UI): Display/number font guidance, tabular lining for numeric readability.
+- Colors (Design Token): Core palette plus suit/status tints used across UI.
+- Type Scale (Design Token): Standardized font sizes/line heights for headings and labels.
+- Spacing (Design Token): 4/8/12/16/24 spacing tokens shared across components.
+- Radius (Design Token): Standardized corner radii for cards and panels.
+- Motion (Design Token): Timing curves and durations for standard/fast/reduced motion.
+- Visual Skins (Territories): Cosmetic overlays and VFX variants per territory.
+- Reduced Motion: Accessibility mode that replaces high-motion animations with simpler transitions.
+- Screen Reader Labels: Accessibility text for controls and outcomes to improve assistive tech support.
+- Deep Links: Navigation hooks that pre-select Territory/Tier or resume Rampages from Missions.
+- Leaderboards (UI): Views and filters for ranks by territory/tier/warlord/aspect/slices.
+- Warbook Tabs: Per-Warlord tabs for saved Warbooks with Aspect and Preferences.
+- Mastery Panel: Lobby panel for mastery rank/progress and variant selection.
+- Mission Toasts: Non-blocking UI notifications for mission progress updates.
+- Reel (Metaphor): Slot-machine metaphor where Card Stage acts as the reel.
+- Parallax (Reel Flourish): Subtle vertical motion during shuffles to enhance feedback.
+- Flip (Animation): Card flip animation timing and spring behavior.
+- Damage Pop (Animation): Impact animation when damage numbers display.
+- War! Stack (Animation): Three quick face-down stacks then reveal sequence.
+- Epic Pulse (Animation): Totem ring pulse and chroma shift during Epic state.
+- Territory Tint: Color grading applied to overlays/effects per territory theme.
+
+- Next.js: Full-stack React framework used for UI and API routes.
+- API Routes (Next.js): Serverless HTTP endpoints implemented within the Next.js app.
+- Serverless Functions: On-demand compute units hosting backend logic (e.g., play/seed/shuffle).
+- Vercel: Hosting platform providing serverless runtime, edge caching, and CI/CD.
+- Edge Middleware: Request-time logic at the edge for rate limiting and CORS.
+- Edge Caching: CDN-level caching for faster static/SSR responses.
+- CI/CD (Git-based): Automatic builds and deploy previews triggered by git pushes/PRs.
+- Vercel Analytics: Built-in telemetry for performance and availability metrics.
+- Prisma: Type-safe ORM used with Postgres for DB access and schema.
+- Vercel Postgres: Managed Postgres database service used as primary store.
+- Upstash Redis: Managed Redis used for sessions, meters, and repetition counters.
+- Vercel KV: Key-value store alternative to Redis for session/state.
+- MongoDB Atlas: Managed document database used as an optional alternative.
+- Supabase: Open-source Postgres platform offering auth/storage as an alternative.
+- Stripe Webhooks: Server-side payment verification handlers for cosmetic purchases.
+- Vercel Cron: Scheduled jobs for daily/weekly resets and rotations.
+- Static Generation (SSG): Pre-rendered pages for fast, cacheable loads.
+- Server-Side Rendering (SSR): Per-request rendering used for dynamic pages.
+- Image Optimization: On-the-fly image processing and CDN delivery for assets.
+- PWA (Progressive Web App): Installable web app enhancements for mobile-like experience.
+- Tailwind CSS: Utility-first CSS framework for styling and transitions.
+- Konva.js: Canvas abstraction library used for custom visuals and effects.
+- Howler.js: Cross-browser audio library for SFX and ambience.
+- Framer Motion: React animation library used for UI transitions.
+- GSAP: Animation toolkit used for advanced timing/effects.
+- Zustand: Lightweight state management for UI/game client state.
+- localforage: Local storage wrapper for offline settings and progress.
+- WebSockets (Future): Persistent connections planned for potential multiplayer/real-time features.
+- Seed/PRNG Contract: Specification for deterministic seed derivation and RNG streams.
+- replaySeed: Derived seed used to reproduce mapping and shuffles for replays.
+- rngCounter: Monotonic counter advancing RNG positions per event/round.
+- stateHash: Server-validated hash of acknowledged client state to prevent desync.
+- HMAC-SHA256: Cryptographic function used to derive secure per-war seeds.
+- HKDF: Key derivation used to create independent RNG substreams.
+- Deterministic Shuffle: Seeded shuffle guaranteeing reproducible draw orders.
+- Rate Limiting: Middleware control preventing abusive API usage.
+- CORS: Cross-origin resource sharing configuration for API security.
+- Materialized View (Stats): Precomputed aggregates (e.g., per-Warlord stats) for fast queries.
+- deckSig: Compact deck signature used to reference a generated deck layout.
+- Replays Endpoint: API route for fetching replay metadata and stepping through events.
