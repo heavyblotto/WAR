@@ -110,188 +110,31 @@ Repetition rules (anti-farming):
 - **Damage Formula**: Damage = rank value + Power.
 - **Jokers/Relics**: Jokers are not drawn as Natural cards; Relics occupy Joker slots.
 
-**Example Warlord Cards (Modified Playing Cards)**:
-- **Ace of Spades** - "Sasquatch Rock Throw" - Deals base damage + stuns enemy next turn
-- **King of Hearts** - "Yeti Healing" - Deals base damage + heals 2 Health
-- **Queen of Diamonds** - "Mapinguary Scry" - Deals base damage + reveals enemy's next card
-- **Jack of Clubs** - "Agogwe Stealth" - Deals base damage + enemy skips next turn
+**Warlord Cards (Modified Cards)**
+
+Warlord Cards are curated replacements for specific Natural cards that define a Warlord’s identity without increasing raw power. They are selected under suit/rank guardrails from the Warlord Deck template and the active Signature Set, and they trigger simple, readable effects (e.g., small heals/armor, ±1 rank shifts, peeks, or a single skip/stun window). Late‑game, a deck contains 4–6 Warlord Cards per war (within the fixed 54), and caps ensure clarity: stun/skip ≤1 average per war, −1 rank resolves once, and numerical adders stay small. Effects follow suit flavor (Hearts heal, Spades armor, Diamonds debuff next rank, Clubs momentum +1 next draw).
+
+**Example Warlord Cards**:
+- **Ace of Spades** – "Rock Throw" – on win: stun enemy next turn (≤1/war)
+- **King of Hearts** – "Glacier Mend" – on win: heal +3 (small sustain)
+- **Queen of Diamonds** – "Swamp Mist" – on reveal (resolve once): enemy next card −1 rank
+- **Jack of Clubs** – "Stealth Strike" – on win: enemy skips next turn (≤1/war)
+- **10 of Spades** – "Ice Carapace" – on win: gain +1 armor (persists 1 hit)
+- **9 of Clubs** – "River Push" – on win: +1 next‑draw rank (momentum)
+- **8 of Diamonds** – "Silt Veil" – after a tie: enemy next card −1 rank (resolve once)
+- **7 of Hearts** – "Creek Aid" – on win: heal +1 (chip sustain)
+
+**Relic Cards**
+
+Relic Cards are powerful, one‑sentence effects that live in the two Joker slots of every 54‑card deck (at least 2 per war). Some systems can insert temporary “Free Relics” mid‑war; late‑game, extra Relics may replace mid‑band Natural cards under guardrails. Relics use clear trigger windows (e.g., next win/loss/War!, on reveal), small caps (often 1–2 uses), and are authored to remain readable: convert close loss→tie (once), next win deals double damage, peek next suit, +1 next‑draw rank, enemy next −1 rank (resolve once). All inserts/replacements respect suit/rank guardrails and per‑war caps; visual toasts and icons make them obvious.
 
 **Example Relic Cards (Special Effects)**:
-#### Rank-Band “Underdog” Rules (simple, universal)
-- 2–3 (Longshot): win → Big Moment (2× damage with cap OR +10 flat, pre‑selected by Set); lose → +2 Fortune and +1 next‑draw rank; once per reshuffle.
-- 4–5 (Underdog): win → +8 damage OR +2 armor (identity decides); lose → +1 armor (70%) or +1 heal (30%); max 2 triggers/war.
-- 6–8 (Tactical): win → small utility (peek next enemy suit OR +1 next‑draw rank OR +1 Spoils if your next War! is a win); no loss effect.
-- 9–10 (Reliable): win → clean damage; 30% +2 chip utility; no loss effect.
-- J–A (Dominant): pure damage; cosmetic flourish only.
-
-Suit flavor (no extra math): Hearts=heal, Spades=armor, Diamonds=−1 enemy next rank, Clubs=+1 next rank. Magnitude always comes from the rank band.
- - **Red Joker** - "Forest Blessing" - Next win deals double damage
- - **Black Joker** - "Mountain Fury" - Next loss becomes a win
- - **Swamp Totem** - "Swamp Mist" - Enemy's next card is -1 rank
- - **Jungle Idol** - "Jungle Rage" - Your next card is +1 rank
-
-### Authoring Tables
-
-#### Warlord Card Catalog (Template)
-Use this table to author Warlord Cards. Each row represents one modified playing card that replaces a specific Natural card under guardrails.
-
-| id | warlord | set | rank | suit | card_name | trigger | effect_summary | band | caps | notes |
-|---|---|---|---|---|---|---|---|---|---|---|
-| SASQ_ROCK_THROW | Sasquatch | Rock & Rally | A | S | Rock Throw | on win | deal base damage + stun enemy next turn | Face | ≤1 stun/war on average | Signature evergreen |
-| YETI_GLACIER_MEND | Yeti | Avalanche | Q | H | Glacier Mend | on win | deal base damage + heal +3 | Face | heal values small (+1…+3) | Signature evergreen |
-| MAP_SWAMP_MIST | Mapinguary | Forest Guard | Q | D | Swamp Mist | on reveal (resolve once) | enemy next card −1 rank | Face | resolves once | Debuff does not stack |
-| AGG_STEALTH_STRIKE | Agogwe | Shadowstep | J | C | Stealth Strike | on win | enemy skips next turn | Face | ≤1 skip/war on average | High-clarity skip window |
-|  |  |  |  |  |  |  |  |  |  |  |
-|  |  |  |  |  |  |  |  |  |  |  |
-
-Guidelines:
-- Rank band spread per Warlord (across all 8 uniques): Face×2, High(10–7)×3, Mid(6–4)×2, Low(3–2)×1.
-- Suit spread: keep primary territory suit within base±1; never drop any suit below base−1.
-- Effect palette caps per war: Stun/Skip ≤1 avg; Debuff −1 resolves once; Armor/Heal chips small (+1…+2); no explicit damage multipliers (use Underdog/Relics).
-
-#### Signature Set Map (per Warlord)
-Map each Warlord’s Sets to card ids from the catalog.
-
-| warlord | set_name | card_ids (comma-separated) | identity_notes |
-|---|---|---|---|
-| Sasquatch | Rock & Rally | SASQ_ROCK_THROW, SASQ_CREEKBED_RALLY | stun windows + rally sustain |
-| Yeti | Avalanche | YETI_GLACIER_MEND, YETI_AVALANCHE_STRIKE | decisive reveals + heal spot |
-|  |  |  |  |
-
-#### Relic Catalog (Template)
-Author Relics as simple, 1‑sentence effects. Relics occupy Joker slots; some variants replace a mid‑band Natural card under guardrails when inserted temporarily.
-
-| id | type | territory | trigger_window | effect_summary | cap_duration | replaces | notes |
-|---|---|---|---|---|---|---|---|
-| RELIC_FOREST_BLESS | Territory | Forest | next win | next win deals double damage | 1 use | Joker slot | Red Joker theme |
-| RELIC_MTN_FURY | Territory | Mountain | next loss | next loss becomes a win | 1 use | Joker slot | Black Joker theme |
-| RELIC_SWAMP_TOTEM | Territory | Swamp | next enemy reveal | enemy next card −1 rank | resolves once | Joker slot | Debuff does not stack |
-| RELIC_JUNGLE_IDOL | Territory | Jungle | next draw | your next card +1 rank | 1 use | Joker slot | Clubs frenzy flavor |
-| RELIC_GLOBAL_PEEK | Global | — | on win | peek enemy next suit | 2 uses/war | Joker slot | Utility, low power |
-| RELIC_GLOBAL_TIE_SAVE | Global | — | on loss by ≤2 | convert to tie (once) | 1 use/war | Joker slot | Readable, anti‑frustration |
-|  |  |  |  |  |  |  |  |
-|  |  |  |  |  |  |  |  |
-
-#### Content Budget Guidelines (v1)
-
-Warlord Cards (Playable)
-- Per Warlord: 8 unique
-  - 2 Evergreen signatures (always present)
-  - 6 Set‑unique across 3 Signature Sets (≈2 per set; 2–4 active per war as progression allows)
-- Total: 80 unique across 10 playables
-
-Warlord Cards (AI‑only)
-- Reuse‑first: 1 new identity special per AI; 1–2 borrowed from playable pool
-- Total new: ~12 (for 16 AI), with heavy reuse to reduce scope
-
-Relics
-- Territory Relics: 4 base (Forest, Mountain, Swamp, Jungle)
-- Boss Mk II: 4 (one per territory)
-- Global: 8–10 universal 1‑liners
-- Total: 16–18 unique
-
-Rationale & Guardrails
-- Late‑game per‑war cap of 6 Warlord Cards is satisfied by 2 Evergreen + 2–4 Set cards
-- Rank band spread per Warlord: Face×2, High(10–7)×3, Mid(6–4)×2, Low(3–2)×1
-- Suit spread: primary territory suit within base±1; no suit below base−1
-- Effect caps per war: Stun/Skip ≤1 avg; Debuff −1 resolves once; small Armor/Heal (+1…+2); multipliers only via Underdog/Relics
-
-#### Authoring Patterns & Formulas
-
-High-level taxonomy
-- Triggers: on reveal; on win; on loss; on tie start/end; on War! win; on next draw; first time per war/reshuffle; after X consecutive Y; if territory suit won; if previous round tied; if you have armor/heal.
-- Effects: flat damage adders; rank shifts (+1 next draw / −1 enemy next); armor/heal (+1…+2); peek/reveal (suit/top); skip/stun (≤1 avg/war); convert loss→tie (once); Spoils hooks (+1 if your next War! is a win); meter nudges (Fortune +1, Epic +1); cosmetic hooks (Specimen/emote/Knapsack copy only).
-- Guardrails: per‑war/per‑reshuffle caps; resolve‑once flags; no stacking −1 rank; no raw multipliers (use Underdog/Double Damage/Jackpot); maintain suit/rank spread.
-- Flavor mapping: Hearts=heal; Spades=armor; Diamonds=−1 enemy next rank; Clubs=+1 next‑draw rank.
-- Band intent: Low (2–3) big payoff + consolation; Mid (6–8) utility; High (9–10) clean damage + tiny utility; Face (J–A) signature identity.
-
-Warlord Card patterns
-- On‑Win Utility
-  - Hearts: heal +1 (Face/High); +2 only on a signature Face card.
-  - Spades: +1 armor (persists 1 hit).
-  - Clubs: +1 next‑draw rank.
-  - Diamonds: enemy next −1 rank (resolve once).
-- On‑Reveal One‑Shot
-  - enemy next −1 rank (resolve once); peek enemy next suit.
-- Tie/War! Interactions
-  - if previous round tied: on win, +2 damage; on War! win: gain +1 armor.
-- Outcome Converters (rare)
-  - on loss by ≤1: convert to tie (once/war). Prefer Relic for this; limit to a single Warlord across roster if used.
-- State‑based
-  - if you have armor: on win, heal +1.
-- Territory‑tagged
-  - if winning with territory suit: +1 Spoils if your next War! is a win (cap 1/war).
-
-Suggested numeric knobs
-- Bonus damage: +2 to +4 for mid‑band utilities (never >+4 from cards).
-- Heal/Armor: +1 baseline; +2 only on signatures or Hearts/Spades Face.
-- Rank shifts: always ±1.
-- Meter nudges: Fortune +1, Epic +1 (≤1/war/card id).
-
-Band defaults (speed authoring)
-- 2–3: if win → choose one of {+8 damage, heal +2, +2 armor}; if loss → Fortune +2 and +1 next‑draw rank (Underdog covers most; card adds flavor only).
-- 6–8: pick exactly one utility; no loss effect.
-- 9–10: 30% chance +2 chip utility; else nothing.
-- Face: one standout (stun/skip) and one sustain/control; minimal adders elsewhere.
-
-Relic patterns
-- Next‑Window (1‑liners)
-  - Next Win: deal double damage (Forest).
-  - Next Loss by ≤2: convert to tie (Mountain).
-  - Next Draw: your next card +1 rank (Jungle).
-  - Next Enemy Reveal: enemy next −1 rank (Swamp).
-- War! Hooks
-  - on War! win: +3 bonus damage; first War! win: gain +1 armor.
-- Momentum
-  - after your first Clubs win: +1 next two draws (cap shown); after you heal: peek enemy next suit (2 uses/war).
-- Safety Nets (rare)
-  - first time you’d drop to ≤10 HP: heal +3 (once/war).
-- Cosmetic/QoL (non‑power)
-  - on win with territory suit: +1% Specimen rarity visualization (display only).
-
-Relic caps & scopes
-- Charges: 1 use (territory relics), 2 uses (light global utility). Duration: this war only.
-- Insert/replace rules: honor guardrails (temporary mid‑band replacement when applicable).
-- Exclusions: avoid duplicating Warlord skip/stun in Relics within the same war.
-
-Templates (authoring JSON examples)
-
-Warlord Card
-```json
-{
-  "id": "YETI_GLACIER_MEND",
-  "warlord": "Yeti",
-  "set": "Avalanche",
-  "replaces": { "rank": "Q", "suit": "H" },
-  "trigger": "on_win",
-  "conditions": [],
-  "effects": [{ "type": "heal", "value": 3 }],
-  "band": "Face",
-  "caps": { "perWar": 2, "perReshuffle": 3, "resolveOnce": false },
-  "notes": "Signature evergreen; small heal"
-}
-```
-
-Relic
-```json
-{
-  "id": "RELIC_GLOBAL_TIE_SAVE",
-  "type": "Global",
-  "territory": null,
-  "triggerWindow": { "event": "on_loss", "byAtMost": 2 },
-  "effects": [{ "type": "convert_loss_to_tie" }],
-  "charges": 1,
-  "replaces": "JokerSlot",
-  "notes": "Readable anti-frustration; once per war"
-}
-```
-
-Reward hooks (non‑power)
-- Specimen rarity bump (UI only), emote shards on first weekly resolution, Stank adjective badges on boss clears (cosmetic badges/Brag Backs).
-
-Anti‑exploit defaults
-- Cooldowns for converters/skip: ≤1/war; resolve‑once on −1 rank; AI uses same caps; Tier modifies difficulty, not caps.
-
+- **Red Joker** – "Forest Blessing" – next win deals double damage (1 use)
+- **Black Joker** – "Mountain Fury" – next loss by ≤2 converts to tie (1 use)
+- **Swamp Totem** – "Swamp Mist" – enemy next card −1 rank (resolve once)
+- **Jungle Idol** – "Jungle Frenzy" – your next draw +1 rank (1 use)
+- **Lantern of Echoes** – "Echo Peek" – on reveal: peek top card of both decks (1 use)
+- **Star Tether** – "War! Boon" – on War! win: +3 bonus damage and peek both next cards (1 use)
 
 ### Warlord Decks & Card Structure (how specials are added fairly)
 
@@ -539,6 +382,177 @@ Each Warlord comes with one default deck. Players can earn new decks through:
 
 ## Content
 
+### Authoring Tables
+
+#### Warlord Card Catalog (Template)
+Use this table to author Warlord Cards. Each row represents one modified playing card that replaces a specific Natural card under guardrails.
+
+| id | warlord | set | rank | suit | card_name | trigger | effect_summary | band | caps | notes |
+|---|---|---|---|---|---|---|---|---|---|---|
+| SASQ_ROCK_THROW | Sasquatch | Rock & Rally | A | S | Rock Throw | on win | deal base damage + stun enemy next turn | Face | ≤1 stun/war on average | Signature evergreen |
+| YETI_GLACIER_MEND | Yeti | Avalanche | Q | H | Glacier Mend | on win | deal base damage + heal +3 | Face | heal values small (+1…+3) | Signature evergreen |
+| MAP_SWAMP_MIST | Mapinguary | Forest Guard | Q | D | Swamp Mist | on reveal (resolve once) | enemy next card −1 rank | Face | resolves once | Debuff does not stack |
+| AGG_STEALTH_STRIKE | Agogwe | Shadowstep | J | C | Stealth Strike | on win | enemy skips next turn | Face | ≤1 skip/war on average | High-clarity skip window |
+|  |  |  |  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |  |  |  |
+
+Guidelines:
+- Rank band spread per Warlord (across all 8 uniques): Face×2, High(10–7)×3, Mid(6–4)×2, Low(3–2)×1.
+- Suit spread: keep primary territory suit within base±1; never drop any suit below base−1.
+- Effect palette caps per war: Stun/Skip ≤1 avg; Debuff −1 resolves once; Armor/Heal chips small (+1…+2); no explicit damage multipliers (use Underdog/Relics).
+
+#### Rank-Band “Underdog” Rules (simple, universal)
+- 2–3 (Longshot): win → Big Moment (2× damage with cap OR +10 flat, pre‑selected by Set); lose → +2 Fortune and +1 next‑draw rank; once per reshuffle.
+- 4–5 (Underdog): win → +8 damage OR +2 armor (identity decides); lose → +1 armor (70%) or +1 heal (30%); max 2 triggers/war.
+- 6–8 (Tactical): win → small utility (peek next enemy suit OR +1 next‑draw rank OR +1 Spoils if your next War! is a win); no loss effect.
+- 9–10 (Reliable): win → clean damage; 30% +2 chip utility; no loss effect.
+- J–A (Dominant): pure damage; cosmetic flourish only.
+
+Suit flavor (no extra math): Hearts=heal, Spades=armor, Diamonds=−1 enemy next rank, Clubs=+1 next rank. Magnitude always comes from the rank band.
+
+#### Signature Set Map (per Warlord)
+Map each Warlord’s Sets to card ids from the catalog.
+
+| warlord | set_name | card_ids (comma-separated) | identity_notes |
+|---|---|---|---|
+| Sasquatch | Rock & Rally | SASQ_ROCK_THROW, SASQ_CREEKBED_RALLY | stun windows + rally sustain |
+| Yeti | Avalanche | YETI_GLACIER_MEND, YETI_AVALANCHE_STRIKE | decisive reveals + heal spot |
+|  |  |  |  |
+
+#### Relic Catalog (Template)
+Author Relics as simple, 1‑sentence effects. Relics occupy Joker slots; some variants replace a mid‑band Natural card under guardrails when inserted temporarily.
+
+| id | type | territory | trigger_window | effect_summary | cap_duration | replaces | notes |
+|---|---|---|---|---|---|---|---|
+| RELIC_FOREST_BLESS | Territory | Forest | next win | next win deals double damage | 1 use | Joker slot | Red Joker theme |
+| RELIC_MTN_FURY | Territory | Mountain | next loss | next loss becomes a win | 1 use | Joker slot | Black Joker theme |
+| RELIC_SWAMP_TOTEM | Territory | Swamp | next enemy reveal | enemy next card −1 rank | resolves once | Joker slot | Debuff does not stack |
+| RELIC_JUNGLE_IDOL | Territory | Jungle | next draw | your next card +1 rank | 1 use | Joker slot | Clubs frenzy flavor |
+| RELIC_GLOBAL_PEEK | Global | — | on win | peek enemy next suit | 2 uses/war | Joker slot | Utility, low power |
+| RELIC_GLOBAL_TIE_SAVE | Global | — | on loss by ≤2 | convert to tie (once) | 1 use/war | Joker slot | Readable, anti‑frustration |
+|  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |
+
+#### Content Budget Guidelines (v1)
+
+Warlord Cards (Playable)
+- Per Warlord: 8 unique
+  - 2 Evergreen signatures (always present)
+  - 6 Set‑unique across 3 Signature Sets (≈2 per set; 2–4 active per war as progression allows)
+- Total: 80 unique across 10 playables
+
+Warlord Cards (AI‑only)
+- Reuse‑first: 1 new identity special per AI; 1–2 borrowed from playable pool
+- Total new: ~12 (for 16 AI), with heavy reuse to reduce scope
+
+Relics
+- Territory Relics: 4 base (Forest, Mountain, Swamp, Jungle)
+- Boss Mk II: 4 (one per territory)
+- Global: 8–10 universal 1‑liners
+- Total: 16–18 unique
+
+Rationale & Guardrails
+- Late‑game per‑war cap of 6 Warlord Cards is satisfied by 2 Evergreen + 2–4 Set cards
+- Rank band spread per Warlord: Face×2, High(10–7)×3, Mid(6–4)×2, Low(3–2)×1
+- Suit spread: primary territory suit within base±1; no suit below base−1
+- Effect caps per war: Stun/Skip ≤1 avg; Debuff −1 resolves once; small Armor/Heal (+1…+2); multipliers only via Underdog/Relics
+
+#### Authoring Patterns & Formulas
+
+High-level taxonomy
+- Triggers: on reveal; on win; on loss; on tie start/end; on War! win; on next draw; first time per war/reshuffle; after X consecutive Y; if territory suit won; if previous round tied; if you have armor/heal.
+- Effects: flat damage adders; rank shifts (+1 next draw / −1 enemy next); armor/heal (+1…+2); peek/reveal (suit/top); skip/stun (≤1 avg/war); convert loss→tie (once); Spoils hooks (+1 if your next War! is a win); meter nudges (Fortune +1, Epic +1); cosmetic hooks (Specimen/emote/Knapsack copy only).
+- Guardrails: per‑war/per‑reshuffle caps; resolve‑once flags; no stacking −1 rank; no raw multipliers (use Underdog/Double Damage/Jackpot); maintain suit/rank spread.
+- Flavor mapping: Hearts=heal; Spades=armor; Diamonds=−1 enemy next rank; Clubs=+1 next‑draw rank.
+- Band intent: Low (2–3) big payoff + consolation; Mid (6–8) utility; High (9–10) clean damage + tiny utility; Face (J–A) signature identity.
+
+Warlord Card patterns
+- On‑Win Utility
+  - Hearts: heal +1 (Face/High); +2 only on a signature Face card.
+  - Spades: +1 armor (persists 1 hit).
+  - Clubs: +1 next‑draw rank.
+  - Diamonds: enemy next −1 rank (resolve once).
+- On‑Reveal One‑Shot
+  - enemy next −1 rank (resolve once); peek enemy next suit.
+- Tie/War! Interactions
+  - if previous round tied: on win, +2 damage; on War! win: gain +1 armor.
+- Outcome Converters (rare)
+  - on loss by ≤1: convert to tie (once/war). Prefer Relic for this; limit to a single Warlord across roster if used.
+- State‑based
+  - if you have armor: on win, heal +1.
+- Territory‑tagged
+  - if winning with territory suit: +1 Spoils if your next War! is a win (cap 1/war).
+
+Suggested numeric knobs
+- Bonus damage: +2 to +4 for mid‑band utilities (never >+4 from cards).
+- Heal/Armor: +1 baseline; +2 only on signatures or Hearts/Spades Face.
+- Rank shifts: always ±1.
+- Meter nudges: Fortune +1, Epic +1 (≤1/war/card id).
+
+Band defaults (speed authoring)
+- 2–3: if win → choose one of {+8 damage, heal +2, +2 armor}; if loss → Fortune +2 and +1 next‑draw rank (Underdog covers most; card adds flavor only).
+- 6–8: pick exactly one utility; no loss effect.
+- 9–10: 30% chance +2 chip utility; else nothing.
+- Face: one standout (stun/skip) and one sustain/control; minimal adders elsewhere.
+
+Relic patterns
+- Next‑Window (1‑liners)
+  - Next Win: deal double damage (Forest).
+  - Next Loss by ≤2: convert to tie (Mountain).
+  - Next Draw: your next card +1 rank (Jungle).
+  - Next Enemy Reveal: enemy next −1 rank (Swamp).
+- War! Hooks
+  - on War! win: +3 bonus damage; first War! win: gain +1 armor.
+- Momentum
+  - after your first Clubs win: +1 next two draws (cap shown); after you heal: peek enemy next suit (2 uses/war).
+- Safety Nets (rare)
+  - first time you’d drop to ≤10 HP: heal +3 (once/war).
+- Cosmetic/QoL (non‑power)
+  - on win with territory suit: +1% Specimen rarity visualization (display only).
+
+Relic caps & scopes
+- Charges: 1 use (territory relics), 2 uses (light global utility). Duration: this war only.
+- Insert/replace rules: honor guardrails (temporary mid‑band replacement when applicable).
+- Exclusions: avoid duplicating Warlord skip/stun in Relics within the same war.
+
+Templates (authoring JSON examples)
+
+Warlord Card
+```json
+{
+  "id": "YETI_GLACIER_MEND",
+  "warlord": "Yeti",
+  "set": "Avalanche",
+  "replaces": { "rank": "Q", "suit": "H" },
+  "trigger": "on_win",
+  "conditions": [],
+  "effects": [{ "type": "heal", "value": 3 }],
+  "band": "Face",
+  "caps": { "perWar": 2, "perReshuffle": 3, "resolveOnce": false },
+  "notes": "Signature evergreen; small heal"
+}
+```
+
+Relic
+```json
+{
+  "id": "RELIC_GLOBAL_TIE_SAVE",
+  "type": "Global",
+  "territory": null,
+  "triggerWindow": { "event": "on_loss", "byAtMost": 2 },
+  "effects": [{ "type": "convert_loss_to_tie" }],
+  "charges": 1,
+  "replaces": "JokerSlot",
+  "notes": "Readable anti-frustration; once per war"
+}
+```
+
+Reward hooks (non‑power)
+- Specimen rarity bump (UI only), emote shards on first weekly resolution, Stank adjective badges on boss clears (cosmetic badges/Brag Backs).
+
+Anti‑exploit defaults
+- Cooldowns for converters/skip: ≤1/war; resolve‑once on −1 rank; AI uses same caps; Tier modifies difficulty, not caps.
+
 ### Bigfoot Warlords
 
 #### Roster Summary (v1)
@@ -668,6 +682,7 @@ Signature Sets are small, named packages of 2–4 Warlord Cards that define a cl
   - Bush Phantom: Suit concealment and light misdirection; safer mid-band spread.
 
 The game features a roster of Bigfoots based on global cryptid lore. Below is a starting list with name, locale, and brief description (for those with available data; others noted as variants or similar to known cryptids). These serve as playable characters, AI clan lords, or card inspirations, with stats and abilities tailored to their themes.
+
 #### AI-Only Opponents (v1: 16)
 - Big Grey Man (Mountain): eerie ridge phantom; punishes face-card reveals
 - Matlox (Forest): PNW cannibal giant; slow, heavy swings
