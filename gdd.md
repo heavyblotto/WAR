@@ -19,7 +19,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 2. **Warlord Selection**: Player browses carousel of available Bigfoot Warlords (Sasquatch, Yeti, Mapinguary, Agogwe, etc.), each with unique visual themes, signature abilities, and volatility preferences
 3. **Territory Choice**: Player selects one of four territories (Forest/Hearts, Mountain/Spades, Swamp/Diamonds, Jungle/Clubs) and difficulty tier (I/II/III)
 4. **Signature Set Management**: Player views active Signature Set (2-3 themed cards) and can reroll once per war (free) or additional times (VIP)
-5. **Wagering Decision**: Player chooses bet amount (Low: 10 Gold/1.5x, Medium: 50 Gold/2x, High: 200 Gold/3-5x, All-In: 1000+ Gold/10x) and volatility mode (Steady/Wild) - Practice Mode uses Practice Gold with no real risk
+5. **Wagering Decision**: Player chooses bet amount (Low: 10 Gold/1.5x, Medium: 50 Gold/2x, High: 200 Gold/3-5x, All-In: 1000+ Gold/10x) and volatility mode (Steady/Wild) - Practice Mode uses Practice Gold (Copium) with no real risk
 6. **AI Opponent Assignment**: System selects appropriate AI Warlord based on territory tier and player level
 
 **Phase 2: War Initialization**
@@ -66,7 +66,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 **Phase 7: War Conclusion**
 
 33. **Victory Determination**: Player wins if AI health reaches 0, loses if player health reaches 0
-34. **Gold Payout**: Calculate Gold won = (bet × multiplier) + base rewards + bonuses - Gold wagered (Practice Mode: Practice Gold only)
+34. **Gold Payout**: Calculate Gold won = (bet × multiplier) + base rewards + bonuses - Gold wagered (Practice Mode: Practice Gold only (Copium))
 35. **XP Calculation**: Base XP (50) + difficulty bonus (Tier II: +25, Tier III: +50) + wagering bonus (+1 XP per 10 Gold wagered)
 36. **Spoils Generation**: Spoils earned based on performance (1-10 Spoils per war)
 37. **Progression Updates**: Update level XP, Warlord Mastery XP, Territory Stank XP, VIP points
@@ -77,7 +77,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 39. **Spoils Conversion**: Animated bar converting Spoils to XP (up to 50 XP cap) + bonus rolls (1 per 5 Spoils)
 40. **Bonus Roll Animation**: Slot-style reel animation (3 columns) with rarity color pulses and duplicate conversion to shards
 41. **Specimen Collection**: New Specimens collected with "new" badges and collection summary
-42. **Gold Summary**: Net Gold result with wagering efficiency and pity protection usage (Practice Mode: Practice Gold only)
+42. **Gold Summary**: Net Gold result with wagering efficiency and pity protection usage (Practice Mode: Practice Gold only (Copium))
 43. **Progression Display**: Territory Stank bar increase, Warlord Mastery progress, level progress, VIP point accumulation
 
 **Phase 9: Post-War Decisions**
@@ -163,10 +163,10 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 
 **Practice Mode Rules**
 
-- **Practice Gold**: Separate currency system - cannot be lost or converted to real Gold
+- **Practice Gold (Copium)**: Separate currency system - cannot be lost or converted to real Gold
 - **Full Wagering**: All bet tiers available (Low/Medium/High/All-In) with no real risk
 - **Tutorial Integration**: Interactive tooltips guide players through mechanics
-- **Reward Caps**: Practice Gold capped at 100 per session to prevent exploitation
+- **Reward Caps**: Compium capped at 100 per session to prevent exploitation
 - **Progression**: Full XP and Spoils earned for normal advancement
 - **Exit Triggers**: Automatic exit after 3 wars, Level 2, or manual exit
 - **No Real Gold**: Cannot earn or lose real Gold currency in Practice Mode
@@ -786,7 +786,7 @@ Relic Cards are powerful, one‑sentence effects that live in the two Joker slot
 #### **Practice Mode (New Player Onboarding)**
 - **Purpose**: Risk-free learning environment for new players to understand wagering mechanics
 - **Entry Requirements**: Available immediately for all new players (Level 1)
-- **Gold System**: Uses "Practice Gold" - separate currency that cannot be lost or converted to real Gold
+- **Gold System**: Uses "Practice Gold (Copium)" - separate currency that cannot be lost or converted to real Gold
 - **Wagering Mechanics**: Full wagering system available (Low/Medium/High/All-In bets) with no real risk
 - **Tutorial Features**:
   - **Interactive Tooltips**: Step-by-step guidance through first war
@@ -795,7 +795,7 @@ Relic Cards are powerful, one‑sentence effects that live in the two Joker slot
   - **Special Effects Guide**: Tooltips for Warlord cards, Relics, and territory bonuses
   - **War! Demonstration**: Special tutorial for tie resolution mechanics
 - **Rewards**: 
-  - **Practice Gold**: Earned for learning wagering (capped at 100 per session)
+  - **Practice Gold** (Copium): Earned for learning wagering (capped at 100 per session)
   - **Full XP**: Normal XP progression for leveling up
   - **Full Spoils**: Normal Spoils for Specimen collection
   - **No Real Gold**: Cannot earn or lose real Gold currency
