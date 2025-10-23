@@ -2375,6 +2375,7 @@ Bigfoot War employs a hybrid monetization model that combines free-to-play acces
 - **Conversion Rate**: 8-15% of players make purchases (increased with expanded content)
 - **LTV**: $25-50 per paying user lifetime value (increased with seasonal territories and Warlord expansions)
 - **Monthly Revenue**: $5,000-15,000 target (with seasonal bundles and territory expansions)
+- **International Revenue**: 30-40% of total revenue from non-English markets (post-localization)
 
 **Engagement Metrics**:
 - **Session Length**: 3-6 minutes average (increased with wagering)
@@ -2692,6 +2693,8 @@ Bigfoot War successfully transforms the traditional War card game into an engagi
 - **Visual Polish**: Animation timing and visual feedback optimization
 - **Audio Integration**: Sound design and territorial ambience testing
 - **Performance Testing**: Mobile and desktop optimization
+- **Localization Testing**: Text overflow, cultural accuracy, and regional appropriateness
+- **Cultural Review**: Native speaker validation for regional authenticity and folklore accuracy
 
 ### Content Authoring Tables and Examples
 
@@ -2965,6 +2968,50 @@ Bigfoot War's technical architecture supports the slot-machine inspired gameplay
 - **Scalable Wagering**: Support for high-frequency betting operations
 - **Real-time Updates**: Live leaderboards and tournament updates
 - **Mobile-First**: Optimized for touch interactions and haptic feedback
+
+#### **Internationalization & Localization (i18n/l10n)**
+**Launch Strategy**: English-first with future translation readiness
+
+**Text Localization System**:
+- **Next.js i18n**: Built-in internationalization with dynamic routing
+- **Text Key System**: All UI text uses localization keys (e.g., `warlord.sasquatch.name`, `territory.forest.description`)
+- **String Tables**: Organized by feature (Warlords, Territories, UI, Events, Achievements)
+- **Pluralization Support**: Built-in pluralization rules for different languages
+- **RTL Support**: Right-to-left language support for Arabic/Hebrew
+
+**Localization-Ready Content**:
+- **Warlord Names**: All Bigfoot names translatable with cultural context
+- **Territory Descriptions**: Environmental descriptions adaptable to local regions
+- **Lore & Mythology**: Cryptid profiles with region-specific cultural adaptations
+- **Achievement Names**: Folklore references translatable with local equivalents
+- **Event Descriptions**: Seasonal events adaptable to local cultural calendars
+
+**Cultural Adaptation Framework**:
+- **Regional Cryptid Names**: Use local names where appropriate (e.g., "Sasquatch" vs "Bigfoot" vs regional variants)
+- **Mythology Integration**: Adapt folklore references to local cryptid traditions
+- **Seasonal Events**: Adjust timing and themes to local cultural calendars
+- **Color & Symbolism**: Ensure color choices respect cultural sensitivities
+
+**Technical Implementation**:
+- **Asset Localization**: Separate image assets for different language regions
+- **Audio Localization**: Sound effects with cultural variants where appropriate
+- **Font Support**: Web fonts supporting extended character sets (Google Fonts)
+- **Number Formatting**: Localized number, currency, and date formatting
+- **Text Overflow Handling**: Dynamic UI scaling for different text lengths
+- **SEO Localization**: Hreflang tags and localized meta descriptions
+
+**Future Language Support** (Post-Launch):
+- **Phase 1**: Spanish, French, German (European markets)
+- **Phase 2**: Japanese, Korean, Chinese (Asian markets)
+- **Phase 3**: Portuguese, Italian, Russian (Expanded European markets)
+- **Phase 4**: Arabic, Hindi, Thai (Emerging markets)
+
+**Localization Quality Assurance**:
+- **Cultural Review**: Native speaker review for cultural accuracy
+- **Cryptid Expertise**: Regional cryptid folklore validation
+- **UI/UX Testing**: Interface testing with different text lengths
+- **Audio Testing**: Sound effect cultural appropriateness
+- **Performance Testing**: Load times with different language assets
 
 #### **Backend Systems (Enhanced for Slot Mechanics)**
 
