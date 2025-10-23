@@ -1595,3 +1595,53 @@ The Node.js web architecture ensures broad accessibility while the free-to-play 
 - Materialized View (Stats): Precomputed aggregates (e.g., per-Warlord stats) for fast queries.
 - deckSig: Compact deck signature used to reference a generated deck layout.
 - Replays Endpoint: API route for fetching replay metadata and stepping through events.
+
+
+
+--
+
+## Overall Design Analysis & Strengths:
+
+1.  **Clear Vision & Niche:** You've identified a strong niche: "War" rules + digital card battler + slot machine appeal + cryptid theme. This combination is unique and should appeal to your target audience. The "Depiction is not Endorsement" protocol is clearly articulated, setting a strong ethical foundation.
+2.  **Accessibility & Session Length:** The 3-6 minute session length and "readable outcomes" are excellent for casual players and mobile-first design. This is crucial for retention.
+3.  **Depth Without Overload:** You've struck a good balance. There's no heavy deckbuilding, which reduces friction, but the Warlord Decks, Signature Sets, Relics, Territories, and progression offer plenty of strategic choice and long-term goals. The "one-for-one replacements" and "guardrails" ensure strategic identity without broken mechanics.
+4.  **Deterministic & Fair:** The emphasis on deterministic seeds, replays, and fair deck generation is a huge plus for competitive integrity and player trust. This is often overlooked in casual games but adds immense value.
+5.  **Progression & Retention:** The multi-layered progression (levels, mastery, Stank, Rampages, challenges, daily/weekly content) provides constant engagement and a sense of accomplishment. The anti-farming mechanics are smart.
+6.  **Monetization Strategy:** The free-to-play core with purely cosmetic/convenience monetization via the Warfront Pass and direct purchases is player-friendly and sustainable. The clear feature differentiation between Free and Pass is well-defined.
+7.  **Technical Acumen:** The Next.js/Vercel/Postgres stack is a solid choice for a modern web game, balancing performance, scalability, and developer experience. The detailed API contracts and DB schemas show a strong technical foundation.
+8.  **Detailed UI/UX:** The mockups and component breakdowns in the GDD provide an excellent starting point for visual design. The slot-machine metaphor, animation timings, and audio design considerations are particularly strong.
+9.  **Content Breadth:** The sheer volume of Bigfoot lore you've cataloged, combined with the detailed card and Relic authoring tables, ensures a rich and expandable content pipeline.
+
+## Suggestions & Feedback for Visual Prototyping:
+
+1.  **Visual Language Consistency:**
+    *   **Pulp-Cryptid vs. Modern Woodcut:** These are both fantastic aesthetics, but ensure they blend cohesively. "Modern woodcut" implies a certain flatness and texture, while "pulp-cryptid posters" might suggest more dynamic, illustrative, or even slightly distressed elements. How will these styles interact on a single card or screen?
+    *   **Example:** Will Warlord portraits be woodcut-style with bold silhouettes, or more painterly like classic pulp art? Will text elements lean into the "spooky" or "bold, readable" aspects more?
+
+2.  **Territory Visuals as Dynamic Backgrounds:**
+    *   You've described weather effects beautifully. For prototyping, consider how these dynamic elements (rain, blizzards, fog, monsoons) can be implemented without overwhelming the UI.
+    *   **Suggestion:** Perhaps the background could be a subtle animated panorama that hints at the environment and weather without being distracting. The "vignette" and "low fog pass" suggestions are excellent for this.
+
+3.  **Card Design - Focus on Readability & "Pop":**
+    *   **Information Hierarchy:** Given the amount of info on special cards (rank, suit, card_name, trigger, effect_summary, caps, notes), ensure the visual design prioritizes immediate readability of rank and suit, then the effect summary.
+    *   **Visual Cues for Specials:** How will Warlord Cards and Relics immediately distinguish themselves from Natural cards? Unique borders, glows, icons, or background textures could work.
+    *   **"Band" Visuals:** The "Rank-Band Underdog Rules" are clever. Can you subtly hint at a card's band (e.g., low-band cards having slightly more weathered or "underdog" art, while dominant cards look more pristine or imposing)?
+    *   **Suggestion:** Prototype a few key Warlord Cards (e.g., Sasquatch's Rock Throw, Yeti's Glacier Mend) and a couple of Relics to see how all the required text and visual elements fit without clutter.
+
+4.  **Slot Machine Metaphor - Refine the Tactile Feedback:**
+    *   **Draw Button:** The "lever" metaphor for the Draw button is strong. How will its animation convey its "pull" and "release" visually and haptically (if on mobile)? A subtle visual "give" or spring animation upon press/release will be key.
+    *   **Spoils Sparkle:** Make sure the Spoils conversion animation is truly satisfying. "Coins-like sparkle" is a good start; maybe adding a quick count-up sound effect.
+    *   **War! Trigger:** The "siren + marquee lights + rapid 3-card 'clack' stack" sounds fantastic. This needs to feel impactful. Consider a quick camera shake or screen pulse.
+
+5.  **Meters & Progression Visualizations:**
+    *   **Fortune Halo & Epic Pulse:** These are great visual indicators. Ensure they are distinct enough. The Fortune halo around the Draw lever is smart.
+    *   **Stank Bar:** "Scent adjectives" are a fun touch. Can the Stank bar itself visually change (e.g., increasing moss/grime, glowing more ominously) as the rank increases from "Whiffy" to "Mythic Musk"?
+    *   **Mastery Rank:** How will Warlord Mastery (I-V) be displayed prominently? A badge or evolving icon next to the Warlord's portrait could work.
+
+6.  **Accessibility Considerations (Pre-computation/Early Design):**
+    *   You've listed "Colorblind-safe suit indicators (shape-coded)." This is excellent. Make sure these shape codes are integrated from the very start of card design, not as an afterthought.
+    *   How will "Reduced Motion" impact all the described particle effects and shakes? Clearly defining alternative, simpler animations (e.g., fades instead of bursts) now will save time later.
+
+7.  **Dynamic UI Elements for Pass Holders:**
+    *   For the Warfront Pass features (Opponent Chooser, Set Scout, Leaderboard filters), think about how these "premium" UI elements will integrate into the existing free UI without feeling disruptive or jarring. They should feel like natural extensions.
+
