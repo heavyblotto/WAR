@@ -10,9 +10,414 @@
 
 Bigfoot War is a slot-machine inspired digital card battler that transforms the classic War card game into an engaging, luck-driven experience. Players choose Bigfoot Warlords, wager virtual Gold currency, and pull a lever to reveal cards in rapid-fire duels that feel like slot spins. The game emphasizes perceived control through wagering, near-miss mechanics, and progressive luck meters while maintaining the core War card game mechanics underneath.
 
-**Game flow**
+**Game Loop and Game Rules**
 
-- Choose a Warlord from the Hall of Fame
+#### **Core Game Loop (Step-by-Step)**
+
+**Phase 1: Pre-War Setup**
+1. **Mode Selection**: Player chooses Practice Mode (new players) or Normal Mode (experienced players)
+2. **Warlord Selection**: Player browses carousel of available Bigfoot Warlords (Sasquatch, Yeti, Mapinguary, Agogwe, etc.), each with unique visual themes, signature abilities, and volatility preferences
+3. **Territory Choice**: Player selects one of four territories (Forest/Hearts, Mountain/Spades, Swamp/Diamonds, Jungle/Clubs) and difficulty tier (I/II/III)
+4. **Signature Set Management**: Player views active Signature Set (2-3 themed cards) and can reroll once per war (free) or additional times (VIP)
+5. **Wagering Decision**: Player chooses bet amount (Low: 10 Gold/1.5x, Medium: 50 Gold/2x, High: 200 Gold/3-5x, All-In: 1000+ Gold/10x) and volatility mode (Steady/Wild) - Practice Mode uses Practice Gold with no real risk
+6. **AI Opponent Assignment**: System selects appropriate AI Warlord based on territory tier and player level
+
+**Phase 2: War Initialization**
+
+7. **Deck Generation**: System creates 54-card deck (52 Natural cards + 2 Relic slots) with Warlord cards replacing specific Natural cards under guardrails
+8. **Seed Creation**: Deterministic seed generated from secure inputs (HMAC(userId, warId|timestamp)) for reproducible results
+9. **Deck Shuffle**: Seeded shuffle ensures consistent draw order for replays
+10. **Initial State**: Both players start with full health, empty meters, and shuffled decks
+11. **War Board Display**: Game transitions to main gameplay screen with territory-themed background
+
+**Phase 3: Core War Loop**
+
+12. **Lever Pull**: Player presses "Pull Lever" button (primary action) triggering simultaneous card reveals
+13. **Card Reveal**: Both player and AI cards flip simultaneously (280-320ms spring animation) with territory-themed effects
+14. **Rank Comparison**: System compares card ranks (Ace=14, King=13, Queen=12, Jack=11, 10-2 face value) plus Power stat bonuses
+15. **Damage Calculation**: Winner deals damage = rank value + Power stat + territory bonuses + special effects
+16. **Special Effects**: Triggered effects resolve (heal, armor, debuffs, rank shifts, peeks, stuns, skips) with visual feedback
+17. **Meter Updates**: Fortune Meter (+1 on loss, +2 on War! loss), Epic Meter (+1 per Spoils), Wager Streak Meter (+1 per Gold wagered)
+18. **Health Updates**: Damage applied to loser's health bar with segmented tick marks and territory-themed animations
+
+**Phase 4: War! Resolution (Tie Handling)**
+
+19. **Tie Detection**: When both cards have same rank, War! sequence triggers
+20. **War! Animation**: Three face-down cards stack rapidly (80ms each) + explosive 4th card reveal with marquee lights and siren sounds
+21. **War! Damage**: Winner deals 3-4x damage (territory-dependent) with enhanced visual effects
+22. **War! Effects**: Special War!-triggered effects activate (bonus damage, armor, peeks, etc.)
+23. **Card Disposal**: All War! cards go to respective discard piles (no capture)
+
+**Phase 5: Round Completion**
+
+24. **Proc System**: Random special effects trigger (15-25% base rate, +5-15% with higher bets)
+25. **Near-Miss Detection**: Loss by 1-2 ranks triggers partial payout (0.5x bet) + Fortune Meter boost
+26. **Jackpot Check**: Deterministic combos (matching suits + War! win) + 1% random chance for jackpot
+27. **Meter Triggers**: Check if Fortune (6), Epic (full), or Wager Streak (20) meters trigger bonuses
+28. **Relic Activation**: Active Relics trigger based on their conditions (next win, next loss, on reveal, per round, per Spoils, etc.) - Relics are NOT drawn as cards but exist as persistent slot bonuses
+
+**Phase 6: War Continuation Decision**
+
+29. **Health Check**: If either player's health reaches 0, war ends
+30. **Deck Check**: If either deck empties, reshuffle occurs with suit pity timer (surface territory suit cards)
+31. **Continue Loop**: If both players alive and cards available, return to Phase 3
+32. **Nudge Option**: Player can spend 20 Gold to adjust card rank ±1 (once per war, cannot turn loss to win)
+
+**Phase 7: War Conclusion**
+
+33. **Victory Determination**: Player wins if AI health reaches 0, loses if player health reaches 0
+34. **Gold Payout**: Calculate Gold won = (bet × multiplier) + base rewards + bonuses - Gold wagered (Practice Mode: Practice Gold only)
+35. **XP Calculation**: Base XP (50) + difficulty bonus (Tier II: +25, Tier III: +50) + wagering bonus (+1 XP per 10 Gold wagered)
+36. **Spoils Generation**: Spoils earned based on performance (1-10 Spoils per war)
+37. **Progression Updates**: Update level XP, Warlord Mastery XP, Territory Stank XP, VIP points
+
+**Phase 8: Post-War Results**
+
+38. **Results Screen**: Display verdict banner with territory-themed VFX (confetti/leaf/ice/swamp/jungle)
+39. **Spoils Conversion**: Animated bar converting Spoils to XP (up to 50 XP cap) + bonus rolls (1 per 5 Spoils)
+40. **Bonus Roll Animation**: Slot-style reel animation (3 columns) with rarity color pulses and duplicate conversion to shards
+41. **Specimen Collection**: New Specimens collected with "new" badges and collection summary
+42. **Gold Summary**: Net Gold result with wagering efficiency and pity protection usage (Practice Mode: Practice Gold only)
+43. **Progression Display**: Territory Stank bar increase, Warlord Mastery progress, level progress, VIP point accumulation
+
+**Phase 9: Post-War Decisions**
+
+44. **Rematch Options**: 
+    - "Rematch (same seed)" - exact replay with repetition decay warnings
+    - "Rematch (new seed)" - fresh shuffle with new RNG
+45. **Navigation Options**:
+    - Return to Lobby for new war setup
+    - View detailed war log (VIP feature)
+    - Open replay mode for step-through analysis
+46. **Collection Management**: Open Knapsack to view Specimen details and collection progress
+47. **Practice Mode Check**: If in Practice Mode, check exit conditions (3 wars completed, Level 2 reached, or manual exit)
+
+#### **Detailed Game Rules**
+
+**Card System Rules**
+
+- **Deck Composition**: Fixed 54-card structure (52 Natural cards + 2 Joker slots occupied by Relics)
+- **Card Ranks**: Ace high (14), King (13), Queen (12), Jack (11), 10-2 face value
+- **Damage Formula**: Damage = rank value + Power stat + territory bonuses + special effects
+- **Warlord Cards**: Replace specific Natural cards one-for-one (2-6 per war based on level)
+- **Relic Cards**: Occupy Joker slots with powerful one-sentence effects
+- **Suit Themes**: Hearts (healing), Spades (armor), Diamonds (debuffs), Clubs (momentum)
+
+**Relic Card Mechanics (Critical Clarification)**
+
+- **Deck Integration**: Relic cards are NOT drawn during normal card reveals - they exist as persistent effects in the 2 Joker slots
+- **Activation Triggers**: Relics activate based on specific trigger windows (next win, next loss, on reveal, per round, per Spoils, etc.)
+- **Hold Mechanics**: Players can "hold" a Relic (free via loyalty tiers) to lock it for next reveal - this prevents it from being consumed until optimal timing
+- **Visual Indicators**: Active Relics display as glowing icons with "locked" indicators when held
+- **Consumption Rules**: Most Relics have limited uses (1-2 uses per war) and are consumed when triggered
+- **Persistent Effects**: Some Relics (Fortune Charm, Epic Catalyst) provide ongoing benefits without being consumed
+- **Late-Game Relics**: Additional Relics (up to 2 extra) may replace mid-band Natural cards under guardrails
+- **No Normal Draws**: Relics never appear as face-up cards during regular card reveals - they function as slot machine bonuses
+
+**Wagering Rules**
+
+- **Bet Tiers**: Low (10 Gold/1.5x), Medium (50 Gold/2x), High (200 Gold/3-5x), All-In (1000+ Gold/10x)
+- **Bet Caps**: Level 1-5 (max 100 Gold), Level 6-10 (max 500 Gold), Level 11+ (max 2000 Gold)
+- **Volatility Modes**: Steady (consistent small multipliers), Wild (rare big multipliers)
+- **Pity Protection**: After 2 losses, next bet gets 50% insurance
+- **Session Limits**: Maximum 20% of current Gold loss per session
+
+**Territory Rules**
+
+- **Tier Scaling**: Tier I (base), Tier II (+25% XP, +1 Power, +10% proc rates), Tier III (+75% XP, +2 Power, +20% proc rates)
+- **Suit Affinities**: Forest (Hearts), Mountain (Spades), Swamp (Diamonds), Jungle (Clubs)
+- **Territory Bonuses**: Forest (+1 heal on Hearts wins), Mountain (+1 armor every 3rd win), Swamp (+10% tie rate), Jungle (+1 random stat per Clubs win)
+- **Weather Effects**: Daily modifiers affecting rules and visual effects
+- **Stank Progression**: XP track with scent ranks I-V (100/300/600/1000/1500 XP)
+
+**Luck and Meter Rules**
+
+- **Fortune Meter**: Fills on losses (+1 round loss, +2 War! loss, +1 tie loss, +2 bet loss), triggers at 6 for guaranteed Lucky Draw or Double Damage
+- **Epic Meter**: Fills on Spoils (+1 per Spoils, +3 at 3-win streak, +5 at 5-win streak), triggers for Epic War with +50% proc rates
+- **Wager Streak Meter**: Fills on wagering (+1 per Gold wagered, +2 per win with bet, +5 per jackpot), triggers at 20 for Super Spin with guaranteed rare Specimens
+- **Proc Rates**: Base 15-25% chance per reveal, +5-15% with higher bets
+- **Jackpot Triggers**: Deterministic combos (matching suits + War! win) + 1% random chance
+
+**Progression Rules**
+
+- **Leveling**: XP thresholds increase by level (150 + 50×(level-1) for levels 1-10, 600 + 100×(level-10) for levels 11-20)
+- **Mastery Ranks**: Warlord-specific XP earned through themed gameplay (I-V ranks)
+- **VIP Tiers**: Based on total Gold wagered (Bronze: 0-5k, Silver: 5k-15k, Gold: 15k-50k, Platinum: 50k+)
+- **Unlock Schedule**: New Warlords every 3 levels, territories every 2-3 levels, bet caps every 5 levels
+
+**Special Effect Rules**
+
+- **Trigger Windows**: On reveal, on win, on loss, on tie, on War! win, after tie
+- **Effect Caps**: Stun/Skip ≤1 per war average, Debuff -1 resolves once, Armor/Heal +1 to +2
+- **No Stacking**: -1 rank effects don't stack with other -1 rank effects
+- **Resolve Once**: Some effects marked to prevent multiple activations
+- **Visual Feedback**: All effects have clear visual and audio feedback
+
+**Auto-Resolution Rules**
+
+- **Quick Play**: Standard 1-3 minute sessions with full control
+- **Auto-War Mode**: Simulate 5-10 rounds instantly, show highlights only (wins, procs, ties, jackpots)
+- **Speed Settings**: Instant (0.5s), Fast (1-2s), Standard (3-4s), Cinematic (5+s)
+- **Intervention**: Optional "nudge" button available mid-simulation
+- **Rewards**: Same earning potential as manual play
+
+**Practice Mode Rules**
+
+- **Practice Gold**: Separate currency system - cannot be lost or converted to real Gold
+- **Full Wagering**: All bet tiers available (Low/Medium/High/All-In) with no real risk
+- **Tutorial Integration**: Interactive tooltips guide players through mechanics
+- **Reward Caps**: Practice Gold capped at 100 per session to prevent exploitation
+- **Progression**: Full XP and Spoils earned for normal advancement
+- **Exit Triggers**: Automatic exit after 3 wars, Level 2, or manual exit
+- **No Real Gold**: Cannot earn or lose real Gold currency in Practice Mode
+- **Feature Access**: Access to all unlocked Warlords, territories, and Signature Sets
+
+**Enhanced Perceived Control Rules**
+
+- **Nudge Sources**: Basic (20 Gold), Free Daily (1-3/day), VIP (unlimited), Rewarded Ads, Mastery (+1 per Rank II+ Warlord)
+- **Advanced Nudges**: Predictive (50 Gold + peek), Combo (escalating costs), Emergency (free after 3 losses)
+- **Territory Volatility**: Each territory modifies volatility and offers unique nudge bonuses
+- **Weather Synergy**: Weather conditions unlock special nudge effects and cost reductions
+- **Stank Rewards**: Territory progression unlocks enhanced nudge abilities
+- **Time Windows**: Extended nudge windows during War! sequences (3 seconds)
+- **Control Rewards**: Skill recognition, efficiency bonuses, and achievement milestones
+
+**Tournament Rules**
+
+- **Entry Fees**: Gold-based entry fees (200-1000 Gold depending on tournament type)
+- **Scoring**: Based on Gold wagered, Gold won, wars played, win rate
+- **Leaderboards**: Real-time updates with territory/Warlord filters
+- **Rewards**: Exclusive cosmetics, Gold prizes, prestige titles
+- **Spectator Mode**: Watch other players (VIP feature)
+
+**Monetization Rules**
+
+- **Free-to-Play Core**: All wars, Warlords, and territories accessible without payment
+- **Gold Earning**: Unlimited through gameplay with soft daily caps
+- **Convenience Purchases**: Gold packs, VIP subscriptions, cosmetics
+- **No Pay-to-Win**: All purchases provide convenience or cosmetics only
+- **Advertising**: Rewarded ads (+100-200 Gold), optional interstitials
+
+**Game Flows**
+
+#### **Main Game Flow**
+
+**1. Lobby Screen (Main Menu)**
+- **Screen Elements**: Warlord carousel, Territory row, Active Set panel, Betting interface, Primary CTA
+- **Player Actions**: 
+  - Select Warlord (tap/swipe carousel)
+  - Choose Territory (tap chip, select Tier I/II/III)
+  - View Active Signature Set (tap preview)
+  - Reroll Signature Set (tap reroll button - free 1×/war, VIP +1/day)
+  - Set Bet Amount (Low/Medium/High/All-In)
+  - Toggle Volatility Mode (Steady/Wild)
+- **Decisions**: 
+  - Which Warlord to play?
+  - Which Territory and Tier?
+  - How much Gold to wager?
+  - Which Signature Set to use?
+- **Outcomes**: 
+  - Proceed to War Board
+  - Show Territory/Warlord pairing bonuses
+  - Display bet multiplier preview
+
+**2. War Board Screen (Gameplay)**
+- **Screen Elements**: AI opponent panel, Center card stage, Player panel, Meters row, Side drawer
+- **Player Actions**:
+  - Pull Lever (primary action)
+  - Use Nudge (20 Gold cost, once per war)
+  - Hold Relic (free via loyalty tiers)
+  - View Territory info (tap side drawer)
+- **Decisions**:
+  - When to pull lever?
+  - When to use nudge?
+  - Which Relic to hold?
+- **Outcomes**:
+  - Card reveals (simultaneous flip)
+  - Damage dealt/received
+  - Special effects triggered
+  - Meters filled
+  - War continues or ends
+
+**3. War Resolution**
+- **Win Path**: 
+  - Victory animation with territory-themed VFX
+  - Gold payout calculation
+  - XP and Spoils earned
+  - Progression updates
+  - Proceed to Results Screen
+- **Loss Path**:
+  - Defeat animation
+  - Gold loss (with pity protection)
+  - Consolation rewards
+  - Proceed to Results Screen
+- **Draw Path** (rare):
+  - Neutral resolution
+  - Bet refund + small Gold bonus
+  - Proceed to Results Screen
+
+**4. Results Screen**
+- **Screen Elements**: Verdict banner, XP breakdown, Spoils conversion, Bonus rolls, Gold summary, Progression updates
+- **Player Actions**:
+  - Convert Spoils to XP (animated bar)
+  - Spin Bonus Roll reels (slot-style)
+  - View Specimen collection
+  - Open Knapsack for details
+- **Decisions**:
+  - Rematch same seed (exact replay)
+  - Rematch new seed (fresh shuffle)
+  - Return to Lobby
+  - View detailed war log
+- **Outcomes**:
+  - XP and Gold updates
+  - New Specimens collected
+  - Level/Mastery progression
+  - Return to Lobby or new War
+
+#### **Alternative Game Flows**
+
+**Practice Mode Flow (New Player Onboarding)**
+- **Entry**: Tap "Practice Mode" button in Lobby (prominent for new players)
+- **No Gold Risk**: All wagering uses "Practice Gold" - no real Gold loss possible
+- **Full Feature Access**: Access to all unlocked Warlords, territories, and Signature Sets
+- **Tutorial Integration**: Guided tooltips explain wagering, meters, and special effects
+- **Capped Rewards**: Practice Gold earned (for learning wagering mechanics) but capped at 100 Gold per session
+- **Progression**: Full XP and Spoils earned for normal progression
+- **Exit Conditions**: 
+  - Complete 3 practice wars
+  - Reach Level 2
+  - Player manually exits to normal mode
+- **Outcome**: Smooth transition to normal Gold wagering with confidence
+
+**Quick Spin Mode Flow**
+- **Entry**: Tap Quick Spin button in Lobby
+- **Auto-Selection**: Warlord/Territory selected automatically
+- **Simplified Betting**: Reduced bet options (Low/Medium only)
+- **Fast Resolution**: 1-3 minute sessions
+- **Streamlined Results**: Basic XP/Gold summary
+- **Outcome**: Return to Lobby with standard rewards
+
+**Auto-War Mode Flow**
+- **Entry**: Select Auto-War toggle in Lobby
+- **Simulation**: 5-10 rounds processed instantly
+- **Highlight Display**: Show only wins, procs, ties, jackpots
+- **Optional Intervention**: "Nudge" button available mid-simulation
+- **Summary Results**: Condensed results with same earning potential
+- **Outcome**: Return to Lobby with full rewards
+
+**High Roller Mode Flow**
+- **Entry Requirements**: Level 10+ or VIP status
+- **Enhanced Betting**: Higher bet caps, exclusive multipliers
+- **Premium Features**: Special jackpot triggers, better pity protections
+- **Prestige Rewards**: Exclusive Specimens, amplified Gold/Spoils
+- **Outcome**: Enhanced progression with prestige items
+
+**Tournament Mode Flow**
+- **Entry**: Join tournament with Gold entry fee
+- **Bracket/Leaderboard**: Competitive structure
+- **Live Updates**: Real-time leaderboard changes
+- **Spectator Mode**: Watch other players (VIP feature)
+- **Rewards**: Exclusive cosmetics, Gold prizes, prestige titles
+- **Outcome**: Tournament completion with ranking rewards
+
+#### **Progression Flows**
+
+**Level-Up Flow**
+- **Trigger**: XP threshold reached
+- **Animation**: Level-up celebration
+- **Rewards**: 
+  - Odd levels: +1 bonus roll + cosmetic currency
+  - Even levels: Relic shard or minor Relic cooldown token
+  - Milestone levels: Guaranteed feature unlock
+- **Unlocks**: New Warlords, territories, bet caps, features
+- **Outcome**: Return to Lobby with new capabilities
+
+**Mastery Progression Flow**
+- **Trigger**: Warlord-specific XP earned
+- **Rank Advancement**: I → II → III → IV → V
+- **Rewards**:
+  - Rank I: Unlock second Signature Set
+  - Rank II: +1 free nudge per war
+  - Rank III: Exclusive cosmetic variants
+  - Rank IV: Unlock third Signature Set
+  - Rank V: Prestige title + exclusive animations
+- **Outcome**: Enhanced Warlord capabilities
+
+**VIP Tier Progression Flow**
+- **Trigger**: Gold wagered threshold reached
+- **Tier Advancement**: Bronze → Silver → Gold → Platinum
+- **Benefits Unlock**:
+  - Bronze: +10% Gold earnings, basic cosmetics
+  - Silver: +1 free nudge/day, exclusive Relic variants
+  - Gold: +20% bet multipliers, exclusive tournaments
+  - Platinum: Personal boosters, priority support, exclusive events
+- **Outcome**: Enhanced gameplay experience
+
+#### **Special Event Flows**
+
+**Daily Rewards Flow**
+- **Entry**: Login streak maintained
+- **Reward Scaling**: 100-500 Gold (7-day streak)
+- **Bonus Elements**: Daily missions, spin wheel, streak bonuses
+- **Outcome**: Gold and cosmetic rewards
+
+**Weekly Events Flow**
+- **Double Wager Week**: All bet multipliers +0.5x
+- **Jackpot Festival**: Jackpot trigger rate +2%
+- **Territory Showdown**: Featured territory +50% Gold earnings
+- **Outcome**: Enhanced rewards during event period
+
+**Seasonal Content Flow**
+- **Quarterly Updates**: New Warlords, territories, themes
+- **Limited-Time**: Exclusive seasonal cosmetics and events
+- **Progression**: New content unlockable through play
+- **Outcome**: Fresh content and engagement
+
+#### **Monetization Flows**
+
+**Gold Purchase Flow**
+- **Entry**: Tap Gold counter or purchase button
+- **Pack Selection**: Starter ($0.99), Value ($4.99), Premium ($9.99), Mega ($19.99)
+- **Payment Processing**: Secure transaction
+- **Gold Delivery**: Instant Gold addition
+- **Outcome**: Enhanced wagering capabilities
+
+**VIP Subscription Flow**
+- **Entry**: Tap VIP upgrade button
+- **Plan Selection**: Gold Pass ($4.99/month) or Platinum Pass ($9.99/month)
+- **Payment Processing**: Recurring subscription
+- **Benefits Activation**: Immediate access to premium features
+- **Outcome**: Enhanced gameplay experience
+
+**Cosmetic Purchase Flow**
+- **Entry**: Tap cosmetic item or shop button
+- **Item Selection**: Warlord skins, card backs, emotes, Relic variants
+- **Payment Processing**: Gold or real money payment
+- **Item Delivery**: Immediate cosmetic application
+- **Outcome**: Enhanced visual experience
+
+#### **Error and Edge Case Flows**
+
+**Connection Loss Flow**
+- **Detection**: Network connectivity lost
+- **State Preservation**: Current war state saved
+- **Reconnection**: Automatic reconnection attempt
+- **State Recovery**: Resume from last saved state
+- **Outcome**: Seamless gameplay continuation
+
+**Pity Protection Flow**
+- **Trigger**: 2 consecutive losses
+- **Activation**: Next bet gets 50% insurance
+- **Protection**: Partial refund on loss
+- **Reset**: After successful bet or 3 losses
+- **Outcome**: Reduced frustration, maintained engagement
+
+**Session Limit Flow**
+- **Trigger**: Maximum Gold loss per session (20% of current Gold)
+- **Protection**: Prevent further Gold loss
+- **Options**: Continue playing without wagering or take break
+- **Reset**: Daily reset of session limits
+- **Outcome**: Player protection, sustainable engagement
 
 **Key Slot-Inspired Features**:
 - **Gold Virtual Currency**: Wagering system for amplified rewards without real money risk
@@ -112,7 +517,7 @@ Bigfoot War transforms the traditional War card game into a slot-machine experie
 
 #### **Enhanced Luck Elements**
 
-**Proc System Overhaul**: Boosted randomness with slot-like excitement
+**Proc System**: Boosted randomness with slot-like excitement
 - **Base Proc Rates**: 15-25% chance per reveal for special effects
 - **Double Damage**: 2-5x multipliers (scaled by bet level)
 - **Free Relics**: Insert wild-like effects mid-war
@@ -166,22 +571,75 @@ Bigfoot War transforms the traditional War card game into a slot-machine experie
 - **Standard**: 3-4 second reveals (full animations)
 - **Cinematic**: 5+ second reveals (maximum spectacle)
 
-#### **Nudges and Perceived Control**
+#### **Enhanced Perceived Control System**
 
-**Card Nudges**: Spend 20 Gold (or free via loyalty) to adjust a card rank ±1
-- **Limitations**: Once per war, cannot turn loss to win outright
-- **Visual**: Card "wobbles" before settling on new rank
-- **Strategic**: Best used on near-misses or critical rounds
+**Expanded Nudge System**:
+- **Basic Nudges**: Spend 20 Gold to adjust card rank ±1 (once per war, cannot turn loss to win)
+- **Free Daily Nudges**: 1-3 free nudges per day via daily rewards and login streaks
+- **VIP Nudges**: Unlimited nudges for Gold/Platinum Pass holders
+- **Rewarded Nudges**: Watch ads for free nudges (post-loss prompts)
+- **Nudge Packs**: Purchase 5-10 nudges for 50-100 Gold (1-day duration)
+- **Mastery Nudges**: +1 free nudge per war with Rank II+ Warlord Mastery
+- **Territory Nudges**: Each territory offers unique nudge bonuses (see Territory Volatility below)
 
-**Hold Mechanics**: Lock a Relic for next reveal (free via loyalty tiers)
-- **Visual**: Relic glows with "locked" indicator
-- **Strategy**: Hold powerful effects for optimal timing
+**Advanced Control Mechanics**:
+- **Predictive Nudges**: Spend 50 Gold to peek next 2 cards and choose which to nudge
+- **Strategic Holds**: Hold up to 2 Relics simultaneously (VIP feature)
+- **Timing Windows**: Extended nudge windows during War! sequences (3-second window)
+- **Combo Nudges**: Chain nudges for escalating effects (2nd nudge costs 40 Gold, 3rd costs 80 Gold)
+- **Emergency Nudges**: Free nudge after 3 consecutive losses (pity protection)
 
-**Territory Influence**: Passive backgrounds that apply simple buffs
-- **Forest**: Auto-heal +1 on Hearts wins
-- **Mountain**: +1 armor every 3rd win
-- **Swamp**: +10% tie rate (more War! opportunities)
-- **Jungle**: +1 random stat per Clubs win
+**Territory-Based Volatility Control**:
+
+**Forest Territory (Hearts - Steady Volatility)**:
+- **Volatility Modifier**: Reduces Wild mode volatility by 25%, increases Steady mode consistency
+- **Nudge Bonus**: Forest nudges cost 15 Gold (25% discount) and have +1 rank adjustment range
+- **Weather Control**: 
+  - **Sunshine**: +1 free nudge per war
+  - **Rain**: Nudges also trigger healing effects
+  - **Mist**: Nudges reveal enemy next suit
+- **Stank Rewards**: Rank III unlocks "Forest Whisper" - peek next card before nudging
+
+**Mountain Territory (Spades - Defensive Volatility)**:
+- **Volatility Modifier**: Reduces loss penalties by 30%, increases armor-based control
+- **Nudge Bonus**: Mountain nudges grant +1 armor when used on Spades cards
+- **Weather Control**:
+  - **Clear**: Nudges cost 10 Gold (50% discount) for first 5 rounds
+  - **Blizzard**: Nudges trigger avalanche effects (bonus damage)
+  - **Wind**: Nudges affect enemy next card instead of your own
+- **Stank Rewards**: Rank IV unlocks "Mountain Echo" - nudge effects persist for 2 rounds
+
+**Swamp Territory (Diamonds - Control Volatility)**:
+- **Volatility Modifier**: Increases tie rate by 15%, more War! opportunities for skilled players
+- **Nudge Bonus**: Swamp nudges can convert losses to ties (once per war)
+- **Weather Control**:
+  - **Fog**: Nudges reveal enemy next rank (not just suit)
+  - **Rain**: Nudges trigger debuff effects on enemy
+  - **Murk**: Nudges affect both players' next cards
+- **Stank Rewards**: Rank V unlocks "Swamp Mastery" - unlimited tie-conversion nudges
+
+**Jungle Territory (Clubs - Aggressive Volatility)**:
+- **Volatility Modifier**: Increases Wild mode multipliers by 20%, higher risk/reward
+- **Nudge Bonus**: Jungle nudges can trigger "Frenzy" effects (+2 rank adjustment)
+- **Weather Control**:
+  - **Monsoon**: Nudges fill Epic Meter by +1
+  - **Heat Wave**: Nudges trigger random stat bonuses
+  - **Vine Growth**: Nudges chain to next round automatically
+- **Stank Rewards**: Rank II unlocks "Jungle Instinct" - nudge success rate +25%
+
+**Dynamic Volatility System**:
+- **Territory Affinity**: Warlords gain volatility bonuses in their primary territories
+- **Weather Synergy**: Certain weather + Warlord combinations unlock special nudge effects
+- **Time-Based Control**: Nudges become cheaper during "Golden Hours" (daily 2-hour windows)
+- **Streak Bonuses**: Win streaks unlock enhanced nudge effects and reduced costs
+- **Community Events**: Server-wide volatility modifiers during special events
+
+**Perceived Control Rewards**:
+- **Skill Recognition**: Players who use nudges effectively gain "Control Master" titles
+- **Efficiency Bonuses**: Optimal nudge usage grants bonus Gold and XP
+- **Social Features**: Share nudge strategies and success stories
+- **Analytics**: Detailed nudge usage statistics for improvement
+- **Achievements**: Unlock cosmetics for nudge mastery milestones
 
 #### **Detailed Card System (Slot-Inspired)**
 
@@ -325,6 +783,29 @@ Relic Cards are powerful, one‑sentence effects that live in the two Joker slot
 
 ### Slot-Inspired Game Modes
 
+#### **Practice Mode (New Player Onboarding)**
+- **Purpose**: Risk-free learning environment for new players to understand wagering mechanics
+- **Entry Requirements**: Available immediately for all new players (Level 1)
+- **Gold System**: Uses "Practice Gold" - separate currency that cannot be lost or converted to real Gold
+- **Wagering Mechanics**: Full wagering system available (Low/Medium/High/All-In bets) with no real risk
+- **Tutorial Features**:
+  - **Interactive Tooltips**: Step-by-step guidance through first war
+  - **Wagering Explanation**: Visual demonstration of bet multipliers and outcomes
+  - **Meter Tutorial**: Explanation of Fortune, Epic, and Wager Streak meters
+  - **Special Effects Guide**: Tooltips for Warlord cards, Relics, and territory bonuses
+  - **War! Demonstration**: Special tutorial for tie resolution mechanics
+- **Rewards**: 
+  - **Practice Gold**: Earned for learning wagering (capped at 100 per session)
+  - **Full XP**: Normal XP progression for leveling up
+  - **Full Spoils**: Normal Spoils for Specimen collection
+  - **No Real Gold**: Cannot earn or lose real Gold currency
+- **Exit Conditions**:
+  - **Automatic Exit**: After completing 3 practice wars
+  - **Level Exit**: Automatically exits when reaching Level 2
+  - **Manual Exit**: Player can exit anytime via lobby button
+- **Transition**: Smooth handoff to normal Gold wagering with confidence and understanding
+- **Perfect For**: New players, cautious players, learning advanced mechanics
+
 #### **Quick Spin Mode**
 - **Purpose**: Fast 1-3 minute sessions for mobile players
 - **Mechanics**: Auto-selected Warlord/Territory, simplified betting options
@@ -389,20 +870,40 @@ Each Warlord has 2-3 signature cards that define their slot theme:
 - **Creek Rally** (King of Hearts): On win, heal +2 + water splash effect
 - **Boulder Barrage** (King of Spades): On win, +3 damage + falling rocks
 
+**Sasquatch Regional Variants** (Pacific Northwest Lore):
+- **"PNW Guardian"** (Default): Rock & Rally, Boulder Barrage, Creek Guardian
+- **"Cascade Range"** (Regional Mastery): Mountain Strike, Forest Shield, River Guardian
+- **"Olympic Peninsula"** (Folklore Master): Coastal Storm, Ancient Grove, Mist Walker
+
 **Yeti Signature Cards**:
 - **Glacier Mend** (Queen of Hearts): On win, heal +3 + ice crystal effect
 - **Avalanche** (Ace of Spades): On win, +4 damage + snow avalanche
 - **Ice Carapace** (10 of Spades): On win, +1 armor + ice shield animation
+
+**Yeti Regional Variants** (Himalayan Lore):
+- **"Himalayan Sage"** (Default): Avalanche, Permafrost, Summit Sage
+- **"Everest Peak"** (Regional Mastery): Summit Storm, Glacial Fortress, High Altitude
+- **"Sherpa Guide"** (Folklore Master): Mountain Path, Ice Bridge, Summit Wisdom
 
 **Mapinguary Signature Cards**:
 - **Forest Guard** (King of Clubs): On win, enemy next card -1 rank + vine snare
 - **Swamp Mist** (Queen of Diamonds): On reveal, enemy next -1 rank + fog effect
 - **River Push** (9 of Clubs): On win, +1 next draw rank + water current
 
+**Mapinguary Regional Variants** (Amazon Lore):
+- **"Amazon Protector"** (Default): Forest Guard, Canopy Ward, River Sentinel
+- **"River Basin"** (Regional Mastery): Amazon Flow, Canopy Shield, River Mastery
+- **"Jungle Sage"** (Folklore Master): Ancient Guardian, River Wisdom, Canopy Mastery
+
 **Agogwe Signature Cards**:
 - **Stealth Strike** (Jack of Clubs): On win, enemy skips next turn + shadow strike
 - **Camouflage** (Queen of Spades): On reveal, peek enemy next suit + stealth effect
 - **Ambush** (9 of Clubs): On win, +2 damage if enemy's last was face + pounce
+
+**Agogwe Regional Variants** (African Lore):
+- **"Savannah Hunter"** (Default): Shadowstep, Ambush, Hunter's Guile
+- **"Serengeti Master"** (Regional Mastery): Plains Hunter, Steppe Walker, Savannah Sage
+- **"Bush Guardian"** (Folklore Master): Ancient Hunter, Stealth Master, Savannah Wisdom
 
 ### Comprehensive Territory System (Reel Backgrounds)
 
@@ -422,6 +923,21 @@ Each Warlord has 2-3 signature cards that define their slot theme:
   - **Rank III**: Relic shard
   - **Rank IV**: Boss encounter access
   - **Rank V**: Hard-mode toggle
+
+**Regional Lore Tracks (Cryptid Scholar System)**:
+- **Pacific Northwest Lore**: Play Sasquatch, Matlox, Gugwe → Unlock "Forest Guardian" badges and regional knowledge
+- **Himalayan Lore**: Play Yeti, Nyalmo, Mecheny → Unlock "Mountain Sage" titles and glacial mastery
+- **Amazon Lore**: Play Mapinguary, Ukumarzapai → Unlock "Jungle Master" achievements and vine control
+- **African Lore**: Play Agogwe, Chemosit → Unlock "Savannah Hunter" emblems and stealth mastery
+- **Southeast Asian Lore**: Play Kapre, Orang Gadang → Unlock "Canopy Walker" badges and tree mastery
+- **European Lore**: Play Big Grey Man, Barbegazi → Unlock "Highland Phantom" titles and mist mastery
+- **Oceanic Lore**: Play Yowie, Moehau → Unlock "Outback Survivor" achievements and endurance mastery
+
+**Cryptid Scholar Progression**:
+- **First Win** with any Warlord from a region = Unlock that region's "Cryptid Profile" with folklore and cultural significance
+- **Complete a Region** (win with all Warlords from that area) = Unlock exclusive regional cosmetics and territorial knowledge
+- **Global Scholar** (encounter all regions) = Prestige title + exclusive "Cryptid Encyclopedia" card back
+- **Regional Mastery** (10+ wins per region) = Unlock regional Signature Set variants with enhanced visual themes
 
 **Suit Pity Timer**: If 4 rounds pass without the territory suit, seed-weight the next reshuffle to surface ~2 cards of that suit (+25% ordering weight)
 
@@ -514,6 +1030,45 @@ Each Warlord has 2-3 signature cards that define their slot theme:
 - **Heat Wave**: +1 random stat per Clubs win
 - **Vine Growth**: +1 next draw rank on Clubs wins
 - **Tropical Storm**: +2× damage on War! wins
+
+**Regional Weather Patterns**:
+Weather effects that reflect the actual climates of Bigfoot regions, with enhanced effects for regional Warlords:
+
+- **Pacific Northwest**: "Misty Rain" - Forest territory gets enhanced healing (+75% vs +50%)
+- **Himalayas**: "Glacial Winds" - Mountain territory gets armor bonuses (+2 vs +1)
+- **Amazon**: "Tropical Storm" - Jungle territory gets frenzy effects (+2 rank vs +1)
+- **African Savannah**: "Dry Season" - Swamp territory gets debuff mastery (double duration)
+
+**Territorial Affinity Bonuses**:
+Warlords gain subtle bonuses when playing in their "home" territories, reflecting their regional mastery:
+
+**Pacific Northwest Warlords** (Sasquatch, Matlox, Gugwe):
+- **Forest Territory**: +10% Stank XP (knows the terrain)
+- **Visual**: "Home Territory" badge with PNW folklore tooltip
+
+**Himalayan Warlords** (Yeti, Nyalmo, Mecheny):
+- **Mountain Territory**: +1 free nudge per war (glacial mastery)
+- **Visual**: "Mountain Sage" badge with Himalayan lore tooltip
+
+**Amazon Warlords** (Mapinguary, Ukumarzapai):
+- **Jungle Territory**: +15% proc rate (jungle mastery)
+- **Visual**: "Jungle Guardian" badge with Amazon folklore tooltip
+
+**African Warlords** (Agogwe, Chemosit):
+- **Swamp Territory**: Double debuff duration (swamp mastery)
+- **Visual**: "Savannah Hunter" badge with African lore tooltip
+
+**Southeast Asian Warlords** (Kapre, Orang Gadang):
+- **Jungle Territory**: +1 next draw rank on Clubs wins (tree mastery)
+- **Visual**: "Canopy Walker" badge with Southeast Asian folklore tooltip
+
+**European Warlords** (Big Grey Man, Barbegazi):
+- **Mountain Territory**: +1 armor every 2nd win (highland mastery)
+- **Visual**: "Highland Phantom" badge with European lore tooltip
+
+**Oceanic Warlords** (Yowie, Moehau):
+- **Any Territory**: +1 Fortune Meter fill per loss (survival mastery)
+- **Visual**: "Outback Survivor" badge with Oceanic folklore tooltip
 
 #### **Territory Rotation and Access**
 
@@ -716,6 +1271,63 @@ Rotating slot-themed events to maintain engagement:
 - **Rewards**: Territory-themed cosmetics
 - **Participation**: Play in featured territory
 
+**Warlord Spotlight**:
+- **Duration**: 3 days
+- **Effect**: Bonus rewards for featured Warlord
+- **Rewards**: Warlord-themed cosmetics
+- **Participation**: Play with featured Warlord
+
+#### **Seasonal Regional Events**
+Monthly rotating regional themes celebrating Bigfoot mythology:
+
+**"Pacific Northwest Legends" Month**:
+- **Duration**: 30 days
+- **Effect**: Bonus XP for Forest territory + Sasquatch family Warlords get special effects
+- **Regional Bonus**: +25% Stank XP for PNW Warlords in Forest territory
+- **Rewards**: PNW-themed Specimens, "Forest Guardian" emotes, regional cosmetics
+- **Lore Integration**: Unlock Pacific Northwest cryptid profiles and folklore
+
+**"Himalayan Mysteries" Month**:
+- **Duration**: 30 days
+- **Effect**: Mountain territory bonuses + Yeti variants get glacial mastery effects
+- **Regional Bonus**: +1 free nudge per war for Himalayan Warlords in Mountain territory
+- **Rewards**: Himalayan-themed Specimens, "Mountain Sage" emotes, glacial cosmetics
+- **Lore Integration**: Unlock Himalayan cryptid profiles and mountain folklore
+
+**"Amazon Guardians" Month**:
+- **Duration**: 30 days
+- **Effect**: Jungle territory focus + Mapinguary family bonuses
+- **Regional Bonus**: +15% proc rate for Amazon Warlords in Jungle territory
+- **Rewards**: Amazon-themed Specimens, "Jungle Master" emotes, vine cosmetics
+- **Lore Integration**: Unlock Amazon cryptid profiles and jungle folklore
+
+**"African Savannah Hunters" Month**:
+- **Duration**: 30 days
+- **Effect**: Swamp territory mastery + Agogwe family stealth bonuses
+- **Regional Bonus**: Double debuff duration for African Warlords in Swamp territory
+- **Rewards**: African-themed Specimens, "Savannah Hunter" emotes, stealth cosmetics
+- **Lore Integration**: Unlock African cryptid profiles and savannah folklore
+
+#### **Folklore Collector Achievement System**
+Achievements that celebrate the mythological aspects of each Warlord:
+
+**Regional Mastery Achievements**:
+- **"Rock Thrower"**: Win 10 wars with Sasquatch (references his signature ability)
+- **"Ice Walker"**: Win 10 wars with Yeti (references Himalayan ice mastery)
+- **"Vine Swinger"**: Win 10 wars with Mapinguary (references Amazon jungle skills)
+- **"Shadow Stalker"**: Win 10 wars with Agogwe (references African stealth)
+- **"Tree Guardian"**: Win 10 wars with Kapre (references Southeast Asian tree mastery)
+- **"Highland Phantom"**: Win 10 wars with Big Grey Man (references Scottish mist mastery)
+- **"Outback Survivor"**: Win 10 wars with Yowie (references Australian endurance)
+
+**Cryptid Scholar Achievements**:
+- **"Regional Explorer"**: Win with Warlords from 3 different regions
+- **"Global Scholar"**: Win with Warlords from all 7 regions
+- **"Folklore Master"**: Complete all regional cryptid profiles
+- **"Mythology Expert"**: Unlock all regional Signature Set variants
+
+**Rewards**: Unlock regional emote sets, territorial knowledge badges, and exclusive Specimens that reference the folklore
+
 #### **Seasonal Content**
 Quarterly updates with new slot themes:
 
@@ -828,6 +1440,94 @@ Bigfoot War's visual design transforms the traditional card game interface into 
 - **Color Palette**: Jungle jade, tropical greens, vine browns
 - **Particles**: Falling leaves, vine animations, heat distortion
 - **Audio**: Exotic birds, vine rustling, jungle ambience
+
+#### **Seasonal Territories (Limited-Time)**
+
+**Spring Blooming Forest** (Hearts Theme - Seasonal):
+- **Theme**: Renewal and growth; enhanced healing and regeneration
+- **Duration**: March-May (Spring Season)
+- **Special Rules**: 
+  - Healing effects are +75% stronger (vs +50% in regular Forest)
+  - Hearts wins heal +2 (vs +1 in regular Forest)
+  - First Hearts win each war grants "Bloom" (+1 next draw rank)
+- **Visual Identity**: Cherry blossoms, fresh growth, pollen particles
+- **Weather Effects**: Spring showers, petal cascades, growth animations
+- **Color Palette**: Spring greens, cherry pinks, pollen golds
+- **Particles**: Cherry blossoms, pollen clouds, growth sparkles
+- **Audio**: Spring birds, gentle rain, growth sounds
+- **Specimens**: Spring-themed items (Cherry Blossom Petal, Pollen Crown, Growth Crystal)
+
+**Summer Scorched Desert** (Spades Theme - Seasonal):
+- **Theme**: Extreme heat and endurance; armor and survival focus
+- **Duration**: June-August (Summer Season)
+- **Special Rules**:
+  - Gain +1 armor every 2nd win (vs 3rd in regular Mountain)
+  - Spades wins grant +2 armor (vs +1 in regular Mountain)
+  - Heat Wave: Every 5th round, both players gain +1 Power
+- **Visual Identity**: Sand dunes, heat mirages, desert storms
+- **Weather Effects**: Sandstorms, heat waves, mirage effects
+- **Color Palette**: Desert golds, sand tans, heat oranges
+- **Particles**: Sand particles, heat distortion, mirage effects
+- **Audio**: Desert winds, sand shifting, heat crackling
+- **Specimens**: Desert-themed items (Sand Crystal, Cactus Thorn, Mirage Gem)
+
+**Autumn Harvest Fields** (Diamonds Theme - Seasonal):
+- **Theme**: Abundance and preparation; debuff mastery and control
+- **Duration**: September-November (Fall Season)
+- **Special Rules**:
+  - Diamonds wins grant double debuff tokens (2x -1 rank effects)
+  - Harvest: Every 3rd Diamonds win grants +1 Spoils
+  - Preparation: First loss each war grants +1 Fortune Meter fill
+- **Visual Identity**: Golden fields, falling leaves, harvest abundance
+- **Weather Effects**: Leaf storms, harvest winds, abundance sparkles
+- **Color Palette**: Autumn golds, harvest oranges, leaf browns
+- **Particles**: Falling leaves, harvest sparkles, abundance effects
+- **Audio**: Rustling leaves, harvest sounds, autumn winds
+- **Specimens**: Harvest-themed items (Golden Wheat, Autumn Leaf, Harvest Crown)
+
+**Winter Frozen Tundra** (Clubs Theme - Seasonal):
+- **Theme**: Survival and momentum; enhanced frenzy and chain effects
+- **Duration**: December-February (Winter Season)
+- **Special Rules**:
+  - First Clubs win grants "Blizzard Frenzy" (+2 rank on next 3 rounds)
+  - Winter Survival: Every 4th round, gain +1 armor if health <50%
+  - Ice Chains: Clubs wins chain to next Clubs card (+1 rank)
+- **Visual Identity**: Ice formations, blizzard effects, frozen landscapes
+- **Weather Effects**: Blizzards, ice formations, winter storms
+- **Color Palette**: Ice blues, snow whites, frost silvers
+- **Particles**: Snowflakes, ice crystals, blizzard effects
+- **Audio**: Winter winds, ice cracking, blizzard sounds
+- **Specimens**: Winter-themed items (Ice Crystal, Snowflake Gem, Frost Crown)
+
+#### **Special Event Territories**
+
+**Lunar Eclipse Caverns** (All Suits - Monthly Event):
+- **Theme**: Mystical power and cosmic influence
+- **Duration**: Full moon cycles (monthly)
+- **Special Rules**:
+  - All suit bonuses are +50% stronger
+  - Eclipse Power: Every 7th round, gain +2 Power for 3 rounds
+  - Cosmic Alignment: Matching suit + War! win grants triple damage
+- **Visual Identity**: Cosmic caverns, lunar effects, mystical energy
+- **Weather Effects**: Lunar beams, cosmic particles, eclipse shadows
+- **Color Palette**: Cosmic purples, lunar silvers, mystical blues
+- **Particles**: Cosmic energy, lunar beams, eclipse effects
+- **Audio**: Cosmic hums, lunar echoes, mystical chimes
+- **Specimens**: Cosmic-themed items (Lunar Crystal, Eclipse Gem, Cosmic Crown)
+
+**Thunderstorm Peaks** (Spades Theme - Weather Event):
+- **Theme**: Electrical power and storm mastery
+- **Duration**: Thunderstorm weather events (weekly)
+- **Special Rules**:
+  - Lightning Strike: Every Spades win has 25% chance for +3 damage
+  - Storm Armor: Gain +1 armor every 2nd Spades win
+  - Thunder Clap: War! wins deal +2x damage (6x total)
+- **Visual Identity**: Storm clouds, lightning strikes, electrical effects
+- **Weather Effects**: Lightning bolts, thunder rumbles, storm clouds
+- **Color Palette**: Storm grays, lightning blues, electrical whites
+- **Particles**: Lightning bolts, electrical sparks, storm effects
+- **Audio**: Thunder rumbles, lightning cracks, storm winds
+- **Specimens**: Storm-themed items (Lightning Rod, Thunder Gem, Storm Crown)
 
 #### **Complete Warlord Roster (Slot Themes)**
 
@@ -963,6 +1663,123 @@ Bigfoot War's visual design transforms the traditional card game interface into 
 - **Audio**: Tree creaking, smoke hissing, cigar puffing
 - **Volatility**: Staggered (Steady mode with smoke effects)
 
+**Genoskwa** (Stone Giant Theme):
+- **Theme**: Stone giant; armor-on-win cadence, heavy strikes
+- **Locale**: North America (Iroquois lore)
+- **Description**: Stone giant, aggressive Sasquatch-like being
+- **Stats**: Health 110, Power +2; Affinity: Mountain (primary), Forest (secondary)
+- **Signature Sets**: Stone Sentinel (default), Boulder Breaker, Ridge Guardian
+- **Visual Identity**: Stone giant silhouette with rocky armor
+- **Animations**: Stone movements, boulder impacts
+- **Special Effects**: Stone shards, armor formations, ground cracks
+- **Color Accents**: Stone grays, mountain browns, armor silvers
+- **Audio**: Stone grinding, boulder impacts, mountain echoes
+- **Volatility**: Defensive (Steady mode with armor focus)
+
+**Didi** (Himalayan Giant Theme):
+- **Theme**: Himalayan giant; brute force, glacial punishes
+- **Locale**: Himalayas
+- **Description**: Tall, ape-like humanoid, similar to Yeti
+- **Stats**: Health 115, Power +1; Affinity: Mountain (primary), Swamp (secondary)
+- **Signature Sets**: Glacier Breaker (default), Summit Storm, Ice Guardian
+- **Visual Identity**: Large Yeti-like silhouette with glacial effects
+- **Animations**: Glacial movements, ice formations
+- **Special Effects**: Ice crystals, glacial shards, frost bursts
+- **Color Accents**: Ice blues, glacial whites, mountain grays
+- **Audio**: Ice cracking, glacial rumbling, mountain winds
+- **Volatility**: Brute force (Wild mode with high damage)
+
+**Matlox** (PNW Cannibal Theme):
+- **Theme**: PNW cannibal giant; slow, heavy swings, intimidation
+- **Locale**: Pacific Northwest
+- **Description**: Giant, hairy cannibal
+- **Stats**: Health 120, Power +1; Affinity: Forest (primary), Mountain (secondary)
+- **Signature Sets**: Cannibal King (default), Forest Terror, Bone Breaker
+- **Visual Identity**: Large cannibal silhouette with intimidating effects
+- **Animations**: Slow, heavy movements, intimidation gestures
+- **Special Effects**: Bone fragments, forest shadows, terror effects
+- **Color Accents**: Forest browns, bone whites, shadow blacks
+- **Audio**: Deep growls, bone cracking, forest rustling
+- **Volatility**: Intimidation (Steady mode with fear effects)
+
+**Gugwe** (Aggressive Sasquatch Theme):
+- **Theme**: Aggressive Sasquatch variant; burst windows after ties
+- **Locale**: North America
+- **Description**: Hairy giant, Sasquatch variant
+- **Stats**: Health 95, Power +2; Affinity: Forest (primary), Jungle (secondary)
+- **Signature Sets**: Forest Fury (default), Burst Hunter, Wild Strike
+- **Visual Identity**: Aggressive Sasquatch silhouette with burst effects
+- **Animations**: Aggressive movements, burst attacks
+- **Special Effects**: Forest bursts, wild strikes, fury animations
+- **Color Accents**: Forest greens, fury reds, wild browns
+- **Audio**: Aggressive growls, forest bursts, wild strikes
+- **Volatility**: Burst (Wild mode with tie-based spikes)
+
+**Big Grey Man** (Scottish Phantom Theme):
+- **Theme**: Scottish ridge phantom; punishes face-card reveals
+- **Locale**: Scotland
+- **Description**: Large, grey-haired humanoid in mountains
+- **Stats**: Health 100, Power +1; Affinity: Mountain (primary), Swamp (secondary)
+- **Signature Sets**: Ridge Phantom (default), Mist Walker, Highland Guardian
+- **Visual Identity**: Ethereal grey silhouette with phantom effects
+- **Animations**: Phantom movements, mist effects
+- **Special Effects**: Mist swirls, phantom phases, ridge echoes
+- **Color Accents**: Mist grays, phantom whites, ridge browns
+- **Audio**: Wind howls, phantom whispers, ridge echoes
+- **Volatility**: Phantom (Wild mode with face-card punishes)
+
+**Nyalmo** (Colossal Yeti Theme):
+- **Theme**: Colossal yeti; tie setups, punishing War! reveals
+- **Locale**: Himalayas
+- **Description**: Giant ape-man, Yeti variant
+- **Stats**: Health 125, Power +1; Affinity: Mountain (primary), Forest (secondary)
+- **Signature Sets**: Colossal Storm (default), War! Punisher, Summit Giant
+- **Visual Identity**: Massive Yeti silhouette with colossal effects
+- **Animations**: Colossal movements, mountain-shaking impacts
+- **Special Effects**: Mountain shakes, colossal impacts, War! punishes
+- **Color Accents**: Mountain grays, colossal browns, storm whites
+- **Audio**: Mountain rumbling, colossal impacts, storm winds
+- **Volatility**: Colossal (Wild mode with War! focus)
+
+**Mecheny** (Relentless Attrition Theme):
+- **Theme**: Relentless attrition; chip damage over time
+- **Locale**: Himalayas
+- **Description**: Yeti variant, large hairy entity
+- **Stats**: Health 110, Power +1; Affinity: Mountain (primary), Swamp (secondary)
+- **Signature Sets**: Relentless Grind (default), Attrition Master, Endurance King
+- **Visual Identity**: Relentless Yeti silhouette with attrition effects
+- **Animations**: Relentless movements, grinding attacks
+- **Special Effects**: Grinding effects, attrition markers, endurance boosts
+- **Color Accents**: Grind grays, attrition browns, endurance blues
+- **Audio**: Grinding sounds, relentless impacts, endurance breathing
+- **Volatility**: Attrition (Steady mode with chip damage)
+
+**Gin Sung** (Bear-Man Theme):
+- **Theme**: Bear-man; counterpunch windows, defensive strikes
+- **Locale**: Asia
+- **Description**: Bear-man, similar to Yeti
+- **Stats**: Health 115, Power +1; Affinity: Mountain (primary), Forest (secondary)
+- **Signature Sets**: Bear Counter (default), Defensive Strike, Mountain Bear
+- **Visual Identity**: Bear-like silhouette with counter effects
+- **Animations**: Bear movements, counter strikes
+- **Special Effects**: Bear strikes, counter windows, defensive shields
+- **Color Accents**: Bear browns, counter golds, defensive blues
+- **Audio**: Bear growls, counter impacts, defensive clangs
+- **Volatility**: Counter (Steady mode with defensive focus)
+
+**Orang Gadang** (Sumatran Giant Theme):
+- **Theme**: Sumatran giant; vine control, momentum chains
+- **Locale**: Sumatra
+- **Description**: Large orangutan-like humanoid
+- **Stats**: Health 95, Power +2; Affinity: Jungle (primary), Swamp (secondary)
+- **Signature Sets**: Canopy March (default), River Stride, Orang Charge
+- **Visual Identity**: Orangutan silhouette with vine effects
+- **Animations**: Orangutan movements, vine swinging
+- **Special Effects**: Vine swings, canopy rustling, river effects
+- **Color Accents**: Orangutan oranges, vine greens, river blues
+- **Audio**: Orangutan calls, vine rustling, river flowing
+- **Volatility**: Momentum (Wild mode with chain effects)
+
 #### **AI-Only Opponents (v1: 16)**
 
 **Mountain Territory AI**:
@@ -988,6 +1805,32 @@ Bigfoot War's visual design transforms the traditional card game interface into 
 **Jungle Territory AI**:
 - **Sisemite**: Cliff ambusher; +1 next rank on jungle chains
 - **Orang Mawas**: River chaser; frenzy after Clubs wins
+- **Ukumarzapai**: Bear-man; momentum chains and vine control
+- **Curinquean**: Large ape-like creature; territorial dominance
+- **Batutut**: Small hairy hominid; stealth and agility focus
+- **Jungli Admi**: Wild man of jungles; suit manipulation
+
+**Swamp Territory AI**:
+- **Ucu**: Sloth-primate; slow debuffing pushes
+- **Nasnas**: One-legged trickster; skip-turn feints
+- **Chemosit**: Large carnivore; bear-like aggression
+- **Wa'ab**: Hairy wildman; swamp mastery
+
+**Forest Territory AI**:
+- **Matlox**: PNW cannibal giant; slow, heavy swings
+- **Gugwe**: Aggressive Sasquatch variant; burst windows after ties
+- **Genoskwa**: Stone giant; armor-on-win cadence
+- **Maywas**: Hunter; suit peeks and snares
+- **Mogollon Monster**: Desert ridge variant; sand glare misreads
+- **Argopelter**: Arboreal creature; branch throwing attacks
+- **Siwil**: Hairy giant; forest guardian tactics
+
+**Additional Global AI**:
+- **Almas**: Non-human ape; Caucasus mountain tactics
+- **Barmanu**: Hairy humanoid; Pakistan mountain strategies
+- **Momo**: Hairy humanoid; Northeast India jungle tactics
+- **Yeren (Giant)**: Primate-like hominin; Chinese mountain dominance
+- **Yowie**: Large hairy humanoid; Australian outback tactics
 
 #### **Card Design (Slot-Style)**
 
@@ -1442,6 +2285,27 @@ Bigfoot War employs a hybrid monetization model that combines free-to-play acces
 - **Frequency**: Rotate every 30 seconds
 - **VIP Removal**: No banners for Pass holders
 
+#### **Event Bundle Monetization (ARPU Boost)**
+
+**Bundle Strategy**:
+- **Seasonal Collections**: 3-5 Warlord skins per bundle with exclusive themes
+- **Premium Pricing**: $7.99-$12.99 for complete collections (vs $2.99 individual skins)
+- **Limited Availability**: 7-14 day windows create urgency and FOMO
+- **Exclusive Content**: Bundle-only animations, card backs, and particle effects
+- **Cross-Promotion**: Bundle purchasers get early access to new Warlords
+
+**Bundle Types**:
+- **Territory Themes**: Forest/Mountain/Swamp/Jungle complete skin sets ($9.99)
+- **Seasonal Themes**: Spring/Summer/Fall/Winter collections ($7.99)
+- **Holiday Themes**: Christmas/Halloween/Valentine's special bundles ($12.99)
+- **Prestige Themes**: High-level achievement skins with exclusive effects ($14.99)
+
+**ARPU Impact**:
+- **Target**: Increase average revenue per user from $2-5 to $4-8
+- **Conversion**: Bundle purchasers show 3x higher retention rates
+- **Frequency**: Monthly bundle releases maintain engagement
+- **Upsell**: Bundle buyers more likely to purchase VIP subscriptions
+
 #### **Limited-Time Events and Sales**
 
 **Weekly Sales**:
@@ -1449,12 +2313,14 @@ Bigfoot War employs a hybrid monetization model that combines free-to-play acces
 - **Cosmetic Bundles**: Themed cosmetic collections
 - **Booster Packs**: Discounted temporary boosters
 - **VIP Trials**: 3-day free trials for Pass features
+- **Event Bundles**: Seasonal Bigfoot skins with exclusive animations ($4.99-$9.99)
 
 **Seasonal Events**:
 - **Double Gold Week**: 2x Gold earnings for 7 days
 - **Jackpot Festival**: Increased jackpot rates for 3 days
 - **Territory Showdown**: Bonus rewards in featured territory
 - **Warlord Spotlight**: Bonus rewards for featured Warlord
+- **Bigfoot Bundle Events**: Limited-time Warlord skin collections with themed animations and exclusive card backs ($7.99-$12.99)
 
 **Holiday Specials**:
 - **Black Friday**: 50% off all Gold packs
@@ -1505,10 +2371,10 @@ Bigfoot War employs a hybrid monetization model that combines free-to-play acces
 #### **Success Metrics**
 
 **Revenue Metrics**:
-- **ARPU**: $2-5 per paying user per month
-- **Conversion Rate**: 5-10% of players make purchases
-- **LTV**: $10-20 per paying user lifetime value
-- **Monthly Revenue**: $1,000-5,000 target
+- **ARPU**: $6-12 per paying user per month (boosted by event bundles and seasonal content)
+- **Conversion Rate**: 8-15% of players make purchases (increased with expanded content)
+- **LTV**: $25-50 per paying user lifetime value (increased with seasonal territories and Warlord expansions)
+- **Monthly Revenue**: $5,000-15,000 target (with seasonal bundles and territory expansions)
 
 **Engagement Metrics**:
 - **Session Length**: 3-6 minutes average (increased with wagering)
@@ -1641,6 +2507,54 @@ Test mode provides comprehensive testing capabilities for Bigfoot War's slot-ins
 - **Performance Tracking**: Continuous performance monitoring
 - **User Behavior Analysis**: Track player behavior and engagement patterns
 
+## Legal Requirements
+
+### **ACTUALLY REQUIRED Features (Legal Requirements)**
+
+**Data Protection and Privacy** (REQUIRED - GDPR/CCPA):
+- **Data Minimization**: Collect only necessary data for gameplay
+- **Consent Management**: Clear opt-in for data collection and marketing
+- **Right to Deletion**: Complete account and data deletion upon request
+- **Data Portability**: Export user data in standard formats
+- **Transparency**: Clear privacy policy and data usage explanations
+- **Security**: Encrypted data storage and transmission
+
+**Age Verification** (REQUIRED - Platform Policies):
+- **App Store Requirements**: Apple/Google require age verification for games with virtual currency
+- **13+ Rating**: Most virtual currency games require 13+ age rating
+- **Parental Controls**: Basic parental control options for underage users
+
+**Virtual Currency Disclosure** (REQUIRED - Platform Policies):
+- **Clear Terms**: Must clearly state Gold has no real-world value
+- **Purchase Disclosures**: Clear disclosure of in-app purchase mechanics
+- **No Gambling Claims**: Cannot claim Gold can be converted to real money
+
+### **PLATFORM REQUIREMENTS (App Store Policies)**
+
+**Apple App Store**:
+- **Age Rating**: 13+ for virtual currency games
+- **In-App Purchase Disclosure**: Clear disclosure of purchase mechanics
+- **No Real Money Gambling**: Cannot involve real money gambling
+- **Content Guidelines**: Must comply with App Store content guidelines
+
+**Google Play Store**:
+- **Age Rating**: Similar age rating requirements
+- **Purchase Policies**: Compliance with Google Play billing policies
+- **Content Policies**: Must comply with Google Play content policies
+
+### **JURISDICTION-SPECIFIC REQUIREMENTS**
+
+**Belgium/Netherlands** (Loot Box Regulations):
+- **Probability Disclosure**: Must disclose odds for any randomized rewards
+- **Age Restrictions**: Stricter age verification for games with randomized elements
+- **No Real Money**: Cannot involve real money gambling mechanics
+
+**EU GDPR** (Data Protection):
+- **Consent**: Clear consent for data collection
+- **Right to Deletion**: Users can delete their accounts and data
+- **Data Portability**: Users can export their data
+- **Transparency**: Clear privacy policy and data usage
+
 ## Conclusion
 
 Bigfoot War successfully transforms the traditional War card game into an engaging, slot-machine inspired experience that appeals to casual gamers and slot enthusiasts alike. By incorporating virtual wagering, enhanced luck mechanics, and progressive meters while maintaining the core War gameplay, the game creates a unique hybrid that offers both strategic depth and slot-like excitement.
@@ -1690,17 +2604,94 @@ Bigfoot War successfully transforms the traditional War card game into an engagi
 
 ### Future Expansion
 
-**Content Roadmap**:
-- **Seasonal Updates**: Quarterly new Warlords, territories, and themes
+#### **Content Roadmap (6-Month Plan)**
+
+**Month 1-2: Jungle Pod Release**
+- **New Playable Warlords**: Ukumarzapai (Bear-Man), Curinquean (Large Ape)
+- **New AI Opponents**: Batutut, Jungli Admi, Cer Ra Ca Wa
+- **Territory Expansion**: Enhanced Jungle rules with vine mastery
+- **Seasonal Territory**: Spring Blooming Forest (March-May)
+- **Cosmetic Bundle**: Jungle-themed skins and animations ($7.99)
+
+**Month 3: Mountain Pod Focus**
+- **New Playable Warlords**: Nyalmo (Colossal Yeti), Mecheny (Attrition Master)
+- **New AI Opponents**: Almas, Barmanu, Vedi
+- **Territory Expansion**: Enhanced Mountain rules with glacial mastery
+- **Seasonal Territory**: Summer Scorched Desert (June-August)
+- **Relic Variants**: Mountain Fury Mk II, Glacier Breaker Mk III
+
+**Month 4: Swamp Pod Focus**
+- **New Playable Warlords**: Chemosit (Large Carnivore), Wa'ab (Hairy Wildman)
+- **New AI Opponents**: Kikomba, Mahalu, Momo
+- **Territory Expansion**: Enhanced Swamp rules with debuff mastery
+- **Seasonal Territory**: Autumn Harvest Fields (September-November)
+- **Special Event**: Lunar Eclipse Caverns (Monthly)
+
+**Month 5: PNW Pod Focus**
+- **New Playable Warlords**: Matlox (Cannibal King), Gugwe (Forest Fury)
+- **New AI Opponents**: Argopelter, Siwil, Nuk-Luk
+- **Territory Expansion**: Enhanced Forest rules with cannibal mastery
+- **Seasonal Territory**: Winter Frozen Tundra (December-February)
+- **Board Frame Set**: PNW-themed battle frames ($9.99)
+
+**Month 6: Mixed Pod & Balance**
+- **New Playable Warlords**: Yeren (Giant), Yowie (Australian Giant)
+- **New AI Opponents**: Abnauayu, Afonya, Gul-Biavan
+- **Territory Expansion**: All territories get enhanced rules
+- **Special Event**: Thunderstorm Peaks (Weekly Weather Event)
+- **Analytics-Driven Balance**: Data-driven gameplay improvements
+
+#### **Long-Term Expansion (12-Month Plan)**
+
+**Year 1 Goals**:
+- **Total Playable Warlords**: 30+ (from current 10)
+- **Total AI Opponents**: 50+ (from current 16)
+- **Territory Variants**: 12+ (4 base + 4 seasonal + 4 special events)
+- **Signature Sets**: 150+ unique sets across all Warlords
+- **Relic Variants**: 50+ unique Relics with Mk II/III variants
+
+**Regional Expansion**:
+- **Arctic Territories**: Polar-themed territories with ice mastery
+- **Desert Territories**: Sand-themed territories with heat mastery
+- **Coastal Territories**: Ocean-themed territories with tide mastery
+- **Urban Territories**: City-themed territories with stealth mastery
+
+**Advanced Features**:
 - **Tournament System**: Weekly competitive events with Gold prizes
 - **Social Features**: Friend challenges and shared leaderboards
 - **Advanced Analytics**: Deep insights for VIP players
+- **Cross-Platform**: Unified progression across all platforms
 
 **Platform Expansion**:
 - **Mobile Apps**: Native iOS and Android applications
 - **Desktop Client**: Enhanced desktop experience
-- **Cross-Platform**: Unified progression across all platforms
+- **Console Ports**: PlayStation, Xbox, Nintendo Switch
 - **Accessibility**: Enhanced support for players with disabilities
+
+#### **Content Creation Pipeline**
+
+**Warlord Development Process**:
+1. **Lore Research**: Deep dive into cryptid mythology and regional folklore
+2. **Visual Design**: Create unique silhouette and animation style
+3. **Signature Sets**: Design 3-4 unique card sets with clear identity
+4. **Audio Design**: Record unique sounds and territorial ambience
+5. **Balance Testing**: Extensive playtesting for fair gameplay
+6. **Release**: Monthly pod releases with themed bundles
+
+**Territory Development Process**:
+1. **Theme Research**: Study regional environments and weather patterns
+2. **Rule Design**: Create unique gameplay mechanics and bonuses
+3. **Visual Identity**: Design distinct visual style and particle effects
+4. **Audio Design**: Create immersive territorial soundscapes
+5. **Balance Testing**: Ensure territory provides unique strategic value
+6. **Release**: Seasonal and special event territories
+
+**Quality Assurance**:
+- **Playtesting**: 100+ hours of testing per new Warlord
+- **Balance Validation**: Win rate analysis across all difficulty tiers
+- **Visual Polish**: Animation timing and visual feedback optimization
+- **Audio Integration**: Sound design and territorial ambience testing
+- **Performance Testing**: Mobile and desktop optimization
 
 ### Content Authoring Tables and Examples
 
@@ -1860,7 +2851,96 @@ Author Relics as simple, 1‑sentence effects. Relics occupy Joker slots; some v
 }
 ```
 
-Bigfoot War represents a successful fusion of traditional card game mechanics with modern slot-inspired engagement systems. The game maintains the strategic appeal of War while adding the excitement and progression systems that keep players coming back. With its focus on fairness, accessibility, and engaging monetization, Bigfoot War is positioned to capture both casual gamers and slot enthusiasts in the growing digital card game market.
+#### **Comprehensive Bigfoot Lore Database**
+
+**Global Cryptid Roster (59+ Named Entities)**:
+
+**North American Cryptids**:
+- **Sasquatch**: Pacific Northwest rock-throwing giant
+- **Skunk Ape**: Florida bog trickster with foul debuffs
+- **Grassman**: Ohio stalker with chase cadence
+- **Matlox**: PNW cannibal giant with intimidation tactics
+- **Gugwe**: Aggressive Sasquatch variant with burst windows
+- **Genoskwa**: Stone giant with armor-on-win cadence
+- **Maywas**: Hunter with suit peeks and snares
+- **Mogollon Monster**: Desert ridge variant with sand glare
+- **Argopelter**: Arboreal creature with branch throwing
+- **Siwil**: Hairy giant with forest guardian tactics
+- **Nuk-Luk**: Small bushman-like creature from Yukon
+
+**Himalayan/Asian Cryptids**:
+- **Yeti**: Himalayan ice and healing master
+- **Dzu-Teh**: Large bear-like Yeti variant
+- **Nyalmo**: Colossal yeti with War! focus
+- **Mecheny**: Relentless attrition master
+- **Gin Sung**: Bear-man with counterpunch windows
+- **Didi**: Tall ape-like humanoid
+- **Vedi**: Yeti variant with glacial tactics
+- **Barmanu**: Hairy humanoid from Pakistan
+- **Momo**: Hairy humanoid from Northeast India
+- **Yeren (Giant)**: Primate-like hominin from China
+- **Almas**: Non-human ape from Caucasus
+- **Abnauayu**: Almas variant from Asia/Caucasus
+- **Afonya**: Hairy wildman from Russia
+- **Germakchi**: Hairy wildman from Central Asia
+- **Gul-Biavan**: Non-human ape from Asia/Caucasus
+
+**South American Cryptids**:
+- **Mapinguary**: Amazon guardian with debuff mastery
+- **Orang Gadang**: Sumatran giant with vine control
+- **Ukumarzapai**: Bear-man with momentum chains
+- **Curinquean**: Large ape-like creature
+- **Cer Ra Ca Wa**: Giant humanoid similar to Mapinguary
+- **Fating'ho**: Forest-dwelling humanoid
+- **Ine Weu**: Hairy humanoid similar to Mapinguary
+
+**African Cryptids**:
+- **Agogwe**: Small reddish-haired humanoid from East Africa
+- **Chemosit**: Large carnivore bear-like creature
+- **Kikomba**: Ape-man similar to Agogwe
+- **Tano**: Giant hairy humanoid
+- **Wa'ab**: Hairy wildman with swamp mastery
+
+**European Cryptids**:
+- **Big Grey Man**: Scottish ridge phantom
+- **Barbegazi**: Alpine skimmer with armor chips
+- **Hibagon**: Hot-tempered ape from Japan
+
+**Oceanic Cryptids**:
+- **Yowie**: Large hairy humanoid from Australia
+- **Junjudee**: Small hairy humanoid related to Yowie
+- **Moehau**: Hairy man of the mountains from New Zealand
+
+**Southeast Asian Cryptids**:
+- **Kapre**: Tree-dwelling giant from Philippines
+- **Orang Pendek**: Small hominid from Sumatra
+- **Orang Mawas**: Ape or hominid from Malaysia
+- **Batutut**: Small hairy hominid from Vietnam/Laos
+- **Sisemite**: Hairy humanoid from Central America
+
+**Middle Eastern Cryptids**:
+- **Nasnas**: One-legged trickster with skip-turn feints
+- **Ucu**: Sloth-primate with slow debuffing pushes
+
+**Arctic Cryptids**:
+- **Arulataq**: Giant hairy humanoid from Inuit lore
+
+**Regional Territory Themes**:
+- **Pacific Northwest**: Forest guardians, rock throwing, cannibal tactics
+- **Himalayas**: Ice mastery, glacial punishes, mountain dominance
+- **Amazon Basin**: Jungle control, vine mastery, debuff tactics
+- **African Savannah**: Stealth mastery, ambush windows, counter strikes
+- **Southeast Asia**: Tree mastery, smoke cover, momentum chains
+- **Scottish Highlands**: Phantom tactics, mist mastery, ridge dominance
+- **Australian Outback**: Survival tactics, endurance mastery, territorial control
+
+**Cultural Integration**:
+- **Indigenous Lore**: Respectful integration of Native American, Inuit, and Aboriginal cryptid traditions
+- **Regional Folklore**: Authentic representation of local legends and cultural significance
+- **Mythological Accuracy**: Research-backed representation of cryptid characteristics and behaviors
+- **Educational Value**: Players learn about global cryptid lore while enjoying gameplay
+
+Bigfoot War represents a successful fusion of traditional card game mechanics with modern slot-inspired engagement systems. The game maintains the strategic appeal of War while adding the excitement and progression systems that keep players coming back. With its focus on fairness, accessibility, engaging monetization, and comprehensive Bigfoot lore spanning 59+ global cryptids, Bigfoot War is positioned to capture both casual gamers and slot enthusiasts in the growing digital card game market.
 
 ## Technical Architecture
 
