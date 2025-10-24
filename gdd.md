@@ -1,20 +1,24 @@
 # Bigfoot War: Game Design Document
  
 **Genre**: Digital Card Game, Slot-Inspired, War-Based  
-**Platform**: Web (Node.js backend, HTML5 frontend)  
+**Platform**: Web (Node.js backend, HTML5 frontend)
 **Target Audience**: Casual gamers, slot machine players, card game enthusiasts (13+)  
 **Session Length**: 1-6 minutes (with auto-resolution options)  
 **Core Loop**: Choose Warlord → Bet Gold → Pull Lever (Auto-Reveal) → Collect Amplified Rewards → Build Luck Meters → Unlock Higher Bets
 
 ## Summary
+**Bigfoot War** is a slot-machine inspired digital card battler that transforms the classic War card game into an engaging, luck-driven experience. 
 
-Bigfoot War is a slot-machine inspired digital card battler that transforms the classic War card game into an engaging, luck-driven experience. Players choose Bigfoot Warlords, wager virtual Gold currency, and pull a lever to reveal cards in rapid-fire duels that feel like slot spins. The game emphasizes perceived control through wagering, near-miss mechanics, and progressive luck meters while maintaining the core War card game mechanics underneath.
+Players choose Bigfoot Warlords, wager virtual Gold currency, and pull a lever to reveal cards in rapid-fire duels that feel like slot spins. 
 
-**Game Loop and Game Rules**
+The game emphasizes perceived control through wagering, near-miss mechanics, and progressive luck meters while maintaining the core War card game mechanics underneath.
 
-#### **Core Game Loop (Step-by-Step)**
+## Game Loop and Game Rules
 
-**Phase 1: Pre-War Setup**
+### Core Game Loop (Step-by-Step)
+
+#### Phase 1: Pre-War Setup
+
 1. **Mode Selection**: Player chooses Practice Mode (new players) or Normal Mode (experienced players)
 2. **Warlord Selection**: Player browses carousel of available Bigfoot Warlords (Sasquatch, Yeti, Mapinguary, Agogwe, etc.), each with unique visual themes, signature abilities, and volatility preferences
 3. **Territory Choice**: Player selects one of four territories (Forest/Hearts, Mountain/Spades, Swamp/Diamonds, Jungle/Clubs) and difficulty tier (I/II/III)
@@ -22,7 +26,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 5. **Wagering Decision**: Player chooses bet amount (Low: 10 Gold/1.5x, Medium: 50 Gold/2x, High: 200 Gold/3-5x, All-In: 1000+ Gold/10x) and volatility mode (Steady/Wild) - Practice Mode uses Practice Gold (Copium) with no real risk
 6. **AI Opponent Assignment**: System selects appropriate AI Warlord based on territory tier and player level
 
-**Phase 2: War Initialization**
+#### Phase 2: War Initialization
 
 7. **Deck Generation**: System creates 54-card deck (52 Natural cards + 2 Relic slots) with Warlord cards replacing specific Natural cards under guardrails
 8. **Seed Creation**: Deterministic seed generated from secure inputs (HMAC(userId, warId|timestamp)) for reproducible results
@@ -30,7 +34,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 10. **Initial State**: Both players start with full health, empty meters, and shuffled decks
 11. **War Board Display**: Game transitions to main gameplay screen with territory-themed background
 
-**Phase 3: Core War Loop**
+#### Phase 3: Core War Loop
 
 12. **Lever Pull**: Player presses "Pull Lever" button (primary action) triggering simultaneous card reveals
 13. **Card Reveal**: Both player and AI cards flip simultaneously (280-320ms spring animation) with territory-themed effects
@@ -40,7 +44,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 17. **Meter Updates**: Fortune Meter (+1 on loss, +2 on War! loss), Epic Meter (+1 per Spoils), Wager Streak Meter (+1 per Gold wagered)
 18. **Health Updates**: Damage applied to loser's health bar with segmented tick marks and territory-themed animations
 
-**Phase 4: War! Resolution (Tie Handling)**
+#### Phase 4: War! Resolution (Tie Handling)
 
 19. **Tie Detection**: When both cards have same rank, War! sequence triggers
 20. **War! Animation**: Three face-down cards stack rapidly (80ms each) + explosive 4th card reveal with marquee lights and siren sounds
@@ -48,7 +52,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 22. **War! Effects**: Special War!-triggered effects activate (bonus damage, armor, peeks, etc.)
 23. **Card Disposal**: All War! cards go to respective discard piles (no capture)
 
-**Phase 5: Round Completion**
+#### Phase 5: Round Completion
 
 24. **Proc System**: Random special effects trigger (15-25% base rate, +5-15% with higher bets)
 25. **Near-Miss Detection**: Loss by 1-2 ranks triggers partial payout (0.5x bet) + Fortune Meter boost
@@ -56,14 +60,14 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 27. **Meter Triggers**: Check if Fortune (6), Epic (full), or Wager Streak (20) meters trigger bonuses
 28. **Relic Activation**: Active Relics trigger based on their conditions (next win, next loss, on reveal, per round, per Spoils, etc.) - Relics are NOT drawn as cards but exist as persistent slot bonuses
 
-**Phase 6: War Continuation Decision**
+#### Phase 6: War Continuation Decision
 
 29. **Health Check**: If either player's health reaches 0, war ends
 30. **Deck Check**: If either deck empties, reshuffle occurs with suit pity timer (surface territory suit cards)
 31. **Continue Loop**: If both players alive and cards available, return to Phase 3
 32. **Nudge Option**: Player can spend 20 Gold to adjust card rank ±1 (once per war, cannot turn loss to win)
 
-**Phase 7: War Conclusion**
+#### Phase 7: War Conclusion
 
 33. **Victory Determination**: Player wins if AI health reaches 0, loses if player health reaches 0
 34. **Gold Payout**: Calculate Gold won = (bet × multiplier) + base rewards + bonuses - Gold wagered (Practice Mode: Practice Gold only (Copium))
@@ -71,7 +75,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 36. **Spoils Generation**: Spoils earned based on performance (1-10 Spoils per war)
 37. **Progression Updates**: Update level XP, Warlord Mastery XP, Territory Stank XP, VIP points
 
-**Phase 8: Post-War Results**
+#### Phase 8: Post-War Results
 
 38. **Results Screen**: Display verdict banner with territory-themed VFX (confetti/leaf/ice/swamp/jungle)
 39. **Spoils Conversion**: Animated bar converting Spoils to XP (up to 50 XP cap) + bonus rolls (1 per 5 Spoils)
@@ -80,7 +84,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 42. **Gold Summary**: Net Gold result with wagering efficiency and pity protection usage (Practice Mode: Practice Gold only (Copium))
 43. **Progression Display**: Territory Stank bar increase, Warlord Mastery progress, level progress, VIP point accumulation
 
-**Phase 9: Post-War Decisions**
+#### Phase 9: Post-War Decisions
 
 44. **Rematch Options**: 
     - "Rematch (same seed)" - exact replay with repetition decay warnings
@@ -92,9 +96,9 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 46. **Collection Management**: Open Knapsack to view Specimen details and collection progress
 47. **Practice Mode Check**: If in Practice Mode, check exit conditions (3 wars completed, Level 2 reached, or manual exit)
 
-#### **Detailed Game Rules**
+### Detailed Game Rules
 
-**Card System Rules**
+#### Card System Rules
 
 - **Deck Composition**: Fixed 54-card structure (52 Natural cards + 2 Joker slots occupied by Relics)
 - **Card Ranks**: Ace high (14), King (13), Queen (12), Jack (11), 10-2 face value
@@ -103,9 +107,9 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 - **Relic Cards**: Occupy Joker slots with powerful one-sentence effects
 - **Suit Themes**: Hearts (healing), Spades (armor), Diamonds (debuffs), Clubs (momentum)
 
-**Relic Card Mechanics (Critical Clarification)**
+#### Relic Card Mechanics
 
-- **Deck Integration**: Relic cards are NOT drawn during normal card reveals - they exist as persistent effects in the 2 Joker slots
+- **Deck Integration**: Relic cards are not drawn during normal card reveals - they exist as persistent effects in the 2 Joker slots
 - **Activation Triggers**: Relics activate based on specific trigger windows (next win, next loss, on reveal, per round, per Spoils, etc.)
 - **Hold Mechanics**: Players can "hold" a Relic (free via loyalty tiers) to lock it for next reveal - this prevents it from being consumed until optimal timing
 - **Visual Indicators**: Active Relics display as glowing icons with "locked" indicators when held
@@ -114,7 +118,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 - **Late-Game Relics**: Additional Relics (up to 2 extra) may replace mid-band Natural cards under guardrails
 - **No Normal Draws**: Relics never appear as face-up cards during regular card reveals - they function as slot machine bonuses
 
-**Wagering Rules**
+#### Wagering Rules
 
 - **Bet Tiers**: Low (10 Gold/1.5x), Medium (50 Gold/2x), High (200 Gold/3-5x), All-In (1000+ Gold/10x)
 - **Bet Caps**: Level 1-5 (max 100 Gold), Level 6-10 (max 500 Gold), Level 11+ (max 2000 Gold)
@@ -122,7 +126,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 - **Pity Protection**: After 2 losses, next bet gets 50% insurance
 - **Session Limits**: Maximum 20% of current Gold loss per session
 
-**Territory Rules**
+#### Territory Rules
 
 - **Tier Scaling**: Tier I (base), Tier II (+25% XP, +1 Power, +10% proc rates), Tier III (+75% XP, +2 Power, +20% proc rates)
 - **Suit Affinities**: Forest (Hearts), Mountain (Spades), Swamp (Diamonds), Jungle (Clubs)
@@ -130,7 +134,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 - **Weather Effects**: Daily modifiers affecting rules and visual effects
 - **Stank Progression**: XP track with scent ranks I-V (100/300/600/1000/1500 XP)
 
-**Luck and Meter Rules**
+#### Luck and Meter Rules
 
 - **Fortune Meter**: Fills on losses (+1 round loss, +2 War! loss, +1 tie loss, +2 bet loss), triggers at 6 for guaranteed Lucky Draw or Double Damage
 - **Epic Meter**: Fills on Spoils (+1 per Spoils, +3 at 3-win streak, +5 at 5-win streak), triggers for Epic War with +50% proc rates
@@ -138,14 +142,14 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 - **Proc Rates**: Base 15-25% chance per reveal, +5-15% with higher bets
 - **Jackpot Triggers**: Deterministic combos (matching suits + War! win) + 1% random chance
 
-**Progression Rules**
+#### Progression Rules
 
 - **Leveling**: XP thresholds increase by level (150 + 50×(level-1) for levels 1-10, 600 + 100×(level-10) for levels 11-20)
 - **Mastery Ranks**: Warlord-specific XP earned through themed gameplay (I-V ranks)
 - **VIP Tiers**: Based on total Gold wagered (Bronze: 0-5k, Silver: 5k-15k, Gold: 15k-50k, Platinum: 50k+)
 - **Unlock Schedule**: New Warlords every 3 levels, territories every 2-3 levels, bet caps every 5 levels
 
-**Special Effect Rules**
+#### Special Effect Rules
 
 - **Trigger Windows**: On reveal, on win, on loss, on tie, on War! win, after tie
 - **Effect Caps**: Stun/Skip ≤1 per war average, Debuff -1 resolves once, Armor/Heal +1 to +2
@@ -153,7 +157,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 - **Resolve Once**: Some effects marked to prevent multiple activations
 - **Visual Feedback**: All effects have clear visual and audio feedback
 
-**Auto-Resolution Rules**
+#### Auto-Resolution Rules
 
 - **Quick Play**: Standard 1-3 minute sessions with full control
 - **Auto-War Mode**: Simulate 5-10 rounds instantly, show highlights only (wins, procs, ties, jackpots)
@@ -161,7 +165,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 - **Intervention**: Optional "nudge" button available mid-simulation
 - **Rewards**: Same earning potential as manual play
 
-**Practice Mode Rules**
+#### Practice Mode Rules
 
 - **Practice Gold (Copium)**: Separate currency system - cannot be lost or converted to real Gold
 - **Full Wagering**: All bet tiers available (Low/Medium/High/All-In) with no real risk
@@ -172,7 +176,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 - **No Real Gold**: Cannot earn or lose real Gold currency in Practice Mode
 - **Feature Access**: Access to all unlocked Warlords, territories, and Signature Sets
 
-**Enhanced Perceived Control Rules**
+#### Enhanced Perceived Control Rules
 
 - **Nudge Sources**: Basic (20 Gold), Free Daily (1-3/day), VIP (unlimited), Rewarded Ads, Mastery (+1 per Rank II+ Warlord)
 - **Advanced Nudges**: Predictive (50 Gold + peek), Combo (escalating costs), Emergency (free after 3 losses)
@@ -182,7 +186,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 - **Time Windows**: Extended nudge windows during War! sequences (3 seconds)
 - **Control Rewards**: Skill recognition, efficiency bonuses, and achievement milestones
 
-**Tournament Rules**
+#### Tournament Rules
 
 - **Entry Fees**: Gold-based entry fees (200-1000 Gold depending on tournament type)
 - **Scoring**: Based on Gold wagered, Gold won, wars played, win rate
@@ -190,7 +194,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 - **Rewards**: Exclusive cosmetics, Gold prizes, prestige titles
 - **Spectator Mode**: Watch other players (VIP feature)
 
-**Monetization Rules**
+#### Monetization Rules
 
 - **Free-to-Play Core**: All wars, Warlords, and territories accessible without payment
 - **Gold Earning**: Unlimited through gameplay with soft daily caps
@@ -198,9 +202,9 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 - **No Pay-to-Win**: All purchases provide convenience or cosmetics only
 - **Advertising**: Rewarded ads (+100-200 Gold), optional interstitials
 
-**Game Flows**
+### Game Flows
 
-#### **Main Game Flow**
+#### Main Game Flow
 
 **1. Lobby Screen (Main Menu)**
 - **Screen Elements**: Warlord carousel, Territory row, Active Set panel, Betting interface, Primary CTA
@@ -274,7 +278,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
   - Level/Mastery progression
   - Return to Lobby or new War
 
-#### **Alternative Game Flows**
+#### Alternative Game Flows
 
 **Practice Mode Flow (New Player Onboarding)**
 - **Entry**: Tap "Practice Mode" button in Lobby (prominent for new players)
@@ -320,7 +324,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 - **Rewards**: Exclusive cosmetics, Gold prizes, prestige titles
 - **Outcome**: Tournament completion with ranking rewards
 
-#### **Progression Flows**
+#### Progression Flows
 
 **Level-Up Flow**
 - **Trigger**: XP threshold reached
@@ -353,7 +357,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
   - Platinum: Personal boosters, priority support, exclusive events
 - **Outcome**: Enhanced gameplay experience
 
-#### **Special Event Flows**
+#### Special Event Flows
 
 **Daily Rewards Flow**
 - **Entry**: Login streak maintained
@@ -373,7 +377,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 - **Progression**: New content unlockable through play
 - **Outcome**: Fresh content and engagement
 
-#### **Monetization Flows**
+#### Monetization Flows
 
 **Gold Purchase Flow**
 - **Entry**: Tap Gold counter or purchase button
@@ -396,7 +400,7 @@ Bigfoot War is a slot-machine inspired digital card battler that transforms the 
 - **Item Delivery**: Immediate cosmetic application
 - **Outcome**: Enhanced visual experience
 
-#### **Error and Edge Case Flows**
+#### Error and Edge Case Flows
 
 **Connection Loss Flow**
 - **Detection**: Network connectivity lost
@@ -435,7 +439,7 @@ The game maintains Bigfoot theming with Warlords as slot themes, territories as 
 
 Bigfoot War transforms the traditional War card game into a slot-machine experience through streamlined reveals, virtual wagering, and luck-driven progression. The core War mechanics remain intact but are presented as rapid-fire "spins" with amplified excitement.
 
-#### **Lever-Based Gameplay (Slot Machine Metaphor)**
+#### Lever-Based Gameplay (Slot Machine Metaphor)
 
 **Primary Action**: Single "Pull Lever" button replaces manual card draws
 - **Simultaneous Reveals**: Both player and AI cards flip at the same time, like slot reels stopping
@@ -453,7 +457,7 @@ Bigfoot War transforms the traditional War card game into a slot-machine experie
 - **Visual**: Marquee lights, siren sounds, screen pulse effect
 - **All cards**: Go to respective discard piles (no capture)
 
-#### **Gold Virtual Currency System**
+#### Gold Virtual Currency System
 
 **Core Concept**: Gold serves as the primary wagering currency, earned freely through gameplay and purchasable for convenience. It creates perceived risk without real money loss.
 
@@ -482,7 +486,7 @@ Bigfoot War transforms the traditional War card game into a slot-machine experie
 - Wars always free to play; wagering amplifies rewards
 - Pity protections prevent frustration (refunds, insurance)
 
-#### **Wagering System (Risk-Reward Core)**
+#### Wagering System (Risk-Reward Core)
 
 **Pre-War Betting**: Players wager Gold before each war to multiply outcomes, creating slot-like tension and excitement.
 
@@ -515,7 +519,7 @@ Bigfoot War transforms the traditional War card game into a slot-machine experie
 - **Insurance**: Automatic refunds after consecutive losses
 - **Session Caps**: Maximum Gold loss per session (20% of current Gold)
 
-#### **Enhanced Luck Elements**
+#### Enhanced Luck Elements
 
 **Proc System**: Boosted randomness with slot-like excitement
 - **Base Proc Rates**: 15-25% chance per reveal for special effects
@@ -535,9 +539,9 @@ Bigfoot War transforms the traditional War card game into a slot-machine experie
 - **Cascading Wins**: After a win, auto-reveal another round free
 - **Luck Pity**: After 5 losses, guarantee proc next reveal
 
-#### **Progressive Luck Meters**
+#### Progressive Luck Meters
 
-**Fortune Meter** (Enhanced):
+**Fortune Meter**:
 - **Fill Sources**: +1 on round loss, +2 on War! loss, +1 on any tie loss, +2 on bet loss
 - **Full Trigger**: At 6, guarantees Lucky Draw or Double Damage within 2 rounds
 - **Visual**: Halo around Draw lever brightens as it fills
@@ -549,16 +553,18 @@ Bigfoot War transforms the traditional War card game into a slot-machine experie
 - **Visual**: Segmented ring with pulsing animation at 95%+
 - **Reset**: After Epic War completion
 
-**Wager Streak Meter** (New):
+**Wager Streak Meter**:
 - **Fill Sources**: +1 per Gold wagered, +2 per win with bet, +5 per jackpot
 - **Full Trigger**: At 20, unlocks "Super Spin" with guaranteed rare Specimens
 - **Visual**: Progress bar with sparkle effects
 - **Reset**: After Super Spin or 3 consecutive losses
 
-#### **Auto-Resolution Modes**
+#### Auto-Resolution Modes
 
 **Quick Play**: Standard 1-3 minute sessions with full control
+
 **Auto-War Mode**: 
+
 - Simulate 5-10 rounds instantly
 - Show only highlights: wins, procs, ties, jackpots
 - Perfect for mobile, busy players
@@ -566,14 +572,16 @@ Bigfoot War transforms the traditional War card game into a slot-machine experie
 - Optional "nudge" intervention mid-simulation
 
 **Speed Settings**:
+
 - **Instant**: 0.5 second reveals (for experienced players)
 - **Fast**: 1-2 second reveals (default)
 - **Standard**: 3-4 second reveals (full animations)
 - **Cinematic**: 5+ second reveals (maximum spectacle)
 
-#### **Enhanced Perceived Control System**
+#### Perceived Control System
 
 **Expanded Nudge System**:
+
 - **Basic Nudges**: Spend 20 Gold to adjust card rank ±1 (once per war, cannot turn loss to win)
 - **Free Daily Nudges**: 1-3 free nudges per day via daily rewards and login streaks
 - **VIP Nudges**: Unlimited nudges for Gold/Platinum Pass holders
@@ -583,6 +591,7 @@ Bigfoot War transforms the traditional War card game into a slot-machine experie
 - **Territory Nudges**: Each territory offers unique nudge bonuses (see Territory Volatility below)
 
 **Advanced Control Mechanics**:
+
 - **Predictive Nudges**: Spend 50 Gold to peek next 2 cards and choose which to nudge
 - **Strategic Holds**: Hold up to 2 Relics simultaneously (VIP feature)
 - **Timing Windows**: Extended nudge windows during War! sequences (3-second window)
@@ -592,6 +601,7 @@ Bigfoot War transforms the traditional War card game into a slot-machine experie
 **Territory-Based Volatility Control**:
 
 **Forest Territory (Hearts - Steady Volatility)**:
+
 - **Volatility Modifier**: Reduces Wild mode volatility by 25%, increases Steady mode consistency
 - **Nudge Bonus**: Forest nudges cost 15 Gold (25% discount) and have +1 rank adjustment range
 - **Weather Control**: 
@@ -601,6 +611,7 @@ Bigfoot War transforms the traditional War card game into a slot-machine experie
 - **Stank Rewards**: Rank III unlocks "Forest Whisper" - peek next card before nudging
 
 **Mountain Territory (Spades - Defensive Volatility)**:
+
 - **Volatility Modifier**: Reduces loss penalties by 30%, increases armor-based control
 - **Nudge Bonus**: Mountain nudges grant +1 armor when used on Spades cards
 - **Weather Control**:
@@ -610,6 +621,7 @@ Bigfoot War transforms the traditional War card game into a slot-machine experie
 - **Stank Rewards**: Rank IV unlocks "Mountain Echo" - nudge effects persist for 2 rounds
 
 **Swamp Territory (Diamonds - Control Volatility)**:
+
 - **Volatility Modifier**: Increases tie rate by 15%, more War! opportunities for skilled players
 - **Nudge Bonus**: Swamp nudges can convert losses to ties (once per war)
 - **Weather Control**:
@@ -619,6 +631,7 @@ Bigfoot War transforms the traditional War card game into a slot-machine experie
 - **Stank Rewards**: Rank V unlocks "Swamp Mastery" - unlimited tie-conversion nudges
 
 **Jungle Territory (Clubs - Aggressive Volatility)**:
+
 - **Volatility Modifier**: Increases Wild mode multipliers by 20%, higher risk/reward
 - **Nudge Bonus**: Jungle nudges can trigger "Frenzy" effects (+2 rank adjustment)
 - **Weather Control**:
@@ -628,6 +641,7 @@ Bigfoot War transforms the traditional War card game into a slot-machine experie
 - **Stank Rewards**: Rank II unlocks "Jungle Instinct" - nudge success rate +25%
 
 **Dynamic Volatility System**:
+
 - **Territory Affinity**: Warlords gain volatility bonuses in their primary territories
 - **Weather Synergy**: Certain weather + Warlord combinations unlock special nudge effects
 - **Time-Based Control**: Nudges become cheaper during "Golden Hours" (daily 2-hour windows)
@@ -635,13 +649,14 @@ Bigfoot War transforms the traditional War card game into a slot-machine experie
 - **Community Events**: Server-wide volatility modifiers during special events
 
 **Perceived Control Rewards**:
+
 - **Skill Recognition**: Players who use nudges effectively gain "Control Master" titles
 - **Efficiency Bonuses**: Optimal nudge usage grants bonus Gold and XP
 - **Social Features**: Share nudge strategies and success stories
 - **Analytics**: Detailed nudge usage statistics for improvement
 - **Achievements**: Unlock cosmetics for nudge mastery milestones
 
-#### **Detailed Card System (Slot-Inspired)**
+#### Detailed Card System (Slot-Inspired)
 
 **Auto-Generated Decks**: Decks created per session with minimal player input
 - **Special Density**: 10-15% special cards for quick readability
@@ -661,48 +676,41 @@ Warlord Cards are curated replacements for specific Natural cards that define a 
 
 **Example Warlord Cards by Rank Band**:
 
-**Face Cards (J-A) - Signature Identity**:
-- **Ace of Spades (Sasquatch)** – "Rock Throw" – on win: stun enemy next turn (≤1/war) + rock animation
-- **King of Hearts (Yeti)** – "Glacier Mend" – on win: heal +3 + ice crystal effect
-- **Queen of Diamonds (Mapinguary)** – "Swamp Mist" – on reveal (resolve once): enemy next card −1 rank + fog effect
-- **Jack of Clubs (Agogwe)** – "Stealth Strike" – on win: enemy skips next turn (≤1/war) + shadow strike
+| Rank Band | Card | Warlord | Card Name | Trigger | Effect | Visual |
+|---|---|---|---|---|---|---|
+| Face Cards (J-A) | Ace of Spades | Sasquatch | Rock Throw | On win | Stun enemy next turn (≤1/war) | Rock animation |
+| Face Cards (J-A) | King of Hearts | Yeti | Glacier Mend | On win | Heal +3 | Ice crystal effect |
+| Face Cards (J-A) | Queen of Diamonds | Mapinguary | Swamp Mist | On reveal (once) | Enemy next card -1 rank | Fog effect |
+| Face Cards (J-A) | Jack of Clubs | Agogwe | Stealth Strike | On win | Enemy skips next turn (≤1/war) | Shadow strike |
+| High Cards (10-7) | 10 of Spades | Yeti | Ice Carapace | On win | Gain +1 armor (persists 1 hit) | Ice shield |
+| High Cards (10-7) | 9 of Clubs | Sasquatch | River Push | On win | +1 next-draw rank | Water current |
+| High Cards (10-7) | 8 of Diamonds | Mapinguary | Silt Veil | After a tie | Enemy next card -1 rank (once) | Silt effect |
+| High Cards (10-7) | 7 of Hearts | Yeti | Creek Aid | On win | Heal +1 | Water splash |
+| Mid Cards (6-4) | 6 of Clubs | Agogwe | Track Prey | On win | Peek enemy next suit | Tracking effect |
+| Mid Cards (6-4) | 5 of Spades | Sasquatch | Boulder Toss | On win | +2 damage | Boulder impact |
+| Mid Cards (6-4) | 4 of Hearts | Yeti | Warmth | On win | Heal +2 over 2 rounds | Warmth glow |
+| Low Cards (3-2) | 3 of Clubs | Agogwe | Lurker's Pounce | On win | +1 rank if enemy's last was face | Pounce |
+| Low Cards (3-2) | 2 of Spades | Sasquatch | Stone Chip | On win | +1 armor (once) | Stone fragment |
 
-**High Cards (10-7) - Reliable Effects**:
-- **10 of Spades (Yeti)** – "Ice Carapace" – on win: gain +1 armor (persists 1 hit) + ice shield
-- **9 of Clubs (Sasquatch)** – "River Push" – on win: +1 next‑draw rank + water current
-- **8 of Diamonds (Mapinguary)** – "Silt Veil" – after a tie: enemy next card −1 rank (resolve once) + silt effect
-- **7 of Hearts (Yeti)** – "Creek Aid" – on win: heal +1 + water splash
-
-**Mid Cards (6-4) - Utility Effects**:
-- **6 of Clubs (Agogwe)** – "Track Prey" – on win: peek enemy next suit + tracking effect
-- **5 of Spades (Sasquatch)** – "Boulder Toss" – on win: +2 damage + boulder impact
-- **4 of Hearts (Yeti)** – "Warmth" – on win: heal +2 over 2 rounds + warmth glow
-
-**Low Cards (3-2) - Underdog Effects**:
-- **3 of Clubs (Agogwe)** – "Lurker's Pounce" – on win: +1 rank if enemy's last was face + pounce
-- **2 of Spades (Sasquatch)** – "Stone Chip" – on win: +1 armor once + stone fragment
-- **Underdog Bonus**: Low cards get enhanced effects when they win (Big Moment: 2× damage or +10 flat)
+**Underdog Bonus**: Low cards get enhanced effects when they win (Big Moment: 2× damage or +10 flat).
 
 **Relic Cards (Slot Bonuses)**:
 Relic Cards are powerful, one‑sentence effects that live in the two Joker slots of every 54‑card deck. They function as slot machine bonuses with clear trigger windows and visual feedback.
 
-**Territory Relics** (Themed Bonuses):
-- **Red Joker (Forest)** – "Forest Blessing" – next win deals double damage (1 use) + leaf burst
-- **Black Joker (Mountain)** – "Mountain Fury" – next loss by ≤2 converts to tie (1 use) + avalanche
-- **Swamp Totem** – "Swamp Mist" – enemy next card −1 rank (resolve once) + fog swirl
-- **Jungle Idol** – "Jungle Frenzy" – your next draw +1 rank (1 use) + vine animation
-
-**Global Relics** (Universal Bonuses):
-- **Lantern of Echoes** – "Echo Peek" – on reveal: peek top card of both decks (1 use) + lantern glow
-- **Star Tether** – "War! Boon" – on War! win: +3 bonus damage and peek both next cards (1 use) + star burst
-- **Fortune Charm** – "Luck Boost" – +1 Fortune Meter fill per round + charm sparkle
-- **Epic Catalyst** – "Epic Charge" – +1 Epic Meter fill per Spoils + catalyst glow
-
-**Mystery Relics** (Random Slot Bonuses):
-- **Wild Card** – "Random Power" – Random powerful effect (2-5x damage, full heal, etc.) + wild animation
-- **Cascade** – "Free Spin" – After win, auto-reveal another round free + cascade effect
-- **Multiplier** – "Damage Boost" – Next 3 wins get +2x damage + multiplier glow
-- **Insurance** – "Loss Protection" – Next loss refunds 50% Gold + shield effect
+| Category | Relic Name (Item) | Effect | Visual/Flavor |
+|---|---|---|---|
+| **Territory** | Forest Blessing (Red Joker) | Next win deals double damage (1 use) | Leaf burst |
+| **Territory** | Mountain Fury (Black Joker) | Next loss by ≤2 converts to tie (1 use) | Avalanche |
+| **Territory** | Swamp Mist (Swamp Totem) | Enemy next card −1 rank (resolve once) | Fog swirl |
+| **Territory** | Jungle Frenzy (Jungle Idol) | Your next draw +1 rank (1 use) | Vine animation |
+| **Global** | Echo Peek (Lantern of Echoes) | On reveal: peek top card of both decks (1 use) | Lantern glow |
+| **Global** | War! Boon (Star Tether) | On War! win: +3 bonus damage and peek both next cards (1 use) | Star burst |
+| **Global** | Luck Boost (Fortune Charm) | +1 Fortune Meter fill per round | Charm sparkle |
+| **Global** | Epic Charge (Epic Catalyst) | +1 Epic Meter fill per Spoils | Catalyst glow |
+| **Mystery** | Random Power (Wild Card) | Random powerful effect (2-5x damage, full heal, etc.) | Wild animation |
+| **Mystery** | Free Spin (Cascade) | After win, auto-reveal another round free | Cascade effect |
+| **Mystery** | Damage Boost (Multiplier) | Next 3 wins get +2x damage | Multiplier glow |
+| **Mystery** | Loss Protection (Insurance) | Next loss refunds 50% Gold | Shield effect |
 
 #### **Deck Composition and Management**
 
@@ -712,78 +720,203 @@ Relic Cards are powerful, one‑sentence effects that live in the two Joker slot
 - **Relic Cards**: At least 2 (occupying Joker slots); late-game may include up to 2 additional Relics
 
 **Deck Density by Level** (total remains 54):
-- **Levels 1–4**: 2 Warlord, 2 Relic (≈7.4% specials)
-- **Levels 5–7**: 3 Warlord, 2 Relic (≈9.3% specials)
-- **Levels 8–10**: 4 Warlord, 2 Relic (≈11.1% specials)
-- **Levels 11–13**: 5 Warlord, 3 Relic (≈14.8% specials)
-- **Levels 14–16**: 6 Warlord, 3 Relic (≈16.7% specials)
-- **Levels 17–20**: 6 Warlord, 4 Relic (≈18.5% specials - cap)
+
+| Level Range | Warlord Cards | Relic Cards | Special Card Percentage |
+|---|---|---|---|
+| Levels 1–4 | 2 | 2 | ≈7.4% |
+| Levels 5–7 | 3 | 2 | ≈9.3% |
+| Levels 8–10 | 4 | 2 | ≈11.1% |
+| Levels 11–13 | 5 | 3 | ≈14.8% |
+| Levels 14–16 | 6 | 3 | ≈16.7% |
+| Levels 17–20 | 6 | 4 | ≈18.5% (cap) |
 
 **Replacement Guardrails**:
-- **One-for-one replacements**: Each Warlord or Relic card replaces a single Natural card
-- **Suit guardrail**: Preserve suit counts close to base (≈13 per suit)
-- **Rank guardrail**: Maintain natural rank spread across bands
-- **Territory respect**: Do not reduce territory suit below base unless Warlord identity requires it
-- **No duplicate identities**: Each Natural card can be replaced at most once
 
-**Deterministic Generation**:
-- **Seed**: Derive a per-war seed from secure inputs (HMAC(userId, warId|timestamp))
-- **Mapping**: Use seed to select exact Natural cards to replace under guardrails
-- **Shuffle**: Perform seeded shuffle for reproducible draw orders
-- **Replay**: Store seed and mapping for deterministic replays
+| Guardrail | Description |
+|---|---|
+| **One-for-one replacements** | Each Warlord or Relic card replaces a single Natural card. |
+| **Suit guardrail** | Preserve suit counts close to base (≈13 per suit). |
+| **Rank guardrail** | Maintain natural rank spread across bands. |
+| **Territory respect** | Do not reduce territory suit below base unless Warlord identity requires it. |
+| **No duplicate identities** | Each Natural card can be replaced at most once. |
 
-#### **Card Effects and Triggers**
+**Deterministic Generation**
+
+| Aspect | Description |
+|---|---|
+| **Seed** | Derive a per-war seed from secure inputs (HMAC(userId, warId\|timestamp)) |
+| **Mapping** | Use seed to select exact Natural cards to replace under guardrails |
+| **Shuffle** | Perform seeded shuffle for reproducible draw orders |
+| **Replay** | Store seed and mapping for deterministic replays |
+
+#### Card Effects and Triggers
 
 **Trigger Windows**:
-- **On Reveal**: Effect triggers when card is revealed (before comparison)
-- **On Win**: Effect triggers when this card wins the comparison
-- **On Loss**: Effect triggers when this card loses the comparison
-- **On Tie**: Effect triggers when this card ties (before War! resolution)
-- **On War! Win**: Effect triggers when this card wins a War! tie resolution
-- **After Tie**: Effect triggers after a tie is resolved (regardless of winner)
+
+| Trigger | Description |
+|---|---|
+| **On Reveal** | Effect triggers when card is revealed (before comparison) |
+| **On Win** | Effect triggers when this card wins the comparison |
+| **On Loss** | Effect triggers when this card loses the comparison |
+| **On Tie** | Effect triggers when this card ties (before War! resolution) |
+| **On War! Win** | Effect triggers when this card wins a War! tie resolution |
+| **After Tie** | Effect triggers after a tie is resolved (regardless of winner) |
 
 **Effect Types**:
-- **Damage Modifiers**: +1 to +4 damage (never >+4 from cards alone)
-- **Heal Effects**: +1 to +3 healing (small sustain values)
-- **Armor Effects**: +1 to +2 armor (persists 1-2 hits)
-- **Rank Shifts**: Always ±1 rank (enemy next -1, your next +1)
-- **Skip/Stun**: Skip enemy next turn or stun (≤1 per war average)
-- **Peek Effects**: Reveal enemy next suit or top card
-- **Meter Nudges**: +1 Fortune, +1 Epic (≤1 per war per card)
+
+| Effect Type | Description |
+|---|---|
+| **Damage Modifiers** | +1 to +4 damage (never >+4 from cards alone) |
+| **Heal Effects** | +1 to +3 healing (small sustain values) |
+| **Armor Effects** | +1 to +2 armor (persists 1-2 hits) |
+| **Rank Shifts** | Always ±1 rank (enemy next -1, your next +1) |
+| **Skip/Stun** | Skip enemy next turn or stun (≤1 per war average) |
+| **Peek Effects** | Reveal enemy next suit or top card |
+| **Meter Nudges** | +1 Fortune, +1 Epic (≤1 per war per card) |
 
 **Effect Caps and Balance**:
-- **Per-War Caps**: Most effects limited to 1-3 uses per war
-- **Resolve Once**: Some effects marked as "resolve once" to prevent stacking
-- **No Stacking**: -1 rank effects don't stack with other -1 rank effects
-- **Visual Feedback**: All effects have clear visual and audio feedback
-- **Readable Outcomes**: Effects are simple and immediately understandable
 
-#### **Suit Flavor and Territory Integration**
+| Aspect | Description |
+|---|---|
+| **Per-War Caps** | Most effects limited to 1-3 uses per war |
+| **Resolve Once** | Some effects marked as "resolve once" to prevent stacking |
+| **No Stacking** | -1 rank effects don't stack with other -1 rank effects |
+| **Visual Feedback** | All effects have clear visual and audio feedback |
+| **Readable Outcomes** | Effects are simple and immediately understandable |
+
+#### Suit Flavor and Territory Integration
 
 **Suit Themes** (no extra math, visual flavor only):
-- **Hearts**: Healing and sustain effects (water, warmth, life)
-- **Spades**: Armor and defense effects (stone, ice, protection)
-- **Diamonds**: Debuff and control effects (mist, fog, confusion)
-- **Clubs**: Momentum and aggression effects (vines, strikes, movement)
+
+| Suit | Theme/Effects |
+|---|---|
+| **Hearts** | Healing and sustain effects (water, warmth, life) |
+| **Spades** | Armor and defense effects (stone, ice, protection) |
+| **Diamonds** | Debuff and control effects (mist, fog, confusion) |
+| **Clubs** | Momentum and aggression effects (vines, strikes, movement) |
 
 **Territory Suit Rules**:
-- **Forest (Hearts)**: Keep Hearts count ≥ base (13) and allow at most +1 over base
-- **Mountain (Spades)**: Same rule for Spades
-- **Swamp (Diamonds)**: Same rule for Diamonds  
-- **Jungle (Clubs)**: Same rule for Clubs
-- **Draw Weighting**: Light bias (+5–10%) to surface territory suit cards earlier
+
+| Territory/Rule | Description |
+|---|---|
+| **Forest (Hearts)** | Keep Hearts count ≥ base (13) and allow at most +1 over base |
+| **Mountain (Spades)** | Keep Spades count ≥ base (13) and allow at most +1 over base |
+| **Swamp (Diamonds)** | Keep Diamonds count ≥ base (13) and allow at most +1 over base |
+| **Jungle (Clubs)** | Keep Clubs count ≥ base (13) and allow at most +1 over base |
+| **Draw Weighting** | Light bias (+5–10%) to surface territory suit cards earlier |
 
 **Territory Bonuses**:
-- **Forest**: Auto-heal +1 on Hearts wins
-- **Mountain**: +1 armor every 3rd win
-- **Swamp**: +10% tie rate (more War! opportunities)
-- **Jungle**: +1 random stat per Clubs win
+
+| Territory | Bonus |
+|---|---|
+| **Forest** | Auto-heal +1 on Hearts wins |
+| **Mountain** | +1 armor every 3rd win |
+| **Swamp** | +10% tie rate (more War! opportunities) |
+| **Jungle** | +1 random stat per Clubs win |
+
+### Bigfoot Shaman (Mystical Guide & Lore Keeper)
+
+#### **Core Identity & Role**
+The Bigfoot Shaman serves as the game's mystical guide, store guardian, and chronicler of all battles.
+
+The Bigfoot Shaman lives in a giant Mechanical Foot somewhere deep in the woods. Using a smaller Giant Mechanical Foot, the Bigfoot Shaman can fly in the sky, go underwater, and fly into space.
+
+The Bigfoot Shaman sometimes takes council in space with Aliens, whose goals and intentions remain unknown and mysterious.
+
+Each game of War runs the chance of either the Bigfoot Shaman or an Alien from the council making an appearance and affecting the round in some way.
+
+**The Lore Keeper**: Ancient Bigfoot who has witnessed countless wars and chronicles them in the Book of Lore
+**Mystical Guide**: Interprets battles through the lens of cryptid mythology and territorial wisdom
+**Store Guardian**: Manages the mystical marketplace where players trade Gold for power
+**Battle Interpreter**: Provides post-war analysis with mythological context and strategic insights
+
+#### **Visual Design**
+**Ancient Appearance**: Older, wiser Bigfoot with ceremonial markings and tribal accessories
+**Mystical Elements**: Glowing eyes, floating crystals, ethereal aura effects
+**Ceremonial Gear**: Bone necklaces, feather headdress, carved wooden staff
+**Dynamic Expressions**: Changes based on battle outcome (proud, concerned, mystical)
+
+#### **Store Management Role**
+**Mystical Marketplace**: The Shaman's store feels like a cryptid trading post
+**Ceremonial Transactions**: Gold exchanges feel like offerings to the spirits
+**Lore-Based Items**: Store items have mythological names and descriptions
+**Seasonal Offerings**: Different items available based on regional events and lunar cycles
+
+#### **Battle Interpretation System**
+After each war, the Shaman provides mystical interpretations:
+
+**Victory Interpretations**:
+- **"The Forest Spirits favored your cause today, young warrior. Your Sasquatch blood called to the ancient trees, and they answered with mighty strength."**
+- **"The Himalayan winds whispered secrets to your Yeti, guiding your strikes with glacial precision."**
+- **"The Amazon vines themselves reached out to aid your Mapinguary, weaving victory from the jungle's ancient magic."**
+
+**Defeat Interpretations**:
+- **"The territorial spirits were restless today. Even the mightiest warriors must learn from the land's lessons."**
+- **"Your opponent's connection to their ancestral grounds proved stronger. Seek wisdom from the cryptid elders."**
+- **"The weather spirits tested your resolve. True strength comes from understanding both victory and defeat."**
+
+#### **Book of Lore System**
+The Shaman maintains a mystical tome that grows with each battle:
+
+**Battle Chronicles**:
+- **Aggrandized Retellings**: Each battle becomes an epic tale in the Shaman's voice
+- **Mythological Context**: Battles are framed as clashes between territorial spirits
+- **Strategic Wisdom**: The Shaman offers cryptic advice for future battles
+- **Regional Lore**: Unlocks deeper cryptid mythology based on territories played
+
+**Lore Unlocks**:
+- **Territorial Wisdom**: Learn about the spiritual significance of each territory
+- **Cryptid Secrets**: Discover hidden abilities and regional connections
+- **Ancient Prophecies**: Unlock predictions about future events and seasonal changes
+- **Mystical Artifacts**: Learn about legendary items and their powers
+
+#### **Guide Functionality**
+The Shaman serves as an in-game tutorial and progression guide:
+
+**New Player Guidance**:
+- **"Welcome, young cryptid seeker. The territorial spirits have been waiting for one such as you."**
+- **"Each territory holds its own mysteries. Let me teach you the ways of the ancient Bigfoot clans."**
+- **"Your first war approaches. The spirits will guide your hand, but wisdom comes with experience."**
+
+**Progression Guidance**:
+- **"Your mastery grows, warrior. The territorial spirits begin to recognize your strength."**
+- **"New mysteries await in the deeper territories. Are you ready to face the ancient guardians?"**
+- **"The seasonal spirits stir. Great changes approach the cryptid realms."**
+
+#### **Mystical Store Features**
+The Shaman's store becomes a mystical experience:
+
+**Ceremonial Atmosphere**:
+- **Floating Items**: Store items hover with mystical energy
+- **Spirit Voices**: Whispered descriptions of each item's power
+- **Ritual Transactions**: Gold exchanges accompanied by mystical effects
+- **Lore Integration**: Each purchase unlocks a piece of cryptid wisdom
+
+**Item Categories**:
+- **Spirit Blessings**: Temporary power boosts with mythological names
+- **Territorial Tokens**: Items that enhance specific territory bonuses
+- **Cryptid Relics**: Permanent upgrades with regional significance
+- **Lore Scrolls**: Unlock deeper mythology and regional secrets
+
+#### **Seasonal & Event Integration**
+The Shaman adapts to game events:
+
+**Seasonal Changes**:
+- **"The spring spirits awaken, bringing new life to the forest territories."**
+- **"The summer heat stirs the desert spirits to greater ferocity."**
+- **"The autumn winds carry whispers of the harvest spirits' wisdom."**
+- **"The winter spirits test the resolve of all who dare their frozen realms."**
+
+**Regional Events**:
+- **"The Pacific Northwest spirits gather for their annual council."**
+- **"The Himalayan winds carry news of the Yeti elders' decisions."**
+- **"The Amazon spirits dance in celebration of the jungle's eternal cycle."**
 
 ## Game Design and Content
 
 ### Slot-Inspired Game Modes
 
-#### **Practice Mode (New Player Onboarding)**
+#### Practice Mode (New Player Onboarding)
 - **Purpose**: Risk-free learning environment for new players to understand wagering mechanics
 - **Entry Requirements**: Available immediately for all new players (Level 1)
 - **Gold System**: Uses "Practice Gold (Copium)" - separate currency that cannot be lost or converted to real Gold
@@ -806,34 +939,34 @@ Relic Cards are powerful, one‑sentence effects that live in the two Joker slot
 - **Transition**: Smooth handoff to normal Gold wagering with confidence and understanding
 - **Perfect For**: New players, cautious players, learning advanced mechanics
 
-#### **Quick Spin Mode**
+#### Quick Spin Mode
 - **Purpose**: Fast 1-3 minute sessions for mobile players
 - **Mechanics**: Auto-selected Warlord/Territory, simplified betting options
 - **Rewards**: Standard Gold/Spoils/XP with reduced complexity
 - **Perfect For**: Commute gaming, quick breaks
 
-#### **High Roller Mode** 
+#### High Roller Mode
 - **Purpose**: Premium wagering experience for engaged players
 - **Requirements**: Level 10+ or VIP status
 - **Features**: Higher bet caps, exclusive multipliers, special jackpot triggers
 - **Rewards**: Amplified Gold/Spoils with prestige Specimens
 - **Risk**: Higher Gold loss potential, but better pity protections
 
-#### **Auto-War Mode**
+#### Auto-War Mode
 - **Purpose**: Hands-free gameplay for busy players
 - **Mechanics**: Simulate 5-10 rounds instantly, show highlights only
 - **Control**: Optional "nudge" intervention mid-simulation
 - **Rewards**: Same earning potential as manual play
 - **Perfect For**: Background play, learning patterns
 
-#### **Tournament Mode** (Slot-Inspired Competitions)
+#### Tournament Mode (Slot-Inspired Competitions)
 - **Purpose**: Competitive wagering events
 - **Format**: Weekly tournaments with Gold entry fees
 - **Structure**: Bracket-style elimination or leaderboard competitions
 - **Rewards**: Exclusive cosmetics, Gold prizes, prestige titles
 - **Features**: Live leaderboards, spectator mode, replay sharing
 
-### Enhanced Warlord System (Slot Themes)
+### Warlord System (Slot Themes)
 
 #### **Warlord Slot Themes**
 Each Warlord functions as a distinct "slot machine theme" with unique visual/audio identity:
@@ -1376,6 +1509,8 @@ Cosmetic collectibles earned through Spoils and wagering:
 - **Jackpots**: Guaranteed rare Specimens
 - **Events**: Exclusive seasonal Specimens
 
+
+
 ## Visual Design
 
 ### Slot Machine Visual Metaphor
@@ -1498,6 +1633,39 @@ Bigfoot War's visual design transforms the traditional card game interface into 
 - **Particles**: Snowflakes, ice crystals, blizzard effects
 - **Audio**: Winter winds, ice cracking, blizzard sounds
 - **Specimens**: Winter-themed items (Ice Crystal, Snowflake Gem, Frost Crown)
+
+#### **Bigfoot Shaman Visual Design**
+
+**Core Visual Identity**:
+- **Ancient Appearance**: Older, wiser Bigfoot with ceremonial markings and tribal accessories
+- **Mystical Elements**: Glowing eyes, floating crystals, ethereal aura effects
+- **Ceremonial Gear**: Bone necklaces, feather headdress, carved wooden staff
+- **Dynamic Expressions**: Changes based on battle outcome (proud, concerned, mystical)
+
+**Visual States & Animations**:
+- **Idle State**: Gentle floating animation with ethereal particles
+- **Speaking**: Subtle mouth movements with mystical aura pulsing
+- **Victory Interpretation**: Proud stance with celebratory particle effects
+- **Defeat Interpretation**: Concerned expression with wisdom-granting aura
+- **Store Management**: Ceremonial gestures with floating item effects
+
+**Mystical Store Visual Design**:
+- **Ceremonial Atmosphere**: Floating items hover with mystical energy
+- **Spirit Voices**: Whispered descriptions with ethereal text effects
+- **Ritual Transactions**: Gold exchanges accompanied by mystical particle bursts
+- **Lore Integration**: Each purchase unlocks ethereal lore scrolls
+
+**Book of Lore Visual Design**:
+- **Mystical Tome**: Ancient book with glowing pages and floating text
+- **Battle Chronicles**: Each entry appears as illuminated text with regional theming
+- **Lore Unlocks**: New entries materialize with mystical particle effects
+- **Regional Themes**: Different visual styles for each regional cryptid profile
+
+**Guide Functionality Visual Design**:
+- **New Player Guidance**: Welcoming gestures with gentle particle effects
+- **Progression Recognition**: Celebratory animations for milestone achievements
+- **Tutorial Integration**: Step-by-step visual guidance with mystical highlighting
+- **Seasonal Adaptation**: Visual changes to match current seasonal events
 
 #### **Special Event Territories**
 
@@ -1899,11 +2067,58 @@ Bigfoot War's visual design transforms the traditional card game interface into 
 - **Swamp**: Croaking frogs, water dripping, swamp ambience
 - **Jungle**: Exotic birds, vine rustling, jungle ambience
 
+**Regional Weather Patterns**:
+- **Pacific Northwest**: "Misty Rain" - Enhanced forest healing with mystical rain effects
+- **Himalayas**: "Glacial Winds" - Enhanced mountain armor with ice crystal formations
+- **Amazon**: "Tropical Storm" - Enhanced jungle frenzy with vine animations
+- **African Savannah**: "Dry Season" - Enhanced swamp debuffs with heat shimmer effects
+
+**Territorial Affinity Visual Design**:
+- **Home Territory Badge**: Glowing regional emblem with folklore tooltip
+- **Pacific Northwest**: Forest Guardian badge with PNW folklore tooltip
+- **Himalayan**: Mountain Sage badge with Himalayan lore tooltip
+- **Amazon**: Jungle Guardian badge with Amazon folklore tooltip
+- **African**: Savannah Hunter badge with African lore tooltip
+- **Southeast Asian**: Canopy Walker badge with Southeast Asian folklore tooltip
+- **European**: Highland Phantom badge with European lore tooltip
+- **Oceanic**: Outback Survivor badge with Oceanic folklore tooltip
+
 **Special Effects**:
 - **War!**: Siren sound with marquee light effects
 - **Jackpot**: Cascading chimes with celebratory fanfare
 - **Proc**: Distinctive sound for each effect type
-- **Meter Full**: Rising tone with satisfying completion
+
+**Folklore Achievement Visual Design**:
+- **Regional Mastery**: Glowing regional emblems with cultural significance
+- **Cryptid Scholar**: Mystical scrolls with illuminated cryptid profiles
+- **Territorial Wisdom**: Ancient map fragments with regional lore
+- **Achievement Unlock**: Ethereal particle effects with cultural music
+- **Progress Tracking**: Regional progress bars with cultural theming
+
+**Regional Event Visual Design**:
+- **Pacific Northwest Legends**: Forest spirits with PNW cultural elements
+- **Himalayan Mysteries**: Mountain sages with Himalayan cultural symbols
+- **Amazon Guardians**: Jungle protectors with Amazon cultural motifs
+- **African Savannah Hunters**: Stealth masters with African cultural themes
+- **Event Bonuses**: Glowing regional effects with cultural significance
+- **Reward Unlocks**: Regional-themed items with cultural authenticity
+
+**Seasonal Event Visual Design**:
+- **Spring Awakening**: Blooming effects with renewal themes
+- **Summer Intensity**: Heat effects with endurance themes
+- **Autumn Harvest**: Abundance effects with preparation themes
+- **Winter Survival**: Ice effects with resilience themes
+- **Seasonal Transitions**: Smooth visual transitions between seasons
+- **Cultural Adaptation**: Visual elements adapted for different cultural contexts
+
+**Internationalization Visual Design**:
+- **Text Overflow Handling**: Dynamic UI scaling for different text lengths
+- **RTL Support**: Right-to-left language support for Arabic/Hebrew
+- **Cultural Color Adaptation**: Color choices that respect cultural sensitivities
+- **Regional Cryptid Names**: Local names displayed with cultural context
+- **Mythology Integration**: Visual elements adapted to local cryptid traditions
+- **Font Support**: Web fonts supporting extended character sets
+- **Cultural Context**: Visual tooltips explaining regional folklore significance
 
 #### **Detailed UI/UX Specifications**
 
@@ -2556,6 +2771,535 @@ Test mode provides comprehensive testing capabilities for Bigfoot War's slot-ins
 - **Data Portability**: Users can export their data
 - **Transparency**: Clear privacy policy and data usage
 
+## Technical Architecture
+
+### Slot-Inspired Technical Stack
+
+Bigfoot War's technical architecture supports the slot-machine inspired gameplay while maintaining the core War card game mechanics. The system emphasizes rapid reveals, virtual wagering, and luck-driven progression with deterministic fairness and replayability.
+
+#### **Core Architecture Overview**
+
+**Technology Stack**:
+- **Frontend**: Next.js + React for component-based UI and SSR/SSG
+- **Backend**: Next.js API routes for serverless game logic
+- **Database**: Vercel Postgres + Prisma for user data and game state
+- **Cache**: Upstash Redis for session state and real-time features
+- **Hosting**: Vercel for serverless deployment and edge caching
+- **Audio**: Howler.js for cross-browser sound support
+- **Animations**: Framer Motion + GSAP for slot-inspired effects
+
+**Key Design Principles**:
+- **Deterministic Fairness**: Seeded RNG ensures reproducible results
+- **Rapid Response**: Sub-100ms API responses for lever-pull actions
+- **Scalable Wagering**: Support for high-frequency betting operations
+- **Real-time Updates**: Live leaderboards and tournament updates
+- **Mobile-First**: Optimized for touch interactions and haptic feedback
+
+#### **Internationalization & Localization (i18n/l10n)**
+**Launch Strategy**: English-first with future translation readiness
+
+**Text Localization System**:
+- **Next.js i18n**: Built-in internationalization with dynamic routing
+- **Text Key System**: All UI text uses localization keys (e.g., `warlord.sasquatch.name`, `territory.forest.description`)
+- **String Tables**: Organized by feature (Warlords, Territories, UI, Events, Achievements)
+- **Pluralization Support**: Built-in pluralization rules for different languages
+- **RTL Support**: Right-to-left language support for Arabic/Hebrew
+
+**Localization-Ready Content**:
+- **Warlord Names**: All Bigfoot names translatable with cultural context
+- **Territory Descriptions**: Environmental descriptions adaptable to local regions
+- **Lore & Mythology**: Cryptid profiles with region-specific cultural adaptations
+- **Achievement Names**: Folklore references translatable with local equivalents
+- **Event Descriptions**: Seasonal events adaptable to local cultural calendars
+
+**Cultural Adaptation Framework**:
+- **Regional Cryptid Names**: Use local names where appropriate (e.g., "Sasquatch" vs "Bigfoot" vs regional variants)
+- **Mythology Integration**: Adapt folklore references to local cryptid traditions
+- **Seasonal Events**: Adjust timing and themes to local cultural calendars
+- **Color & Symbolism**: Ensure color choices respect cultural sensitivities
+
+**Technical Implementation**:
+- **Asset Localization**: Separate image assets for different language regions
+- **Audio Localization**: Sound effects with cultural variants where appropriate
+- **Font Support**: Web fonts supporting extended character sets (Google Fonts)
+- **Number Formatting**: Localized number, currency, and date formatting
+- **Text Overflow Handling**: Dynamic UI scaling for different text lengths
+- **SEO Localization**: Hreflang tags and localized meta descriptions
+
+**Future Language Support** (Post-Launch):
+- **Phase 1**: Spanish, French, German (European markets)
+- **Phase 2**: Japanese, Korean, Chinese (Asian markets)
+- **Phase 3**: Portuguese, Italian, Russian (Expanded European markets)
+- **Phase 4**: Arabic, Hindi, Thai (Emerging markets)
+
+**Localization Quality Assurance**:
+- **Cultural Review**: Native speaker review for cultural accuracy
+- **Cryptid Expertise**: Regional cryptid folklore validation
+- **UI/UX Testing**: Interface testing with different text lengths
+- **Audio Testing**: Sound effect cultural appropriateness
+- **Performance Testing**: Load times with different language assets
+
+#### **Backend Systems (Enhanced for Slot Mechanics)**
+
+**Game Engine (Slot-Inspired)**:
+- **Lever Action Handler**: Processes single-button reveals with simultaneous card flips
+- **Wagering System**: Manages Gold betting, multipliers, and payout calculations
+- **Luck Meter Management**: Tracks Fortune, Epic, and Wager Streak meters
+- **Proc System**: Handles enhanced randomness with slot-like excitement
+- **Auto-Resolution**: Simulates multiple rounds for Auto-War mode
+- **Deterministic RNG**: Seeded random number generation for fairness and replays
+
+**Gold Currency System**:
+- **Gold Management**: Earn, spend, and track virtual currency
+- **Wagering Logic**: Bet validation, multiplier calculations, and payout processing
+- **Pity Protection**: Insurance and refund systems for consecutive losses
+- **Daily Caps**: Soft limits on Gold earning to prevent inflation
+- **Transaction Logging**: Audit trail for all Gold transactions
+
+**Enhanced User Management**:
+- **Authentication**: NextAuth with OAuth providers (Google, Apple, Facebook)
+- **Progression**: XP, levels, Mastery, and VIP tier tracking
+- **Statistics**: Wagering patterns, win rates, and engagement metrics
+- **Preferences**: Volatility settings, auto-resolution preferences, and UI customization
+
+**Tournament System**:
+- **Event Management**: Weekly tournaments with Gold entry fees
+- **Leaderboards**: Real-time rankings with territory/Warlord filters
+- **Matchmaking**: AI opponent selection with difficulty scaling
+- **Replay System**: Deterministic replay generation for tournament verification
+
+#### **Database Schema (Slot-Enhanced)**
+
+**Core User Data**:
+```typescript
+interface User {
+  id: string;
+  username: string;
+  email: string;
+  level: number;
+  xp: number;
+  gold: number;
+  goldEarnedToday: number;
+  goldSpentToday: number;
+  dailyStreak: number;
+  lastLogin: Date;
+  vipTier: 'Bronze' | 'Silver' | 'Gold' | 'Platinum';
+  vipPoints: number;
+  preferences: {
+    volatilityMode: 'Steady' | 'Wild';
+    autoResolution: boolean;
+    speedSetting: 'Instant' | 'Fast' | 'Standard' | 'Cinematic';
+    reducedMotion: boolean;
+    language: string; // i18n support
+  };
+  entitlements: {
+    goldPass: boolean;
+    platinumPass: boolean;
+    adRemoval: boolean;
+    unlimitedNudges: boolean;
+    exclusiveBets: boolean;
+  };
+  regionalLore: {
+    pacificNorthwest: number;
+    himalayan: number;
+    amazon: number;
+    african: number;
+    southeastAsian: number;
+    european: number;
+    oceanic: number;
+  };
+  cryptidProfiles: string[]; // Unlocked regional cryptid profiles
+  folkloreAchievements: string[]; // Completed folklore achievements
+  shamanGuidance: {
+    newPlayerCompleted: boolean;
+    progressionMilestones: string[];
+    loreUnlocks: string[];
+  };
+}
+```
+
+**War Data (Enhanced)**:
+```typescript
+interface War {
+  id: string;
+  userId: string;
+  warlord: string;
+  enemyWarlord: string;
+  territory: string;
+  tier: number;
+  betAmount: number;
+  betMultiplier: number;
+  volatilityMode: 'Steady' | 'Wild';
+  result: 'win' | 'loss' | 'draw';
+  goldWagered: number;
+  goldWon: number;
+  goldNet: number;
+  roundsPlayed: number;
+  procsTriggered: string[];
+  metersTriggered: string[];
+  jackpotsHit: number;
+  nearMisses: number;
+  timestamp: Date;
+  replaySeed: string;
+  regionalBonus: {
+    territoryAffinity: boolean;
+    regionalWeather: string;
+    homeTerritoryBonus: string;
+  };
+  shamanInterpretation: {
+    victoryType: string;
+    mythologicalContext: string;
+    strategicWisdom: string;
+    loreUnlocked: string[];
+  };
+  territoryStank: {
+    territory: string;
+    stankXp: number;
+    rank: number;
+  };
+}
+```
+
+**Wagering Data**:
+```typescript
+interface WageringSession {
+  id: string;
+  userId: string;
+  startTime: Date;
+  endTime?: Date;
+  totalWagered: number;
+  totalWon: number;
+  netResult: number;
+  warsPlayed: number;
+  consecutiveLosses: number;
+  pityProtectionUsed: boolean;
+  volatilityMode: 'Steady' | 'Wild';
+  territory: string;
+  warlord: string;
+}
+```
+
+**Tournament Data**:
+```typescript
+interface Tournament {
+  id: string;
+  name: string;
+  type: 'Weekly' | 'Monthly' | 'VIP' | 'Seasonal';
+  entryFee: number;
+  prizePool: number;
+  startTime: Date;
+  endTime: Date;
+  maxParticipants: number;
+  currentParticipants: number;
+  leaderboard: TournamentEntry[];
+  status: 'Upcoming' | 'Active' | 'Completed';
+}
+
+interface TournamentEntry {
+  userId: string;
+  username: string;
+  score: number;
+  rank: number;
+  goldWagered: number;
+  goldWon: number;
+  warsPlayed: number;
+  winRate: number;
+}
+```
+
+**Bigfoot Shaman Data**:
+```typescript
+interface ShamanInterpretation {
+  id: string;
+  warId: string;
+  userId: string;
+  interpretationType: 'victory' | 'defeat' | 'draw';
+  mythologicalContext: string;
+  strategicWisdom: string;
+  regionalLore: string;
+  loreUnlocked: string[];
+  timestamp: Date;
+}
+
+interface BookOfLore {
+  id: string;
+  userId: string;
+  battleChronicle: string;
+  mythologicalContext: string;
+  warlordUsed: string;
+  territory: string;
+  regionalTheme: string;
+  strategicInsights: string[];
+  timestamp: Date;
+}
+
+interface ShamanStore {
+  id: string;
+  itemType: 'SpiritBlessing' | 'TerritorialToken' | 'CryptidRelic' | 'LoreScroll';
+  name: string;
+  description: string;
+  cost: number;
+  regionalRequirement?: string;
+  loreRequirement?: string[];
+  seasonalAvailability?: string[];
+  mysticalEffects: string[];
+}
+```
+
+**Regional Events & Seasonal Content**:
+```typescript
+interface RegionalEvent {
+  id: string;
+  name: string;
+  region: string;
+  startDate: Date;
+  endDate: Date;
+  description: string;
+  bonuses: {
+    territoryBonus: string;
+    warlordBonus: string;
+    stankXpMultiplier: number;
+  };
+  rewards: {
+    specimens: string[];
+    emotes: string[];
+    cosmetics: string[];
+    loreUnlocks: string[];
+  };
+  status: 'upcoming' | 'active' | 'completed';
+}
+
+interface SeasonalTerritory {
+  id: string;
+  name: string;
+  season: 'spring' | 'summer' | 'autumn' | 'winter';
+  startDate: Date;
+  endDate: Date;
+  specialRules: string[];
+  weatherEffects: string[];
+  visualTheme: string;
+  specimens: string[];
+  warlordBonuses: Record<string, string>;
+}
+
+interface FolkloreAchievement {
+  id: string;
+  name: string;
+  description: string;
+  category: 'RegionalMastery' | 'CryptidScholar' | 'TerritorialWisdom';
+  requirements: {
+    warlordWins?: Record<string, number>;
+    regionalWins?: Record<string, number>;
+    territoryMastery?: string[];
+    loreUnlocks?: string[];
+  };
+  rewards: {
+    title?: string;
+    emote?: string;
+    specimen?: string;
+    loreUnlock?: string;
+  };
+  completed: boolean;
+  completedAt?: Date;
+}
+```
+
+**Localization Data**:
+```typescript
+interface LocalizationKey {
+  key: string;
+  category: 'warlord' | 'territory' | 'ui' | 'event' | 'achievement' | 'shaman';
+  translations: Record<string, string>;
+  culturalContext?: Record<string, string>;
+  lastUpdated: Date;
+}
+
+interface RegionalCryptidProfile {
+  id: string;
+  region: string;
+  cryptidName: string;
+  localName?: string;
+  folklore: string;
+  culturalSignificance: string;
+  mythologicalTraits: string[];
+  regionalVariants: string[];
+  unlocked: boolean;
+  unlockedAt?: Date;
+}
+```
+
+#### **API Endpoints (Slot-Enhanced)**
+
+**Core Gameplay**:
+- `POST /api/war/start`: Initialize war with wagering options
+- `POST /api/war/pull-lever`: Process lever pull and reveal cards
+- `POST /api/war/auto-resolve`: Handle Auto-War mode simulation
+- `POST /api/war/nudge`: Process card nudge with Gold cost
+- `GET /api/war/state/:warId`: Get current war state for replays
+- `POST /api/war/interpret`: Generate Shaman interpretation for completed war
+
+**Gold and Wagering**:
+- `POST /api/gold/wager`: Process Gold wagering with validation
+- `GET /api/gold/balance`: Get current Gold balance and daily limits
+- `POST /api/gold/earn`: Process Gold earning from various sources
+- `GET /api/gold/history`: Get Gold transaction history
+- `POST /api/gold/purchase`: Handle Gold pack purchases
+
+**Bigfoot Shaman & Lore System**:
+- `GET /api/shaman/interpretation/:warId`: Get Shaman interpretation for specific war
+- `GET /api/shaman/book-of-lore`: Get player's Book of Lore entries
+- `POST /api/shaman/guidance`: Get Shaman guidance based on player progress
+- `GET /api/shaman/store`: Get Shaman's mystical store items
+- `POST /api/shaman/store/purchase`: Purchase item from Shaman's store
+- `GET /api/lore/regional-profiles`: Get unlocked regional cryptid profiles
+- `POST /api/lore/unlock-profile`: Unlock new regional cryptid profile
+
+**Regional Events & Seasonal Content**:
+- `GET /api/events/regional`: Get active regional events
+- `GET /api/events/seasonal`: Get seasonal territories and events
+- `POST /api/events/regional/join`: Join regional event with bonuses
+- `GET /api/events/regional/:id/rewards`: Get regional event rewards
+- `GET /api/territories/seasonal`: Get available seasonal territories
+- `POST /api/territories/seasonal/enter`: Enter seasonal territory
+
+**Folklore & Achievements**:
+- `GET /api/achievements/folklore`: Get folklore achievement progress
+- `POST /api/achievements/folklore/claim`: Claim completed folklore achievement
+- `GET /api/achievements/regional-mastery`: Get regional mastery progress
+- `GET /api/achievements/cryptid-scholar`: Get cryptid scholar progress
+- `POST /api/achievements/check`: Check and update achievement progress
+
+**Territory & Regional Systems**:
+- `GET /api/territories/stank-progress`: Get territory Stank progression
+- `POST /api/territories/stank/update`: Update territory Stank XP
+- `GET /api/territories/regional-bonuses`: Get available regional bonuses
+- `GET /api/territories/weather-patterns`: Get current regional weather patterns
+- `POST /api/territories/affinity-check`: Check territorial affinity bonuses
+
+**Tournaments and Leaderboards**:
+- `GET /api/tournaments`: List active and upcoming tournaments
+- `POST /api/tournaments/join`: Join tournament with Gold entry fee
+- `GET /api/tournaments/:id/leaderboard`: Get tournament leaderboard
+- `GET /api/leaderboards`: Get global leaderboards with filters
+- `GET /api/leaderboards/me`: Get user's current rank
+
+**Progression and Rewards**:
+- `POST /api/progression/level-up`: Process level-up rewards
+- `POST /api/mastery/update`: Update Warlord Mastery progress
+- `POST /api/vip/upgrade`: Process VIP tier upgrades
+- `GET /api/rewards/daily`: Get daily reward status
+- `POST /api/rewards/claim`: Claim daily/weekly rewards
+
+**Localization & Internationalization**:
+- `GET /api/i18n/strings/:locale`: Get localized strings for specific locale
+- `GET /api/i18n/cryptid-names/:locale`: Get localized cryptid names
+- `GET /api/i18n/territory-descriptions/:locale`: Get localized territory descriptions
+- `POST /api/i18n/preference`: Update user's language preference
+- `GET /api/i18n/cultural-context/:region`: Get cultural context for regional content
+
+#### **Real-Time Features**
+
+**WebSocket Integration**:
+- **Tournament Updates**: Live leaderboard updates during tournaments
+- **Friend Challenges**: Real-time notifications for friend requests
+- **Live Events**: Server-wide event notifications and updates
+- **Leaderboard Changes**: Real-time rank updates and notifications
+- **Regional Event Updates**: Live updates for regional event progress
+- **Seasonal Territory Changes**: Real-time seasonal territory availability
+- **Shaman Guidance**: Live Shaman interpretations and lore unlocks
+- **Folklore Achievement Progress**: Real-time achievement completion notifications
+
+**Push Notifications**:
+- **Daily Rewards**: Remind players to claim daily rewards
+- **Tournament Alerts**: Notify when tournaments are starting
+- **Friend Activity**: Notify when friends achieve milestones
+- **Regional Event Alerts**: Notify when regional events begin
+- **Seasonal Territory Access**: Notify when seasonal territories become available
+- **Lore Unlocks**: Notify when new cryptid profiles are unlocked
+- **Shaman Store Updates**: Notify when new mystical items are available
+- **Folklore Achievements**: Notify when folklore achievements are completed
+- **Special Events**: Alert players to limited-time events
+
+#### **Performance Optimization**
+
+**Caching Strategy**:
+- **Game State**: Cache active war states in Redis for fast access
+- **Leaderboards**: Cache leaderboard data with 30-second refresh
+- **User Data**: Cache frequently accessed user data
+- **Static Assets**: CDN caching for images, audio, and animations
+
+**Database Optimization**:
+- **Indexing**: Optimize queries for wagering patterns and leaderboards
+- **Partitioning**: Partition war data by date for better performance
+- **Materialized Views**: Pre-computed aggregates for statistics
+- **Connection Pooling**: Efficient database connection management
+
+**Frontend Performance**:
+- **Code Splitting**: Lazy load components for faster initial load
+- **Image Optimization**: WebP format with fallbacks
+- **Audio Preloading**: Smart preloading of frequently used sounds
+- **Animation Optimization**: GPU-accelerated animations with fallbacks
+
+#### **Security and Fairness**
+
+**Anti-Cheat Measures**:
+- **Server-Side Validation**: All game logic validated server-side
+- **Deterministic Replays**: Seeded RNG ensures reproducible results
+- **Transaction Logging**: Audit trail for all Gold transactions
+- **Rate Limiting**: Prevent abuse of API endpoints
+
+**Data Protection**:
+- **Encryption**: Encrypt sensitive user data at rest
+- **HTTPS**: All communications encrypted in transit
+- **GDPR Compliance**: User data deletion and export capabilities
+- **Privacy Controls**: User preferences for data sharing
+
+**Fair Play**:
+- **Deterministic RNG**: Seeded random number generation
+- **Replay System**: Full replay capability for dispute resolution
+- **Transparent Odds**: Clear display of proc rates and multipliers
+- **Pity Protection**: Guaranteed protections against bad luck streaks
+
+#### **Analytics and Monitoring**
+
+**Game Analytics**:
+- **Wagering Patterns**: Track Gold spending and betting behavior
+- **Engagement Metrics**: Session length, frequency, and retention
+- **Feature Usage**: Track usage of different game modes and features
+- **Performance Metrics**: API response times and error rates
+
+**Business Analytics**:
+- **Revenue Tracking**: Monitor Gold pack sales and subscription revenue
+- **Conversion Funnels**: Track free-to-paid conversion paths
+- **Retention Analysis**: Analyze player retention by monetization tier
+- **A/B Testing**: Test different features and pricing strategies
+
+**Technical Monitoring**:
+- **Error Tracking**: Monitor and alert on application errors
+- **Performance Monitoring**: Track API response times and database performance
+- **Uptime Monitoring**: Ensure 99.9% service availability
+- **Security Monitoring**: Detect and prevent security threats
+
+#### **Deployment and Scaling**
+
+**Deployment Strategy**:
+- **Git-Based CI/CD**: Automatic deployments from git pushes
+- **Preview Deployments**: Test changes in preview environments
+- **Blue-Green Deployment**: Zero-downtime production deployments
+- **Feature Flags**: Gradual rollout of new features
+
+**Scaling Considerations**:
+- **Serverless Scaling**: Automatic scaling based on demand
+- **Database Scaling**: Read replicas for leaderboard queries
+- **CDN Distribution**: Global content delivery for fast loading
+- **Load Balancing**: Distribute traffic across multiple regions
+
+**Monitoring and Alerting**:
+- **Real-Time Monitoring**: Track key metrics in real-time
+- **Automated Alerting**: Alert on performance degradation or errors
+- **Capacity Planning**: Monitor usage trends and plan for growth
+- **Cost Optimization**: Monitor and optimize cloud costs
+
 ## Conclusion
 
 Bigfoot War successfully transforms the traditional War card game into an engaging, slot-machine inspired experience that appeals to casual gamers and slot enthusiasts alike. By incorporating virtual wagering, enhanced luck mechanics, and progressive meters while maintaining the core War gameplay, the game creates a unique hybrid that offers both strategic depth and slot-like excitement.
@@ -2944,334 +3688,6 @@ Author Relics as simple, 1‑sentence effects. Relics occupy Joker slots; some v
 - **Educational Value**: Players learn about global cryptid lore while enjoying gameplay
 
 Bigfoot War represents a successful fusion of traditional card game mechanics with modern slot-inspired engagement systems. The game maintains the strategic appeal of War while adding the excitement and progression systems that keep players coming back. With its focus on fairness, accessibility, engaging monetization, and comprehensive Bigfoot lore spanning 59+ global cryptids, Bigfoot War is positioned to capture both casual gamers and slot enthusiasts in the growing digital card game market.
-
-## Technical Architecture
-
-### Slot-Inspired Technical Stack
-
-Bigfoot War's technical architecture supports the slot-machine inspired gameplay while maintaining the core War card game mechanics. The system emphasizes rapid reveals, virtual wagering, and luck-driven progression with deterministic fairness and replayability.
-
-#### **Core Architecture Overview**
-
-**Technology Stack**:
-- **Frontend**: Next.js + React for component-based UI and SSR/SSG
-- **Backend**: Next.js API routes for serverless game logic
-- **Database**: Vercel Postgres + Prisma for user data and game state
-- **Cache**: Upstash Redis for session state and real-time features
-- **Hosting**: Vercel for serverless deployment and edge caching
-- **Audio**: Howler.js for cross-browser sound support
-- **Animations**: Framer Motion + GSAP for slot-inspired effects
-
-**Key Design Principles**:
-- **Deterministic Fairness**: Seeded RNG ensures reproducible results
-- **Rapid Response**: Sub-100ms API responses for lever-pull actions
-- **Scalable Wagering**: Support for high-frequency betting operations
-- **Real-time Updates**: Live leaderboards and tournament updates
-- **Mobile-First**: Optimized for touch interactions and haptic feedback
-
-#### **Internationalization & Localization (i18n/l10n)**
-**Launch Strategy**: English-first with future translation readiness
-
-**Text Localization System**:
-- **Next.js i18n**: Built-in internationalization with dynamic routing
-- **Text Key System**: All UI text uses localization keys (e.g., `warlord.sasquatch.name`, `territory.forest.description`)
-- **String Tables**: Organized by feature (Warlords, Territories, UI, Events, Achievements)
-- **Pluralization Support**: Built-in pluralization rules for different languages
-- **RTL Support**: Right-to-left language support for Arabic/Hebrew
-
-**Localization-Ready Content**:
-- **Warlord Names**: All Bigfoot names translatable with cultural context
-- **Territory Descriptions**: Environmental descriptions adaptable to local regions
-- **Lore & Mythology**: Cryptid profiles with region-specific cultural adaptations
-- **Achievement Names**: Folklore references translatable with local equivalents
-- **Event Descriptions**: Seasonal events adaptable to local cultural calendars
-
-**Cultural Adaptation Framework**:
-- **Regional Cryptid Names**: Use local names where appropriate (e.g., "Sasquatch" vs "Bigfoot" vs regional variants)
-- **Mythology Integration**: Adapt folklore references to local cryptid traditions
-- **Seasonal Events**: Adjust timing and themes to local cultural calendars
-- **Color & Symbolism**: Ensure color choices respect cultural sensitivities
-
-**Technical Implementation**:
-- **Asset Localization**: Separate image assets for different language regions
-- **Audio Localization**: Sound effects with cultural variants where appropriate
-- **Font Support**: Web fonts supporting extended character sets (Google Fonts)
-- **Number Formatting**: Localized number, currency, and date formatting
-- **Text Overflow Handling**: Dynamic UI scaling for different text lengths
-- **SEO Localization**: Hreflang tags and localized meta descriptions
-
-**Future Language Support** (Post-Launch):
-- **Phase 1**: Spanish, French, German (European markets)
-- **Phase 2**: Japanese, Korean, Chinese (Asian markets)
-- **Phase 3**: Portuguese, Italian, Russian (Expanded European markets)
-- **Phase 4**: Arabic, Hindi, Thai (Emerging markets)
-
-**Localization Quality Assurance**:
-- **Cultural Review**: Native speaker review for cultural accuracy
-- **Cryptid Expertise**: Regional cryptid folklore validation
-- **UI/UX Testing**: Interface testing with different text lengths
-- **Audio Testing**: Sound effect cultural appropriateness
-- **Performance Testing**: Load times with different language assets
-
-#### **Backend Systems (Enhanced for Slot Mechanics)**
-
-**Game Engine (Slot-Inspired)**:
-- **Lever Action Handler**: Processes single-button reveals with simultaneous card flips
-- **Wagering System**: Manages Gold betting, multipliers, and payout calculations
-- **Luck Meter Management**: Tracks Fortune, Epic, and Wager Streak meters
-- **Proc System**: Handles enhanced randomness with slot-like excitement
-- **Auto-Resolution**: Simulates multiple rounds for Auto-War mode
-- **Deterministic RNG**: Seeded random number generation for fairness and replays
-
-**Gold Currency System**:
-- **Gold Management**: Earn, spend, and track virtual currency
-- **Wagering Logic**: Bet validation, multiplier calculations, and payout processing
-- **Pity Protection**: Insurance and refund systems for consecutive losses
-- **Daily Caps**: Soft limits on Gold earning to prevent inflation
-- **Transaction Logging**: Audit trail for all Gold transactions
-
-**Enhanced User Management**:
-- **Authentication**: NextAuth with OAuth providers (Google, Apple, Facebook)
-- **Progression**: XP, levels, Mastery, and VIP tier tracking
-- **Statistics**: Wagering patterns, win rates, and engagement metrics
-- **Preferences**: Volatility settings, auto-resolution preferences, and UI customization
-
-**Tournament System**:
-- **Event Management**: Weekly tournaments with Gold entry fees
-- **Leaderboards**: Real-time rankings with territory/Warlord filters
-- **Matchmaking**: AI opponent selection with difficulty scaling
-- **Replay System**: Deterministic replay generation for tournament verification
-
-#### **Database Schema (Slot-Enhanced)**
-
-**Core User Data**:
-```typescript
-interface User {
-  id: string;
-  username: string;
-  email: string;
-  level: number;
-  xp: number;
-  gold: number;
-  goldEarnedToday: number;
-  goldSpentToday: number;
-  dailyStreak: number;
-  lastLogin: Date;
-  vipTier: 'Bronze' | 'Silver' | 'Gold' | 'Platinum';
-  vipPoints: number;
-  preferences: {
-    volatilityMode: 'Steady' | 'Wild';
-    autoResolution: boolean;
-    speedSetting: 'Instant' | 'Fast' | 'Standard' | 'Cinematic';
-    reducedMotion: boolean;
-  };
-  entitlements: {
-    goldPass: boolean;
-    platinumPass: boolean;
-    adRemoval: boolean;
-    unlimitedNudges: boolean;
-    exclusiveBets: boolean;
-  };
-}
-```
-
-**War Data (Enhanced)**:
-```typescript
-interface War {
-  id: string;
-  userId: string;
-  warlord: string;
-  enemyWarlord: string;
-  territory: string;
-  tier: number;
-  betAmount: number;
-  betMultiplier: number;
-  volatilityMode: 'Steady' | 'Wild';
-  result: 'win' | 'loss' | 'draw';
-  goldWagered: number;
-  goldWon: number;
-  goldNet: number;
-  roundsPlayed: number;
-  procsTriggered: string[];
-  metersTriggered: string[];
-  jackpotsHit: number;
-  nearMisses: number;
-  timestamp: Date;
-  replaySeed: string;
-}
-```
-
-**Wagering Data**:
-```typescript
-interface WageringSession {
-  id: string;
-  userId: string;
-  startTime: Date;
-  endTime?: Date;
-  totalWagered: number;
-  totalWon: number;
-  netResult: number;
-  warsPlayed: number;
-  consecutiveLosses: number;
-  pityProtectionUsed: boolean;
-  volatilityMode: 'Steady' | 'Wild';
-  territory: string;
-  warlord: string;
-}
-```
-
-**Tournament Data**:
-```typescript
-interface Tournament {
-  id: string;
-  name: string;
-  type: 'Weekly' | 'Monthly' | 'VIP' | 'Seasonal';
-  entryFee: number;
-  prizePool: number;
-  startTime: Date;
-  endTime: Date;
-  maxParticipants: number;
-  currentParticipants: number;
-  leaderboard: TournamentEntry[];
-  status: 'Upcoming' | 'Active' | 'Completed';
-}
-
-interface TournamentEntry {
-  userId: string;
-  username: string;
-  score: number;
-  rank: number;
-  goldWagered: number;
-  goldWon: number;
-  warsPlayed: number;
-  winRate: number;
-}
-```
-
-#### **API Endpoints (Slot-Enhanced)**
-
-**Core Gameplay**:
-- `POST /api/war/start`: Initialize war with wagering options
-- `POST /api/war/pull-lever`: Process lever pull and reveal cards
-- `POST /api/war/auto-resolve`: Handle Auto-War mode simulation
-- `POST /api/war/nudge`: Process card nudge with Gold cost
-- `GET /api/war/state/:warId`: Get current war state for replays
-
-**Gold and Wagering**:
-- `POST /api/gold/wager`: Process Gold wagering with validation
-- `GET /api/gold/balance`: Get current Gold balance and daily limits
-- `POST /api/gold/earn`: Process Gold earning from various sources
-- `GET /api/gold/history`: Get Gold transaction history
-- `POST /api/gold/purchase`: Handle Gold pack purchases
-
-**Tournaments and Leaderboards**:
-- `GET /api/tournaments`: List active and upcoming tournaments
-- `POST /api/tournaments/join`: Join tournament with Gold entry fee
-- `GET /api/tournaments/:id/leaderboard`: Get tournament leaderboard
-- `GET /api/leaderboards`: Get global leaderboards with filters
-- `GET /api/leaderboards/me`: Get user's current rank
-
-**Progression and Rewards**:
-- `POST /api/progression/level-up`: Process level-up rewards
-- `POST /api/mastery/update`: Update Warlord Mastery progress
-- `POST /api/vip/upgrade`: Process VIP tier upgrades
-- `GET /api/rewards/daily`: Get daily reward status
-- `POST /api/rewards/claim`: Claim daily/weekly rewards
-
-#### **Real-Time Features**
-
-**WebSocket Integration**:
-- **Tournament Updates**: Live leaderboard updates during tournaments
-- **Friend Challenges**: Real-time notifications for friend requests
-- **Live Events**: Server-wide event notifications and updates
-- **Leaderboard Changes**: Real-time rank updates and notifications
-
-**Push Notifications**:
-- **Daily Rewards**: Remind players to claim daily rewards
-- **Tournament Alerts**: Notify when tournaments are starting
-- **Friend Activity**: Notify when friends achieve milestones
-- **Special Events**: Alert players to limited-time events
-
-#### **Performance Optimization**
-
-**Caching Strategy**:
-- **Game State**: Cache active war states in Redis for fast access
-- **Leaderboards**: Cache leaderboard data with 30-second refresh
-- **User Data**: Cache frequently accessed user data
-- **Static Assets**: CDN caching for images, audio, and animations
-
-**Database Optimization**:
-- **Indexing**: Optimize queries for wagering patterns and leaderboards
-- **Partitioning**: Partition war data by date for better performance
-- **Materialized Views**: Pre-computed aggregates for statistics
-- **Connection Pooling**: Efficient database connection management
-
-**Frontend Performance**:
-- **Code Splitting**: Lazy load components for faster initial load
-- **Image Optimization**: WebP format with fallbacks
-- **Audio Preloading**: Smart preloading of frequently used sounds
-- **Animation Optimization**: GPU-accelerated animations with fallbacks
-
-#### **Security and Fairness**
-
-**Anti-Cheat Measures**:
-- **Server-Side Validation**: All game logic validated server-side
-- **Deterministic Replays**: Seeded RNG ensures reproducible results
-- **Transaction Logging**: Audit trail for all Gold transactions
-- **Rate Limiting**: Prevent abuse of API endpoints
-
-**Data Protection**:
-- **Encryption**: Encrypt sensitive user data at rest
-- **HTTPS**: All communications encrypted in transit
-- **GDPR Compliance**: User data deletion and export capabilities
-- **Privacy Controls**: User preferences for data sharing
-
-**Fair Play**:
-- **Deterministic RNG**: Seeded random number generation
-- **Replay System**: Full replay capability for dispute resolution
-- **Transparent Odds**: Clear display of proc rates and multipliers
-- **Pity Protection**: Guaranteed protections against bad luck streaks
-
-#### **Analytics and Monitoring**
-
-**Game Analytics**:
-- **Wagering Patterns**: Track Gold spending and betting behavior
-- **Engagement Metrics**: Session length, frequency, and retention
-- **Feature Usage**: Track usage of different game modes and features
-- **Performance Metrics**: API response times and error rates
-
-**Business Analytics**:
-- **Revenue Tracking**: Monitor Gold pack sales and subscription revenue
-- **Conversion Funnels**: Track free-to-paid conversion paths
-- **Retention Analysis**: Analyze player retention by monetization tier
-- **A/B Testing**: Test different features and pricing strategies
-
-**Technical Monitoring**:
-- **Error Tracking**: Monitor and alert on application errors
-- **Performance Monitoring**: Track API response times and database performance
-- **Uptime Monitoring**: Ensure 99.9% service availability
-- **Security Monitoring**: Detect and prevent security threats
-
-#### **Deployment and Scaling**
-
-**Deployment Strategy**:
-- **Git-Based CI/CD**: Automatic deployments from git pushes
-- **Preview Deployments**: Test changes in preview environments
-- **Blue-Green Deployment**: Zero-downtime production deployments
-- **Feature Flags**: Gradual rollout of new features
-
-**Scaling Considerations**:
-- **Serverless Scaling**: Automatic scaling based on demand
-- **Database Scaling**: Read replicas for leaderboard queries
-- **CDN Distribution**: Global content delivery for fast loading
-- **Load Balancing**: Distribute traffic across multiple regions
-
-**Monitoring and Alerting**:
-- **Real-Time Monitoring**: Track key metrics in real-time
-- **Automated Alerting**: Alert on performance degradation or errors
-- **Capacity Planning**: Monitor usage trends and plan for growth
-- **Cost Optimization**: Monitor and optimize cloud costs
-
 
 
 
