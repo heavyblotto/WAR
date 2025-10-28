@@ -1,134 +1,1015 @@
 # Bigfoot War: Optimized Game Design Document
 
-## 1. Executive Summary
+## 1. Executive summary
 
-**Genre**: Digital Card Game, Slot-Inspired, War-Based  
-**Platform**: Web (Node.js backend, HTML5 frontend)
-**Target Audience**: Casual gamers, slot machine players, card game enthusiasts (13+)  
-**Session Length**: 1-6 minutes (with auto-resolution options)  
-**Core Loop**: Choose Warlord → Bet Gold → Pull Lever (Auto-Reveal) → Collect Amplified Rewards → Build Luck Meters → Unlock Higher Bets
+- **Genre**: Digital Card Game, Slot-Inspired, War-Based  
+- **Platform**: Web (Node.js backend, HTML5 frontend)
+- **Target Audience**: Casual gamers, slot machine players, card game enthusiasts (13+)  
+- **Session Length**: 1-6 minutes (with auto-resolution options)  
+- **Core Loop**: Choose Warlord → Bet Gold → Pull Lever (Auto-Reveal) → Collect Amplified Rewards → Build Luck Meters → Unlock Higher Bets
 
 **Bigfoot War** is a slot-machine inspired digital card battler that transforms the classic War card game into an engaging, luck-driven experience. 
 
 The game fuses the strategic appeal of the classic card game War while adding the excitement and progression systems that keep players coming back. With its focus on fairness, accessibility, engaging monetization, and comprehensive Bigfoot lore spanning 59+ global cryptids, Bigfoot War is positioned to capture both casual gamers and slot enthusiasts in the growing digital card game market.
 
-### Key Innovations
-- **Lever-Based Gameplay**: Single "Pull Lever" button auto-reveals both cards simultaneously
-- **Educational Lore**: 59 global cryptids with authentic regional folklore—players learn about worldwide Bigfoot mythology while gaming
-- **Viral Sharing**: Replay seeds exportable to X/Twitter for "My Sasquatch Win! Seed: HMAC..." social engagement driving MAU growth
-- **Unique Market Position**: First slot-War hybrid featuring comprehensive cryptid lore—no direct competitors (Balatro closest: premium poker-roguelike; Coin Master: different genre)
-- **Deterministic Fairness**: Seeded RNG ensures reproducible, fair results
-- **Progression Synergy**: Warlord Mastery, XP, Gold economy interlocked for long-term engagement
+### Game novelty
+| Innovation             | Description                                                                                                                            |
+|------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| **Lever-Based Gameplay** | Single "Pull Lever" button auto-reveals both cards simultaneously                                                                      |
+| **Educational Lore**   | 59 global cryptids with authentic regional folklore—players learn about worldwide Bigfoot mythology while gaming                       |
+| **Viral Sharing**      | Replay seeds exportable to X/Twitter for "My Sasquatch Win! Seed: HMAC..." social engagement driving MAU growth                        |
+| **Unique Market Position** | First slot-War hybrid featuring comprehensive cryptid lore—no direct competitors (Balatro closest: premium poker-roguelike; Coin Master: different genre) |
+| **Deterministic Fairness** | Seeded RNG ensures reproducible, fair results                                                                                          |
+| **Progression Synergy** | Warlord Mastery, XP, Gold economy interlocked for long-term engagement                                                                 |
 
-### Success Metrics
+### Success metrics
 
-**Engagement Targets** (2025 Casual Gaming Benchmarks):
-- **Day 1 Retention**: 30-35% (vs. median 20-28%, top 40-60%) - Narrative Uplift Target via Elder Thalor integration: +7% (tutorial hooks + daily quests)
-- **Day 7 Retention**: 12-15% (vs. median 6-12%) - Narrative Uplift Target: +5% via daily quest completion loops
-- **Day 30 Retention**: 6-8% (vs. median 4-6%)
-- **Session Length**: 3-6 minutes average (increased to 4-8 min with wagering)
-- **Sessions Per Day**: 2-3 for active users
+| Category          | Metric                 | Target                                     | Notes/Benchmarks                                                                                                 |
+|-------------------|------------------------|--------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| **Engagement**    | Day 1 Retention        | 30-35%                                     | (2025 Casual Gaming Benchmarks) vs. median 20-28%, top 40-60%; Narrative Uplift Target via Mutated Sherman integration: +7% (tutorial hooks + daily quests) |
+|                   | Day 7 Retention        | 12-15%                                     | vs. median 6-12%; Narrative Uplift Target: +5% via daily quest completion loops                                  |
+|                   | Day 30 Retention       | 6-8%                                       | vs. median 4-6%                                                                                                  |
+|                   | Session Length         | 3-6 minutes average                        | Increased to 4-8 min with wagering                                                                               |
+|                   | Sessions Per Day       | 2-3                                        | For active users                                                                                                 |
+| **Revenue**       | Conversion Rate        | 8-15%                                      | (Hybrid Casual Model) Of players make purchases                                                                  |
+|                   | ARPU                   | $4-10 per paying user per month            | vs. casual $1-5                                                                                                  |
+|                   | LTV                    | $25-50 per paying user lifetime value      | vs. casual $15-30                                                                                                |
+|                   | MRR                    | $5k-20k by Month 6                         | Scaling from 5k MAU                                                                                              |
+|                   | Sim Validation         | L10 in 55-60 wars F2P                      | Validated via 100k war simulation                                                                                |
+| **Technical**     | Load Time              | <3 seconds                                 | On 3G connection                                                                                                 |
+|                   | API Response           | <100ms                                     | For lever-pull actions                                                                                           |
+|                   | Uptime                 | 99.9%                                      | Service availability                                                                                             |
+|                   | Frame Rate             | 60fps                                      | 30fps fallback on low-end devices                                                                                |
+|                   | Beta Metrics Validation| All targets validated                      | Via Q1 2026 beta playtests (100-200 closed + 1,000-2,000 open beta)                                              |
+| **A/B Testing**   | Volatility Slider      | Test Low/Med/High modes                    | Targeting +5% D7 retention uplift                                                                                |
 
-**Revenue Targets** (Hybrid Casual Model):
-- **Conversion Rate**: 8-15% of players make purchases
-- **ARPU**: $4-10 per paying user per month (vs. casual $1-5)
-- **LTV**: $25-50 per paying user lifetime value (vs. casual $15-30)
-- **MRR**: $5k-20k by Month 6 (scaling from 5k MAU)
-- **Sim Validation**: L10 in 55-60 wars F2P (validated via 100k war simulation)
-
-**Technical Targets**:
-- **Load Time**: <3 seconds on 3G connection
-- **API Response**: <100ms for lever-pull actions
-- **Uptime**: 99.9% service availability
-- **Frame Rate**: 60fps animations (30fps fallback on low-end devices)
-- **Beta Metrics Validation**: All targets validated via Q1 2026 beta playtests (100-200 closed + 1,000-2,000 open beta)
-
-**A/B Testing Targets**:
-- **Volatility Slider**: Test Low/Med/High modes targeting +5% D7 retention uplift
-
-### Core Slot-Inspired Mechanics
+### Core slot-inspired mechanics
 
 Bigfoot War transforms the traditional War card game into a slot-machine experience through streamlined reveals, virtual wagering, and luck-driven progression. The core War mechanics remain intact but are presented as rapid-fire "spins" with amplified excitement.
 
-## 2. Game Overview
+## 2. Game overview
 
-### Theme & Lore
+### Themes and lore
 
 Bigfoot War features comprehensive Bigfoot lore spanning 59+ global cryptids from regional and geographic locales worldwide. The game integrates cryptids from North America, Himalayan/Asia, South America, Africa, Europe, Oceania, Southeast Asia, Middle East, and Arctic regions.
 
 **Regional Territory Themes** and **Cultural Integration** details are covered in Content Systems (Section 5).
 
-### Key Slot-Inspired Features
+### Slot-inspired features
 
-**Gold Wagering**: Pro players can wager Gold before each war to amplify rewards with slot-like tension (RTP Target: 94-96%).
+| Feature | Description | Trigger/Mechanic |
+|---------|-------------|------------------|
+| **Gold Wagering** | Pro players can wager Gold before each war to amplify rewards with slot-like tension | RTP Target: 94-96% |
+| **Luck Meters** | Karma Meter (triggers at 6 for Double Damage) and Streak Meter (triggers at 20 for Gold jackpot) | Meter fills during gameplay |
+| **Near-Misses** | Loss by 1-2 ranks triggers partial payout + Karma boost | Loss by 1-2 rank difference |
+| **Jackpots** | Deterministic combos + 1% random chance | Combo-based or random trigger |
 
-**Luck Meters**: Karma Meter (triggers at 6 for Double Damage) and Streak Meter (triggers at 20 for Gold jackpot). 
+### Win rate and balance
 
-**Near-Misses**: Loss by 1-2 ranks triggers partial payout + Karma boost.
+| Metric | Target/Value | Notes |
+|--------|--------------|-------|
+| **Player Win Rate** | 60-70% | Sim-validated target |
+| **Base Symmetric War** | ~52% wins | Baseline without Warlord cards |
+| **Warlord Impact** | +5-12% shift | Based on archetype match-ups |
+| **Meta Balance** | Ensured | Archetype counters prevent dominance |
 
-**Jackpots**: Deterministic combos + 1% random chance.
+### Platforms and tech stack
 
-### Win Rate & Balance
+| Category | Details |
+|----------|---------|
+| **Platform** | Web (Node.js backend, HTML5 frontend) |
+| **Technology Stack** | Frontend (Next.js + React), Backend (Next.js API routes), Database (Vercel Postgres + Prisma), Cache (Upstash Redis), Hosting (Vercel), Audio (Howler.js), Animations (Framer Motion + GSAP) |
+| **Mobile** | PWA-ready with touch interactions and haptic feedback |
+| **Cross-Platform Strategy** (Q2 2026) | **PWA First**: Launch as Progressive Web App (PWA) for instant web access—60% of casual players access via browsers first<br>**Native Wrappers**: Post-launch wrappers via Capacitor/Cordova for iOS and Android app stores<br>- iOS App Store: Native wrapper with in-app purchase support<br>- Google Play Store: Android wrapper with subscription billing<br>- Benefits: App store UA, native performance, push notifications, store listing visibility<br>**Unified Codebase**: Single Next.js codebase with platform-specific feature flags (PWA vs. native)<br>**App Store Optimization**: Cryptid mythology keywords (Bigfoot, Sasquatch, Yeti) + card game battler + slot mechanics<br>**Target Markets**: Q2 2026 iOS/Android launch for international expansion (ES, FR, DE, JP, KR markets) |
 
-Target: 60-70% player wins (sim-validated). Base symmetric War ~52% wins; Warlord replacements shift +5-12% based on archetype matchups ensuring meta balance.
+## 3. Core gameplay mechanics
 
-### Platforms & Tech Stack
+### Game flows
 
-**Platform**: Web (Node.js backend, HTML5 frontend)
+| Screen/Flow | Purpose | Key Actions | Primary UI Elements | User Type |
+|-------------|---------|-------------|---------------------|-----------|
+| **Splash Page** | First screen: preload, routing, auth | War Horn CTA, Continue as Guest, Watch Replay | Hero area, CTAs, offer carousel, news strip | All players |
+| **Lobby** | Central hub: Warlord/card selection, bet, mode choice | Warlord select, volatility slider, War Horn, mode switch | Warlord carousel, volatility slider, betting slider, quest panel | All players |
+| **War Campaign** | Campaign map: Territory browsing/unlock, play/elite toggle | Unlock Territory, Continue/Play, Elite toggle, War Horn | Campaign map, Territory cards, progress tracker | All players |
+| **Quick War** | Ultra-fast entry: opponent selection, instant war | Auto-Select Opponent, Manual filter, War Horn | Opponent carousel, betting (Pro), volatility slider | All players |
+| **War Board** | Core gameplay: lever pulls, reveals, meters, round resolution | Pull Lever (primary), Auto-War toggle, Skip Anim | Card reveal lanes, meters, lever CTA, round log | All players |
+| **Results Screen** | Post-war rewards: XP/Gold/Spoils, progression, actions | Continue, Rematch, Share Replay, Knapsack, Convert Spoils | Verdict banner, rewards stack, progression bars, action buttons | All players |
+| **Authentication** | Entry: secure sign-in, guest mode, age/consent | Sign in (Google/Apple/Email), Continue as Guest, Link Account | Auth providers, age gate, consent checkboxes | New/returning players |
+| **Tutorial Campaign** | Onboarding: 5-war guided experience with Mutated Sherman | Next, Skip Tutorial (post-War 3), Replay Tip | Overlay VO panels, step tracker, tooltips | First-time players |
+| **Daily Rewards** | Login streak rewards with mini-spin | Claim, Spin (optional), Watch Ad for Re-Spin | Streak calendar, claim button, spin wheel | All players |
+| **Daily Quests** | 3-4 quests with lore flavor, progress tracking, rewards | View, Claim, Reroll (Pro) | Quest cards with progress bars, claim buttons | All players |
+| **Warlord Library** | Browse roster, archetype tips, Mastery inspection | Select, Preview Cards, View Mastery | Grid/list with filters, detail drawer | All players |
+| **Knapsack/Collection** | Manage Specimens, sets, cosmetics with rarity filters | Filter, View Set, Equip Cosmetic (future) | Grid with filters, set progress, new badges | All players |
+| **Settings** | Appearance, accessibility, audio, language, notifications | Apply, Reset, theme select, toggles | Tabs (Appearance, Accessibility, Audio, Language, Notifications) | All players |
+| **Error/Offline** | Graceful degradation and recovery paths | Retry, Go Offline, View Status | Top banners, inline toasts, maintenance screen | All players |
+| **Tournament Suite** | Join tournaments, view brackets, track scoring | Enter (Gold), Spectate, View Leaderboard | Tournament lobby, brackets, leaderboards | Pro players |
+| **Replay Viewer** | Deterministic playback for share, verification | Share Replay, Copy Seed | Player with controls, seed display | All players |
+| **Wagering Panels** | Bet/multiplier explanation, RTP, insurance chips | Bet change, insurance view, wager info | Bet slider, details accordion, RTP disclosure | Pro players (feature-gated) |
+| **Fair Play Modal** | Transparent odds, RTP, deterministic fairness | Copy Seed, View Replay, Fair Play Policy, Close | Modal with tabs (Fair Play, Odds, RTP, Replays) | All players |
+| **Shop/IAP** | Purchase Gold packs with clear value | Buy, Restore Purchases | Packs grid with bonus callouts, bundle carousel | All players |
+| **Pro Subscription** | Compare/upgrade Gold vs. Platinum, manage billing | Upgrade, Manage Billing | Plan comparison, benefits list | All players |
+| **Leaderboards** | Global/regional/mode rankings | Filter (Global/Regional/Mode) | Tabs, filters, player rows | All players |
+| **Event/Seasonal Hub** | Weekly/seasonal modifiers, rewards, countdowns | Join event, complete tasks | Event banner, tasks, rewards preview, timer | All players |
+| **Notifications/Inbox** | Rewards, alerts, system messages | Claim, Mark Read, Delete | Message list with filters, detail pane | All players |
+| **Ads Flows** | Rewarded video and interstitial flows | Watch Ad (rewarded), Skip (interstitial) | Modal with reward preview, skip timer | F2P players |
+| **Admin/Debug Overlay** | Developer/QA tools for seeds, FPS, procs | Debug overlay toggle (long-press gear) | Seed display, FPS, proc tracking, force outcomes | Internal only |
+| **Profile & Progress** | Badge showcase, stats, replay shares | View Badge, Share Replay | Avatar/title, stats, badges grid, recent replays | All players |
+| **Economy Ledger** | Transparent Gold/Spoils transaction history | Filter, Export | Filterable ledger, totals | All players |
 
-**Technology Stack**: Frontend (Next.js + React), Backend (Next.js API routes), Database (Vercel Postgres + Prisma), Cache (Upstash Redis), Hosting (Vercel), Audio (Howler.js), Animations (Framer Motion + GSAP).
+### Splash page interface
 
-**Mobile**: PWA-ready with touch interactions and haptic feedback.
+**Purpose**: First screen to set tone, preload essentials, and route players fast (goal: <3s TTI on 3G).
 
-**Cross-Platform Strategy** (Q2 2026):
-- **PWA First**: Launch as Progressive Web App (PWA) for instant web access—60% of casual players access via browsers first
-- **Native Wrappers**: Post-launch wrappers via Capacitor/Cordova for iOS and Android app stores
-  - iOS App Store: Native wrapper with in-app purchase support
-  - Google Play Store: Android wrapper with subscription billing
-  - Benefits: App store UA, native performance, push notifications, store listing visibility
-- **Unified Codebase**: Single Next.js codebase with platform-specific feature flags (PWA vs. native)
-- **App Store Optimization**: Cryptid mythology keywords (Bigfoot, Sasquatch, Yeti) + card game battler + slot mechanics
-- **Target Markets**: Q2 2026 iOS/Android launch for international expansion (ES, FR, DE, JP, KR markets)
+**Layout (mobile-first, responsive)**:
 
-## 3. Core Gameplay Mechanics
+| Section | Left | Center | Right |
+|---------|------|--------|-------|
+| **Header** | Game logo | - | Settings gear, mute toggle, language selector, Pro badge (if applicable) |
+| **Hero area** | - | Full-bleed territory art with subtle parallax; Mutated Sherman mist overlay (300ms emerge) | - |
+| **Primary CTA zone** | - | Centered War Horn button → "Sign In" flow; subtext: "Seeded fair play" | - |
+| **Secondary CTAs** | - | "Continue as Guest" (ephemeral), "Watch Replay" (if deep-linked), "Learn More" (GDD-lite panel) | - |
+| **Offer/marketing panel** | - | Rotating carousel (welcome bonus, Pro trial, seasonal event) | - |
+| **News strip** | - | Single-line ticker or card stack (latest event, patch note, tournament countdown) | - |
+| **Footer** | Terms, Privacy, Support | Version/build hash | Region flag |
 
-### Game Loop Phases
+**States**:
 
-#### Splash Page
-1. Player taps **War Horn** to Sign Up.
-2. Player taps **War Horn** to Sign In.
+| State | War Horn Action | UI Behavior | Fallback |
+|-------|----------------|-------------|----------|
+| **Logged Out** | → Auth modal (Google/Apple/Email) | Guest option visible | - |
+| **Logged In (New Player)** | → Tutorial campaign start | - | - |
+| **Logged In (Returning)** | → Resume last mode (Quick War or Campaign) | Surface daily rewards chip | - |
+| **Offline** | Disabled → retry | "Reconnecting…" banner; offline art fallback (no external calls) | - |
 
-#### Tutorial Campaign (First-Time Players)
+**Primary CTA (War Horn) specs**:
 
-**Narrative-Driven Introduction**: Elder Thalor, the Cryptid Sage, guides new players through a 5-war tutorial campaign with lore-driven narrative and progressive skill introduction.
+| Spec | Details |
+|------|---------|
+| **Hit target** | 56-64px min (mobile); keyboard focusable; aria-label "Sound the War Horn" |
+| **Feedback** | Press depth (6px), haptic 100ms, horn sound; disabled state for offline/auth pending |
+| **Auth routing** | If session absent → auth; else route by player state (tutorial vs. resume) |
 
-**Tutorial Flow Sequence**:
+| Element | Description | Behavior | Deep-Link Target |
+|---------|-------------|----------|------------------|
+| **Offer carousel** | 3-5 cards | Auto-rotate 4s, manual swipe | Pro, bundles, events |
+| **News cards** | Max 3 visible | Links to in-app modal with details | Cache 24h |
+| **Daily Reward chip** | Pulsing badge when claimable | Tap opens reward modal | - |
 
-| War # | Warlord | Educational Focus | Narrative Hook | Voiceover Duration | Auto-Unlocks |
-|-------|---------|------------------|----------------|--------------------|--------------|
-| 1 | Sasquatch | Lever pull, rank comparison, basic damage | "The wilds awaken, hunter. Sound the Horn—cryptids heed the call. Sasquatch guards PNW shadows. Pull! Higher rank claims the round. He throws rocks as warnings." | 10s | L1 Sasquatch unlocked |
-| 2 | Yeti | Win/loss feedback, health bars, territory themes | "Himalaya's ice heals the bold. Yeti's frost mends wounds—watch your health rise." | 6s | L1 Yeti unlocked |
-| 3 | Skunk Ape | Special effects (debuffs), defeat AI | "Swamp odors weaken the enemy. Skunk Ape's foul mist lowers ranks—see how it sways battle." | 6s | L3 Skunk Ape unlocked |
-| 4 | Agogwe | Karma meter fill, loss consolation | "Stealth heals on loss. Agogwe's wisdom: defeats build Karma—your power grows in shadows." | 6s | L1 Agogwe unlocked |
-| 5 | Sasquatch (rematch) | Full war resolution, Gold rewards | "Victory! Gold flows like mountain streams. Pull again—fate's weave tightens with each lever." | 8s | Tutorial complete |
+**Animation and VFX**:
 
-**Tutorial Features**:
-- **Guided Mechanics**: Popup tooltips on first lever pull ("Pull to reveal! Higher rank wins damage"), first win ("Higher rank deals damage"), first loss ("Lower rank—Karma builds")
-- **Auto-Progression**: Tutorial wars auto-advance between steps (no manual navigation)
-- **Lore Integration**: 30-second total voiceover spread across 5 wars with Elder Thalor's cryptic wisdom
-- **Auto-Unlock**: Warlords L1-3 automatically unlocked during tutorial (removes initial choice paralysis)
-- **Haptic Guidance**: Vibration on lever pull during first war introduces tactile feedback
+| Element | Description | Duration | Notes |
+|---------|-------------|----------|-------|
+| **Thalor mist overlay** | Fade-in on load | 300ms | 150ms fade on route change |
+| **Lever glow idle** | Breathing glow | 1.6s | Increased intensity on hover/focus |
+| **Event sparkles** | Lightweight particle pass | Variable | <200 particles, capped by device class |
 
-**Visual Design**:
-- Elder Thalor appears as mist-based overlay (Framer Motion shaders, 300ms emerge)
-- Staff glow animation on milestone completions
-- Territory-themed backgrounds with progressive reveal
-- Skip option available after War 3 (for experienced players)
+**Performance targets**:
 
-**Post-Tutorial**:
-- Campaign unlocks with "Hunt the elusive Sasquatch in misty forests" narrative
-- Daily quests introduce lore-flavored objectives (e.g., "Uncover Yeti secrets: Win 3 Mountain Wars")
-- Lobby transitions to standard flow with Thalor tooltips on hover
+| Metric | Target | Notes |
+|--------|--------|-------|
+| **TTI** | <3s on 3G; <1.5s on broadband | Time to Interactive |
+| **Budget** | Initial image payload ≤350KB WebP; audio deferred; fonts 1 subset | Asset optimization |
+| **Lazy load** | Auth providers, replay viewer, heavy art on interaction | Deferred loading |
+
+**Accessibility**:
+
+| Aspect | Specification |
+|--------|---------------|
+| **Contrast** | WCAG AA for CTA and text over imagery |
+| **Screen reader** | Landmarks (header/main/footer); live region for news updates (polite) |
+| **Keyboard** | Tab order: Logo → War Horn → Secondary CTAs → Offer → News → Settings → Footer |
+| **Reduced motion** | Disable parallax/particles; use fades |
+
+**Telemetry**:
+
+| Aspect | Details |
+|--------|---------|
+| **Track Events** | `splash_view`, `war_horn_click`, `guest_continue_click`, `offer_card_view`, `offer_card_click`, `news_card_view`, `news_card_click` |
+| **Dimensions** | locale, device_class, auth_state, user_level, pro_status, time_to_auth, time_to_first_war |
+
+**Error/edge handling**:
+
+| Error Type | Handling | Notes |
+|------------|----------|-------|
+| **Auth Fail** | Inline error under CTA, retry after 1s backoff | - |
+| **Content Fetch Fail** (offers/news) | Graceful fallback to static copy; log once per session | - |
+| **Deep-Link Replay** | If `?replay=seed`, show prominent "Watch Replay" secondary CTA | - |
+
+**Copy (EN default)**:
+
+| Element | Text |
+|---------|------|
+| **Tagline** | "Sound the horn. Draw your fate." |
+| **War Horn CTA** | "Sound the War Horn" |
+| **Guest CTA** | "Continue as Guest" |
+| **News header** | "Latest Hunts" |
+
+**Breakpoints**:
+
+| Screen Width | Layout | Description |
+|--------------|--------|-------------|
+| **<480px** | Single column | Offers stack below CTA; compact header |
+| **480–1024px** | Two-column | CTA left, offers/news right |
+| **>1024px** | Hero left 60% | Right rail for offers/news; footer expanded |
+
+**Data sources**:
+
+| Source | Endpoint | Cache Duration |
+|--------|----------|----------------|
+| **Offers** | `/api/offers?signed=true` | Edge cached 5m |
+| **News** | `/api/news` | Edge cached 60s |
+
+### Lobby interface
+
+**Purpose**: Central hub to choose Warlord, set volatility/bet, pick mode, and launch a war in 1-4 taps.
+
+**Layout (mobile-first, responsive)**:
+
+| Section | Mobile | Tablet/Desktop |
+|---------|--------|----------------|
+| **Header** | Left: game logo; Center: Gold counter + level; Right: settings gear, profile avatar, Pro badge (if applicable) | Same as mobile |
+| **Main Column** | Warlord carousel<br>Volatility slider (Low/Med/High)<br>Mode selector (Quick War / Campaign)<br>Card selection chips (auto/manual)<br>Pro betting slider (if Pro)<br>Primary War Horn CTA | Same as mobile |
+| **Side Column** | Hidden | Daily Quests panel<br>Offers/Events cards<br>News ticker |
+| **Footer** | Knapsack (Collection), Replays, Shop, Terms/Privacy | Same as mobile |
+
+**States**:
+
+| State | Description |
+|-------|-------------|
+| **New Player** | Tutorial banner + disabled wagering; auto-select Warlord/cards; War Horn routes to tutorial |
+| **Returning Player** | "Continue Campaign" chip if mid-campaign; remembers last Warlord/volatility |
+| **Pro** | Betting slider visible; wager cap by level; insurance chips surfaced after loss streaks |
+| **F2P** | Betting hidden; gentle Pro upsell chip near slider placeholder (non-blocking) |
+| **Offline** | Gold/XP cached view; War Horn disabled with reconnect affordance |
+
+**Primary CTAs**:
+
+| CTA | Description | Interaction Details |
+|-----|-------------|---------------------|
+| **War Horn** | Launch war based on current selections | Press depth 6px, haptic 100ms, horn sound |
+| **Mode switch** | Segmented control for Quick War vs. Campaign | Persists selection |
+
+**Key modules**:
+
+| Module | Description | Details |
+|--------|-------------|---------|
+| **Warlord carousel** | 200x200px portraits with slot glints; shows name, archetype icon, Mastery rank/progress | Hold for details modal; swipe to browse; keyboard arrows on desktop; Auto-suggest badge for territory affinity when Campaign mode selected |
+| **Volatility slider** | Low/Med/High with brief tooltips; Med default; persists per-user | A/B test hook for retention uplift (+5% target) |
+| **Pro betting (if Pro)** | Haptic slider with suggested bet; shows current cap by level; inline RTP disclosure link | Insurance chips appear contextually after 2-3 losses (per design) |
+| **Card selection** | Chips: "Auto (Recommended)" vs. "Manual"; show current allowed count (e.g., 4/6) | Manual opens selector with auto-suggest based on affinity |
+| **Daily Quests panel** | 3 quests with progress bars; claim button appears on completion | Tooltip flavor from Mutated Sherman on hover/long-press |
+| **Offers/events** | Rotating 3-5 cards; deep-link to Pro, bundles, seasonal events | |
+| **News ticker** | Latest event, patch notes, tournament countdown; polite live region | |
+| **Theme selector** (Settings > Appearance) | 5-theme carousel; live preview; applies across territories and card backs | |
+
+**Animation and VFX**:
+
+| Element | Animation | Duration | Details |
+|---------|-----------|----------|---------|
+| **Carousel idle** | Subtle glow sweep | 1.2s | On selected Warlord |
+| **Slider feedback** | Elastic snap; number roll-up | Instant | For bet amount |
+| **War Horn idle** | Breathing glow | Continuous | Intensifies on focus/hover |
+
+**Performance targets**:
+
+| Metric | Target | Details |
+|--------|--------|---------|
+| **TTI** | <2s returning users (cached); <3s cold | Time to Interactive for lobby load |
+| **Budget** | Lobby additional payload ≤300KB after splash; lazy-load heavy modals | Payload size constraints |
+| **Caching** | Header counters and quests cached; refresh in background | Cache strategy for performance |
+
+**Accessibility**:
+
+| Aspect | Details |
+|--------|---------|
+| **Landmarks** | header/main/aside/footer; semantic buttons for mode/war horn |
+| **Keyboard** | Tab order: Warlord → Volatility → Mode → Cards → Bet → War Horn → Quests → Offers |
+| **Screen reader** | Announce Warlord selection, bet changes, quest completion |
+| **Reduced motion** | Disable glints/parallax; rely on opacity transitions |
+
+**Telemetry**:
+
+| Event | Tracked Actions | Dimensions |
+|-------|----------------|------------|
+| **Lobby Events** | `lobby_view`, `warlord_select`, `volatility_change`, `mode_select`, `bet_change`, `war_horn_click`, `quests_claim` | locale, device_class, auth_state, user_level, pro_status, territory_context, session_length_to_first_war |
+| **Content Events** | `offer_card_view`, `offer_card_click`, `news_card_view`, `news_card_click` | locale, device_class, auth_state, user_level, pro_status |
+
+**Error/edge handling**:
+
+| Error Type | Handling | Details |
+|------------|----------|---------|
+| **Data fetch fail** (quests/offers/news) | Show cached or static placeholders; log once/session | Fallback to cached data or static UI elements |
+| **Bet validation fail** | Inline error near slider; snap to valid cap | Display error message adjacent to bet slider; auto-adjust to valid maximum |
+| **Campaign locked** | Inline unlock prompt with Gold shortfall indicator | Show unlock CTA with current Gold vs. required Gold display |
+
+**Copy (EN default)**:
+
+| Element | Text |
+|---------|------|
+| **Mode** | "Quick War" / "Territory Campaign" |
+| **Volatility** | "Low risk" / "Balanced" / "High stakes" |
+| **War Horn CTA** | "Sound the War Horn" |
+| **Cards** | "Auto (Recommended)" / "Manual" |
+| **Quests header** | "Daily Hunts" |
+
+**Breakpoints**:
+
+| Screen Size | Layout | Details |
+|-------------|--------|---------|
+| **<480px** | Single column | Side content collapses under CTA; sticky War Horn |
+| **480–1024px** | Two columns | Main left, side right |
+| **>1024px** | Three-pane feel | Expanded quests/offers rail |
+
+**Data sources**:
+
+| Data Source | Endpoint | Cache Strategy |
+|-------------|----------|----------------|
+| **Player summary** | `/api/player/summary` | Edge cached 30s |
+| **Quests** | `/api/quests/daily` | Stale-while-revalidate 30s |
+| **Campaigns** | `/api/campaigns/next` | For Continue chip |
+| **Suggested affinity** | `/api/suggest/warlord` | Territory/context-aware |
+| **Offers/events** | `/api/offers`, `/api/events` | Edge cached 5m |
+| **News** | `/api/news` | Edge cached 60s |
+
+### War Campaign interface
+
+**Purpose**: Guide players through Campaign selection and Territory progression with clear unlocks, affinity hints, and fast entry into wars.
+
+**Layout (mobile-first, responsive)**:
+
+| Section | Components | Details |
+|---------|------------|---------|
+| **Header** | Campaign selector (dropdown/carousel), current Gold, level, Pro badge | Top navigation bar |
+| **Main** | Campaign Map (node path) or Territory Grid (list mode toggle) | Primary content area |
+| | Territory Details panel (on select) | name, tier, home affinity, opponent Warlord, difficulty, rewards preview |
+| | Action row | Unlock/Play/Elite toggle, Pro bet slider (if Pro), Card selection chips, War Horn CTA |
+| **Side Rail (tablet/desktop)** | Campaign progress (territories captured/total), path preview, recommended Warlords (affinity), event modifiers | Secondary content area |
+| **Footer** | Back to Lobby, Replays, Shop | Bottom navigation |
+
+**States**:
+
+| State | Description |
+|-------|-------------|
+| **New Campaign** | First territory free after unlock; shows unlock CTA for subsequent territories with cost |
+| **Continue Campaign** | Highlights next Territory; "Continue" chip visible |
+| **Captured Territory** | Shows replay/play again (free) with Elite toggle if available |
+| **Elite Mode** | Higher difficulty/rewards badge; Pro discounts applied per plan |
+| **Locked** | Shows Gold shortfall with earn suggestions (quests/ads) and Pro discount if applicable |
+
+**Primary CTAs**:
+
+| CTA | Description | Behavior |
+|-----|-------------|----------|
+| **Unlock Territory** | Confirms spend | Shows cost, Pro discount, net Gold after |
+| **Play (Captured) / Continue (Next)** | Starts war setup | With selected Warlord/cards |
+| **Elite toggle** | On/off | Displays modifiers |
+| **War Horn CTA** | "Sound the War Horn" | Launch with current selections |
+
+**Modules**:
+
+| Module | Description |
+|--------|-------------|
+| **Campaign selector** | Horizontal carousel with campaign art; shows completion badge, territories, theme |
+| **Campaign Map** | Linear/semi-linear node path; locked nodes show costs; boss node labeled |
+| **Territory card** | Tier, home suit affinity (Hearts/Spades/Diamonds/Clubs), opponent Warlord, rewards multiplier |
+| **Unlock flow** | Cost display (100–5kG by tier); confirmation modal; failure shows shortfall and earn options |
+| **Affinity hints** | Auto-suggest Warlords/cards that match territory suit; +15–25% XP/Gold callout |
+| **Volatility slider** | Low/Med/High with brief tooltips; persists per user |
+| **Pro betting (if Pro)** | Haptic slider up to cap by level; inline RTP disclosure; insurance chips on loss streaks |
+| **Card selection** | Auto (recommended) vs. Manual; show allowed count by level |
+| **Progress tracker** | Captured count, upcoming boss, completion rewards (badge, Gold/XP/Spoils pod) |
+| **Rewards preview** | Tier multipliers (1.0x/1.2x/1.5x) and Elite (1.3x) shown; jackpot and Mastery boosts where relevant |
+
+**Animation and VFX**:
+
+| Element | Effect | Notes |
+|---------|--------|-------|
+| **Node unlock** | Coin spend burst; path light-up | Visual feedback for territory unlock |
+| **Territory select** | Card lift with suit-tinted glint | Interactive selection feedback |
+| **Elite badge** | Pulsing outline | Subdued in Reduced Motion |
+
+**Performance targets**:
+
+| Metric | Target | Notes |
+|--------|--------|-------|
+| **TTI** | <2s returning; <3s cold | Time to Interactive |
+| **Payload** | Map/grid assets ≤300KB after Splash; lazy-load boss art | Asset size optimization |
+| **Caching** | Campaign/territory data cached; SWR revalidate 30–60s | Data caching strategy |
+
+**Accessibility**:
+
+| Aspect | Description |
+|--------|-------------|
+| **Navigation** | Keyboard arrows for map nodes; Enter to select; Space for War Horn |
+| **Labels** | Territory cards include tier, cost, affinity, difficulty; aria-live updates on unlock |
+| **Reduced motion** | Disable path light-ups; use fades |
+
+**Telemetry**:
+
+| Category | Values |
+|----------|--------|
+| **Track Events** | `campaign_view`, `campaign_select`, `territory_select`, `territory_unlock_click`, `territory_unlock_confirm`, `elite_toggle`, `volatility_change`, `bet_change`, `cards_auto_select_click`, `cards_manual_open`, `war_horn_click`, `campaign_continue_click` |
+| **Dimensions** | `locale`, `device_class`, `auth_state`, `user_level`, `pro_status`, `campaign_id`, `territory_id`, `tier`, `elite_enabled` |
+
+| Error/Edge Case | Handling |
+|-----------------|----------|
+| **Insufficient Gold** | Show shortfall with earn paths (daily quests, rewarded ad); respect soft caps |
+| **Unlock Race** | Server check on confirm; if already unlocked elsewhere, show success and refresh |
+| **Pro Discount Mismatch** | Recompute discount server-side; display final price prior to confirm |
+| **Offline** | Read-only map; disable unlock; allow replay of captured territories if local seed exists |
+
+**Copy (EN default)**:
+
+| Element | Text |
+|---------|------|
+| **Unlock CTA** | "Unlock Territory" |
+| **Continue CTA** | "Continue" |
+| **Play CTA** | "Play" |
+| **Elite Toggle** | "Elite Mode" |
+| **War Horn CTA** | "Sound the War Horn" |
+| **Locked** | "Locked" |
+
+**Breakpoints**:
+
+| Breakpoint | Layout | Notes |
+|------------|--------|-------|
+| **<480px** | Territory Grid default; map accessible via toggle; sticky action row | Mobile-first |
+| **480–1024px** | Map left, details/actions right | Tablet |
+| **>1024px** | Map center with side rails (progress/recommends) | Desktop |
+
+**Data sources**:
+
+| Endpoint | Method | Purpose | Returns |
+|----------|--------|---------|---------|
+| **Campaigns** | GET | List campaigns | `/api/campaigns` (list) |
+| **Campaigns** | GET | Campaign detail | `/api/campaigns/{id}` (detail) |
+| **Territories** | GET | Territory status, costs, tiers | `/api/campaigns/{id}/territories` |
+| **Unlock** | POST | Unlock territory | `/api/territory/unlock` |
+| **Suggest** | GET | Warlord affinity suggestion | `/api/suggest/warlord?territory=...` |
+| **Cards auto** | POST | Auto-select cards | `/api/warlord/auto-select` |
+| **Start war** | POST | Start war | `/api/war/start` (returns warId/seed) |
+
+### Quick War interface
+
+**Purpose**: Ultra-fast entry for standalone wars (1–3 min). Minimal setup, high convenience; ideal for short sessions and streak chaining.
+
+**Layout (mobile-first, responsive)**:
+- **Header**: Mode chip (Quick War), Gold counter, level, Pro badge
+- **Main**:
+  - Opponent module: Auto-Select (default) + Manual (filter/search)
+  - Warlord carousel (compact)
+  - Volatility slider (Low/Med/High)
+  - Pro bet slider (if Pro)
+  - Card selection chips (Auto/Manual; fewer cards for speed)
+  - War Horn CTA
+- **Footer**: Quick Chain status, Back to Lobby, Replays
+
+**States**:
+- **Auto-select (default)**: Picks unlocked opponent at difficulty ±2 levels; shows badge "Recommended"
+- **Manual select**: Filters by archetype, region, difficulty (Easy/Med/Hard); only previously defeated opponents unless configured to allow any unlocked
+- **Returning player**: Remembers last opponent, Warlord, volatility, and card selection mode
+- **Pro**: Betting visible; fast animations toggle available
+- **F2P**: Betting hidden; non-blocking Pro upsell chip placeholder
+- **Offline**: Disable new Quick War; allow viewing prior replays
+
+**Primary CTAs**:
+- **War Horn CTA**: "Sound the War Horn"; launches instantly with current selections
+- **Auto-select**: One-tap opponent pick; tap again to reroll suggestion
+- **Manual filter chips**: Archetype, region, difficulty; tap to refine
+
+**Key Modules**:
+- **Opponent auto-select**: Heuristic chooses a varied opponent pool; avoids repeats; respects difficulty bounds
+- **Opponent manual picker**: Grid/list with portrait, archetype, difficulty, last result; search by name/region
+- **Quick Chain tracker**: Shows current chain length and +10% streak bonus after 3 consecutive Quick Wars
+- **Volatility slider**: Low/Med/High; persists per user; tooltips for winrate/jackpot trade-offs
+- **Pro betting (if Pro)**: Haptic slider up to mode cap (≤500G for Quick); inline RTP disclosure and insurance chips
+- **Card selection**: Auto (recommended) vs. Manual; allowed count tuned for speed (e.g., 2–4 early; scales by level)
+- **Reward preview**: Displays expected XP/Gold/Spoils for Standard/Auto/Themed Quick War variants with streak modifier
+
+**Animation and VFX**:
+- **Lightweight**: Subtler carousel glints; faster transitions
+- **Pro Fast**: 1s reveal target when enabled
+
+**Performance targets**:
+- **TTI**: Near-instant when returning; <2s cold
+- **Start-to-first-round**: <1.5s p95 after War Horn
+
+**Accessibility**:
+- **Keyboard**: Arrow keys to change opponent; Enter to select; Space to start
+- **Screen reader**: Announces opponent, difficulty, and expected rewards; confirms chain bonus
+- **Reduced motion**: Minimized glints; fade transitions
+
+**Telemetry**:
+- Track: `quick_war_view`, `opponent_auto_select_click`, `opponent_manual_open`, `opponent_select`, `volatility_change`, `bet_change`, `cards_auto_select_click`, `cards_manual_open`, `war_horn_click`, `quick_chain_continue_click`
+- Dimensions: locale, device_class, auth_state, user_level, pro_status, opponent_warlord_id, difficulty, volatility_mode, quick_chain_length
+
+**Error/edge handling**:
+- **No Eligible Opponents**: Prompt to play Campaign to unlock more; suggest easiest campaign
+- **Auto-Select Failure**: Fallback to last defeated opponent; surface retry
+- **Bet Over Cap**: Snap to cap; inline explanation
+
+**Copy (EN default)**:
+- **Mode header**: "Quick War"
+- **Auto-select**: "Auto-Select Opponent"
+- **Manual**: "Choose Opponent"
+- **War Horn CTA**: "Sound the War Horn"
+- **Quick Chain**: "Quick Chain +10% after 3 wins"
+
+**Breakpoints**:
+- **<480px**: Single column; compact opponent list; sticky War Horn
+- **480–1024px**: Two columns (opponent left, controls right)
+- **>1024px**: Expanded opponent grid with filters sidebar
+
+**Data Sources**:
+- **Opponents**: `/api/quickwar/opponents` (GET)
+- **Auto-select**: `/api/quickwar/auto-select` (GET)
+- **Start War**: `/api/war/start` (POST; returns warId/seed)
+
+### War Board interface
+
+**Purpose**: Fast, readable round resolution with slot-like reveals and deterministic fairness; target 1 tap per round, 800–1,700ms loop.
+
+**Layout (mobile-first, responsive)**:
+- **Top panel**: Opponent portrait/name, HP bar, armor/shield pips, active effect badges
+- **Center stage**: Dual card reveal lanes (player vs. AI) with shared War!/Jackpot VFX layer
+- **Meters row**: Karma and Streak meters with numeric counters and trigger states
+- **Bottom panel**: Player portrait/name, HP bar, effect badges, primary Lever CTA, quick toggles (Auto-War, Skip Anim)
+- **Side Rail (tablet/desktop)**: Round log, seed display (debug/test mode only), replay/share button (post-round disabled state)
+
+**States**:
+- **Standard**: Manual lever pulls; animations at standard speed
+- **Auto-War**: Auto-advance rounds until stop/war end; lever shows "Stop" state
+- **Reduced Motion**: Replace flips with fades; disable screen shake; preserve timings
+- **Pro Fast Animations**: Optional 1s round target; condensed VFX
+- **War! Tie**: War! banner, face-down stack mini-sequence, explosive reveal
+- **Joker Mini-Game**: Overlay for pick/scratch rewards; pauses round timers
+
+**Primary CTAs**:
+- **Lever CTA**: "Pull Lever"; press depth 6px, haptic 100ms; disabled during resolution
+- **Auto-War toggle**: On/off; persists until war end; tooltip "Auto resolve rounds"
+- **Skip animations**: Contextual during long VFX; jumps to outcome with minimal cues
+
+**Key Modules**:
+- **Card Reveal engine**: Simultaneous flip/fade with 280–320ms spring; synchronized with audio
+- **Comparison and damage**: Rank compare + Power + territory + effects; clamps to card bonus cap (+4)
+- **Effects resolver**: Trigger windows (on reveal/win/loss/tie/War! win/after tie) with resolve-once guards
+- **Meters Manager**: Karma (+1 loss, +2 War! loss) and Streak (+1 win, +1 War! win); triggers at thresholds
+- **War! handler**: Tie detection; 3 face-down stack (80ms each) + 4th-card reveal; 3–4x damage
+- **Joker rewards**: Owner-only reward mini-game (pick/scratch/jackpot); seeded; pauses core loop
+- **Wager overlay (Pro)**: Shows current bet, mult, pity/insurance when applicable
+- **Round log**: Compact feed of reveals, effects, damage, meter changes
+
+**Animation and VFX**:
+- **Card flip**: Spring flip with suit-tinted glints; low-end switches to 200ms crossfade
+- **Damage Pop**: 300ms pop; double damage uses bolt tracer + color shift
+- **Critical/Jackpot**: Screen flash + cascading particles; capped particle count by device
+- **War! sequence**: Marquee lights + siren; timed to 80ms stacks + explosive 4th reveal
+- **Haptics**: 50ms light on reveal, 100ms strong on lever, multi-pulse on wins; respect device setting
+
+**Performance targets**:
+- **Per-round**: 800–1,700ms total; goal 1.2s average
+- **API**: Lever action <100ms p95; retries with exponential backoff on transient failures
+- **Frame rate**: 60fps target (30fps fallback); particle caps scale by device class
+
+**Accessibility**:
+- **Labels**: Aria labels for lever, meters, HP bars; readouts announce damage and effects
+- **Keyboard**: Space/Enter = Lever; A = Auto-War toggle; S = Skip Anim; Esc = Pause/Exit
+- **Screen reader**: Announce round winner, damage values, meter increments/triggers
+- **Reduced motion**: Fades instead of flips; disable shake; haptic reduction
+
+**Telemetry**:
+- Track: `war_board_view`, `lever_pull_click`, `auto_war_toggle`, `skip_anim_click`, `round_resolved`, `war_tie_trigger`, `joker_minigame_open`, `joker_minigame_reward`
+- Dimensions: locale, device_class, user_level, pro_status, territory_context, war_id, seed, round_index, api_latency_ms, fps_avg
+
+**Error/edge handling**:
+- **Desync/Latency**: Server-authoritative state snapshot overrides client; show brief "Syncing…"
+- **Disconnect**: Pause visuals; auto-retry; resume from last confirmed step
+- **Reshuffle**: Deck empty triggers reshuffle banner; no user action needed
+- **Effect Conflicts**: Resolve-once flag prevents duplicate procs; -1 rank effects never stack
+- **Auto-War Stop**: Stops on low HP threshold, War! tie, Joker mini-game, or user stop
+
+**Copy (EN default)**:
+- **Lever CTA**: "Pull Lever"
+- **Auto-War**: "Auto"
+- **Skip**: "Skip"
+- **War!**: "WAR!"
+- **Joker**: "Joker Bonus"
+
+**Breakpoints**:
+- **<480px**: Single column; side rail collapses to modal log; sticky lever
+- **480–1024px**: Two rows (top/center) with meters and lever anchored bottom
+- **>1024px**: Side rail visible (log/seed/replay); wider reveal lanes
+
+**Data sources**:
+- **Lever action**: `/api/war/lever` (POST; returns reveal, damage, effects, meters)
+- **War state**: `/api/war/state` (GET; reconcile client/server)
+- **Replay/share**: `/api/replay/{seed}` (GET)
+
+### Results screen
+
+**Purpose**: Summarize the war outcome and rewards in ~3.8s with auto-advance, while allowing quick actions (rematch/continue/share/collection) without friction.
+
+**Layout (Mobile-First, responsive)**:
+- **Top**: Verdict banner (Win/Loss/Draw/Jackpot/War! Win) with territory-themed VFX
+- **Middle**: Rewards stack: XP breakdown, Spoils conversion module, Specimen collection, Gold summary
+- **Bottom**: Progression display (Level XP bar + Warlord Mastery), action buttons (Continue, Rematch, Share, Knapsack)
+- **Side Rail (tablet/desktop)**: Detailed breakdown (round log summary, streak/karma events), replay seed
+
+**States**:
+- **Win**: Green/themed confetti; enhanced Gold/XP display
+- **Loss**: Subtle tone; consolation (near-miss/Karma) surfaced
+- **War! Concluded**: War! badge; multipliers highlighted
+- **Jackpot**: Cascading celebration; rare Specimen callout
+- **Level Up**: Interrupt card overlays with celebration; returns to results
+- **Offline/Retry**: Graceful delay banner while fetching rewards
+
+**Primary CTAs**:
+- **Continue**: Routes to next territory (Campaign) or back to Lobby; auto-advance timer (2–3s)
+- **Rematch (new seed)**: Starts a new war with fresh RNG seed
+- **Share Replay**: Copies replay link + opens share sheet (X/Twitter, etc.)
+- **View Knapsack**: Opens collection to view new Specimens
+- **Convert Spoils**: Toggle XP/Gold conversion (if not auto-converted)
+
+**Key Modules**:
+- **Verdict Banner**: Large verdict with territory tint; shows opponent and duration
+- **XP Breakdown**: Base win/loss, War! bonus, meters, wagering XP; totals with bars
+- **Spoils Conversion**: Animated bar converting Spoils to XP (cap 50) or Gold (4G each); toggle persists
+- **Specimen Collection**: New items grid with "new" badges; tap for details
+- **Gold Summary**: Net Gold = (Bet × Mult) + Base + Bonuses − Bet; clearly shows net vs. gross
+- **Progression Display**: Player Level XP bar, Warlord Mastery bar; milestone callouts
+- **Replay & Seed**: Shows seed; "Copy Seed" and "Share Replay" actions
+- **Auto-Advance**: 2–3s timer; user interaction cancels auto-advance
+
+**Animation & VFX**:
+- **Verdict Enter**: 250ms slide + glow; territory-themed particles
+- **Bars Fill**: 600–900ms smooth fill for XP/Spoils; number roll-ups
+- **Specimen Flash**: Brief highlight pulse per new item
+- **Jackpot**: Extended celebratory cascade (capped effects for low-end)
+
+**Performance Targets**:
+- **Total Screen Time**: ~3.8s with auto-advance; <1 frame drop during bar fills
+- **Network**: Results payload <5KB (excluding images); share link generation <100ms
+- **Caching**: Specimen thumbnails cached; replay seed pre-available from war state
+
+**Accessibility**:
+- **Announcements**: Screen reader announces verdict, net Gold, XP gained, level-ups
+- **Controls**: Buttons focus order: Continue → Rematch → Share → Knapsack → Convert
+- **Reduced Motion**: Replace particles with fades; keep number roll-ups
+- **Labels**: Aria labels for each bar with current/total values
+
+**Telemetry**:
+- Track: `results_view`, `results_auto_advance`, `results_continue_click`, `results_rematch_click`, `replay_share_click`, `seed_copy_click`, `spoils_convert_click`, `specimen_view`, `level_up_view`
+- Dimensions: locale, device_class, user_level, pro_status, war_id, seed, duration_ms, xp_gained, net_gold, jackpot_triggered, war_tie_count
+
+**Error/Edge Handling**:
+- **Share Failure**: Fallback to copy link; inline toast on failure
+- **Seed Missing**: Regenerate from stored war state; show copy error if not available
+- **Conversion Conflict**: Lock conversion after confirm; prevent double-claim
+- **Offline**: Queue share/copy; show cached rewards until sync
+
+**Copy (EN default)**:
+- **Verdict**: "Victory!", "Defeat", "Draw", "War! Victory", "Jackpot!"
+- **Continue CTA**: "Continue"
+- **Rematch CTA**: "Rematch (new seed)"
+- **Share Replay CTA**: "Share Replay"
+- **Knapsack CTA**: "View Knapsack"
+- **Convert Spoils CTA**: "Convert Spoils"
+
+**Breakpoints**:
+- **<480px**: Single column; actions in a bottom sheet; compact bars
+- **480–1024px**: Two-column summary + actions; side log hidden by default
+- **>1024px**: Side rail with detailed breakdown and seed
+
+**Data Sources**:
+- **Results**: `/api/war/results?warId=...` (GET)
+- **Spoils Convert**: `/api/war/spoils/convert` (POST)
+- **Share**: `/api/replay/{seed}` (GET link metadata)
+- **Rematch**: `/api/war/rematch` (POST new seed)
+
+#### Authentication & Account Interface
+
+**Purpose**: Secure entry, fast guest onboarding, compliant age/consent flows, seamless guest→account linking.
+
+**Layout (Mobile-First, responsive)**:
+- **Header**: Logo, language selector
+- **Main**: Auth providers (Google/Apple/Email), Guest continue, age gate, consent checkboxes
+- **Footer**: Terms, Privacy, Support
+
+**States**: Logged out, guest session, linking guest→account, verification pending, blocked/maintenance
+
+**Primary CTAs**: "Sign in", "Continue as Guest", "Link Account"
+
+**Key Modules**: OAuth providers, email magic-link, age verification, consent management (GDPR/CCPA), delete/export account
+
+**Animation & VFX**: Lightweight button feedback, secure brand cues
+
+**Performance Targets**: Auth round-trip <800ms p95; magic-link within 5s
+
+**Accessibility**: Full keyboard flow; screen-reader labels for providers; error summaries
+
+**Telemetry**: `auth_view`, `guest_continue_click`, `provider_click`, `link_account_success`
+
+**Error/Edge Handling**: Rate limits, provider failures, email bounces; offline fallback to guest
+
+**Copy (EN default)**: "Sign in", "Continue as Guest", consent language
+
+**Breakpoints**: Single column <480px; two-column layout ≥1024px
+
+**Data Sources**: `/api/auth/*`, `/api/account/*`
+
+#### Tutorial Campaign Interface
+
+**Purpose**: Onboard core mechanics over 5 wars with Mutated Sherman guidance and skippable pacing.
+
+**Layout**: Overlay VO panels, step tracker, contextual tips, War Horn focus
+
+**States**: Step N of 5, paused VO, skip available (after War 3), completed recap
+
+**CTAs**: "Next", "Skip Tutorial", "Replay Tip"
+
+**Key Modules**: Voiceover sync, tooltip triggers, milestone celebrations, auto-advance
+
+**Animation**: Mist emergence (300ms), staff glow on milestones
+
+**Performance**: No network blocking; prefetch next step assets
+
+**Accessibility**: Subtitles, VO toggle, reduced motion compatible
+
+**Telemetry**: `tutorial_view`, `tutorial_step_complete`, `tutorial_skip`
+
+**Errors**: Desync → resync to step; VO load fail → text fallback
+
+**Copy**: Mutated Sherman lines per step
+
+**Data Sources**: `/api/tutorial/state`, `/api/tutorial/advance`
+
+#### Daily Rewards Interface
+
+**Purpose**: Drive D1/D7 streaks via simple claim flow with optional mini-spin.
+
+**Layout**: Streak calendar, claim button, optional spin wheel, timer to next reward
+
+**States**: Claimable, claimed, streak break warning, ad re-spin available
+
+**CTAs**: "Claim", "Spin", "Watch Ad for Re-Spin"
+
+**Key Modules**: Streak logic, spin RNG (seeded), ad gate
+
+**Animation**: Reward burst, wheel spin (reduced motion fade)
+
+**Telemetry**: `daily_reward_view`, `daily_claim_click`, `daily_spin_click`
+
+**Errors**: Double-claim lock, timezone shifts; server authoritative
+
+**Data Sources**: `/api/rewards/daily`, `/api/rewards/spin`
+
+#### Daily Quests Interface
+
+**Purpose**: Display 3-4 quests, progress, claim, and (Pro) reroll.
+
+**Layout**: Quest cards with progress bars; detail modal; claim buttons
+
+**States**: In-progress, claimable, claimed, reroll available (Pro)
+
+**CTAs**: "View", "Claim", "Reroll"
+
+**Key Modules**: Progress tracking, claim distribution, reroll rules
+
+**Telemetry**: `quests_view`, `quest_claim_click`, `quest_reroll_click`
+
+**Data Sources**: `/api/quests/daily`, `/api/quests/claim`, `/api/quests/reroll`
+
+#### Warlord Library & Details Interface
+
+**Purpose**: Browse roster, read archetype tips, inspect Mastery, preview card pools.
+
+**Layout**: Grid/list, filters, detail drawer with stats, effects, Mastery bars, card pool examples
+
+**States**: Locked/unlocked, mastery ranks I–V, cosmetics
+
+**CTAs**: "Select", "Preview Cards", "View Mastery"
+
+**Telemetry**: `warlord_library_view`, `warlord_detail_view`, `warlord_select`
+
+**Data Sources**: `/api/warlords`, `/api/warlords/{id}`
+
+#### Knapsack / Collection Interface
+
+**Purpose**: Manage Specimens, sets, and cosmetics with rarity and new-item surfacing.
+
+**Layout**: Grid with rarity filters, set progress bars, new badges; detail modal
+
+**CTAs**: "Filter", "View Set", "Equip Cosmetic" (future)
+
+**Telemetry**: `collection_view`, `specimen_view`, `set_view`
+
+**Data Sources**: `/api/collection`, `/api/specimens/{id}`
+
+#### Settings Interface
+
+**Purpose**: Control appearance, accessibility, audio, language, notifications.
+
+**Layout**: Tabs (Appearance, Accessibility, Audio, Language, Notifications)
+
+**CTAs**: "Apply", "Reset", theme select, toggles
+
+**Accessibility**: Immediate preview without committing; undo
+
+**Telemetry**: `settings_view`, `setting_change`
+
+**Data Sources**: `/api/settings/*`
+
+#### Error / Offline / Maintenance Interface
+
+**Purpose**: Provide graceful degradation and clear recovery paths.
+
+**Layout**: Top banners, inline toasts, dedicated maintenance screen
+
+**States**: Offline, reconnecting, maintenance window, partial outages
+
+**CTAs**: "Retry", "Go Offline", "View Status"
+
+**Telemetry**: `offline_detected`, `retry_click`, `maintenance_view`
+
+**Data Sources**: `/api/status`, client connectivity
+
+#### Tournament Suite Interface
+
+**Purpose**: Join/browse tournaments, view brackets/leaderboards, track scoring.
+
+**Layout**: Tournament lobby list, detail view (prizes/rules), bracket/leaderboard tabs
+
+**CTAs**: "Enter" (Gold), "Spectate" (VIP), "View Leaderboard"
+
+**Telemetry**: `tournament_view`, `tournament_enter_click`, `tournament_spectate`
+
+**Data Sources**: `/api/tournaments/*`, WebSocket updates
+
+#### Replay Viewer Interface
+
+**Purpose**: Deterministic playback for share, verification, and content.
+
+**Layout**: Player with controls (play/pause, speed, scrub), seed display, share
+
+**CTAs**: "Share Replay", "Copy Seed"
+
+**Telemetry**: `replay_view`, `replay_share_click`, `seed_copy_click`
+
+**Data Sources**: `/api/replay/{seed}`
+
+#### Wagering Panels Interface
+
+**Purpose**: Explain multipliers, caps, and insurance; show loss-streak protections.
+
+**Layout**: Bet slider, details accordion (RTP, insurance, caps), state badges
+
+**Telemetry**: `bet_change`, `insurance_view`, `wager_info_open`
+
+**Data Sources**: `/api/wagering/*`, `/api/flags/wagering` (returns `enabled`, `age_ok`, `geo_ok`)
+
+**Compliance States**:
+- **Enabled**: Bet slider active; show RTP disclosure and insurance chips.
+- **Disabled (age/geo/flag)**: Replace bet slider with **Volatility Mode** explainer. No Gold bets; show XP/Spoils-only note and link to "Fair Play" modal.
+
+#### Fair Play Modal Interface
+
+**Purpose**: Transparent disclosure of odds, RTP, and deterministic fairness for compliance and player trust.
+
+**Layout**: Modal overlay with tabs (Fair Play, Odds, RTP, Replays)
+
+**Content**:
+- **Fair Play Tab**: Explains seeded RNG and deterministic replay system. "All wars use seeded RNG for reproducible, fair results."
+- **Odds Tab**: Displays probability disclosure (Joker mini-games: 60% Pick 2/3, 30% Scratch-Off, 10% Jackpot; Proc rates: 15-25% base; War! frequency: 3-5%).
+- **RTP Tab** (if wagering enabled): Shows Return to Player percentage (94-96%) and insurance/pity mechanics.
+- **Replays Tab**: Explains seed export and replay viewer for verification.
+
+**CTAs**: "Copy Seed", "View Replay", "Fair Play Policy" (opens external link), "Close"
+
+**Accessibility**: Clear headings, keyboard navigation, screen reader labels
+
+**Telemetry**: `fair_play_view`, `fair_play_tab_click`, `seed_copy_click`
+
+**Data Sources**: `/api/fairplay/*`, seed data from current war
+
+#### Shop / IAP Interface
+
+**Purpose**: Purchase Gold packs/bundles with clear value and receipts.
+
+**Layout**: Packs grid with bonus callouts; bundle carousel; receipt modal
+
+**CTAs**: "Buy", "Restore Purchases"
+
+**Telemetry**: `shop_view`, `pack_buy_click`, `restore_purchases`
+
+**Data Sources**: `/api/shop/*`, payment provider
+
+#### Pro Subscription Interface
+
+**Purpose**: Compare Gold vs. Platinum, upgrade, manage billing.
+
+**Layout**: Plan comparison, benefits list, upgrade/manage buttons
+
+**Telemetry**: `pro_view`, `pro_upgrade_click`, `pro_manage_click`
+
+**Data Sources**: `/api/subscription/*`
+
+#### Leaderboards Interface (Global/Regional/Modes)
+
+**Purpose**: View rankings with fair filters and anti-cheat notes.
+
+**Layout**: Tabs (Global/Regional/Mode), filters, player rows with stats
+
+**Telemetry**: `leaderboard_view`, `leaderboard_filter_change`
+
+**Data Sources**: `/api/leaderboards/*`, cached
+
+#### Event / Seasonal Hub Interface
+
+**Purpose**: Highlight weekly/seasonal modifiers, rewards, and countdowns.
+
+**Layout**: Event banner, tasks, rewards preview, timer
+
+**Telemetry**: `event_hub_view`, `event_join_click`
+
+**Data Sources**: `/api/events/*`
+
+#### Notifications / Inbox Interface
+
+**Purpose**: Deliver rewards, alerts, and system messages.
+
+**Layout**: Message list, filters (rewards/system/tournament), detail pane
+
+**CTAs**: "Claim", "Mark Read", "Delete"
+
+**Telemetry**: `inbox_view`, `inbox_claim_click`
+
+**Data Sources**: `/api/inbox/*`
+
+#### Ads Flows Interface
+
+**Purpose**: Rewarded video and interstitial flows with failsafes.
+
+**Layout**: Rewarded modal with reward preview; interstitial post-war placeholder
+
+**Telemetry**: `ad_rewarded_start`, `ad_rewarded_complete`, `ad_interstitial_shown`
+
+**Data Sources**: Ad network SDK hooks
+
+#### Admin / Debug Overlay (Internal)
+
+**Purpose**: Developer/QA overlay for seeds, FPS, procs, and flags.
+
+**Layout**: Toggle overlay (long-press gear), panels for metrics, feature flags, force outcomes
+
+**Telemetry**: `debug_overlay_open`, `debug_flag_toggle`
+
+**Data Sources**: Internal endpoints; guarded by env flags
+
+#### Profile & Progress Interface
+
+**Purpose**: Showcase player badges, titles, stats, and replay shares.
+
+**Layout**: Header (avatar/title), stats cards, badges grid, recent replays
+
+**Telemetry**: `profile_view`, `badge_view`, `replay_share_click`
+
+**Data Sources**: `/api/profile/*`
+
+#### Economy Ledger Interface
+
+**Purpose**: Transparent Gold/Spoils transaction history.
+
+**Layout**: Filterable ledger, totals, export
+
+**Telemetry**: `ledger_view`, `ledger_export_click`
+
+**Data Sources**: `/api/ledger/*`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #### Phase 1: Pre-War Setup, Lobby
 
@@ -150,6 +1031,7 @@ Target: 60-70% player wins (sim-validated). Base symmetric War ~52% wins; Warlor
    - **Medium** (Default): Balanced risk/reward, 60-70% win rate
    - **High Volatility**: -5% win rate, +50% jackpots (fewer wins, bigger spikes)
    - UI placement: Lobby slider below Warlord selection (analytics track for personalization)
+   - **Compliance Mode**: If wagering is disabled (age/geo/flag), Volatility applies only to proc/jackpot ceilings and pacing; no Gold bets or payout multipliers. Rewards are XP/Spoils only.
 3. Player chooses to play a **Quick War** or **Territory Campaign**.
 
 **Territory Campaign Setup**: For Territory Campaign, player can Start a **New Campaign**, or **Continue Campaign**.
@@ -265,8 +1147,47 @@ Target: 60-70% player wins (sim-validated). Base symmetric War ~52% wins; Warlor
 1. **Rematch Options**:
     - "Rematch (new seed)" - fresh shuffle with new RNG
 2. **Navigation Options**:
+    - Next Territory
     - Return to Lobby for new war setup
 3. **Collection Management**: Open Knapsack to view Specimen details and Collection progress.
+
+#### Tutorial Campaign (First-Time Players)
+
+**Narrative-Driven Introduction**: Mutated Sherman, the Cryptid Sage, guides new players through a 5-war tutorial campaign with lore-driven narrative and progressive skill introduction.
+
+**Tutorial Flow Sequence**:
+
+| War # | Warlord | Educational Focus | Narrative Hook | Voiceover Duration | Auto-Unlocks |
+|-------|---------|------------------|----------------|--------------------|--------------|
+| 1 | Sasquatch | Lever pull, rank comparison, basic damage | "The wilds awaken, hunter. Sound the Horn—cryptids heed the call. Sasquatch guards PNW shadows. Pull! Higher rank claims the round. He throws rocks as warnings." | 10s | L1 Sasquatch unlocked |
+| 2 | Yeti | Win/loss feedback, health bars, territory themes | "Himalaya's ice heals the bold. Yeti's frost mends wounds—watch your health rise." | 6s | L1 Yeti unlocked |
+| 3 | Skunk Ape | Special effects (debuffs), defeat AI | "Swamp odors weaken the enemy. Skunk Ape's foul mist lowers ranks—see how it sways battle." | 6s | L3 Skunk Ape unlocked |
+| 4 | Agogwe | Karma meter fill, loss consolation | "Stealth heals on loss. Agogwe's wisdom: defeats build Karma—your power grows in shadows." | 6s | L1 Agogwe unlocked |
+| 5 | Sasquatch (rematch) | Full war resolution, Gold rewards | "Victory! Gold flows like mountain streams. Pull again—fate's weave tightens with each lever." | 8s | Tutorial complete |
+
+**Tutorial Features**:
+| Feature | Description |
+|---------|-------------|
+| **Guided Mechanics** | Popup tooltips on first lever pull ("Pull to reveal! Higher rank wins damage"), first win ("Higher rank deals damage"), first loss ("Lower rank—Karma builds") |
+| **Auto-Progression** | Tutorial wars auto-advance between steps (no manual navigation) |
+| **Lore Integration** | 30-second total voiceover spread across 5 wars with Mutated Sherman's cryptic wisdom |
+| **Auto-Unlock** | Warlords L1-3 automatically unlocked during tutorial (removes initial choice paralysis) |
+| **Haptic Guidance** | Vibration on lever pull during first war introduces tactile feedback |
+
+**Visual Design**:
+| Visual Element | Description | Technical Details |
+|----------------|-------------|-------------------|
+| **Mutated Sherman Appearance** | Mist-based overlay | Framer Motion shaders, 300ms emerge |
+| **Staff Glow Animation** | Milestone completions | Triggered on tutorial milestones |
+| **Territory Backgrounds** | Progressive reveal | Territory-themed with gradual unlock |
+| **Skip Option** | Available after War 3 | For experienced players |
+
+**Post-Tutorial**:
+| Post-Tutorial Feature | Description |
+|-----------------------|-------------|
+| **Campaign Unlock** | "Hunt the elusive Sasquatch in misty forests" narrative |
+| **Daily Quests** | Lore-flavored objectives (e.g., "Uncover Yeti secrets: Win 3 Mountain Wars") |
+| **Lobby Transition** | Standard flow with Thalor tooltips on hover |
 
 ### Card & Deck System
 
@@ -424,7 +1345,7 @@ Performance-driven XP earnings create engaging progression loops. Average **65 X
 
 ### Daily Quests System
 
-**Lore-Driven Quest Framework**: Elder Thalor presents 3 quests per day with cryptid lore flavor text. Rewards scale with daily login streak (D1: 100G, D7: 500G) to boost retention.
+**Lore-Driven Quest Framework**: Mutated Sherman presents 3 quests per day with cryptid lore flavor text. Rewards scale with daily login streak (D1: 100G, D7: 500G) to boost retention.
 
 **Daily Quest Examples**:
 
@@ -442,7 +1363,7 @@ Performance-driven XP earnings create engaging progression loops. Average **65 X
 - **Streak Scaling**: D1=100G, D2=120G, D3=150G, D4=200G, D5=300G, D6=400G, D7=500G (then loops)
 - **Quest Bank**: Pool of 20+ quest templates; 3 randomly selected daily
 - **Completion Tracking**: Quest progress visible in lobby (thumbnails with progress bars)
-- **Narrative Integration**: Elder Thalor provides context ("Himalaya's Yeti stirs—conquer peaks!")
+- **Narrative Integration**: Mutated Sherman provides context ("Himalaya's Yeti stirs—conquer peaks!")
 - **Bonus Rewards**: Complete all 3 quests → extra 100G + lore video unlock (Specimen lore)
 - **Archetype Variety**: Quest mix ensures all 4 archetypes (Steady, Control, Aggro, Burst) covered
 
@@ -505,6 +1426,12 @@ Warlord-specific XP earned through themed gameplay (I-V ranks). 20% of total XP 
 
 ### Wagering (Pro)
 
+**Compliance & Gating**:
+- **Feature flag**: Server-side `wagering_enabled` per user/session; default off where required by store policy.
+- **Age gate**: Disabled for users <18 globally and <21 in flagged regions (e.g., certain US states).
+- **Geo gate**: Disabled in restricted jurisdictions (e.g., BE/NL) and any region requiring removal of wagering-like mechanics.
+- **Fallback**: When disabled, the game uses a **Non-Wager Volatility Mode** (no Gold bets or multipliers; adjusts proc/jackpot ceilings and grants XP/Spoils only). UI replaces the bet slider with volatility-only controls.
+
 **Pre-War Betting**: Players wager Gold before each war to multiply outcomes, creating slot-like tension and excitement. **RTP Target: 94-96%** ensures sustainable economy while feeling generous.
 
 **Bet Scaling**: Higher tiers unlock larger maximum bets
@@ -548,16 +1475,16 @@ Streak_Mult: 0-10 based on consecutive wins
 - **Progression Tie-In**: Mastery XP from themed wars; Unlocks feed Campaigns (e.g., Sasquatch for PNW)
 - **Slot Feel**: Replacements = "paylines" (high ranks trigger procs 20%); Jokers = bonuses
 
-#### Elder Thalor: The Cryptid Sage (Narrative Guide NPC)
+#### Mutated Sherman: The Cryptid Sage (Narrative Guide NPC)
 
 **Character Background**:
 - **Role**: Eternal watcher and spiritual protector across cryptid territories
-- **Origin**: Once a warrior, now shaman after "The Great Rift" split territories—seeks player to heal the land
-- **Personality**: Cryptic sage who speaks in poetic proverbs ("Fate's weave tightens with each lever"), folksy humor ("Lever's no joke—fate bites back!"), and encouraging mentorship ("Your Power grows, like roots in ancient soil")
-- **Voice**: Deep rumble with ethereal echo (60fps lip-sync via Framer Motion)
+- **Origin**: Once a warrior, now shaman after "The Great Rift" split territories—seeks players to learn the Bigfoot Arts of War
+- **Personality**: Deadpan realist, hyper-intelligent and rational, speaks with the wearied patience of someone who's seen it all, likes War, likes Bigfoots. To the point, abrupt, reliable. Unlikely, undecipherable humor, references to concepts, events, and beings not known to anyone. Understanding the vast cycles of nature, and the nature of Bigfoots and Bigfoot War, offers un-ironic encouraging mentorship.
+- **Voice**: Contemporary (60fps lip-sync via Framer Motion)
 
 **Visual Design** (Modular Asset System):
-- **Base Silhouette**: 12ft furry giant (dark brown base fur), towering presence
+- **Base Silhouette**: 12ft furry giant (dark brown base fur), towering presence, wears a large contemporary gold chain (mogul-style)
 - **Shamanic Flair**: Multi-feather headdress (territory-specific—Forest: moss + feathers, Mountain: ice crystals + white feathers)
 - **Crystalline Staff**: Bone staff topped with glowing amber crystal (pulses with Karma/Streak meters)
 - **Rune Tattoos**: Etched symbols on fur representing suit affinities (Hearts/Spades/Diamonds/Clubs)
@@ -566,7 +1493,7 @@ Streak_Mult: 0-10 based on consecutive wins
 - **Modular System**: 4 base variants + 8 territory overlays = <10 PNGs total
 
 **In-Game Abilities** (Non-Combat Support):
-- **Lore Whispers**: Hover tooltips reveal cryptid facts ("Sasquatch (PNW): Salish First Nations guardian spirit")
+- **Lore Whispers**: Hover tooltips reveal cryptid facts
 - **Tip System**: Whispers strategic advice ("Aggro crushes Steady—see the matchup hints!")
 - **Lore Buffs**: Rare procs grant +1 Karma or +1 Streak meter on quest completion (≤1 per war)
 - **Narrative Integration**: Appears in tutorial, daily quest flavor text, milestone celebrations, tutorial guidance
@@ -575,13 +1502,8 @@ Streak_Mult: 0-10 based on consecutive wins
 - **Tutorial Sequence**: Emerges from fog in first login, guides 5-war tutorial with voiceover
 - **Daily Quest Giver**: Presents 3 quests/day with lore-flavored objectives
 - **Milestone Guide**: Celebrates level-ups and unlocks with "visions" and lore
-- **Educational Role**: Delivers cryptid facts and cultural context respectfully
+- **Educational Role**: Delivers cryptid information and data
 - **Non-Intrusive Presence**: Appears sparingly (phasing in/out) for mystique, not overwhelming
-
-**Cultural Integration**:
-- **Respectful Representation**: Draws from Native American shaman traditions, Salish "Sasq'ets" origin
-- **Educational Value**: Teaches players about global cryptid mythology while gaming
-- **Cross-Cultural Adaptability**: Modular variants adapt to regional cryptid traditions (Himalayan Yeti, Amazon Mapinguary, etc.)
 
 #### Bigfoot Warlord Stats
 
@@ -629,7 +1551,7 @@ Power = 3 + 2 + 1 = 6 damage bonus
 | Region/Affinity | Warlord | Archetype | Base Power | Signature Effect | Trigger | Mastery Rewards (I-V) |
 |-----------------|---------|-----------|------------|------------------|---------|-----------------------|
 | **PNW/Forest** | Sasquatch | Aggro | 3 | Rock Throw: Stun next (≤1/war) | On Win | I: +1 repl; V: +2 dmg |
-| **PNW/Forest** | Skunk Ape | Control | 2 | Foul Debuff: -1 enemy rank | On Loss | III: Cosmetics |
+| **Florida/Swamp** | Skunk Ape | Control | 2 | Foul Debuff: -1 enemy rank | On Loss | III: Cosmetics |
 | **Himalaya/Mtn** | Yeti | Steady | 2 | Ice Heal: +2 heal on win | On Win | II: Armor effect |
 | **Himalaya/Mtn** | Nyalmo | Burst | 4 | Glacier Burst: +3 dmg War! | On War! Win | IV: +Proc rate |
 | **Amazon/Jungle** | Mapinguari | Control | 2 | Vine Debuff: Skip enemy | On Tie | I: Peek effect |
@@ -742,7 +1664,6 @@ Power = 3 + 2 + 1 = 6 damage bonus
 - **Folklore Site Integration**: Partner with Bigfoot research websites (e.g., bigfootfieldresearchers.org, yowiehunters.com.au) to embed authentic lore
 - **Shareable Lore Cards**: Post-win screen displays cryptid factoid—shareable to X/Twitter with seed (e.g., "Yeti lore: Himalayan 'Meto' variant")
 - **Lore Tooltips**: In-game hover reveals cultural context (e.g., "Sasquatch (PNW): Salish First Nations guardian spirit")
-- **Cultural Consultants**: Collaborate with indigenous knowledge keepers where appropriate for respectful representation
 - **Viral Education**: Social shares drive organic MAU growth via cryptid education ("Learn Yeti myths! #BigfootWar")
 - **Partner Examples**:
   - Himalayan Yeti Research Society: Himalayan Yeren lore
@@ -948,7 +1869,7 @@ Warlords gain subtle bonuses when playing in their "home" territories, reflectin
 
 ### Territory Unlock Flow
 
-Territory unlocks serve as a **primary Gold sink**, directly inspired by proven F2P successes like *Coin Master*'s village progression. This creates meaningful progression gates without gating core content (F2P can grind), prevents "Gold hoarding," and drives repeated play.
+Territory unlocks serve as a **primary Gold sink**, directly inspired by proven F2P successes like *Coin Master*'s village progression. This creates meaningful progression gates without gating core content (F2P can grind), prevents "Gold hoarding" and drives repeated play.
 
 **Unlock Flow Steps**:
 1. **Campaign Selection**: Player browses unlocked Campaigns (cost 1k-10k Gold one-time; Pro gets free)
@@ -1374,7 +2295,7 @@ Tiered packs w/ **over-value bonuses** (100-400% extra Gold equiv.). Dynamic pri
 **Engagement Metrics (Economy)**:
 - **Session Length**: 3-6 minutes average (increased with wagering)
 - **Sessions Per Day**: 2-3 sessions per active user
-- **Retention**: 70% Day 1, 40% Day 7, 20% Day 30
+- **Retention Targets**: D1 30–35%, D7 12–15%, D30 6–8%
 - **Gold Spending**: Track Gold earned vs. spent per user
 
 **Monetization Health**:
@@ -1394,39 +2315,11 @@ Tiered packs w/ **over-value bonuses** (100-400% extra Gold equiv.). Dynamic pri
 - **12 Warlord Archetype Silhouettes**: Recolored per region/variant (e.g., Yeti blue → red for variants)
 - **Card Assets**: 52 base Natural cards + 20 Warlord card templates (reuse suit icons as icons)
 - **UI Elements**: Reusable buttons, meters, health bars with procedural tints
-- **Elder Thalor Asset Kit**: <10 PNGs (4 base variants + 8 territory overlays)
+- **Mutated Sherman Asset Kit**: <10 PNGs (4 base variants + 8 territory overlays)
 - **Total Asset Count**: ~120-150 PNGs (vs. 500+ with unique-per-Warlord approach)
 
-**Elder Thalor Asset Kit** (Modular Narrative NPC):
-- **Base Assets** (4 PNGs):
-  - `thalor_idle.png`: Neutral pose with staff, mist aura
-  - `thalor_speaking.png`: Staff raised, mouth open for voiceover
-  - `thalor_whisper.png`: Leaning forward with glowing eyes (tip system)
-  - `thalor_celebration.png`: Staff high, particles burst (milestone celebrations)
-- **Territory Overlays** (8 PNGs - recolored from 2 base patterns):
-  - Forest: Moss + green feather overlay (Forest tutorial)
-  - Mountain: Ice crystals + white feather overlay (Mountain territories)
-  - Swamp: Water drops + blue feather overlay (Swamp territories)
-  - Jungle: Vines + brown feather overlay (Jungle territories)
-  - Arctic: Snow + light blue feather overlay (Arctic territories)
-  - Desert: Sand particles + amber feather overlay (Desert territories)
-- **VFX Assets** (Procedural - GPU shaders only):
-  - Mist emerge: Framer Motion shader (300ms fade-in from opacity 0→1)
-  - Staff glow: Framer Motion shader (pulses with Karma/Streak meters, amber color shift)
-  - Territory tint: Color filter overlay (applies per-territory theme)
-- **Animation Timings** (GSAP):
-  - Emerge/Disappear: 300ms ease-in-out (mist fade)
-  - Staff glow pulse: 500ms cycle (2 pulses/sec when meters full)
-  - Speaking gesture: 800ms (staff raise + mouth sync)
-  - Whisper lean: 400ms (forward lean + eye glow)
-- **Asset Optimization**:
-  - PNG compression: Lossless for silhouette edges, background transparent
-  - Sprite sheets: Combine 4 base poses into 1 sprite sheet (reduce HTTP requests)
-  - Territory overlays: Procedural recoloring via shader (no extra PNGs)
-  - Total size: <2MB for complete Thalor asset kit vs. 10MB traditional approach
-
 **Procedural Tinting System**:
-- **Affinity Shaders**: Hearts = red glow, Spades = blue glow, Diamonds = yellow/green glow, Clubs = green glow
+- **Affinity Shaders**: Hearts = red glow (Forest), Spades = blue glow (Mountain), Diamonds = teal/mud glow (Swamp), Clubs = emerald glow (Jungle)
 - **Territory Tints**: Apply color filters to Warlord silhouettes based on home territory
 - **Dynamic VFX**: Single particle system for all proc effects; recolored by theme
 - **Shader-Based Effects**: Use GPU shaders for card glints, meter fills, heals
@@ -1485,6 +2378,8 @@ Tiered packs w/ **over-value bonuses** (100-400% extra Gold equiv.). Dynamic pri
 
 **Colorblind Support**:
 - **Suit Indicators**: Shape-coded symbols (Hearts=leaf, Spades=rock, Diamonds=gem, Clubs=club)
+- **Color Coding**: Hearts = red (Forest), Spades = blue (Mountain), Diamonds = teal (Swamp), Clubs = emerald (Jungle)
+- **Territory Clarity**: Each suit's territory is visually distinct: Diamonds (Swamp) uses murky teal/mud tones, Clubs (Jungle) uses vibrant emerald/tropical greens
 - **High Contrast**: Alternative color schemes for better visibility
 - **Pattern Overlays**: Texture patterns for additional distinction
 - **Status Indicators**: Multiple visual cues (color + shape + pattern)
@@ -1560,38 +2455,6 @@ Tiered packs w/ **over-value bonuses** (100-400% extra Gold equiv.). Dynamic pri
 - **Asset Cleanup**: Unload unused assets when switching territories
 - **State Management**: Efficient state updates without full re-renders
 - **Cache Strategy**: Smart caching of frequently used assets
-
-### HUD & Layouts
-
-**Lobby Interface (Slot-Inspired Design)**:
-
-**Header Layout**:
-- **Left**: Game logo with Bigfoot silhouette
-- **Center**: Gold counter with animated sparkles, level indicator
-- **Right**: Settings gear, profile avatar, Pro status badge
-
-**Warlord Carousel**:
-- **Layout**: Horizontal scrollable carousel with large portraits
-- **Elements**: Warlord portrait (200x200px) with slot theme effects, nameplate with Mastery rank (I-V), Mastery progress bar (0-100%)
-- **Interactions**: Tap to select, swipe to browse, hold for details
-- **Visual Feedback**: Selected Warlord gets glow effect, others dimmed
-
-**Theme Selector Carousel** (Settings > Appearance):
-- **Layout**: Horizontal scrollable palette preview carousel (5 themes)
-- **Elements**: Each theme shows color swatches (4-5 primary colors), theme name, cryptid icon
-- **Themes**: Yeti Ice, Sasquatch Forest, Swamp Murk, Jungle Heat, Desert Phantom
-- **Interactions**: Tap to apply, live preview in lobby background
-- **Visual Feedback**: Selected theme shows checkmark; lobby updates in real-time
-- **Integration**: Theme applies to all territories, war boards, and card backs
-
-**War Board Interface**:
-- **Primary CTA**: Large, prominent "Pull Lever" button with mechanical press depth (6px)
-- **Top Panel**: AI opponent info, health bar, active effects
-- **Center Stage**: Card reveal area acting as slot machine reels
-- **Bottom Panel**: Player info, health bar, primary lever, Karma halo
-- **Meters Row**: Karma and Streak progress bars
-
-**Results Screen**: Verdict banner with VFX, XP breakdown, Spoils conversion, Gold summary, Progression updates
 
 ### Territory Visual Themes
 
@@ -1674,6 +2537,7 @@ Bigfoot War's technical architecture supports the slot-machine inspired gameplay
 - **Scalable Wagering**: Support for high-frequency betting operations
 - **Real-time Updates**: Live leaderboards and tournament updates via WebSockets
 - **Mobile-First**: Optimized for touch interactions and haptic feedback
+ - **Compliance Controls**: Server-side feature flags for wagering; age/geo gating with automatic fallback to non-wager Volatility Mode
 
 **Performance Specifications**:
 - **API Response Time**: <100ms for lever-pull actions (target 50ms avg)
@@ -1693,7 +2557,22 @@ Bigfoot War's technical architecture supports the slot-machine inspired gameplay
 - **Luck Meter Management**: Tracks Karma and Streak meters
 - **Proc System**: Handles enhanced randomness with slot-like excitement
 - **Auto-Resolution**: Simulates multiple rounds for Auto-War mode
-- **Deterministic RNG**: Seeded random number generation for fairness and replays
+
+**Deterministic RNG System** (CRITICAL for Replay Integrity):
+- **Single PRNG**: Xoroshiro128+ (32-bit JS implementation via JSBI BigInt for integer-only math)
+- **One Sequencer Per War**: Server-side RNG sequencer with explicit cursor index. All randomness (deck shuffles, card replacements, special effects, jackpots, pity sampling, Joker mini-games) derives from this single stream.
+- **Stream Order Contract**:
+  1. Seed creation via `HMAC(userId, warId|timestamp)`
+  2. Deck replacement selection (2-6 Warlord cards)
+  3. Deck shuffle (Fisher-Yates using sequencer)
+  4. Per-round: Proc checks, effect triggers, War! tie probability
+  5. Joker mini-game rewards
+  6. Jackpot checks
+  7. Meter fill probabilities
+- **Integer-Only Math**: All RNG operations use JSBI BigInt to prevent floating-point drift across server/edge/browsers. Convert to safe integer range (0-2³¹) before modulo.
+- **State Serialization**: RNG cursor index saved with war snapshot for resume. Never branch stream on client—client displays server snapshots only.
+- **Guardrails**: Validation ensures cursor never exceeds stream bounds; desync detection throws deterministic errors for replay analysis.
+- **Implementation Spec**: See `/docs/technical/rng-spec.md` (separate technical design doc)
 
 **Gold Currency System**:
 - **Gold Management**: Earn, spend, and track virtual currency
@@ -1705,6 +2584,12 @@ Bigfoot War's technical architecture supports the slot-machine inspired gameplay
 - **Progression**: XP, levels, Mastery, and VIP tier tracking
 - **Statistics**: Wagering patterns, win rates, and engagement metrics
 - **Preferences**: Volatility settings, auto-resolution preferences, and UI customization
+- **Compliance Gating**: Server-side checks for age, geo, and feature flags
+
+**Feature Flag System**:
+- **Wagering Gate**: Checks user age, geo location, and enabled flags server-side
+- **API Endpoint**: `GET /api/flags/wagering`
+- **Client Behavior**: Replace bet slider UI with Volatility Mode when `wagering_enabled: false`
 
 **Tournament System**:
 - **Event Management**: Weekly tournaments with Gold entry fees
@@ -1773,6 +2658,13 @@ Bigfoot War's technical architecture supports the slot-machine inspired gameplay
 - **Audio Preloading**: Smart preloading of frequently used sounds
 - **Animation Optimization**: GPU-accelerated animations with fallbacks
 - **Frame Rate Targets**: 60fps animations (30fps fallback on low-end devices)
+
+**RNG Determinism & Desync Prevention**:
+- **Integer-Only Operations**: All RNG uses JSBI BigInt to prevent floating-point variance across server/edge/browser. Convert Xoroshiro output to safe range (0-2³¹) before modulo.
+- **Single Source of Truth**: RNG state lives server-side only. Client receives deterministic snapshots via API. No client-side RNG ever.
+- **Stream Integrity**: Cursor index persisted with war state. Resumes load last cursor. Validation ensures cursor < stream length.
+- **Desync Detection**: On mismatch between client/server state, throw deterministic error with cursor position logged for replay analysis.
+- **Testing**: Automated tests replay 10k wars from seeds and assert identical results (down to cursor position) across server/edge builds.
 
 **Load Testing Specifications**:
 - **Target**: <3 seconds on 3G connection
@@ -2168,6 +3060,7 @@ Test mode provides comprehensive testing capabilities for Bigfoot War's slot-ins
 - **No Gambling Claims**: Cannot claim Gold can be converted to real money; Pro wagering is virtual-only
 - **RTP Disclosure**: Pro wagering uses industry-standard RTP (94-96%) for transparency; F2P earns Gold through gameplay
 - **Pro Wagering Disclaimer**: "Virtual wagering amplifies rewards but has no real-world monetary value. Results determined by seeded RNG for fair play."
+ - **Feature Flags & Gating**: Wagering is controlled by server-side flags and disabled for underage users (global <18, <21 in flagged regions) and in restricted jurisdictions. When disabled, the game offers a non-wager **Volatility Mode** with XP/Spoils-only rewards and no Gold multipliers.
 
 ### Jurisdiction-Specific Requirements
 
@@ -2190,8 +3083,9 @@ Test mode provides comprehensive testing capabilities for Bigfoot War's slot-ins
 
 | Phase | Timeline | Features | Content | Platform | Target Users |
 |-------|----------|----------|---------|----------|--------------|
-| **Alpha** (Q4 2025) | 3 months | Quick Wars mode, 5-war Tutorial with Elder Thalor, 12 core Warlords (Sasquatch, Yeti, Agogwe, Skunk Ape, Orang Pendek, Matlox, Mapinguari, Ukumarzapai, Gugwe, Nyalmo, Big Grey Man, Yowie) | 4 Territories (Forest, Mountain, Swamp, Jungle), Basic daily quests, Karma/Streak meters | Web PWA | 100-200 closed testers |
+| **Alpha** (Q4 2025) | 3 months | Quick Wars mode, 5-war Tutorial with Mutated Sherman, 12 core Warlords (Sasquatch, Yeti, Agogwe, Skunk Ape, Orang Pendek, Matlox, Mapinguari, Ukumarzapai, Gugwe, Nyalmo, Big Grey Man, Yowie) | 4 Territories (Forest, Mountain, Swamp, Jungle), Basic daily quests, Karma/Streak meters | Web PWA | 100-200 closed testers |
 | **Beta** (Q1 2026) | 2 months | +Territory Campaigns, +4 Territories (expansion), Wagering system (Pro), Tournament mode, Replay sharing | +8 Warlords (L1-10 total 20), Elite mode territories | Web PWA + iOS wrapper prep | 1,000-2,000 open beta |
+| **Compliance Note** |  | Wagering behind server flag with age/geo gating; fallback Volatility Mode shipped where wagering disabled |  |  |  |
 | **Full Launch** (Q2 2026) | Go-live | All features: Full 20 Warlords, All territories, Pro subscriptions (Gold/Platinum), i18n Phase 1 (ES/FR/DE), App stores | Event system, Seasonal content, All quest-reward Warlords | Web PWA + iOS/Android (Capacitor) | Public launch (5k-25k MAU target) |
 
 **MVP Success Criteria**:
