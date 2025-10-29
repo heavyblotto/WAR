@@ -8,9 +8,7 @@
 - **Session Length**: 1-6 minutes (with auto-resolution options)  
 - **Core Loop**: Choose Warlord → Bet Gold → Pull Lever (Auto-Reveal) → Collect Amplified Rewards → Build Luck Meters → Unlock Higher Bets
 
-**Bigfoot War** is a slot-machine inspired digital card battler that transforms the classic War card game into an engaging, luck-driven experience. 
-
-The game fuses the strategic appeal of the classic card game War while adding the excitement and progression systems that keep players coming back. With its focus on fairness, accessibility, engaging monetization, and comprehensive Bigfoot lore spanning 59+ global cryptids, Bigfoot War is positioned to capture both casual gamers and slot enthusiasts in the growing digital card game market.
+**Bigfoot War** is a slot-machine inspired digital card battler that transforms the classic War card game into an engaging, luck-driven experience. The game fuses the strategic appeal of the classic card game War while adding the excitement and progression systems that keep players coming back. With its focus on fairness, accessibility, engaging monetization, and comprehensive Bigfoot lore spanning 59+ global cryptids, Bigfoot War is positioned to capture both casual gamers and slot enthusiasts in the growing digital card game market.
 
 ### Game novelty
 | Innovation             | Description                                                                                                                            |
@@ -82,7 +80,329 @@ Bigfoot War features comprehensive Bigfoot lore spanning 59+ global cryptids fro
 | **Mobile** | PWA-ready with touch interactions and haptic feedback |
 | **Cross-Platform Strategy** (Q2 2026) | **PWA First**: Launch as Progressive Web App (PWA) for instant web access—60% of casual players access via browsers first<br>**Native Wrappers**: Post-launch wrappers via Capacitor/Cordova for iOS and Android app stores<br>- iOS App Store: Native wrapper with in-app purchase support<br>- Google Play Store: Android wrapper with subscription billing<br>- Benefits: App store UA, native performance, push notifications, store listing visibility<br>**Unified Codebase**: Single Next.js codebase with platform-specific feature flags (PWA vs. native)<br>**App Store Optimization**: Cryptid mythology keywords (Bigfoot, Sasquatch, Yeti) + card game battler + slot mechanics<br>**Target Markets**: Q2 2026 iOS/Android launch for international expansion (ES, FR, DE, JP, KR markets) |
 
-## 3. Core gameplay mechanics
+## 3. Gameplay
+
+### Core game loop
+
+#### Phase 1: Pre-War Setup, Lobby
+
+**Optimized Flow** (Target: 1-2 taps max for Quick War, 2-4 taps for Campaign):
+
+| Step | Action | Taps | Time (sec) | Optimization |
+|------|--------|------|-----------|--------------|
+| 1 | Warlord Selection | 1 | 1 | Browse book or auto-select |
+| 2 | Mode Selection | 1 (Quick War) or 2-3 (Campaign) | 2-5 | Quick War: instant; Campaign: Territory unlock |
+| 3 | Pro Betting (Optional) | 0-1 | 2 | Haptic slider with auto-suggest |
+| 4 | Warlord Cards (2-10 based on level) | 1 (auto-select) or 2-3 (manual) | 2-5 | Auto-select based on Territory affinity |
+| 5 | Tap War Horn | 1 | 1 | Primary CTA |
+| **Total** | **Quick War** | **3-4 taps** | **6-12s** | **Fast dopamine** |
+| **Total** | **Campaign** | **5-9 taps** | **10-20s** | **Deeper engagement** |
+
+1. **Warlord Selection**: Player browses book of available Bigfoot Warlords (Sasquatch, Yeti, Mapinguary, Agogwe, etc.), each with unique Warlord stats (`Health`, `Power`) and special effects.
+2. **Volatility Slider** (Optional): Player selects risk preference:
+   - **Low Volatility**: +10% win rate, -20% multipliers (steady wins, smaller jackpots)
+   - **Medium** (Default): Balanced risk/reward, 60-70% win rate
+   - **High Volatility**: -5% win rate, +50% jackpots (fewer wins, bigger spikes)
+   - UI placement: Lobby slider below Warlord selection (analytics track for personalization)
+   - **Compliance Mode**: If wagering is disabled (age/geo/flag), Volatility applies only to proc/jackpot ceilings and pacing; no Gold bets or payout multipliers. Rewards are XP/Spoils only.
+3. Player chooses to play a **Quick War** or **Territory Campaign**.
+
+**Territory Campaign Setup**: For Territory Campaign, player can Start a **New Campaign**, or **Continue Campaign**.
+**Continue Campaign Setup**: Player browses book of Campaigns to select the next Territory in the Campaign to capture or to replay existing captured Territories. For **Pro players** (paid membership), **Wagering Decision**: Player chooses bet amount in Gold. Player browses book of Warlord cards, selects 1-10 Warlord cards to play (number allowed depends on XP, Level, Campaign). Player taps **War Horn** button to start the War.
+
+**New Campaign Setup**: Depending on player **XP** and **Level**, players browse book of available Campaigns (e.g. Pacific Northwest, Florida Everglades, Himalaya Foothills, etc.). For **Free to Play**, player pays Gold for one-time Campaign Unlock (**Pro players** subscription pays for Unlocks). Player browses book of Campaigns to select the first Territory in the Campaign to capture. For **Pro players** (paid membership), **Wagering Decision**: Player chooses bet amount in Gold. Player browses book of Warlord cards, selects 1-10 cards to play (number allowed depends on XP, Level, Campaign). Player taps **War Horn** button to start the first Campaign War.
+
+**Quick War Setup**: Player chooses opposing Warlord by browsing book of previously defeated opponents. Players can filter Warlords. For **Pro players** (paid membership), **Wagering Decision**: Player chooses bet amount in Gold. Player browses book of Warlord cards, selects 1-10 cards to play (number allowed depends on XP, Level, Campaign). Player taps **War Horn** button to start the War.
+
+#### Phase 2: War Initialization, Lobby > War Board
+
+1. **Deck Generation**: System creates 54-card deck (Natural cards + Warlord Cards + 2 jokers).
+2. **Seed Creation**: Deterministic seed generated from secure inputs (HMAC(userId, warId|timestamp)) for reproducible results.
+3. **Deck Shuffle**: Seeded shuffle ensures consistent draw order for replays.
+4. **Initial State**: Both players start with full health, empty meters, and shuffled decks.
+5. **War Board Display**: Game transitions to main gameplay screen with Territory-themed accents.
+
+#### Phase 3: Core War Loop, War Board
+
+**Optimized Flow** (Target: 1 tap per round, 3-6 min war duration):
+
+| Round Step | Action | Taps | Time (ms) | Notes |
+|-----------|--------|------|-----------|-------|
+| 1 | **Lever Pull** | 1 | 180 | Haptic feedback, mechanical animation |
+| 2 | Card Reveal | 0 | 280-320 | Simultaneous flip, spring animation |
+| 3 | Rank Comparison | 0 | 0 | Auto-calculate server-side |
+| 4 | Damage Animation | 0 | 300 | Damage pop, health bar update |
+| 5 | Special Effects | 0 | 200-500 | Proc VFX (optional skip) |
+| 6 | Meter Updates | 0 | 150 | Smooth fill animations |
+| 7 | Loop Decision | 0 | 0 | Auto-advance if health > 0 |
+| **Total per Round** | | **1 tap** | **800-1,700ms** | **User tests: 1.2s avg/round target (snappy feel). Pro: Fast (800ms), Standard (1.7s)** |
+
+**Primary Action**: Single "Pull Lever" button replaces manual card draws
+- **Simultaneous Reveals**: Both player and AI cards flip at the same time, like slot reels stopping
+- **Auto-Resolution**: Cards compare automatically; higher rank wins and deals damage
+- **Visual Feedback**: Lever press triggers satisfying mechanical animation with haptic feedback
+
+1. **Lever Pull**: Player presses "Pull Lever" button (primary action) triggering simultaneous card reveals
+2. **Card Reveal**: Both player and AI cards flip simultaneously (280-320ms spring animation) with territory-themed effects.
+3. **Rank Comparison**: System compares card ranks (Ace=14, King=13, Queen=12, Jack=11, 10-2 face value) plus Power stat bonuses. Jokers always lose the round but grants a random reward to the owner (some variation of a pick two/three or scratch-off type mini-game)
+4. **Damage Calculation**: Winner deals damage = rank value + Power stat + Territory bonuses + special effects
+5. **Special Effects**: Triggered effects resolve (heal, armor, debuffs, rank shifts, peeks, stuns, skips) with visual feedback.
+6. **Meter Updates**: Karma Meter (+1 on loss, +2 on War! loss), Streak Meter (+1 winning round, +1 winning War!).
+7. **Health Updates**: Damage applied to loser's health bar.
+8. **Card Disposal**: All cards go to respective discard piles (no capture).
+
+#### Phase 4: War! Resolution (Tie Handling)
+
+**War! Tie Resolution**:
+- **Trigger**: When both cards have the same rank
+- **Animation**: 3 face-down cards stack rapidly (80ms each), then explosive 4th card reveal
+- **Visual**: Marquee lights, siren sounds, screen pulse effect
+- **All cards**: Go to respective discard piles (no capture)
+
+1. **Tie Detection**: When both cards have same rank (or tied Jokers), War! sequence triggers.
+2. **War! Animation**: Three face-down cards stack rapidly (80ms each) + explosive 4th card reveal with marquee lights and siren sounds
+3. **War! Damage**: Winner deals 3-4x damage (territory-dependent) with enhanced visual effects
+4. **War! Effects**: Special War!-triggered effects activate (bonus damage, armor, peeks, etc.)
+5. **War! Payout**: Special Gold, XP payouts for winning War! (based on level, War! card-pairings, Streaks). Joker War! add big multipliers based on level / XP and also add extra random Warlord card to the player's deck.
+5. **Card Disposal**: All War! cards go to respective discard piles (no capture).
+
+#### Phase 5: Round Completion
+
+1. **Proc System**: Random special effects trigger (15-25% base rate, +5-15% with higher bets).
+2. **Near-Miss Detection**: Loss by 1-2 ranks triggers partial payout (0.5x bet) + Karma Meter boost.
+3. **Jackpot Check**: Deterministic combos (matching suits + War! win) + 1% random chance for jackpot.
+4. **Meter Triggers**: Check if Karma (6) or Streak (20) meters trigger bonuses.
+
+#### Phase 6: War Continuation Decision
+
+1. **Health Check**: If either player's health reaches 0, war ends.
+2. **Deck Check**: If either deck empties, reshuffle occurs.
+3. **Continue Loop**: If both players alive and cards available, return to Phase 3.
+
+#### Phase 7: War Conclusion
+
+1. **Victory Determination**: Player wins if AI health reaches 0, loses if player health reaches 0.
+2. **Gold Payout**: Calculate Gold won = (bet × multiplier) + base rewards + bonuses - Gold wagered.
+3. **XP Calculation**: Base XP (50 for win, 10-20 for loss) + Spoils conversion (up to 50 XP) + War! bonus (+20) + meter triggers + wagering bonus (Pro: +1 XP/10 Gold bet).
+4. **Spoils Generation**: Spoils earned based on performance (1-10 Spoils per war, avg 5).
+5. **Progression Updates**: Update Level XP and Warlord Mastery XP.
+
+#### Phase 8: Post-War Results
+
+**Optimized Flow** (Target: 2-3 seconds with auto-advance):
+
+| Step | Action | Taps | Time (sec) | Notes |
+|------|--------|------|-----------|-------|
+| 1 | Results Screen | 0 | 1.5 | Verdict banner with VFX |
+| 2 | Spoils Conversion | 0 | 1 | Animated bar (auto) |
+| 3 | Specimen Collection | 0 | 0.5 | "New" badges flash |
+| 4 | Gold Summary | 0 | 0.3 | Net Gold result |
+| 5 | Progression Display | 0 | 0.5 | XP/Level progress |
+| **Total** | | **0 taps** | **~3.8s** | **Auto-advance to Phase 9** |
+
+1. **Results Screen**: Display verdict banner with territory-themed VFX (confetti/leaf/ice/swamp/jungle).
+2. **Spoils Conversion**: Animated bar converting Spoils to XP (up to 50 XP cap).
+4. **Specimen Collection**: New Specimens collected with "new" badges and collection summary.
+5. **Gold Summary**: Net Gold result with wagering efficiency.
+6. **Progression Display**: Campaign progress, Level progress.
+
+#### Phase 9: Post-War Decisions
+
+**Optimized Flow** (Target: 1 tap to continue):
+
+| Option | Action | Taps | Time (sec) | Visual |
+|--------|--------|------|-----------|--------|
+| **Rematch** | "Rematch (new seed)" | 1 | 2 | Red lever with new shuffle indicator |
+| **Next Territory** | Continue Campaign | 1 | 3 | Gold unlock prompt if needed |
+| **Back to Lobby** | Return to main | 1 | 0.5 | Instant transition |
+| **Knapsack** | View Collection | 1 | 5 | Collection viewer with "new" badges |
+
+1. **Rematch Options**:
+    - "Rematch (new seed)" - fresh shuffle with new RNG
+2. **Navigation Options**:
+    - Next Territory
+    - Return to Lobby for new war setup
+3. **Collection Management**: Open Knapsack to view Specimen details and Collection progress.
+
+### Quick War System
+
+**Overview**: Fast, standalone bursts for casual entry (1-3 min sessions). No Campaign commitment. Ideal for dopamine hits between longer sessions. Streamlined setup for mobile-first experience.
+
+**Entry Flow**:
+1. **Lobby Button**: Tap "Quick War" (auto-selects opponent from previously defeated)
+2. **Opponent Selection**: Browse book or use auto-select; Filter by difficulty/theme
+3. **Pro Wagering** (Optional): Bet 10-500 Gold (wagering amplifies rewards)
+4. **Warlord Cards**: Select 2-4 cards (fewer for speed; depends on level)
+5. **Tap War Horn**: Start instant war (no Campaign unlock needed)
+
+**Opponent Selection**:
+- **Auto-Select**: Chooses random unlocked Warlord with difficulty ±2 levels
+- **Manual Filter**: By archetype, region, difficulty (Easy/Medium/Hard)
+- **Previously Defeated**: Only Warlords you've beaten before
+- **Quick Chains**: Streak bonuses for consecutive Quick Wars
+
+**Rewards & Scaling**:
+
+| Mode | Duration | XP (Win) | Gold (Win) | Spoils | Win Rate Target | Notes |
+|------|----------|----------|------------|--------|-----------------|-------|
+| **Standard Quick** | 1-3 min | 40 XP | 15G | 2-5 | 70% | Base; +10% if chained (3 in row) |
+| **Auto Quick** | 30s | 30 XP | 10G | 1-3 | 65% | Highlights only; Pro: Full visuals |
+| **Themed Quick** | 2 min | 50 XP | 20G | 4-6 | 60% | Affinity bonus; Event-tied |
+
+**Rewards Formulas**:
+- Base rewards × 0.8 (vs. Campaign) + Streak Mult (1 + 0.1 × Chain Length)
+- Opponent Difficulty = Player Level ±2 (ensures 65-70% win rate)
+- Quick Chain Bonus: +10% Gold/XP after 3 consecutive Quick Wars
+
+**Pro Enhancements**:
+- Wagering (up to 500G cap vs. 2k in Campaigns)
+- +20% XP (vs. F2P)
+- "Quick Pro Mode": 1s reveals (vs. 3-4s standard)
+- Double rewards on Quick Chain streaks
+
+**Integration**: Counts toward daily caps; Unlocks feed Campaigns (defeat for Territory hints). **Sim Results**: 5 Quick Wars/day → 250 XP/100G (F2P); 20% of total progression.
+
+### Territory Campaign System
+
+Territory Campaign details are comprehensively covered in Section 5 Content Systems under "Campaigns & Territories".
+
+### Tutorial Campaign
+
+**Narrative-Driven Introduction**: Mutated Sherman, Bigfoot Shaman, guides new players through a 5-war tutorial campaign with lore-driven narrative and progressive skill introduction.
+
+**Tutorial Flow Sequence**:
+
+| War # | Warlord | Educational Focus | Narrative Hook | Voiceover Duration | Auto-Unlocks |
+|-------|---------|------------------|----------------|--------------------|--------------|
+| 1 | Sasquatch | Lever pull, rank comparison, basic damage | "The wilds awaken, hunter. Sound the Horn—cryptids heed the call. Sasquatch guards PNW shadows. Pull! Higher rank claims the round. He throws rocks as warnings." | 10s | L1 Sasquatch unlocked |
+| 2 | Yeti | Win/loss feedback, health bars, territory themes | "Himalaya's ice heals the bold. Yeti's frost mends wounds—watch your health rise." | 6s | L1 Yeti unlocked |
+| 3 | Skunk Ape | Special effects (debuffs), defeat AI | "Swamp odors weaken the enemy. Skunk Ape's foul mist lowers ranks—see how it sways battle." | 6s | L3 Skunk Ape unlocked |
+| 4 | Agogwe | Karma meter fill, loss consolation | "Stealth heals on loss. Agogwe's wisdom: defeats build Karma—your power grows in shadows." | 6s | L1 Agogwe unlocked |
+| 5 | Sasquatch (rematch) | Full war resolution, Gold rewards | "Victory! Gold flows like mountain streams. Pull again—fate's weave tightens with each lever." | 8s | Tutorial complete |
+
+**Tutorial Features**:
+| Feature | Description |
+|---------|-------------|
+| **Guided Mechanics** | Popup tooltips on first lever pull ("Pull to reveal! Higher rank wins damage"), first win ("Higher rank deals damage"), first loss ("Lower rank—Karma builds") |
+| **Auto-Progression** | Tutorial wars auto-advance between steps (no manual navigation) |
+| **Lore Integration** | 30-second total voiceover spread across 5 wars with Mutated Sherman's cryptic wisdom |
+| **Auto-Unlock** | Warlords L1-3 automatically unlocked during tutorial (removes initial choice paralysis) |
+| **Haptic Guidance** | Vibration on lever pull during first war introduces tactile feedback |
+
+**Visual Design**:
+| Visual Element | Description | Technical Details |
+|----------------|-------------|-------------------|
+| **Mutated Sherman Appearance** | Mist-based overlay | Framer Motion shaders, 300ms emerge |
+| **Staff Glow Animation** | Milestone completions | Triggered on tutorial milestones |
+| **Territory Backgrounds** | Progressive reveal | Territory-themed with gradual unlock |
+| **Skip Option** | Available after War 3 | For experienced players |
+
+**Post-Tutorial**:
+| Post-Tutorial Feature | Description |
+|-----------------------|-------------|
+| **Campaign Unlock** | "Hunt the elusive Sasquatch in misty forests" narrative |
+| **Daily Quests** | Lore-flavored objectives (e.g., "Uncover Yeti secrets: Win 3 Mountain Wars") |
+| **Lobby Transition** | Standard flow with Thalor tooltips on hover |
+
+### Card & Deck System
+
+**Deck Composition**: Fixed 54-card structure (52 Natural positions + 2 fixed Jokers)
+
+**Card Replacement System**:
+- **Replacement Formula**: `min(2 + floor(Level/3), 6)` Warlord cards per war
+- **Pool Bias**: 70% high ranks (J, Q, K, A), 30% affinity suit
+- **Seed Prioritization**: Player gets top 20% pool with Pro (favored draws)
+- **Visual Effect**: Warlord cards have unique borders, particles, signature symbols
+
+**Replacement by Level**:
+- **L1-5**: 2-3 Warlord cards
+- **L6-10**: 3-4 Warlord cards  
+- **L11-15**: 4-5 Warlord cards
+- **L16+**: 5-6 Warlord cards (cap)
+
+**Card Ranks**: Ace high (14), King (13), Queen (12), Jack (11), 10-2 face value, Joker (1)
+
+**Warlord Cards**: Replace specific Natural cards one-for-one (2-6 per war based on level). Each Warlord defines a unique pool of replacement cards with themed effects.
+
+**Pro Enhancements**: +2 Warlord cards in deck (beyond level cap); seed prioritizes top 20% pool for better draws.
+
+### Damage & Effects System
+
+**Damage Formula**: 
+```
+Damage = rank value + Power stat + territory bonuses + special effects
+Max Bonus from Cards Alone: +4 damage (never exceeds)
+```
+
+**Special Effect Rules**:
+- **Trigger Windows**: On reveal, on win, on loss, on tie, on War! win, after tie
+- **Effect Caps**: Stun/Skip ≤1 per war average, Debuff -1 resolves once, Armor/Heal +1 to +2
+- **No Stacking**: -1 rank effects don't stack with other -1 rank effects
+- **Resolve Once**: Some effects marked to prevent multiple activations
+- **Visual Feedback**: All effects have clear visual and audio feedback
+
+### Meters & Luck System
+
+**Luck and Meter Rules**:
+- **Karma Meter**: Fills on losses (+1 round loss, +2 War! loss, +1 tie loss, +2 bet loss), triggers at 6 for guaranteed Double Damage
+- **Streak Meter**: Fills on win streaks (+1 per winning round), +1 per winning War!), triggers at 20 for Gold jackpot
+- **Proc Rates**: Base 15-25% chance per reveal, +5-15% with higher bets
+- **Jackpot Triggers**: Deterministic combos (matching suits + War! win) + 1% random chance
+
+### Daily Rewards System
+- **Entry**: Login streak maintained
+- **Reward Scaling**: 100-500 Gold (7-day streak)
+- **Bonus Elements**: Daily missions, pick / scratch off mini-games
+
+### Seasonal Content System
+- **Quarterly Updates**: New Warlords, territories, themes
+- **Limited-Time**: Exclusive seasonal cosmetics and events
+- **Progression**: New content unlockable through play
+- **Outcome**: Fresh content and engagement
+
+### Weekly Events System
+Rotating slot-themed events to maintain engagement:
+
+**Double Wager Week**:
+- **Duration**: 7 days
+- **Effect**: All bet multipliers increased by +0.5x
+- **Rewards**: Exclusive "High Roller" cosmetics
+- **Participation**: Requires minimum Gold wagered
+
+**Jackpot Festival**:
+- **Duration**: 3 days
+- **Effect**: Jackpot trigger rate increased by +2%
+- **Rewards**: Guaranteed rare Specimens
+- **Participation**: Free for all players
+
+**Warlord Spotlight**:
+- **Duration**: 3 days
+- **Effect**: Bonus rewards for featured Warlord
+- **Rewards**: Warlord-themed cosmetics
+- **Participation**: Play with featured Warlord
+
+### Seasonal Regional Events System
+Monthly rotating regional themes celebrating Bigfoot mythology:
+
+**"Pacific Northwest Legends" Month**:
+- **Duration**: 30 days
+- **Effect**: Bonus XP for Forest territory + Sasquatch family Warlords get special effects
+- **Rewards**: PNW-themed Specimens, "Forest Guardian" emotes, regional cosmetics
+
+**"Himalayan Mysteries" Month**:
+- **Duration**: 30 days
+- **Effect**: Mountain territory bonuses + Yeti variants get glacial mastery effects
+- **Rewards**: Himalayan-themed Specimens, "Mountain Sage" emotes, glacial cosmetics
+
+**"Amazon Guardians" Month**:
+- **Duration**: 30 days
+- **Effect**: Jungle territory focus + Mapinguary family bonuses
+- **Rewards**: Amazon-themed Specimens, "Jungle Master" emotes, vine cosmetics
+
+**"African Savannah Hunters" Month**:
+- **Duration**: 30 days
+- **Effect**: Swamp territory mastery + Agogwe family stealth bonuses
+- **Rewards**: African-themed Specimens, "Savannah Hunter" emotes, stealth cosmetics
 
 ### Game flows
 
@@ -110,13 +430,28 @@ Bigfoot War features comprehensive Bigfoot lore spanning 59+ global cryptids fro
 | **Pro Subscription** | Compare/upgrade Gold vs. Platinum, manage billing | Upgrade, Manage Billing | Plan comparison, benefits list | All players |
 | **Leaderboards** | Global/regional/mode rankings | Filter (Global/Regional/Mode) | Tabs, filters, player rows | All players |
 | **Event/Seasonal Hub** | Weekly/seasonal modifiers, rewards, countdowns | Join event, complete tasks | Event banner, tasks, rewards preview, timer | All players |
+| **Daily Rewards Flow** | Login streak rewards with mini-spin | Claim, Spin (optional), Watch Ad for Re-Spin | Streak calendar, claim button, spin wheel | All players |
+| **Weekly Events Flow** | Double Wager Week, Jackpot Festival, Warlord Spotlight | Participate in events, complete event tasks | Event banners, modifier displays, progress trackers | All players |
+| **Seasonal Content Flow** | Quarterly updates with new content | Unlock new Warlords/territories/themes | Seasonal hub, unlock paths, limited-time cosmetics | All players |
+| **Seasonal Regional Events** | Monthly rotating regional themes (PNW, Himalayan, Amazon, African) | Complete regional challenges, collect themed Specimens | Regional event banners, themed territories, regional Specimen sets | All players |
 | **Notifications/Inbox** | Rewards, alerts, system messages | Claim, Mark Read, Delete | Message list with filters, detail pane | All players |
 | **Ads Flows** | Rewarded video and interstitial flows | Watch Ad (rewarded), Skip (interstitial) | Modal with reward preview, skip timer | F2P players |
 | **Admin/Debug Overlay** | Developer/QA tools for seeds, FPS, procs | Debug overlay toggle (long-press gear) | Seed display, FPS, proc tracking, force outcomes | Internal only |
 | **Profile & Progress** | Badge showcase, stats, replay shares | View Badge, Share Replay | Avatar/title, stats, badges grid, recent replays | All players |
 | **Economy Ledger** | Transparent Gold/Spoils transaction history | Filter, Export | Filterable ledger, totals | All players |
 
-### Splash page interface
+### Error and Edge Cases
+
+**Connection Loss Flow**:
+- **Detection**: Network connectivity lost
+- **State Preservation**: Current war state saved
+- **Reconnection**: Automatic reconnection attempt
+- **State Recovery**: Resume from last saved state
+- **Outcome**: Seamless gameplay continuation
+
+### Screens and interfaces
+
+#### Splash page interface
 
 **Purpose**: First screen to set tone, preload essentials, and route players fast (goal: <3s TTI on 3G).
 
@@ -219,7 +554,7 @@ Bigfoot War features comprehensive Bigfoot lore spanning 59+ global cryptids fro
 | **Offers** | `/api/offers?signed=true` | Edge cached 5m |
 | **News** | `/api/news` | Edge cached 60s |
 
-### Lobby interface
+#### Lobby interface
 
 **Purpose**: Central hub to choose Warlord, set volatility/bet, pick mode, and launch a war in 1-4 taps.
 
@@ -331,7 +666,7 @@ Bigfoot War features comprehensive Bigfoot lore spanning 59+ global cryptids fro
 | **Offers/events** | `/api/offers`, `/api/events` | Edge cached 5m |
 | **News** | `/api/news` | Edge cached 60s |
 
-### War Campaign interface
+#### War Campaign interface
 
 **Purpose**: Guide players through Campaign selection and Territory progression with clear unlocks, affinity hints, and fast entry into wars.
 
@@ -449,7 +784,7 @@ Bigfoot War features comprehensive Bigfoot lore spanning 59+ global cryptids fro
 | **Cards auto** | POST | Auto-select cards | `/api/warlord/auto-select` |
 | **Start war** | POST | Start war | `/api/war/start` (returns warId/seed) |
 
-### Quick War interface
+#### Quick War interface
 
 **Purpose**: Ultra-fast entry for standalone wars (1–3 min). Minimal setup, high convenience; ideal for short sessions and streak chaining.
 
@@ -525,7 +860,7 @@ Bigfoot War features comprehensive Bigfoot lore spanning 59+ global cryptids fro
 - **Auto-select**: `/api/quickwar/auto-select` (GET)
 - **Start War**: `/api/war/start` (POST; returns warId/seed)
 
-### War Board interface
+#### War Board interface
 
 **Purpose**: Fast, readable round resolution with slot-like reveals and deterministic fairness; target 1 tap per round, 800–1,700ms loop.
 
@@ -605,7 +940,7 @@ Bigfoot War features comprehensive Bigfoot lore spanning 59+ global cryptids fro
 - **War state**: `/api/war/state` (GET; reconcile client/server)
 - **Replay/share**: `/api/replay/{seed}` (GET)
 
-### Results screen
+#### Results screen
 
 **Purpose**: Summarize the war outcome and rewards in ~3.8s with auto-advance, while allowing quick actions (rematch/continue/share/collection) without friction.
 
@@ -913,7 +1248,9 @@ Bigfoot War features comprehensive Bigfoot lore spanning 59+ global cryptids fro
 
 **Data Sources**: `/api/subscription/*`
 
-#### Leaderboards Interface (Global/Regional/Modes)
+#### Leaderboards Interface
+
+**Global/Regional/Modes**
 
 **Purpose**: View rankings with fair filters and anti-cheat notes.
 
@@ -955,7 +1292,7 @@ Bigfoot War features comprehensive Bigfoot lore spanning 59+ global cryptids fro
 
 **Data Sources**: Ad network SDK hooks
 
-#### Admin / Debug Overlay (Internal)
+#### Admin / Debug Overlay
 
 **Purpose**: Developer/QA overlay for seeds, FPS, procs, and flags.
 
@@ -984,267 +1321,6 @@ Bigfoot War features comprehensive Bigfoot lore spanning 59+ global cryptids fro
 **Telemetry**: `ledger_view`, `ledger_export_click`
 
 **Data Sources**: `/api/ledger/*`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#### Phase 1: Pre-War Setup, Lobby
-
-**Optimized Flow** (Target: 1-2 taps max for Quick War, 2-4 taps for Campaign):
-
-| Step | Action | Taps | Time (sec) | Optimization |
-|------|--------|------|-----------|--------------|
-| 1 | Warlord Selection | 1 | 1 | Browse book or auto-select |
-| 2 | Mode Selection | 1 (Quick War) or 2-3 (Campaign) | 2-5 | Quick War: instant; Campaign: Territory unlock |
-| 3 | Pro Betting (Optional) | 0-1 | 2 | Haptic slider with auto-suggest |
-| 4 | Warlord Cards (2-10 based on level) | 1 (auto-select) or 2-3 (manual) | 2-5 | Auto-select based on Territory affinity |
-| 5 | Tap War Horn | 1 | 1 | Primary CTA |
-| **Total** | **Quick War** | **3-4 taps** | **6-12s** | **Fast dopamine** |
-| **Total** | **Campaign** | **5-9 taps** | **10-20s** | **Deeper engagement** |
-
-1. **Warlord Selection**: Player browses book of available Bigfoot Warlords (Sasquatch, Yeti, Mapinguary, Agogwe, etc.), each with unique Warlord stats (`Health`, `Power`) and special effects.
-2. **Volatility Slider** (Optional): Player selects risk preference:
-   - **Low Volatility**: +10% win rate, -20% multipliers (steady wins, smaller jackpots)
-   - **Medium** (Default): Balanced risk/reward, 60-70% win rate
-   - **High Volatility**: -5% win rate, +50% jackpots (fewer wins, bigger spikes)
-   - UI placement: Lobby slider below Warlord selection (analytics track for personalization)
-   - **Compliance Mode**: If wagering is disabled (age/geo/flag), Volatility applies only to proc/jackpot ceilings and pacing; no Gold bets or payout multipliers. Rewards are XP/Spoils only.
-3. Player chooses to play a **Quick War** or **Territory Campaign**.
-
-**Territory Campaign Setup**: For Territory Campaign, player can Start a **New Campaign**, or **Continue Campaign**.
-**Continue Campaign Setup**: Player browses book of Campaigns to select the next Territory in the Campaign to capture or to replay existing captured Territories. For **Pro players** (paid membership), **Wagering Decision**: Player chooses bet amount in Gold. Player browses book of Warlord cards, selects 1-10 Warlord cards to play (number allowed depends on XP, Level, Campaign). Player taps **War Horn** button to start the War.
-
-**New Campaign Setup**: Depending on player **XP** and **Level**, players browse book of available Campaigns (e.g. Pacific Northwest, Florida Everglades, Himalaya Foothills, etc.). For **Free to Play**, player pays Gold for one-time Campaign Unlock (**Pro players** subscription pays for Unlocks). Player browses book of Campaigns to select the first Territory in the Campaign to capture. For **Pro players** (paid membership), **Wagering Decision**: Player chooses bet amount in Gold. Player browses book of Warlord cards, selects 1-10 cards to play (number allowed depends on XP, Level, Campaign). Player taps **War Horn** button to start the first Campaign War.
-
-**Quick War Setup**: Player chooses opposing Warlord by browsing book of previously defeated opponents. Players can filter Warlords. For **Pro players** (paid membership), **Wagering Decision**: Player chooses bet amount in Gold. Player browses book of Warlord cards, selects 1-10 cards to play (number allowed depends on XP, Level, Campaign). Player taps **War Horn** button to start the War.
-
-#### Phase 2: War Initialization, Lobby > War Board
-
-1. **Deck Generation**: System creates 54-card deck (Natural cards + Warlord Cards + 2 jokers).
-2. **Seed Creation**: Deterministic seed generated from secure inputs (HMAC(userId, warId|timestamp)) for reproducible results.
-3. **Deck Shuffle**: Seeded shuffle ensures consistent draw order for replays.
-4. **Initial State**: Both players start with full health, empty meters, and shuffled decks.
-5. **War Board Display**: Game transitions to main gameplay screen with Territory-themed accents.
-
-#### Phase 3: Core War Loop, War Board
-
-**Optimized Flow** (Target: 1 tap per round, 3-6 min war duration):
-
-| Round Step | Action | Taps | Time (ms) | Notes |
-|-----------|--------|------|-----------|-------|
-| 1 | **Lever Pull** | 1 | 180 | Haptic feedback, mechanical animation |
-| 2 | Card Reveal | 0 | 280-320 | Simultaneous flip, spring animation |
-| 3 | Rank Comparison | 0 | 0 | Auto-calculate server-side |
-| 4 | Damage Animation | 0 | 300 | Damage pop, health bar update |
-| 5 | Special Effects | 0 | 200-500 | Proc VFX (optional skip) |
-| 6 | Meter Updates | 0 | 150 | Smooth fill animations |
-| 7 | Loop Decision | 0 | 0 | Auto-advance if health > 0 |
-| **Total per Round** | | **1 tap** | **800-1,700ms** | **User tests: 1.2s avg/round target (snappy feel). Pro: Fast (800ms), Standard (1.7s)** |
-
-**Primary Action**: Single "Pull Lever" button replaces manual card draws
-- **Simultaneous Reveals**: Both player and AI cards flip at the same time, like slot reels stopping
-- **Auto-Resolution**: Cards compare automatically; higher rank wins and deals damage
-- **Visual Feedback**: Lever press triggers satisfying mechanical animation with haptic feedback
-
-1. **Lever Pull**: Player presses "Pull Lever" button (primary action) triggering simultaneous card reveals
-2. **Card Reveal**: Both player and AI cards flip simultaneously (280-320ms spring animation) with territory-themed effects.
-3. **Rank Comparison**: System compares card ranks (Ace=14, King=13, Queen=12, Jack=11, 10-2 face value) plus Power stat bonuses. Jokers always lose the round but grants a random reward to the owner (some variation of a pick two/three or scratch-off type mini-game)
-4. **Damage Calculation**: Winner deals damage = rank value + Power stat + Territory bonuses + special effects
-5. **Special Effects**: Triggered effects resolve (heal, armor, debuffs, rank shifts, peeks, stuns, skips) with visual feedback.
-6. **Meter Updates**: Karma Meter (+1 on loss, +2 on War! loss), Streak Meter (+1 winning round, +1 winning War!).
-7. **Health Updates**: Damage applied to loser's health bar.
-8. **Card Disposal**: All cards go to respective discard piles (no capture).
-
-#### Phase 4: War! Resolution (Tie Handling)
-
-**War! Tie Resolution**:
-- **Trigger**: When both cards have the same rank
-- **Animation**: 3 face-down cards stack rapidly (80ms each), then explosive 4th card reveal
-- **Visual**: Marquee lights, siren sounds, screen pulse effect
-- **All cards**: Go to respective discard piles (no capture)
-
-1. **Tie Detection**: When both cards have same rank (or tied Jokers), War! sequence triggers.
-2. **War! Animation**: Three face-down cards stack rapidly (80ms each) + explosive 4th card reveal with marquee lights and siren sounds
-3. **War! Damage**: Winner deals 3-4x damage (territory-dependent) with enhanced visual effects
-4. **War! Effects**: Special War!-triggered effects activate (bonus damage, armor, peeks, etc.)
-5. **War! Payout**: Special Gold, XP payouts for winning War! (based on level, War! card-pairings, Streaks). Joker War! add big multipliers based on level / XP and also add extra random Warlord card to the player's deck.
-5. **Card Disposal**: All War! cards go to respective discard piles (no capture).
-
-#### Phase 5: Round Completion
-
-1. **Proc System**: Random special effects trigger (15-25% base rate, +5-15% with higher bets).
-2. **Near-Miss Detection**: Loss by 1-2 ranks triggers partial payout (0.5x bet) + Karma Meter boost.
-3. **Jackpot Check**: Deterministic combos (matching suits + War! win) + 1% random chance for jackpot.
-4. **Meter Triggers**: Check if Karma (6) or Streak (20) meters trigger bonuses.
-
-#### Phase 6: War Continuation Decision
-
-1. **Health Check**: If either player's health reaches 0, war ends.
-2. **Deck Check**: If either deck empties, reshuffle occurs.
-3. **Continue Loop**: If both players alive and cards available, return to Phase 3.
-
-#### Phase 7: War Conclusion
-
-1. **Victory Determination**: Player wins if AI health reaches 0, loses if player health reaches 0.
-2. **Gold Payout**: Calculate Gold won = (bet × multiplier) + base rewards + bonuses - Gold wagered.
-3. **XP Calculation**: Base XP (50 for win, 10-20 for loss) + Spoils conversion (up to 50 XP) + War! bonus (+20) + meter triggers + wagering bonus (Pro: +1 XP/10 Gold bet).
-4. **Spoils Generation**: Spoils earned based on performance (1-10 Spoils per war, avg 5).
-5. **Progression Updates**: Update Level XP and Warlord Mastery XP.
-
-#### Phase 8: Post-War Results
-
-**Optimized Flow** (Target: 2-3 seconds with auto-advance):
-
-| Step | Action | Taps | Time (sec) | Notes |
-|------|--------|------|-----------|-------|
-| 1 | Results Screen | 0 | 1.5 | Verdict banner with VFX |
-| 2 | Spoils Conversion | 0 | 1 | Animated bar (auto) |
-| 3 | Specimen Collection | 0 | 0.5 | "New" badges flash |
-| 4 | Gold Summary | 0 | 0.3 | Net Gold result |
-| 5 | Progression Display | 0 | 0.5 | XP/Level progress |
-| **Total** | | **0 taps** | **~3.8s** | **Auto-advance to Phase 9** |
-
-1. **Results Screen**: Display verdict banner with territory-themed VFX (confetti/leaf/ice/swamp/jungle).
-2. **Spoils Conversion**: Animated bar converting Spoils to XP (up to 50 XP cap).
-4. **Specimen Collection**: New Specimens collected with "new" badges and collection summary.
-5. **Gold Summary**: Net Gold result with wagering efficiency.
-6. **Progression Display**: Campaign progress, Level progress.
-
-#### Phase 9: Post-War Decisions
-
-**Optimized Flow** (Target: 1 tap to continue):
-
-| Option | Action | Taps | Time (sec) | Visual |
-|--------|--------|------|-----------|--------|
-| **Rematch** | "Rematch (new seed)" | 1 | 2 | Red lever with new shuffle indicator |
-| **Next Territory** | Continue Campaign | 1 | 3 | Gold unlock prompt if needed |
-| **Back to Lobby** | Return to main | 1 | 0.5 | Instant transition |
-| **Knapsack** | View Collection | 1 | 5 | Collection viewer with "new" badges |
-
-1. **Rematch Options**:
-    - "Rematch (new seed)" - fresh shuffle with new RNG
-2. **Navigation Options**:
-    - Next Territory
-    - Return to Lobby for new war setup
-3. **Collection Management**: Open Knapsack to view Specimen details and Collection progress.
-
-#### Tutorial Campaign (First-Time Players)
-
-**Narrative-Driven Introduction**: Mutated Sherman, the Cryptid Sage, guides new players through a 5-war tutorial campaign with lore-driven narrative and progressive skill introduction.
-
-**Tutorial Flow Sequence**:
-
-| War # | Warlord | Educational Focus | Narrative Hook | Voiceover Duration | Auto-Unlocks |
-|-------|---------|------------------|----------------|--------------------|--------------|
-| 1 | Sasquatch | Lever pull, rank comparison, basic damage | "The wilds awaken, hunter. Sound the Horn—cryptids heed the call. Sasquatch guards PNW shadows. Pull! Higher rank claims the round. He throws rocks as warnings." | 10s | L1 Sasquatch unlocked |
-| 2 | Yeti | Win/loss feedback, health bars, territory themes | "Himalaya's ice heals the bold. Yeti's frost mends wounds—watch your health rise." | 6s | L1 Yeti unlocked |
-| 3 | Skunk Ape | Special effects (debuffs), defeat AI | "Swamp odors weaken the enemy. Skunk Ape's foul mist lowers ranks—see how it sways battle." | 6s | L3 Skunk Ape unlocked |
-| 4 | Agogwe | Karma meter fill, loss consolation | "Stealth heals on loss. Agogwe's wisdom: defeats build Karma—your power grows in shadows." | 6s | L1 Agogwe unlocked |
-| 5 | Sasquatch (rematch) | Full war resolution, Gold rewards | "Victory! Gold flows like mountain streams. Pull again—fate's weave tightens with each lever." | 8s | Tutorial complete |
-
-**Tutorial Features**:
-| Feature | Description |
-|---------|-------------|
-| **Guided Mechanics** | Popup tooltips on first lever pull ("Pull to reveal! Higher rank wins damage"), first win ("Higher rank deals damage"), first loss ("Lower rank—Karma builds") |
-| **Auto-Progression** | Tutorial wars auto-advance between steps (no manual navigation) |
-| **Lore Integration** | 30-second total voiceover spread across 5 wars with Mutated Sherman's cryptic wisdom |
-| **Auto-Unlock** | Warlords L1-3 automatically unlocked during tutorial (removes initial choice paralysis) |
-| **Haptic Guidance** | Vibration on lever pull during first war introduces tactile feedback |
-
-**Visual Design**:
-| Visual Element | Description | Technical Details |
-|----------------|-------------|-------------------|
-| **Mutated Sherman Appearance** | Mist-based overlay | Framer Motion shaders, 300ms emerge |
-| **Staff Glow Animation** | Milestone completions | Triggered on tutorial milestones |
-| **Territory Backgrounds** | Progressive reveal | Territory-themed with gradual unlock |
-| **Skip Option** | Available after War 3 | For experienced players |
-
-**Post-Tutorial**:
-| Post-Tutorial Feature | Description |
-|-----------------------|-------------|
-| **Campaign Unlock** | "Hunt the elusive Sasquatch in misty forests" narrative |
-| **Daily Quests** | Lore-flavored objectives (e.g., "Uncover Yeti secrets: Win 3 Mountain Wars") |
-| **Lobby Transition** | Standard flow with Thalor tooltips on hover |
-
-### Card & Deck System
-
-**Deck Composition**: Fixed 54-card structure (52 Natural positions + 2 fixed Jokers)
-
-**Card Replacement System**:
-- **Replacement Formula**: `min(2 + floor(Level/3), 6)` Warlord cards per war
-- **Pool Bias**: 70% high ranks (J, Q, K, A), 30% affinity suit
-- **Seed Prioritization**: Player gets top 20% pool with Pro (favored draws)
-- **Visual Effect**: Warlord cards have unique borders, particles, signature symbols
-
-**Replacement by Level**:
-- **L1-5**: 2-3 Warlord cards
-- **L6-10**: 3-4 Warlord cards  
-- **L11-15**: 4-5 Warlord cards
-- **L16+**: 5-6 Warlord cards (cap)
-
-**Card Ranks**: Ace high (14), King (13), Queen (12), Jack (11), 10-2 face value, Joker (1)
-
-**Warlord Cards**: Replace specific Natural cards one-for-one (2-6 per war based on level). Each Warlord defines a unique pool of replacement cards with themed effects.
-
-**Pro Enhancements**: +2 Warlord cards in deck (beyond level cap); seed prioritizes top 20% pool for better draws.
-
-### Damage & Effects
-
-**Damage Formula**: 
-```
-Damage = rank value + Power stat + territory bonuses + special effects
-Max Bonus from Cards Alone: +4 damage (never exceeds)
-```
-
-**Special Effect Rules**:
-- **Trigger Windows**: On reveal, on win, on loss, on tie, on War! win, after tie
-- **Effect Caps**: Stun/Skip ≤1 per war average, Debuff -1 resolves once, Armor/Heal +1 to +2
-- **No Stacking**: -1 rank effects don't stack with other -1 rank effects
-- **Resolve Once**: Some effects marked to prevent multiple activations
-- **Visual Feedback**: All effects have clear visual and audio feedback
-
-### Meters & Luck
-
-**Luck and Meter Rules**:
-- **Karma Meter**: Fills on losses (+1 round loss, +2 War! loss, +1 tie loss, +2 bet loss), triggers at 6 for guaranteed Double Damage
-- **Streak Meter**: Fills on win streaks (+1 per winning round), +1 per winning War!), triggers at 20 for Gold jackpot
-- **Proc Rates**: Base 15-25% chance per reveal, +5-15% with higher bets
-- **Jackpot Triggers**: Deterministic combos (matching suits + War! win) + 1% random chance
-
-### Territory Bonuses
-
-**Territory Rules**:
-- **Suit Affinities**: Forest (Hearts), Mountain (Spades), Swamp (Diamonds), Jungle (Clubs)
-- **Territory Bonuses**: Forest (+1 heal on Hearts wins), Mountain (+1 armor every 3rd win), Swamp (+10% tie rate), Jungle (+1 random stat per Clubs win)
-
-**Suit Themes & Affinities**:
-- **Hearts**: Healing effects, Forest territory affinity
-- **Spades**: Armor effects, Mountain territory affinity
-- **Diamonds**: Debuff effects, Swamp territory affinity
-- **Clubs**: Momentum effects, Jungle territory affinity
 
 ## 4. Progression Systems
 
@@ -1467,19 +1543,22 @@ Streak_Mult: 0-10 based on consecutive wins
 
 ### Bigfoot Warlords
 
-**Overview**: 59+ Warlords from global cryptid lore form the core personalization system. Player selects 1 Warlord per war; 12 are playable initially, with more unlocked via progression (every 3 levels). Warlords define deck replacements, special effects, and archetype playstyles.
+#### Overview
 
-**Design Principles**:
+59+ Warlords from global cryptid lore form the core personalization system. Player selects 1 Warlord per war; 12 are playable initially, with more unlocked via progression (every 3 levels). Warlords define deck replacements, special effects, and archetype playstyles.
+
+#### Design principles
+
 - **Balance**: Base symmetric War ~52% wins (seeded fair); Warlord replacements shift +5-12% (e.g., +8% aggro vs control AI)
 - **Archetype Diversity**: 4 archetypes (Steady, Control, Aggro, Burst) create rock-paper-scissors dynamics
 - **Progression Tie-In**: Mastery XP from themed wars; Unlocks feed Campaigns (e.g., Sasquatch for PNW)
 - **Slot Feel**: Replacements = "paylines" (high ranks trigger procs 20%); Jokers = bonuses
 
-#### Mutated Sherman: The Cryptid Sage (Narrative Guide NPC)
+#### Mutated Sherman: Narrative Guide NPC
 
 **Character Background**:
-- **Role**: Eternal watcher and spiritual protector across cryptid territories
-- **Origin**: Once a warrior, now shaman after "The Great Rift" split territories—seeks players to learn the Bigfoot Arts of War
+- **Role**: Onboards new users, in touch with other dimesions, dispensor of special Bigfoot abilities, provides tips, Bigfoot lore, face of the game
+- **Origin**: An ancient mutated Bigfoot who helps players learn the Bigfoot Arts of War, in some kind of mysterious alliance with other secretive forces such as UFOs, aliens, and underground societies.
 - **Personality**: Deadpan realist, hyper-intelligent and rational, speaks with the wearied patience of someone who's seen it all, likes War, likes Bigfoots. To the point, abrupt, reliable. Unlikely, undecipherable humor, references to concepts, events, and beings not known to anyone. Understanding the vast cycles of nature, and the nature of Bigfoots and Bigfoot War, offers un-ironic encouraging mentorship.
 - **Voice**: Contemporary (60fps lip-sync via Framer Motion)
 
@@ -1899,160 +1978,7 @@ Territory unlocks serve as a **primary Gold sink**, directly inspired by proven 
 
 **Total Cost per Campaign** (5 Territories): ~5k-20k Gold depending on tier mix.
 
-## 6. Game Modes & Features
-
-### Quick War System
-
-**Overview**: Fast, standalone bursts for casual entry (1-3 min sessions). No Campaign commitment. Ideal for dopamine hits between longer sessions. Streamlined setup for mobile-first experience.
-
-**Entry Flow**:
-1. **Lobby Button**: Tap "Quick War" (auto-selects opponent from previously defeated)
-2. **Opponent Selection**: Browse book or use auto-select; Filter by difficulty/theme
-3. **Pro Wagering** (Optional): Bet 10-500 Gold (wagering amplifies rewards)
-4. **Warlord Cards**: Select 2-4 cards (fewer for speed; depends on level)
-5. **Tap War Horn**: Start instant war (no Campaign unlock needed)
-
-**Opponent Selection**:
-- **Auto-Select**: Chooses random unlocked Warlord with difficulty ±2 levels
-- **Manual Filter**: By archetype, region, difficulty (Easy/Medium/Hard)
-- **Previously Defeated**: Only Warlords you've beaten before
-- **Quick Chains**: Streak bonuses for consecutive Quick Wars
-
-**Rewards & Scaling**:
-
-| Mode | Duration | XP (Win) | Gold (Win) | Spoils | Win Rate Target | Notes |
-|------|----------|----------|------------|--------|-----------------|-------|
-| **Standard Quick** | 1-3 min | 40 XP | 15G | 2-5 | 70% | Base; +10% if chained (3 in row) |
-| **Auto Quick** | 30s | 30 XP | 10G | 1-3 | 65% | Highlights only; Pro: Full visuals |
-| **Themed Quick** | 2 min | 50 XP | 20G | 4-6 | 60% | Affinity bonus; Event-tied |
-
-**Rewards Formulas**:
-- Base rewards × 0.8 (vs. Campaign) + Streak Mult (1 + 0.1 × Chain Length)
-- Opponent Difficulty = Player Level ±2 (ensures 65-70% win rate)
-- Quick Chain Bonus: +10% Gold/XP after 3 consecutive Quick Wars
-
-**Pro Enhancements**:
-- Wagering (up to 500G cap vs. 2k in Campaigns)
-- +20% XP (vs. F2P)
-- "Quick Pro Mode": 1s reveals (vs. 3-4s standard)
-- Double rewards on Quick Chain streaks
-
-**Integration**: Counts toward daily caps; Unlocks feed Campaigns (defeat for Territory hints). **Sim Results**: 5 Quick Wars/day → 250 XP/100G (F2P); 20% of total progression.
-
-### Territory Campaign
-
-Territory Campaign details are comprehensively covered in Section 5 Content Systems under "Campaigns & Territories" subsection above.
-
-### Tournament System
-
-**Overview**: Weekly Pro-exclusive competitive peaks. Async AI/PvP with shareable seeds for replays. Ties to economy via entry fees and prizes. Real-time leaderboards via WebSockets for social engagement.
-
-**Tournament Types & Scaling**:
-
-| Type | Duration | Entry (Gold) | Players | Scoring Formula | Prizes (Gold/XP) | Pro Perk |
-|------|----------|--------------|---------|-----------------|------------------|----------|
-| **Weekly Standard** | 7 days | 200G | 64 | (Wins × 10) + (Gold Wagered × 0.5) + Win Rate % | 1st: 5kG/500 XP; Pot: 2x entry | Free entry 1x/week |
-| **Themed (e.g., Swamp)** | 3 days | 500G | 32 | Above + Territory Bonus (1.2x) | 1st: 3kG/300 XP; Cosmetics | +0.5 wager mult |
-| **High Roller** | 1 day | 1kG | 16 | (Net Gold × 1) + Streaks | 1st: 10kG/1k XP; Prestige | Unlimited entries; Spectator |
-| **Seasonal** | Monthly | 300G | 128 | Full (incl. Spoils collected) | Pot: 3x; Exclusive Pod | 40% entry refund |
-
-**Scoring Formula**:
-```
-Score = (Wins × 20) + (Avg Mult × Bet Total) + (Spoils × 5) - (Losses Penalty × 0.5 × Bet Lost)
-Prize Distribution:
-- 50% to top 3
-- 30% to mid tier
-- 20% participation (pity 50G minimum)
-```
-
-**Entry Flow**:
-1. **Entry**: Pay Gold fee at Tournament Lobby
-2. **Matchmaking**: 16-128 players (bracket or leaderboard)
-3. **Wars**: Async wars (play vs. AI proxy seeded from opponent)
-4. **Scoring**: Real-time updates via WebSockets
-5. **Conclusion**: Prizes distributed; Replays available
-
-**Pro Perks**:
-- **Gold Pass**: Free entries 1x/week; +25% scoring
-- **Platinum**: Free entries 3x/week; +50% scoring; VIP Spectator (watch live wars)
-- **F2P Access**: Limited to 1 tournament/month (no wagering required)
-
-**Sim Results**: 40% participation among Pro players; Avg net +300G/entry; +30% session length during tournaments.
-
-### Alternative Modes & Events
-
-#### Daily Rewards Flow
-- **Entry**: Login streak maintained
-- **Reward Scaling**: 100-500 Gold (7-day streak)
-- **Bonus Elements**: Daily missions, pick / scratch off mini-games
-- **Outcome**: Gold and cosmetic rewards
-
-#### Weekly Events Flow
-- **Double Wager Week**: All bet multipliers +0.5x
-- **Jackpot Festival**: Jackpot trigger rate +2%
-- **Territory Showdown**: Featured territory +50% Gold earnings
-- **Outcome**: Enhanced rewards during event period
-
-#### Seasonal Content Flow
-- **Quarterly Updates**: New Warlords, territories, themes
-- **Limited-Time**: Exclusive seasonal cosmetics and events
-- **Progression**: New content unlockable through play
-- **Outcome**: Fresh content and engagement
-
-#### Weekly Events
-Rotating slot-themed events to maintain engagement:
-
-**Double Wager Week**:
-- **Duration**: 7 days
-- **Effect**: All bet multipliers increased by +0.5x
-- **Rewards**: Exclusive "High Roller" cosmetics
-- **Participation**: Requires minimum Gold wagered
-
-**Jackpot Festival**:
-- **Duration**: 3 days
-- **Effect**: Jackpot trigger rate increased by +2%
-- **Rewards**: Guaranteed rare Specimens
-- **Participation**: Free for all players
-
-**Warlord Spotlight**:
-- **Duration**: 3 days
-- **Effect**: Bonus rewards for featured Warlord
-- **Rewards**: Warlord-themed cosmetics
-- **Participation**: Play with featured Warlord
-
-#### Seasonal Regional Events
-Monthly rotating regional themes celebrating Bigfoot mythology:
-
-**"Pacific Northwest Legends" Month**:
-- **Duration**: 30 days
-- **Effect**: Bonus XP for Forest territory + Sasquatch family Warlords get special effects
-- **Rewards**: PNW-themed Specimens, "Forest Guardian" emotes, regional cosmetics
-
-**"Himalayan Mysteries" Month**:
-- **Duration**: 30 days
-- **Effect**: Mountain territory bonuses + Yeti variants get glacial mastery effects
-- **Rewards**: Himalayan-themed Specimens, "Mountain Sage" emotes, glacial cosmetics
-
-**"Amazon Guardians" Month**:
-- **Duration**: 30 days
-- **Effect**: Jungle territory focus + Mapinguary family bonuses
-- **Rewards**: Amazon-themed Specimens, "Jungle Master" emotes, vine cosmetics
-
-**"African Savannah Hunters" Month**:
-- **Duration**: 30 days
-- **Effect**: Swamp territory mastery + Agogwe family stealth bonuses
-- **Rewards**: African-themed Specimens, "Savannah Hunter" emotes, stealth cosmetics
-
-### Error and Edge Cases
-
-**Connection Loss Flow**:
-- **Detection**: Network connectivity lost
-- **State Preservation**: Current war state saved
-- **Reconnection**: Automatic reconnection attempt
-- **State Recovery**: Resume from last saved state
-- **Outcome**: Seamless gameplay continuation
-
-## 7. Economy & Monetization
+## 6. Economy & Monetization
 
 ### Gold System
 
@@ -2304,7 +2230,7 @@ Tiered packs w/ **over-value bonuses** (100-400% extra Gold equiv.). Dynamic pri
 - **Balance**: Avoid pay-to-win mechanics while encouraging spending
 - **Retention**: Maintain player retention across all monetization tiers
 
-## 8. UI/UX & Presentation
+## 7. UI/UX & Presentation
 
 ### Visual Design
 
@@ -2514,11 +2440,9 @@ Tiered packs w/ **over-value bonuses** (100-400% extra Gold equiv.). Dynamic pri
 **Font Support**: Web fonts supporting extended character sets
 **Cultural Context**: Visual tooltips explaining regional folklore significance
 
-## 9. Technical Architecture
+## 8. Technical Architecture
 
 ### Technical Stack
-
-Bigfoot War's technical architecture supports the slot-machine inspired gameplay while maintaining the core War card game mechanics. The system emphasizes rapid reveals, virtual wagering, and luck-driven progression with deterministic fairness and replayability.
 
 #### Core Architecture Overview
 
@@ -2830,7 +2754,7 @@ Pool Bias: 70% high ranks (J, Q, K, A), 30% affinity suit
 - Progression: L10 in 58 wars F2P, 46 wars Pro (+25% faster)
 - Balance: Aggro beats Steady +9%, Control beats Burst +7% (sim-confirmed)
 
-## 10. Testing & Operations
+## 9. Testing & Operations
 
 ### Test Mode
 
@@ -3037,7 +2961,7 @@ Test mode provides comprehensive testing capabilities for Bigfoot War's slot-ins
 - **Feature Request System**: Community voting on roadmap features
 - **Beta Tester Access**: Volunteer program for early features/testing
 
-## 11. Legal, Compliance & Risk
+## 10. Legal, Compliance & Risk
 
 ### Legal Requirements
 
@@ -3075,7 +2999,7 @@ Test mode provides comprehensive testing capabilities for Bigfoot War's slot-ins
 - **Data Portability**: Users can export their data
 - **Transparency**: Clear privacy policy and data usage
 
-## 12. Planning & Roadmap
+## 11. Planning & Roadmap
 
 ### MVP Development Roadmap
 
