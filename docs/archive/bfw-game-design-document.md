@@ -1557,7 +1557,7 @@ Streak_Mult: 0-10 based on consecutive wins
 #### Mutated Sherman: Narrative Guide NPC
 
 **Character Background**:
-- **Role**: Onboards new users, in touch with other dimesions, dispensor of special Bigfoot abilities, provides tips, Bigfoot lore, face of the game
+- **Role**: Onboards new users, in touch with other dimensions, dispenser of special Bigfoot abilities, provides tips, Bigfoot lore, operates drones that capture War footage, commentary on replay and tactics, face of the game
 - **Origin**: An ancient mutated Bigfoot who helps players learn the Bigfoot Arts of War, in some kind of mysterious alliance with other secretive forces such as UFOs, aliens, and underground societies.
 - **Personality**: Deadpan realist, hyper-intelligent and rational, speaks with the wearied patience of someone who's seen it all, likes War, likes Bigfoots. To the point, abrupt, reliable. Unlikely, undecipherable humor, references to concepts, events, and beings not known to anyone. Understanding the vast cycles of nature, and the nature of Bigfoots and Bigfoot War, offers un-ironic encouraging mentorship.
 - **Voice**: Contemporary (60fps lip-sync via Framer Motion)
@@ -2999,7 +2999,7 @@ Test mode provides comprehensive testing capabilities for Bigfoot War's slot-ins
 - **Data Portability**: Users can export their data
 - **Transparency**: Clear privacy policy and data usage
 
-## 11. Planning & Roadmap
+## 11. Planning
 
 ### MVP Development Roadmap
 
